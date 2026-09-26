@@ -1,0 +1,10 @@
+{
+  "name": "Noel's Engineering Notes",
+  "short_name": "Notes",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4efe6",
+  "theme_color": "#102f3b",
+  "description": "Responsive study library for EDA, Data Mining, Deep Learning and Compiler Design."
+}

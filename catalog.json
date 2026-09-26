@@ -1,0 +1,35 @@
+[
+  {
+    "id": "eda-cat2-m3-m5",
+    "subject": "eda",
+    "subject_name": "Exploratory Data Analysis",
+    "exam": "cat2",
+    "exam_name": "CAT 2",
+    "title": "Modules 3\u20135 \u00b7 Complete Exam Command Center",
+    "path": "subjects/eda/cat2/",
+    "modules": [
+      3,
+      4,
+      5
+    ],
+    "keywords": [
+      "correlation",
+      "time series",
+      "stationarity",
+      "adf",
+      "arima",
+      "1-d statistics",
+      "mean difference",
+      "sunray",
+      "ternary",
+      "k-means",
+      "hierarchical",
+      "dbscan",
+      "spectral",
+      "mst",
+      "em",
+      "cosine similarity"
+    ],
+    "status": "ready"
+  }
+]

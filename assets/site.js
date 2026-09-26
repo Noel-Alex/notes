@@ -1,0 +1,5 @@
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+async function loadCatalog(){try{const r=await fetch('./catalog.json',{cache:'no-store'});return await r.json()}catch(e){return []}}
+function registerSW(){if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+function setupFilters(){const cards=$$('.note-card[data-subject]'), pills=$$('.pill[data-filter]'), input=$('#globalSearch');let f='all';function apply(){const q=(input?.value||'').toLowerCase().trim();cards.forEach(c=>{const okF=f==='all'||c.dataset.subject===f||c.dataset.exam===f;const okQ=!q||c.innerText.toLowerCase().includes(q)||(c.dataset.keywords||'').includes(q);c.style.display=okF&&okQ?'':'none'})}pills.forEach(p=>p.onclick=()=>{pills.forEach(x=>x.classList.remove('active'));p.classList.add('active');f=p.dataset.filter;apply()});input?.addEventListener('input',apply)}
+document.addEventListener('DOMContentLoaded',()=>{registerSW();setupFilters()});
