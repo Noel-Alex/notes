@@ -160,7 +160,9 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 <style id="notes-portal-style">
 .notes-portal-bar{position:sticky;top:0;z-index:99999;height:42px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 18px;background:#081f29;color:#edf6f3;border-bottom:1px solid rgba(255,255,255,.12);font:600 11px/1.2 system-ui,-apple-system,Segoe UI,sans-serif}
 .notes-portal-bar a{color:inherit;text-decoration:none}.notes-portal-bar .crumb{display:flex;align-items:center;gap:8px;min-width:0}.notes-portal-bar .crumb span{opacity:.46}.notes-portal-bar .crumb b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.notes-portal-bar .home{letter-spacing:.12em;font-size:10px}.notes-portal-bar .back{opacity:.8}
+.sidebar{top:42px!important;height:calc(100vh - 42px)!important}.mobile-top{top:42px!important}
 @media(max-width:620px){.notes-portal-bar{padding:0 10px}.notes-portal-bar .back{display:none}}
+@media print{.notes-portal-bar{display:none!important}.sidebar{top:0!important;height:100vh!important}.mobile-top{top:0!important}}
 </style></head>
 <body><div class="notes-portal-bar"><div class="crumb"><a class="home" href="../../../">NOTES</a><span>›</span><a href="../">EDA</a><span>›</span><b>CAT 2 · Modules 3–5</b></div><a class="back" href="../">Subject home →</a></div>
 <div class="mobile-top"><b>EDA CAT-2 Command Center</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
