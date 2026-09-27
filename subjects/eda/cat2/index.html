@@ -179,6 +179,11 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
   <a class="nav-link" href="#battleplan" data-priority="high"><i class="nav-dot"></i>Battle plan + question map</a>
   <a class="nav-link" href="#coverage" data-priority="high"><i class="nav-dot"></i>Coverage audit</a>
   <a class="nav-link" href="#answerkey-vault" data-priority="high"><i class="nav-dot"></i>Both answer-key patterns</a>
+  <div class="nav-group">Final-edition essentials</div>
+  <a class="nav-link" href="#standalone-contract" data-priority="high"><i class="nav-dot"></i>What this page contains</a>
+  <a class="nav-link" href="#worked-papers" data-priority="high"><i class="nav-dot"></i>Full worked CAT patterns</a>
+  <a class="nav-link" href="#formula-desk" data-priority="high"><i class="nav-dot"></i>Formula + decision desk</a>
+  <a class="nav-link" href="#final-readiness" data-priority="high"><i class="nav-dot"></i>Final readiness test</a>
   <div class="nav-group">Module 3</div>
   <a class="nav-link" href="#correlation"><i class="nav-dot"></i>Correlation + uni/bi/multi</a>
   <a class="nav-link" href="#timeseries" data-priority="high"><i class="nav-dot"></i>Time series + resampling</a>
@@ -203,7 +208,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
   <div class="nav-group">Exam mode</div>
   <a class="nav-link" href="#numerical-masterclass" data-priority="high"><i class="nav-dot"></i>Numerical masterclass</a>
   <a class="nav-link" href="#templates"><i class="nav-dot"></i>Answer templates</a>
-  <a class="nav-link" href="#code-vault"><i class="nav-dot"></i>Exact notebook code vault</a>
+  <a class="nav-link" href="#code-vault"><i class="nav-dot"></i>Complete code vault</a>
   <a class="nav-link" href="#drill"><i class="nav-dot"></i>Rapid drill</a>
   <a class="nav-link" href="#cheatsheet" data-priority="high"><i class="nav-dot"></i>Handwritten cheat sheet</a>
   <div class="side-actions">
@@ -215,16 +220,16 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 <main class="main">
 <header class="hero">
  <div class="hero-inner">
-  <div class="eyebrow">Exploratory Data Analysis · CAT-2 · Source-grounded master notes</div>
+  <div class="eyebrow">Exploratory Data Analysis · CAT-2 · FINAL STANDALONE EDITION</div>
   <h1>Learn it. Work it.<br/>Walk in with the method.</h1>
-  <p class="dek">A single offline study site built around your Module 3–5 notebooks, textbooks, clustering slides, and both supplied CAT-2 answer keys. The emphasis is exactly where an open-book test hurts most: <b>numericals, code skeletons, algorithm steps, interpretation, and “what do I write next?”</b></p>
+  <p class="dek"><b>This page is the study material.</b> It is designed on the assumption that you will <b>not</b> reopen an older version, a PDF, a PPT, a notebook, or the raw files before the exam. Every course topic, worked pattern, formula, code pattern, numerical method, ambiguity warning, and revision tool needed from the material used to build this guide is brought into this one page. Use the originals only as provenance—not as required reading.</p>
   <div class="hero-grid">
     <div class="hero-stat"><b>3</b><span>modules fully mapped</span></div>
     <div class="hero-stat"><b>2</b><span>provided answer keys mined</span></div>
     <div class="hero-stat"><b>14</b><span>course-relevant uploads audited</span></div>
     <div class="hero-stat"><b>4</b><span>notebooks copied into code vault</span></div>
   </div>
-  <div class="hero-actions">
+  <div class="alert-strip" style="max-width:950px;margin:0 0 20px;background:#f7dfbe;border-color:#d7ae6a"><b>FINAL EDITION · USE THIS PAGE ONLY.</b> You do not need an older generated site or the raw course files to follow the study plan below.</div><div class="hero-actions">
     <button class="primary" onclick="document.querySelector('#battleplan').scrollIntoView()">Start with the exam map</button>
     <button class="secondary" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Jump to handwritten clues</button>
   </div>
@@ -234,7 +239,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 <div class="content">
 
 <section class="section searchable" id="battleplan" data-keywords="strategy exam pattern open book cat answer key">
- <div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>The battle plan</h2><p>Your sources show a very applied paper style. Learn the concepts, but prepare to <b>execute a method cleanly</b>: calculate, update, plot, code, interpret.</p></div><button class="done-btn" data-topic="battleplan">Mark done</button></div>
+ <div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>How to use this one page</h2><p>The exam style is applied. Learn the concepts here, then be able to <b>execute each method cleanly</b>: calculate, update, plot, code, and interpret. Nothing in this plan assumes you will consult another set of notes.</p></div><button class="done-btn" data-topic="battleplan">Mark done</button></div>
  <div class="priority-grid">
    <div class="hdr">Priority</div><div class="hdr">What the supplied CAT-2 keys actually ask</div><div class="hdr">Skill</div>
    <div class="p1">★ Must drill</div><div>Time-series datetime index → grouping/resampling → differencing/stationarity → forecasting skeleton</div><div>Code + explain</div>
@@ -254,8 +259,30 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 </section>
 
 
-<section class="section searchable" id="coverage" data-keywords="coverage audit sources complete every topic module 3 4 5">
- <div class="section-head"><div class="section-no">AUD</div><div class="section-title"><h2>Coverage audit · what is actually in your uploads</h2><p>This is the part the first version was missing. I indexed every course-relevant file you supplied and separated <b>core exam-pattern material</b> from <b>extended textbook coverage</b>. Nothing below is inferred to be “out of syllabus” merely because it did not appear in last year's paper.</p></div><button class="done-btn" data-topic="coverage">Mark done</button></div>
+
+<section class="section searchable" id="standalone-contract" data-keywords="standalone final only page complete syllabus self contained">
+ <div class="section-head"><div class="section-no">★</div><div class="section-title"><h2>Final-edition contract · this is the only study source you need</h2><p>This section defines exactly what “complete” means for this page. You should be able to prepare from here without opening any of the original course files or any older website version.</p></div><button class="done-btn" data-topic="standalone-contract">Mark done</button></div>
+ <div class="callout good"><strong>Study assumption</strong>From this point onward, treat every PDF/PPT/notebook and every older generated page as closed. If a fact, formula, code pattern, worked method, or course-specific warning matters for the supplied Module 3–5 material, it must be represented here. Where the course material itself is internally inconsistent, the inconsistency and the safest exam handling are written directly into this page.</div>
+ <div class="grid-3">
+  <div class="card"><span class="tag hot">Learn</span><h3>Concepts are explained here</h3><p>Definitions are not left as labels. For every major topic, you get the purpose, the algorithm/logic, the interpretation, and the common mistake that loses marks.</p></div>
+  <div class="card"><span class="tag num">Solve</span><h3>Numericals are executable here</h3><p>K-means, linkage updates, DBSCAN classification, mean difference, cosine similarity, z-standardization, 1-D summaries and spectral/MST reasoning are all reduced to repeatable steps.</p></div>
+  <div class="card"><span class="tag code">Write</span><h3>Code is available here</h3><p>The four course notebooks' non-empty code cells are reproduced in the Code Vault, and the high-frequency exam skeletons are also placed beside the concepts that use them.</p></div>
+ </div>
+ <div class="card" style="margin-top:18px">
+  <h3>Master syllabus checklist</h3>
+  <table class="compare">
+   <tr><th>Module</th><th>Everything included in this final page</th><th>What you should be able to do</th></tr>
+   <tr><td><b>3 · Correlation</b></td><td>Correlation; Pearson; positive/negative/weak relationships; univariate, bivariate, multivariate analysis; automobile cleaning/EDA; pairplots/heatmaps; Titanic multivariate case; Simpson's paradox; correlation vs causation.</td><td>Choose the right analysis/plot, calculate/interpret correlation, explain paradox/causation, recognize and repair the course-data cleaning pattern.</td></tr>
+   <tr><td><b>3 · Time series</b></td><td>Time-frame vocabulary; trend/cycle/seasonality/random variation; stationary/non-stationary/seasonal; choosing techniques; MAD/MAPE/MSE/RMSE; zero-mean vs random walk; five characteristics to inspect; datetime cleaning/indexing; slicing; plotting; grouping; resampling; differencing; ADF; ARIMA exam skeleton.</td><td>Explain a time series, write the Pandas workflow, justify mean vs sum resampling, make the ADF decision correctly, and write/interpret the forecasting pipeline.</td></tr>
+   <tr><td><b>4 · Foundations</b></td><td>Statistics/data analysis framing; quantitative, categorical, chronological and categorical subtypes; statistical sets; individuals–variables and proximity datasets.</td><td>Identify the variable/data structure and connect it to the correct analysis family.</td></tr>
+   <tr><td><b>4 · 1-D</b></td><td>Arithmetic, harmonic, geometric, quadratic and α-means; median, mode, quantiles; range, IQR, mean difference, mean deviation, variance/SD, coefficient of variation; skewness/kurtosis; frequency distributions; histogram/frequency polygon/cumulative views; box plots/outliers; categorical and chronological 1-D; cartograms.</td><td>Compute/interpret summaries and know which 1-D graph communicates which property.</td></tr>
+   <tr><td><b>4 · 2-D / N-D</b></td><td>Contingency analysis, expected counts, χ² framework, profiles and association; two-quantitative scatter/curve fitting/regression/correlation ratio/Pearson; quantitative×categorical analysis; 3-D and N-D profiles, Sunray, quality diagrams, multiple scatter, ternary diagrams, multiple contingency and mixed-variable strategies.</td><td>Given variable types, select the analysis/display and explain how it is constructed.</td></tr>
+   <tr><td><b>5 · Clustering</b></td><td>K-means, WCSS/elbow, initialization/k-means++, distance measures, hierarchical agglomerative/divisive, single/complete/average/centroid/Ward references, dendrograms and complexity, DBSCAN, spectral clustering, normalized Laplacian/eigenvectors/eigengap, MST with Prim/Kruskal and edge cutting, EM, K-medoids distinction, document clustering/Vector Space Model/cosine.</td><td>Carry out the numerical algorithms, explain their assumptions/differences, and reproduce the course-style answer steps.</td></tr>
+  </table>
+ </div>
+ <div class="editorial-note"><div class="label">How to study</div><div><b>First pass:</b> learn Modules 3→4→5. <b>Second pass:</b> work every item in Numerical Masterclass without revealing the next step. <b>Third pass:</b> do the full worked CAT patterns below and the Final Readiness Test. <b>Last pass:</b> use the handwritten clue sheet as your fast open-book index.</div></div>
+</section><section class="section searchable" id="coverage" data-keywords="coverage audit sources complete every topic module 3 4 5">
+ <div class="section-head"><div class="section-no">AUD</div><div class="section-title"><h2>Complete syllabus map · everything embedded here</h2><p>I indexed every course-relevant file you supplied and separated <b>core exam-pattern material</b> from <b>extended textbook coverage</b>. Nothing below is inferred to be “out of syllabus” merely because it did not appear in last year's paper.</p></div><button class="done-btn" data-topic="coverage">Mark done</button></div>
  <div class="callout warn"><strong>Why this version is larger</strong>Your Module 4 “Complete Book” alone spans statistical data elaboration, full 1-D quantitative/categorical/chronological analysis, 2-D categorical/quantitative/mixed-variable analysis, and 3-D/N-D graphical analysis. The original site over-focused on the previous CAT questions and therefore did not teach enough of that book.</div>
  <div class="grid-2">
   <div class="card"><span class="tag hot">Module 3 sources</span><h3>Correlation + time series</h3><p><b>Module3.ipynb</b>, <b>Module3_TS.ipynb</b>, <b>Module 3 Text Book.pdf</b>.</p>
@@ -304,8 +331,124 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
  </div>
 </section>
 
-<section class="section searchable" id="m3-complete" data-keywords="module 3 complete cleaning titanic accuracy MAD MAPE MSE RMSE Simpson correlation causation">
- <div class="section-head"><div class="section-no">03+</div><div class="section-title"><h2>Module 3 · complete source coverage</h2><p>The earlier version covered the high-yield core. This section fills the omitted source material: notebook cleaning workflow, full time-series framing/accuracy, the Titanic worked case, and the cautionary interpretation topics.</p></div><button class="done-btn" data-topic="m3-complete">Mark done</button></div>
+
+<section class="section searchable" id="worked-papers" data-keywords="full worked CAT C1 C2 previous paper answers complete">
+ <div class="section-head"><div class="section-no">PP</div><div class="section-title"><h2>Full worked CAT patterns · learn the answer shape, not just the final line</h2><p>These ten patterns reproduce the supplied assessment-key logic inside this page. Read the problem type, then rehearse the answer in the same order.</p></div><button class="done-btn" data-topic="worked-papers">Mark done</button></div>
+
+ <details open><summary>C1 · Q1 — Daily advertising/sales → weekly analysis</summary><div>
+  <p><b>Situation:</b> daily sales and daily advertising spend are observed, but advertising campaigns operate on a weekly cycle.</p>
+  <div class="flow"><div class="step"><b>1 · Index</b><br/>Date must be a DateTime index.</div><div class="arrow">→</div><div class="step"><b>2 · Frequency</b><br/>Use weekly <code>W</code>.</div><div class="arrow">→</div><div class="step"><b>3 · Aggregate</b><br/>Use <b>sum</b> for weekly sales and weekly spend totals.</div><div class="arrow">→</div><div class="step"><b>4 · Analyze</b><br/>Calculate/interpret weekly correlation.</div></div>
+  <div class="codebox"><button class="copy">Copy</button><pre>df["Date"] = pd.to_datetime(df["Date"])
+df = df.set_index("Date")
+weekly_data = df.resample("W").sum()
+weekly_data[["Daily_Sales","Daily_Ad_Spend"]].corr()</pre></div>
+  <p><b>Justification to write:</b> weekly resampling matches the natural campaign cycle, smooths irrelevant day-to-day fluctuations, and compares total spend with total sales over the same business period.</p>
+ </div></details>
+
+ <details><summary>C1 · Q2 — Visual non-stationarity + ADF</summary><div>
+  <p>If both the <b>mean rises over time</b> and the <b>variance of fluctuations grows</b>, the series violates two stationarity properties and should be described as non-stationary.</p>
+  <div class="formula">ADF H₀: unit root ⇒ non-stationary · H₁: no unit root ⇒ stationary</div>
+  <p><b>Decision:</b> p&lt;0.05 → reject H₀ → evidence supports stationarity. A high p-value → fail to reject H₀ → keep the non-stationary diagnosis / transform or difference as appropriate.</p>
+  <div class="codebox"><button class="copy">Copy</button><pre>from statsmodels.tsa.stattools import adfuller
+result = adfuller(series.dropna())
+print(result[0], result[1])   # statistic, p-value</pre></div>
+ </div></details>
+
+ <details><summary>C1 · Q3 — Right-skewed spending, age, and the correct plot</summary><div>
+  <table class="compare"><tr><th>Task</th><th>Answer</th><th>Reason</th></tr><tr><td>Typical annual spending; heavily right-skewed</td><td><b>Median</b></td><td>Robust to a few very large spenders that pull the mean upward.</td></tr><tr><td>Typical age; approximately symmetric</td><td><b>Mean</b></td><td>Appropriate simple average when extreme skew/outliers are not the defining issue.</td></tr><tr><td>Relationship between Age and Annual Spending</td><td><b>Scatter plot</b></td><td>Both are continuous; inspect direction, strength/tightness, clusters and outliers.</td></tr></table>
+ </div></details>
+
+ <details><summary>C1 · Q4 — Spectral clustering end-to-end</summary><div>
+  <ol>
+   <li><b>Standardize</b> pH, Nitrogen, Moisture and Clay because the feature scales differ.</li>
+   <li>Build an <b>n×n affinity matrix</b>, with the key using an RBF form: <span class="formula" style="display:inline-block">Aᵢⱼ=exp(−γ||xᵢ−xⱼ||²)</span>.</li>
+   <li>Build the graph degree matrix D and the normalized Laplacian <span class="formula" style="display:inline-block">L=I−D⁻¹ᐟ²AD⁻¹ᐟ²</span>.</li>
+   <li>Compute eigenvalues/eigenvectors.</li>
+   <li>Sort eigenvalues ascending and use the <b>eigengap</b>: a large jump after λₖ suggests k clusters.</li>
+   <li>Take the first k eigenvectors to form U (n×k); treat each row as the new representation.</li>
+   <li>Run K-means on rows of U; map the resulting labels back to original samples.</li>
+  </ol>
+  <p>The supplied worked key describes <b>k≈2</b> for its five soil samples, grouping samples 1/3/5 versus 2/4 from their feature pattern. Treat that as the worked-key conclusion for that dataset, not a universal prediction rule.</p>
+ </div></details>
+
+ <details><summary>C1 · Q5 — Standardization before hierarchical clustering</summary><div>
+  <p><b>Why first?</b> Annual Spending and Number of Items Purchased are on substantially different numeric scales; without scaling, the larger-scale feature can dominate Euclidean distance.</p>
+  <div class="formula">z=(x−μ)/σ</div>
+  <table class="compare"><tr><th>Quantity</th><th>Worked-key value</th></tr><tr><td>Mean Spending</td><td>8.14</td></tr><tr><td>SD Spending</td><td>≈7.41</td></tr><tr><td>Mean Items</td><td>26.6</td></tr><tr><td>SD Items</td><td>≈19.07</td></tr></table>
+  <p>Worked standardized points include C03=(0.05,−0.61), C04=(0.12,−0.45). Therefore:</p>
+  <div class="formula">d(C03,C04)=√[(.12−.05)²+(−.45+ .61)²]≈0.175</div>
+  <p>This is the smallest shown pair, so <b>C03 and C04 merge first</b>.</p>
+ </div></details>
+
+ <details open><summary>C2 · Q1 — Complete electricity-demand time-series answer</summary><div>
+  <p><b>Theory first:</b> a time series is a sequence of observations ordered in time. Inspect trend, outliers, seasonality, abrupt changes and whether variance is constant.</p>
+  <div class="codebox"><button class="copy">Copy</button><pre>import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.tsa.stattools import adfuller
+from statsmodels.tsa.arima.model import ARIMA
+
+df = pd.read_csv("electricity_demand.csv")
+df["Date"] = pd.to_datetime(df["Date"])
+df.set_index("Date", inplace=True)
+
+monthly_avg = df["Demand"].resample("M").mean()
+yearly_avg  = df["Demand"].resample("Y").mean()
+
+plt.figure(figsize=(12,5))
+plt.plot(monthly_avg, label="Monthly Average")
+plt.plot(yearly_avg, label="Yearly Average")
+plt.legend(); plt.show()
+
+df["Demand_diff"] = df["Demand"].diff()
+plt.figure(figsize=(12,4))
+plt.plot(df["Demand_diff"]); plt.show()
+
+adf_result = adfuller(df["Demand"].dropna())
+print("ADF Statistic:", adf_result[0])
+print("p-value:", adf_result[1])
+
+train = df["Demand"][:-365]
+test  = df["Demand"][-365:]
+model = ARIMA(train, order=(5,1,2))
+fit = model.fit()
+forecast = fit.forecast(steps=365)
+
+plt.plot(train, label="Train")
+plt.plot(test, label="Actual")
+plt.plot(forecast, label="Forecast")
+plt.legend(); plt.show()</pre></div>
+  <p><b>What each block proves:</b> DateTime indexing makes time-aware operations possible; monthly/yearly means reveal lower-frequency structure; first differencing targets trend/non-stationarity; ADF provides the hypothesis test; the last year is held out as test data; ARIMA(5,1,2) matches the worked key and forecasts 365 steps.</p>
+ </div></details>
+
+ <details><summary>C2 · Q2 — 1-D summary + Sunray</summary><div>
+  <p>Given TotalMarks = [78,85,67,90,72,88,60,95,70,80], the supplied answer key reports:</p>
+  <table class="compare"><tr><th>Statistic</th><th>Key value</th></tr><tr><td>Mean</td><td>78.5</td></tr><tr><td>Median</td><td>79.0</td></tr><tr><td>IQR</td><td>18</td></tr><tr><td>Variance</td><td>≈110.83</td></tr><tr><td>SD</td><td>≈10.53</td></tr><tr><td>Skewness</td><td>≈−0.17 (slightly left-skewed)</td></tr><tr><td>Minimum</td><td>60</td></tr><tr><td>Maximum</td><td>95</td></tr><tr><td>Q1</td><td>70</td></tr></table>
+  <p><b>Sunray:</b> preserve exactly the requested order: Mean → Median → IQR → Variance → SD → Skewness → Minimum → Maximum → Q1. Draw one ray per statistic, scale appropriately, place each value on its ray and join neighboring points to form the profile polygon.</p>
+  <div class="callout warn"><strong>Convention issue</strong>Quantile/variance software conventions can produce different numbers. For this exact course problem, the table above is the supplied-key convention.</div>
+ </div></details>
+
+ <details><summary>C2 · Q3 — Mean Difference Δ + ternary plot</summary><div>
+  <p>Sort the improvements: 9.5, 10.4, 11.5, 12.4, 13.0, 14.2, 15.1, 16.5. Build the upper-triangular table of absolute pairwise differences. Its worked-key sum is <b>81.2</b>.</p>
+  <div class="formula">Δ = 2×81.2 / 8² = 162.4/64 ≈ <b>2.53</b></div>
+  <p>Interpretation: under the course/text definition, the average all-pairs absolute separation of the score improvements is about 2.53 points.</p>
+  <p><b>Ternary part:</b> P=(50,30,20), Q=(40,35,25), R=(30,40,30), S=(60,25,15), T=(45,30,25). Each triple sums to 100, so each student becomes one point in an equilateral triangle whose vertices are Reading, Writing and Speaking. The supplied key states the order <b>R, Q, T, P, S</b>.</p>
+ </div></details>
+
+ <details><summary>C2 · Q4 — Complete and Average linkage on the 6×6 matrix</summary><div>
+  <p><b>Required answer mechanics:</b> locate the current smallest off-diagonal distance → merge that pair → recompute distances from the new cluster using the requested linkage → write the reduced matrix → repeat until k=3 → draw the dendrogram at merge heights.</p>
+  <div class="formula">Complete: d(A,B)=max cross-pair distance<br/>Average: d(A,B)=mean of all cross-pair distances</div>
+  <p>The supplied key states final k=3 clusters for both methods as <b>{P1}, {P3,P6}, {P2,P5,P4}</b>.</p>
+  <div class="callout warn"><strong>Course-key inconsistency you must know from this page</strong>Literal linkage arithmetic on the displayed matrix conflicts with that stated third merge. For example, after {P3,P6}, distance to P4 is Complete=max(.15,.22)=.22 and Average=(.15+.22)/2=.185, making P4 mathematically close to {P3,P6}. If the exact matrix reappears, show every linkage calculation clearly; this page preserves both the key's stated partition and the literal arithmetic so you are not blindsided.</div>
+ </div></details>
+
+ <details><summary>C2 · Q5 — Vector Space Model cosine ranking</summary><div>
+  <p>Pipeline: remove stop words → build one vocabulary → represent every document and query in the same coordinate order → compute dot product and norms → cosine → rank descending.</p>
+  <div class="formula">cos(D,Q)=(D·Q)/(||D||·||Q||)</div>
+  <table class="compare"><tr><th>Document</th><th>Dot</th><th>||Doc||</th><th>Cosine</th></tr><tr><td>Doc1</td><td>3</td><td>2.44949</td><td>0.7071</td></tr><tr><td>Doc2</td><td>2</td><td>2.00000</td><td>0.5774</td></tr><tr><td>Doc3</td><td>2</td><td>1.41421</td><td><b>0.8165</b></td></tr><tr><td>Doc4</td><td>3</td><td>2.23607</td><td>0.7746</td></tr></table>
+  <p><b>Final ranking:</b> Doc3 → Doc4 → Doc1 → Doc2.</p>
+ </div></details>
+</section><section class="section searchable" id="m3-complete" data-keywords="module 3 complete cleaning titanic accuracy MAD MAPE MSE RMSE Simpson correlation causation">
+ <div class="section-head"><div class="section-no">03+</div><div class="section-title"><h2>Module 3 · complete learning chapter</h2><p>This chapter includes: notebook cleaning workflow, full time-series framing/accuracy, the Titanic worked case, and the cautionary interpretation topics.</p></div><button class="done-btn" data-topic="m3-complete">Mark done</button></div>
  <div class="grid-2">
   <div class="card"><h3>Automobile data-cleaning workflow</h3><p>The correlation notebook does not start at Pearson; it explicitly cleans strings such as <code>"?"</code> first.</p>
    <div class="codebox"><button class="copy">Copy</button><pre># detect non-numeric price entries
@@ -408,7 +551,7 @@ sns.lineplot(data=random_walk)</pre></div></div>
 </section>
 
 <section class="section searchable" id="m4-2d" data-keywords="2D categorical contingency chi square independence phi cramer Tschuprow profiles scatter regression least squares correlation ratio">
- <div class="section-head"><div class="section-no">04D</div><div class="section-title"><h2>Module 4D · complete 2-D analysis</h2><p>This is the biggest omission from the first site. The complete book devotes an entire chapter to relationships between two categorical, two quantitative, and mixed variable types.</p></div><button class="done-btn" data-topic="m4-2d">Mark done</button></div>
+ <div class="section-head"><div class="section-no">04D</div><div class="section-title"><h2>Module 4D · complete 2-D analysis</h2><p>The complete book devotes an entire chapter to relationships between two categorical, two quantitative, and mixed variable types.</p></div><button class="done-btn" data-topic="m4-2d">Mark done</button></div>
  <div class="card"><span class="tag hot">Two categorical variables</span><h3>Contingency data set → independence → association</h3>
   <div class="flow"><div class="step">Count each pair of forms nᵢⱼ</div><div class="arrow">→</div><div class="step">row/column totals</div><div class="arrow">→</div><div class="step">expected under independence</div><div class="arrow">→</div><div class="step">χ²</div><div class="arrow">→</div><div class="step">association/profile analysis</div></div>
   <div class="grid-2" style="margin-top:15px"><div><div class="formula">Expected count Eᵢⱼ = (row totalᵢ × column totalⱼ) / n</div><div class="formula">χ² = Σ (Oᵢⱼ − Eᵢⱼ)² / Eᵢⱼ</div><div class="formula">df = (h−1)(k−1)</div></div>
@@ -444,7 +587,7 @@ sns.lineplot(data=random_walk)</pre></div></div>
 </section>
 
 <section class="section searchable" id="m5-complete" data-keywords="module 5 complete kmeans initialization WCSS Manhattan Minkowski hierarchical centroid ward complexity DBSCAN spectral MST EM">
- <div class="section-head"><div class="section-no">05+</div><div class="section-title"><h2>Module 5 · details the first version compressed too much</h2><p>The major algorithms were present before; this fills in the source-specific details, defaults, complexity notes and worked-method distinctions.</p></div><button class="done-btn" data-topic="m5-complete">Mark done</button></div>
+ <div class="section-head"><div class="section-no">05+</div><div class="section-title"><h2>Module 5 · complete learning chapter</h2><p>This chapter includes the algorithm details, course conventions, complexity notes and worked-method distinctions you need in one place.</p></div><button class="done-btn" data-topic="m5-complete">Mark done</button></div>
  <div class="grid-2">
   <div class="card"><h3>K-means objective + initialization trap</h3><div class="formula">inertia / WCSS = Σₖ Σ<sub>x∈Cₖ</sub> ||x−μₖ||²</div><p>The 50-slide visual deck spends a full sequence showing that <b>different random initial centroids can converge to different partitions</b>. The notebook therefore uses <code>init="k-means++"</code>.</p><p class="mini">Course workflow: choose K → choose K centroids → assign nearest → recompute cluster centroid → reassign → repeat until no reassignment.</p></div>
   <div class="card"><h3>Distance measures named in the examples</h3><p>The K-means example states that Euclidean is the default if no distance is given, and names Manhattan, Jaccard, Minkowski and Cosine as alternatives.</p><div class="formula">Euclidean = √Σ(xᵢ−yᵢ)²<br/>Manhattan = Σ|xᵢ−yᵢ|</div><p class="mini"><b>Support note:</b> the uploaded slide explicitly prints the Manhattan formula; it only names some of the other measures without expanding their equations.</p></div>
@@ -474,7 +617,7 @@ sns.lineplot(data=random_walk)</pre></div></div>
 </section>
 
 <section class="section searchable" id="code-vault" data-keywords="all notebook code exact cells code vault module3 module4 module5">
- <div class="section-head"><div class="section-no">CODE</div><div class="section-title"><h2>Exact notebook code vault</h2><p>Every non-empty code cell from all four uploaded notebooks is reproduced below. This is deliberately redundant: it means you can search this single page instead of opening four notebooks during revision.</p></div><button class="done-btn" data-topic="code-vault">Mark done</button></div>
+ <div class="section-head"><div class="section-no">CODE</div><div class="section-title"><h2>Exact notebook code vault</h2><p>Every non-empty code cell from all four course notebooks is reproduced below. This is deliberately redundant so this page remains sufficient even when you never open the notebooks themselves.</p></div><button class="done-btn" data-topic="code-vault">Mark done</button></div>
  <div class="card"><h3>Module 3 · Correlation notebook</h3><p class="mini">31 code cells reproduced from the uploaded notebook.</p><details><summary>Cell 5 · #Measures of central tendency</summary><div>
         <div class="codebox"><button class="copy">Copy</button><pre>#Measures of central tendency
 #Mean/average
@@ -978,7 +1121,7 @@ yearly = df["Demand"].resample("Y").mean()</pre></div></div>
 </section>
 
 <section class="section searchable" id="stationarity" data-keywords="ADF augmented dickey fuller stationarity differencing ARIMA forecast train test p value">
- <div class="section-head"><div class="section-no">03</div><div class="section-title"><h2>Stationarity · ADF · differencing · ARIMA</h2><p>This part is driven mainly by the supplied CAT-2 keys: they explicitly expect the hypothesis decision and a robust forecasting skeleton.</p></div><button class="done-btn" data-topic="stationarity">Mark done</button></div>
+ <div class="section-head"><div class="section-no">03</div><div class="section-title"><h2>Stationarity · ADF · differencing · ARIMA</h2><p>For the exam patterns represented here, you need both the hypothesis decision and the forecasting skeleton below.</p></div><button class="done-btn" data-topic="stationarity">Mark done</button></div>
  <div class="flow">
   <div class="step"><b>1 · Inspect</b><br/>Trend? changing variance? seasonality?</div><div class="arrow">→</div>
   <div class="step"><b>2 · ADF</b><br/>H₀: unit root / non-stationary</div><div class="arrow">→</div>
@@ -1039,7 +1182,7 @@ sns.boxplot(x=df[col])
 df[col].value_counts().plot(kind="bar")
 df[col].plot(kind="hist", cumulative=True, bins=20)</pre></div>
  </div></details>
- <details><summary>Full-textbook map: what sits around the notebook material</summary><div>
+ <details><summary>Complete Module 4 map</summary><div>
   <p>The complete Module 4 book broadens EDA beyond the notebook: 1-D quantitative/categorical/chronological summaries; 2-D categorical×categorical and quantitative×quantitative relationships; quantitative×categorical comparisons; and 3-D/N-D displays such as profiles, Sunray plots, multiple scatter diagrams and triangular diagrams.</p>
   <table class="compare"><tr><th>Variable types</th><th>Useful view</th><th>Question being answered</th></tr><tr><td>1 quantitative</td><td>stats, histogram, boxplot</td><td>center/spread/shape?</td></tr><tr><td>2 quantitative</td><td>scatter / curve fit</td><td>relationship?</td></tr><tr><td>categorical + quantitative</td><td>boxplots/histograms by form</td><td>how does distribution change by group?</td></tr><tr><td>N quantitative</td><td>profile / Sunray / multiple scatter</td><td>compare multivariate profiles?</td></tr><tr><td>3 percentages summing equally</td><td>triangular/ternary</td><td>composition?</td></tr></table>
  </div></details>
@@ -1091,7 +1234,7 @@ df[col].plot(kind="hist", cumulative=True, bins=20)</pre></div>
    <h3>Ternary / triangular diagram</h3>
    <p>Use when <b>three quantitative components have an equal fixed sum</b>, especially percentages totaling 100. Every observation becomes one point inside an equilateral triangle.</p>
    <div class="chips"><span class="chip">100% of A → A vertex</span><span class="chip">33⅓/33⅓/33⅓ → center</span><span class="chip">sum must be fixed</span></div>
-   <div class="callout warn"><strong>Data check</strong>The Module 4 notebook comment says its demo proportions sum to 1, but the first demo tuple (20,55,30) sums to 105%. For an exam, verify/normalize the three components before plotting.</div>
+   <div class="callout warn"><strong>Data check</strong>Course-convention warning: one ternary demo labels its proportions as normalized although its first tuple (20,55,30) totals 105%. In a fresh problem, verify the fixed-sum condition and normalize if the question requires proportions.</div>
   </div>
   <div class="interactive">
    <h3>C2 language-skill ternary</h3><p>Reading · Writing · Speaking. Click a student to emphasize the point.</p>
@@ -1125,7 +1268,7 @@ plt.plot(range(1,11), wcss)</pre></div>
    <div id="kmText" style="font-size:11px;color:#c5d6d2;margin-top:7px"></div>
   </div>
  </div>
- <div class="callout warn"><strong>Random initialization trap</strong>Your K-means slides spend many pages on this: unlucky initial centroids can lead to a poor local grouping. The course notebook uses <code>init="k-means++"</code>, which is the initialization choice you should recognize in code.</div>
+ <div class="callout warn"><strong>Random initialization trap</strong>Unlucky initial centroids can lead to a poor local grouping. The course code reproduced on this page uses <code>init="k-means++"</code>, which is the initialization choice you should recognize in code.</div>
  <details><summary>Exact first-iteration distances from the supplied K-means example</summary><div>
  <table class="compare"><tr><th>Point</th><th>to C1 (3,7)</th><th>to C2 (5,3)</th><th>to C3 (8,7)</th><th>Assign</th></tr>
  <tr><td>A(3,9)</td><td>2.00</td><td>6.32</td><td>5.39</td><td>C1</td></tr>
@@ -1221,7 +1364,7 @@ plt.plot(range(1,11), wcss)</pre></div>
     <div class="step"><b>M-step:</b> update parameters to maximize likelihood using those estimates.</div>
     <div class="step"><b>Repeat:</b> stop when parameters/log-likelihood changes are sufficiently small.</div>
    </div>
-   <p class="mini">Your reference connects EM with Gaussian mixture clustering and missing/hidden data.</p>
+   <p class="mini">In this course, EM is connected with Gaussian-mixture clustering and missing/hidden data.</p>
   </div>
  </div>
  <details><summary>K-medoids — small but mentioned in your Module 5 summary</summary><div><p>The course summary describes it as similar in structure to K-means but using <b>medoids</b> rather than centroids. For your source coverage, remember that distinction; the uploaded material does not develop a full worked K-medoids numerical.</p></div></details>
@@ -1252,7 +1395,50 @@ plt.plot(range(1,11), wcss)</pre></div>
  <details><summary>Slide practice example: query “brown dog”</summary><div><p>Vocabulary: {quick, brown, fox, jumps, lazy, dog, chased}. The supplied slides use D1=(1,1,1,1,1,1,0), D2=(0,1,1,0,0,1,1), D3=(0,0,0,0,1,1,0), Q=(0,1,0,0,0,1,0). Cosines: D1≈.577, D2≈.707, D3=.5 → <b>D2 → D1 → D3</b>.</p></div></details>
 </section>
 
-<section class="section searchable" id="templates" data-keywords="answer template exam open book code skeleton numerical">
+
+<section class="section searchable" id="formula-desk" data-keywords="formula decision rules master formulas equations">
+ <div class="section-head"><div class="section-no">ƒ</div><div class="section-title"><h2>Formula + decision desk · one-stop open-book reference</h2><p>Use this during revision and in the test. It deliberately collects the formulas that are otherwise distributed across different chapters.</p></div><button class="done-btn" data-topic="formula-desk">Mark done</button></div>
+ <div class="grid-2">
+  <div class="card"><h3>Correlation + descriptive statistics</h3>
+   <div class="formula">ρ(X,Y)=Cov(X,Y)/(σXσY)</div>
+   <div class="formula">Mean = Σxᵢ/n · Range=max−min · IQR=Q₃−Q₁</div>
+   <div class="formula">Variance = mean of squared deviations (use the course/software convention requested)<br/>SD=√Variance</div>
+   <div class="formula">CV = SD / Mean (relative dispersion)</div>
+   <p class="mini">For skew/outliers, the median is usually the course's robust center choice. Always interpret correlation after inspecting the scatter structure.</p>
+  </div>
+  <div class="card"><h3>Special Module 4 measures</h3>
+   <div class="formula">H = n / Σ(1/xᵢ)</div>
+   <div class="formula">G = (∏xᵢ)<sup>1/n</sup></div>
+   <div class="formula">Q = √(Σxᵢ²/n)</div>
+   <div class="formula">Course ordering: H ≤ G ≤ arithmetic mean ≤ Q</div>
+   <div class="formula">Mean Difference Δ = ΣᵢΣⱼ|xᵢ−xⱼ| / n²<br/>If summing each unordered pair once: Δ=2S/n²</div>
+  </div>
+  <div class="card"><h3>Forecast accuracy + ADF</h3>
+   <div class="formula">MAD=(1/n)Σ|Y−Ŷ|</div><div class="formula">MAPE=(100/n)Σ|Y−Ŷ|/Y</div><div class="formula">MSE=(1/n)Σ(Y−Ŷ)² · RMSE=√MSE</div>
+   <div class="formula">ADF: H₀ = unit root/non-stationary<br/>p&lt;.05 ⇒ reject H₀ ⇒ stationary</div>
+  </div>
+  <div class="card"><h3>Distance + K-means</h3>
+   <div class="formula">Euclidean d(x,y)=√Σ(xᵢ−yᵢ)²</div><div class="formula">Manhattan d(x,y)=Σ|xᵢ−yᵢ|</div>
+   <div class="formula">Centroid μₖ = coordinate-wise mean of points in Cₖ</div>
+   <div class="formula">WCSS/Inertia = ΣₖΣ<sub>x∈Cₖ</sub>||x−μₖ||²</div>
+  </div>
+  <div class="card"><h3>Hierarchical + DBSCAN</h3>
+   <div class="formula">Single=min cross distance<br/>Complete=max cross distance<br/>Average=mean all cross distances<br/>Centroid=distance between centroids</div>
+   <p><b>DBSCAN:</b> Core = at least MinPts within ε-neighborhood (course example counts the point itself); Border = non-core within ε of a core; Noise = neither.</p>
+  </div>
+  <div class="card"><h3>Spectral + document cosine</h3>
+   <div class="formula">Aᵢⱼ=exp(−γ||xᵢ−xⱼ||²)</div><div class="formula">Dᵢᵢ=ΣⱼAᵢⱼ · L=D−A</div><div class="formula">L<sub>norm</sub>=I−D⁻¹ᐟ²AD⁻¹ᐟ²</div>
+   <div class="formula">cos(A,B)=(A·B)/(||A||||B||)</div>
+  </div>
+  <div class="card"><h3>Contingency / χ² framework</h3>
+   <div class="formula">Eᵢⱼ=(row totalᵢ × column totalⱼ)/n</div><div class="formula">χ²=Σ(O−E)²/E · df=(h−1)(k−1)</div>
+   <p class="mini">The course book contains an internally inconsistent sentence about the χ² decision rule; see the Module 4D warning on this page rather than guessing.</p>
+  </div>
+  <div class="card"><h3>Ternary + Sunray construction rule</h3>
+   <p><b>Ternary:</b> three components share a fixed sum; 100% of one component lies at its vertex, equal thirds at center.</p><p><b>Sunray:</b> one scaled ray per requested characteristic; preserve order, place values, connect neighboring values into a polygon.</p>
+  </div>
+ </div>
+</section><section class="section searchable" id="templates" data-keywords="answer template exam open book code skeleton numerical">
  <div class="section-head"><div class="section-no">EX</div><div class="section-title"><h2>Answer templates · what to write</h2><p>Use these as the “shape” of an answer. They force you to show enough intermediate work for partial marks.</p></div><button class="done-btn" data-topic="templates">Mark done</button></div>
  <div class="grid-2">
   <div class="card"><h3>If asked “perform time-series analysis”</h3><p><b>Definition/characteristics → datetime conversion/index → slice/plot → grouping → resample with justified aggregate → stationarity/difference if requested → model/forecast → interpretation.</b></p></div>
@@ -1280,7 +1466,29 @@ plt.plot(range(1,11), wcss)</pre></div>
  </div>
 </section>
 
-<section class="section searchable" id="cheatsheet" data-keywords="cheat sheet handwritten formulas code clues">
+
+<section class="section searchable" id="final-readiness" data-keywords="final readiness exam simulation test self quiz complete">
+ <div class="section-head"><div class="section-no">✓</div><div class="section-title"><h2>Final readiness test · if you can do these, the page has done its job</h2><p>Answer each aloud or on paper before revealing. Every answer is recoverable from this same page; there is no “go check the notes” step.</p></div><button class="done-btn" data-topic="final-readiness">Mark done</button></div>
+ <div class="quiz-card"><div class="q">1. You have a heavily right-skewed spending variable. Which center do you report and why?</div><button class="reveal">Reveal</button><div class="answer">Median, because a small number of very large values pull the mean upward; the median is robust to those extremes.</div></div>
+ <div class="quiz-card"><div class="q">2. State all five time-series characteristics the course material tells you to inspect.</div><button class="reveal">Reveal</button><div class="answer">Trend, outliers, seasonality, abrupt changes, and constant versus changing variance.</div></div>
+ <div class="quiz-card"><div class="q">3. ADF p=.18. What is H₀ and what do you conclude?</div><button class="reveal">Reveal</button><div class="answer">H₀ is unit root/non-stationary. Since .18≥.05, fail to reject H₀; continue to treat the series as non-stationary and consider a transformation/difference.</div></div>
+ <div class="quiz-card"><div class="q">4. When do you use weekly sum versus weekly mean in resampling?</div><button class="reveal">Reveal</button><div class="answer">Use sum for quantities accumulated over the period (e.g. total weekly sales/ad spend); use mean for the average level over the period (e.g. average demand/consumption level).</div></div>
+ <div class="quiz-card"><div class="q">5. Give the exact K-means loop and its stopping idea.</div><button class="reveal">Reveal</button><div class="answer">Choose K and initialize centroids → assign every point to nearest centroid → recompute each centroid as the cluster mean → reassign → repeat until assignments/centroids stop changing under the chosen criterion.</div></div>
+ <div class="quiz-card"><div class="q">6. After a hierarchical merge, how do Single, Complete and Average update cluster distance?</div><button class="reveal">Reveal</button><div class="answer">Single=min cross-pair distance; Complete=max cross-pair distance; Average=mean of all cross-pair distances.</div></div>
+ <div class="quiz-card"><div class="q">7. DBSCAN: define core, border and noise using ε and MinPts.</div><button class="reveal">Reveal</button><div class="answer">Core has at least MinPts points in its ε-neighborhood (the worked course example counts the point itself). Border is not core but lies within ε of a core. Noise is neither.</div></div>
+ <div class="quiz-card"><div class="q">8. Why can K-means initialization matter, and what initialization appears in the notebook?</div><button class="reveal">Reveal</button><div class="answer">Different random starting centroids can lead to different local partitions. The notebook uses k-means++.</div></div>
+ <div class="quiz-card"><div class="q">9. Write Mean Difference Δ if you have only the sum S of unique upper-triangle pairwise absolute differences.</div><button class="reveal">Reveal</button><div class="answer">Δ=2S/n² under the course/book definition.</div></div>
+ <div class="quiz-card"><div class="q">10. Give the spectral-clustering pipeline in one breath.</div><button class="reveal">Reveal</button><div class="answer">Standardize → affinity matrix → degree matrix → graph Laplacian/normalized Laplacian → eigenvalues/eigenvectors → eigengap for k → first k eigenvectors as row embeddings → K-means → map labels back.</div></div>
+ <div class="quiz-card"><div class="q">11. How does the second Laplacian eigenvector give a bipartition in the course spectral slides?</div><button class="reveal">Reveal</button><div class="answer">Split nodes by the sign of entries in the second eigenvector (Fiedler vector): positive versus negative sides.</div></div>
+ <div class="quiz-card"><div class="q">12. How do you turn an MST into k clusters?</div><button class="reveal">Reveal</button><div class="answer">Construct the MST, remove the longest/weakest bridge to split into two components, then continue removing the next appropriate longest bridge until k connected components/clusters remain.</div></div>
+ <div class="quiz-card"><div class="q">13. What are the E-step and M-step?</div><button class="reveal">Reveal</button><div class="answer">E-step estimates hidden values/posterior responsibilities using current parameters; M-step updates parameters to maximize likelihood based on those estimates. Repeat to convergence.</div></div>
+ <div class="quiz-card"><div class="q">14. What are the five steps of document cosine ranking?</div><button class="reveal">Reveal</button><div class="answer">Remove stop words → build a common vocabulary → create document/query TF vectors in the same order → compute dot products and norms/cosines → rank cosine similarity descending.</div></div>
+ <div class="quiz-card"><div class="q">15. For the C2 query “brown lazy dog”, what is the ranking?</div><button class="reveal">Reveal</button><div class="answer">Doc3 → Doc4 → Doc1 → Doc2.</div></div>
+ <div class="quiz-card"><div class="q">16. For two categorical variables, what is the contingency-table workflow?</div><button class="reveal">Reveal</button><div class="answer">Observed cell counts → row/column totals → expected counts under independence → χ² contributions/statistic → row/column profiles and association interpretation.</div></div>
+ <div class="quiz-card"><div class="q">17. Why can r≈0 still coexist with a relationship?</div><button class="reveal">Reveal</button><div class="answer">Pearson r measures linear association. A strong nonlinear relationship can have a small or zero linear coefficient, so inspect the scatter shape first.</div></div>
+ <div class="quiz-card"><div class="q">18. Name the main N-D displays for many quantitative variables.</div><button class="reveal">Reveal</button><div class="answer">Profile diagrams, Sunray plots, quality diagrams, and multiple scatter diagrams/matrices.</div></div>
+ <div class="callout good"><strong>Ready threshold</strong>If you can answer at least 15/18 without opening another section, and can independently work one K-means, one linkage, one cosine, one Mean Difference and one ADF/time-series problem, you are using this site as intended: the page is your reference, not a pointer to somewhere else.</div>
+</section><section class="section searchable" id="cheatsheet" data-keywords="cheat sheet handwritten formulas code clues">
  <div class="section-head print-hide"><div class="section-no">✎</div><div class="section-title"><h2>Handwritten open-book sheet</h2><p>This is the part I would physically copy/print. It is intentionally compact and ordered by the action you need in the test.</p></div><button class="done-btn" data-topic="cheatsheet">Mark done</button></div>
  <div class="print-hide" style="display:flex;gap:8px;margin-bottom:12px"><button class="primary" onclick="window.print()">Print only this sheet</button><button class="done-btn" onclick="copyCheat()">Copy sheet text</button></div>
  <div class="cheat" id="cheatBody">
@@ -1307,7 +1515,7 @@ plt.plot(range(1,11), wcss)</pre></div>
 </section>
 
 <section class="section searchable" id="sources" data-keywords="sources files notes answer key discrepancy">
- <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source coverage + integrity notes</h2><p>The site is intentionally tied to what you uploaded, not a generic EDA syllabus.</p></div></div>
+ <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Course-convention & ambiguity notes</h2><p>This final edition is self-contained. The original course files were used to construct and cross-check it, but you are not expected to open them while studying.</p></div></div>
  <div class="card source-list">
   <ul>
    <li><b>Module3.ipynb</b> — correlation; uni/bi/multivariate plots and Python patterns.</li>
