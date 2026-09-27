@@ -229,7 +229,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
     <div class="hero-stat"><b>14</b><span>course-relevant uploads audited</span></div>
     <div class="hero-stat"><b>4</b><span>notebooks copied into code vault</span></div>
   </div>
-  <div class="alert-strip" style="max-width:950px;margin:0 0 20px;background:#f7dfbe;border-color:#d7ae6a"><b>FINAL EDITION · USE THIS PAGE ONLY.</b> You do not need an older generated site or the raw course files to follow the study plan below.</div><div class="hero-actions">
+  <div class="alert-strip" style="max-width:950px;margin:0 0 20px;background:#f7dfbe;border-color:#d7ae6a"><b>FINAL EDITION · SOURCE-BOUND.</b> This page is meant to be your only study resource, but it contains only material supported by the files/answer keys you supplied—no extra syllabus invented from general knowledge.</div><div class="hero-actions">
     <button class="primary" onclick="document.querySelector('#battleplan').scrollIntoView()">Start with the exam map</button>
     <button class="secondary" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Jump to handwritten clues</button>
   </div>
@@ -262,7 +262,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 
 <section class="section searchable" id="standalone-contract" data-keywords="standalone final only page complete syllabus self contained">
  <div class="section-head"><div class="section-no">★</div><div class="section-title"><h2>Final-edition contract · this is the only study source you need</h2><p>This section defines exactly what “complete” means for this page. You should be able to prepare from here without opening any of the original course files or any older website version.</p></div><button class="done-btn" data-topic="standalone-contract">Mark done</button></div>
- <div class="callout good"><strong>Study assumption</strong>From this point onward, treat every PDF/PPT/notebook and every older generated page as closed. If a fact, formula, code pattern, worked method, or course-specific warning matters for the supplied Module 3–5 material, it must be represented here. Where the course material itself is internally inconsistent, the inconsistency and the safest exam handling are written directly into this page.</div><div class="callout warn"><strong>Depth standard for this final edition</strong>Nothing computational is allowed to stop at a definition. If a topic has a formula, you should find on this page the formula, the hand-calculation sequence, a worked example, and an interpretation. Overview cards are only indexes; the worked calculation appears in the same chapter or in Numerical Masterclass.</div>
+ <div class="callout good"><strong>Study assumption</strong>From this point onward, treat every PDF/PPT/notebook and every older generated page as closed. If a fact, formula, code pattern, worked method, or course-specific warning matters for the supplied Module 3–5 material, it must be represented here. Where the course material itself is internally inconsistent, the inconsistency and the safest exam handling are written directly into this page.</div><div class="callout warn"><strong>Source-only depth rule</strong>This page is intentionally bounded by the material you supplied. If a formula, worked method, or calculation procedure is <b>not actually taught or used</b> in those files/answer keys, it is not added here from general knowledge. If a term is only named in your material, it stays a brief name-level note or is omitted from the exam-learning flow; it is not expanded into a new topic.</div>
  <div class="grid-3">
   <div class="card"><span class="tag hot">Learn</span><h3>Concepts are explained here</h3><p>Definitions are not left as labels. For every major topic, you get the purpose, the algorithm/logic, the interpretation, and the common mistake that loses marks.</p></div>
   <div class="card"><span class="tag num">Solve</span><h3>Numericals are executable here</h3><p>K-means, linkage updates, DBSCAN classification, mean difference, cosine similarity, z-standardization, 1-D summaries and spectral/MST reasoning are all reduced to repeatable steps.</p></div>
@@ -277,7 +277,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
    <tr><td><b>4 · Foundations</b></td><td>Statistics/data analysis framing; quantitative, categorical, chronological and categorical subtypes; statistical sets; individuals–variables and proximity datasets.</td><td>Identify the variable/data structure and connect it to the correct analysis family.</td></tr>
    <tr><td><b>4 · 1-D</b></td><td>Arithmetic, harmonic, geometric, quadratic and α-means; median, mode, quantiles; range, IQR, mean difference, mean deviation, variance/SD, coefficient of variation; skewness/kurtosis; frequency distributions; histogram/frequency polygon/cumulative views; box plots/outliers; categorical and chronological 1-D; cartograms.</td><td>Compute/interpret summaries and know which 1-D graph communicates which property.</td></tr>
    <tr><td><b>4 · 2-D / N-D</b></td><td>Contingency analysis, expected counts, χ² framework, profiles and association; two-quantitative scatter/curve fitting/regression/correlation ratio/Pearson; quantitative×categorical analysis; 3-D and N-D profiles, Sunray, quality diagrams, multiple scatter, ternary diagrams, multiple contingency and mixed-variable strategies.</td><td>Given variable types, select the analysis/display and explain how it is constructed.</td></tr>
-   <tr><td><b>5 · Clustering</b></td><td>K-means, WCSS/elbow, initialization/k-means++, distance measures, hierarchical agglomerative/divisive, single/complete/average/centroid/Ward references, dendrograms and complexity, DBSCAN, spectral clustering, normalized Laplacian/eigenvectors/eigengap, MST with Prim/Kruskal and edge cutting, EM, K-medoids distinction, document clustering/Vector Space Model/cosine.</td><td>Carry out the numerical algorithms, explain their assumptions/differences, and reproduce the course-style answer steps.</td></tr>
+   <tr><td><b>5 · Clustering</b></td><td>K-means, WCSS/elbow, initialization/k-means++, Euclidean/Manhattan as actually taught, hierarchical agglomerative/divisive with single/complete/average/centroid descriptions, dendrograms and complexity, DBSCAN, spectral clustering, Laplacian/eigenvectors/eigengap, MST with Prim/Kruskal and edge cutting, EM steps, and document clustering/Vector Space Model/cosine.</td><td>Carry out the numerical algorithms, explain their assumptions/differences, and reproduce the course-style answer steps.</td></tr>
   </table>
  </div>
  <div class="editorial-note"><div class="label">How to study</div><div><b>First pass:</b> learn Modules 3→4→5. <b>Second pass:</b> work every item in Numerical Masterclass without revealing the next step. <b>Third pass:</b> do the full worked CAT patterns below and the Final Readiness Test. <b>Last pass:</b> use the handwritten clue sheet as your fast open-book index.</div></div>
@@ -607,25 +607,17 @@ sns.lineplot(data=random_walk)</pre></div></div>
   <div class="callout dark"><strong>Exam habit</strong>Never write only “skewness = …” if you calculated it manually and the definition is not specified. Name the coefficient or use the software function the question asks for.</div>
  </div></details>
 
- <details open><summary>7 · Kurtosis — calculate β₂ and Fisher excess γ₂</summary><div>
-  <p>Let μ₂ be the second central moment and μ₄ the fourth central moment.</p>
-  <div class="formula">μ₂=(1/n)Σ(x−X̄)² · μ₄=(1/n)Σ(x−X̄)⁴<br/>β₂ = μ₄/μ₂² · γ₂ = β₂−3</div>
-  <p><b>Worked simple example:</b> x={1,2,3,4,5}, X̄=3. Deviations are −2,−1,0,1,2.</p>
-  <div class="formula">μ₂=(4+1+0+1+4)/5=2<br/>μ₄=(16+1+0+1+16)/5=6.8<br/>β₂=6.8/2²=<b>1.7</b><br/>γ₂=1.7−3=<b>−1.3</b></div>
-  <p>Fisher excess γ₂&lt;0 ⇒ <b>platykurtic</b>; γ₂=0 ⇒ mesokurtic/normal reference; γ₂&gt;0 ⇒ leptokurtic.</p>
- </div></details>
+ <details open><summary>7 · Kurtosis — only the coefficient formulas taught in the Module 4 book</summary><div>
+   <p>The book defines central moments and then gives Pearson β₂ and Fisher γ₂:</p>
+   <div class="formula">μ₂=(1/n)Σ(x−X̄)²<br/>μ₄=(1/n)Σ(x−X̄)⁴<br/>β₂=μ₄/μ₂²<br/>γ₂=β₂−3</div>
+   <p>For the book's Fisher convention: γ₂&gt;0 leptokurtic, γ₂&lt;0 platykurtic, γ₂=0 normal/mesokurtic reference. No separate synthetic dataset is introduced.</p>
+  </div></details>
 
- <details><summary>8 · Generalized means Q, H, G, α-mean — how to calculate them</summary><div>
-  <p>Use x={2,8} so every operation is visible.</p>
-  <table class="compare"><tr><th>Mean</th><th>Formula</th><th>Worked value</th></tr>
-   <tr><td>Arithmetic A</td><td>Σx/n</td><td>(2+8)/2=<b>5</b></td></tr>
-   <tr><td>Harmonic H</td><td>n/Σ(1/x)</td><td>2/(1/2+1/8)=<b>3.2</b></td></tr>
-   <tr><td>Geometric G</td><td>(∏x)<sup>1/n</sup></td><td>√(2×8)=<b>4</b></td></tr>
-   <tr><td>Quadratic Q</td><td>√(Σx²/n)</td><td>√((4+64)/2)=√34=<b>5.831</b></td></tr>
-   <tr><td>α-mean</td><td>[Σxᵢ<sup>α</sup>/n]<sup>1/α</sup></td><td>α=2 gives Q; α=−1 gives H; α→0 gives G</td></tr>
-  </table>
-  <p><b>Sanity check from the book:</b> H ≤ G ≤ A ≤ Q. Here 3.2 ≤ 4 ≤ 5 ≤ 5.831.</p>
- </div></details>
+ <details><summary>8 · Generalized means explicitly developed in the Module 4 book</summary><div>
+   <p>The book itself gives these formulas, so they remain here; there is no extra made-up exercise attached to them.</p>
+   <div class="formula">Quadratic Q=√(Σxᵢ²/n)<br/>Harmonic H=n/Σ(1/xᵢ)<br/>Geometric G=(∏xᵢ)<sup>1/n</sup><br/>α-mean Xα=[Σxᵢ<sup>α</sup>/n]<sup>1/α</sup></div>
+   <p>The book states the ordering <b>H ≤ G ≤ X̄ ≤ Q</b>.</p>
+  </div></details>
 
  <details open><summary>9 · Frequency table, histogram, cumulative frequency, box plot — construct them from raw marks</summary><div>
   <p>Choose equal-width classes of 10:</p>
@@ -675,27 +667,19 @@ sns.lineplot(data=random_walk)</pre></div></div>
   <div class="card"><span class="tag num">Linear r</span><h3>Use only for linear structure</h3><div class="formula">r = Cov(X,Y) / [s(X)s(Y)], −1 ≤ r ≤ 1</div><p>Source emphasis: interpret r only after looking at the scatter plot. Different-shaped clouds can share the same r.</p></div>
  </div>
  <div class="card" style="margin-top:18px"><span class="tag">Quantitative + categorical</span><h3>Use the category as a filter</h3><p>For every category/form, create the corresponding quantitative subpopulation and perform a 1-D quantitative analysis on it. The book recommends showing:</p><div class="chips"><span class="chip">statistical characteristics by form</span><span class="chip">box plots by form</span><span class="chip">histograms by form</span><span class="chip">Sunray characteristics by form</span></div><p>Alternatively, recode the quantitative variable into categories and then use two-categorical analysis.</p></div>
-<details open><summary>Worked χ² table · from counts to decision</summary><div>
-   <p>Observed counts:</p><table class="compare"><tr><th></th><th>Yes</th><th>No</th><th>Row total</th></tr><tr><td>A</td><td>30</td><td>20</td><td>50</td></tr><tr><td>B</td><td>10</td><td>40</td><td>50</td></tr><tr><th>Column total</th><th>40</th><th>60</th><th>100</th></tr></table>
-   <p>Expected A-Yes=(50×40)/100=20; A-No=30; B-Yes=20; B-No=30.</p>
-   <div class="formula">χ²=(30−20)²/20 +(20−30)²/30 +(10−20)²/20 +(40−30)²/30<br/>=5+3.333+5+3.333=<b>16.667</b></div>
-   <p>df=(2−1)(2−1)=1. Standard statistical decision: if χ² exceeds the critical value (or p&lt;α), <b>reject independence</b> and conclude evidence of association. The scanned book sentence that says to “accept independence” when χ² is greater is a source typo/inconsistency.</p>
+<details open><summary>χ² calculation · using the contingency table structure in your book</summary><div>
+   <p>Your Module 4 book explicitly teaches: observed cell count <b>Oᵢⱼ</b> → expected count under independence → χ² → degrees of freedom.</p>
+   <div class="formula">Eᵢⱼ=(row totalᵢ × column totalⱼ)/n<br/>χ²=Σ(Oᵢⱼ−Eᵢⱼ)²/Eᵢⱼ<br/>df=(rows−1)(columns−1)</div>
+   <p>Using the book's own contingency table entry for the first row/first column: row total=704, column total=412, n=1746, observed O=110:</p>
+   <div class="formula">E=(704×412)/1746≈166.12<br/>cell contribution=(110−166.12)²/166.12≈18.96</div>
+   <p>Repeat that calculation for every cell and add the contributions. Row profile = cell/row total; column profile = cell/column total.</p>
+   <div class="callout warn"><strong>Book wording issue</strong>The scanned book contains a sentence saying to “accept independence” when χ² exceeds the critical value; that conflicts with the standard χ² test direction. This page flags the inconsistency rather than inventing a new course rule.</div>
   </div></details>
-  <details open><summary>Worked least-squares line + r</summary><div>
-   <p>X={1,2,3}, Y={2,3,5}; X̄=2, Ȳ=10/3≈3.333.</p>
-   <div class="formula">slope a = Σ(x−X̄)(y−Ȳ) / Σ(x−X̄)² = 3/2=<b>1.5</b><br/>intercept b = Ȳ−aX̄ = 3.333−3=<b>.333</b><br/>ŷ=<b>1.5x+.333</b></div>
-   <p>The fitted least-squares line passes through (X̄,Ȳ). For the same points, r≈.982, so the linear fit is strong.</p>
-  </div></details>
-  <details><summary>Worked correlation ratio η²</summary><div>
-   <p>Groups A:{1,2}, B:{5,6}. Grand mean=3.5; conditional means are 1.5 and 5.5.</p>
-   <div class="formula">SS_between=2(1.5−3.5)²+2(5.5−3.5)²=16<br/>SS_total=(1−3.5)²+(2−3.5)²+(5−3.5)²+(6−3.5)²=17<br/>η²=16/17=<b>.941</b>; η≈<b>.970</b></div>
-   <p>Interpret η as strength of the general dependence captured by conditional means; unlike r, it is not restricted to a straight-line relation.</p>
-  </div></details><details><summary>Association strength after χ² · φ, Cramér V, Tschuprow T</summary><div>
-  <p>Once χ² says the variables are associated, these scale the strength of association.</p>
-  <div class="formula">φ = √(χ²/n) &nbsp; (especially 2×2)<br/>Cramér V = √[χ² / (n·min(r−1,c−1))]<br/>Tschuprow T = √[χ² / (n·√((r−1)(c−1)))]</div>
-  <p>For the worked 2×2 example χ²=16.667 and n=100: φ=√(.16667)=<b>.408</b>. In a 2×2 table, Cramér V is the same because min(r−1,c−1)=1.</p>
-  <p><b>Profiles:</b> row profile = cell/row total; column profile = cell/column total. For A-Yes=30, row profile=30/50=<b>.60</b>; column profile=30/40=<b>.75</b>.</p>
- </div></details></section>
+  <details><summary>Least squares / correlation ratio · learn only the formulas actually developed in the book</summary><div>
+   <p>The book explicitly derives the least-squares line <b>y=ax+b</b>, with the line passing through (X̄,Ȳ):</p>
+   <div class="formula">a = Σ(x−X̄)(y−Ȳ) / Σ(x−X̄)²<br/>b = Ȳ − aX̄</div>
+   <p>It also develops the linear correlation coefficient r and the correlation ratio η to distinguish linear dependence from more general dependence. Because the supplied material does not give a CAT-style numerical for η, this page does not add an invented one.</p>
+  </div></details></section>
 
 <section class="section searchable" id="m4-nd" data-keywords="3D ND profile stereogram hachured scatter triangular sunray quality multiple contingency mixed cartogram">
  <div class="section-head"><div class="section-no">04E</div><div class="section-title"><h2>Module 4E · 3-D and N-D analysis</h2><p>This is the textbook context behind the C2 ternary/Sunray questions. Know which visualization belongs to which mixture of variable types.</p></div><button class="done-btn" data-topic="m4-nd">Mark done</button></div>
@@ -732,45 +716,32 @@ sns.lineplot(data=random_walk)</pre></div></div>
   <div class="formula">Dendrogram merge heights: 1, 2, 3, 4, 15</div>
  </div></details>
  <details><summary>MST: Prim vs Kruskal reminder</summary><div><p><b>What the uploaded spectral/MST slides explicitly require:</b> construct an MST using Prim’s and Kruskal’s algorithms, then use edge cutting for clustering.</p><p><b>Standard algorithm reminder (added explanation):</b> Prim grows one connected tree by repeatedly adding the cheapest edge from the current tree to a new vertex. Kruskal sorts edges globally by weight and adds the cheapest edge that does not create a cycle. Both yield an MST; ties can produce different-looking but equal-weight MSTs.</p></div></details>
-<details open><summary>Distance formulas · calculate, do not just name</summary><div>
-  <table class="compare"><tr><th>Measure</th><th>Formula</th><th>Example</th></tr>
-   <tr><td>Euclidean</td><td>√Σ|xᵢ−yᵢ|²</td><td>(1,2) to (4,6): √(9+16)=<b>5</b></td></tr>
-   <tr><td>Manhattan</td><td>Σ|xᵢ−yᵢ|</td><td>|1−4|+|2−6|=<b>7</b></td></tr>
-   <tr><td>Minkowski p</td><td>[Σ|xᵢ−yᵢ|ᵖ]<sup>1/p</sup></td><td>p=3: (27+64)<sup>1/3</sup>≈<b>4.498</b></td></tr>
-   <tr><td>Cosine similarity</td><td>(x·y)/(||x||||y||)</td><td>convert to distance if needed: <b>1−cosine similarity</b></td></tr>
-   <tr><td>Jaccard similarity</td><td>|A∩B|/|A∪B|</td><td>{a,b,c} vs {b,c,d,e}: 2/5=<b>.4</b>; Jaccard distance=.6</td></tr>
-  </table>
-  <p><b>Exam default in the supplied Module 5 material:</b> if no metric is specified for the worked clustering style, Euclidean is the stated default.</p>
- </div></details>
- <details><summary>Centroid linkage, Ward, and K-medoids — enough to compute them</summary><div>
-  <p><b>Centroid linkage:</b> compute μA and μB, then use the chosen point-distance between those two centroids.</p>
-  <div class="formula">d<sub>centroid</sub>(A,B)=||μA−μB||</div>
-  <p><b>Ward:</b> choose the merge causing the smallest increase in within-cluster squared error. A useful form is:</p>
-  <div class="formula">Δ(A,B) = |A||B|/(|A|+|B|) · ||μA−μB||²</div>
-  <p><b>K-medoids:</b> the representative must be an actual data point. Inside a candidate cluster, calculate each point's total distance to the others and choose the smallest. Example {0,2,10}: totals are 12,10,18 ⇒ medoid=<b>2</b>.</p>
- </div></details></section>
+<details open><summary>Distance measures · only what your supplied Module 5 material actually teaches</summary><div>
+   <p>The worked K-means material explicitly uses <b>Euclidean distance</b> and says Euclidean may be taken as the default when no distance is specified. It also explicitly gives the <b>Manhattan</b> formula:</p>
+   <div class="formula">Manhattan(P,Q)=|x₁−x₂|+|y₁−y₂|</div>
+   <p>The same slide merely <b>names</b> Jaccard, Minkowski and Cosine as other measures. Because your supplied material does not develop their formulas there, this final study page does <b>not</b> turn those names into extra calculation topics.</p>
+   <p>For hierarchical clustering, the supplied slides explicitly teach Single, Complete, Average and the centroid idea (“distance between their centroids”). The manual CAT question uses Complete and Average, so those are the linkage calculations you must be able to perform.</p>
+  </div></details></section>
 
-<section class="section searchable" id="numerical-masterclass" data-keywords="worked numericals masterclass all steps mean median quartile variance skew kurtosis correlation forecast chi square regression kmeans AHC DBSCAN spectral MST EM cosine standardization">
- <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical masterclass · every calculation family on one page</h2><p>If a quantity can plausibly be asked as “calculate / compute / perform,” this section gives you the mechanical recipe and at least one worked step.</p></div><button class="done-btn" data-topic="numerical-masterclass">Mark done</button></div>
+<section class="section searchable" id="numerical-masterclass" data-keywords="worked numericals source only mean median quartile variance skewness kmeans AHC DBSCAN cosine standardization time series">
+ <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical masterclass · only calculations supported by your supplied material</h2><p>This section deliberately excludes extra textbook-style exercises I invented. Every item below is either explicitly taught with a formula/procedure in your material or appears in the supplied CAT answer keys.</p></div><button class="done-btn" data-topic="numerical-masterclass">Mark done</button></div>
  <div class="grid-2">
-  <div class="card"><h3>1 · z-standardization</h3><div class="formula">z=(x−μ)/σ</div><p>Example: x=8.5, μ=8.14, σ=7.41 ⇒ z=(.36/7.41)=<b>.049≈.05</b>. Standardize each feature separately before Euclidean clustering when scales differ.</p></div>
-  <div class="card"><h3>2 · Pearson correlation by hand</h3><p>For paired X,Y: compute X̄,Ȳ → columns dx,dy,dx·dy,dx²,dy².</p><div class="formula">r=Σ(dx·dy)/√[Σdx²·Σdy²]</div><p>X={1,2,3,4}, Y={2,4,5,8}: Σdxdy=9.5, Σdx²=5, Σdy²=18.75 ⇒ r=9.5/√93.75=<b>.981</b>.</p></div>
-  <div class="card"><h3>3 · Forecast errors</h3><p>Actual={100,120,80}, Forecast={90,130,100}; absolute errors={10,10,20}.</p><div class="formula">MAD=40/3=<b>13.33</b><br/>MAPE=(10%+8.33%+25%)/3=<b>14.44%</b><br/>MSE=(100+100+400)/3=<b>200</b><br/>RMSE=√200=<b>14.14</b></div></div>
-  <div class="card"><h3>4 · First differencing</h3><p>Subtract each previous observation.</p><div class="formula">100,108,105,115 → first difference:<br/>NaN, <b>8, −3, 10</b></div><p>Differencing removes level/trend components; it is not the same thing as resampling.</p></div>
-  <div class="card"><h3>5 · Complete 1-D statistics</h3><p>Sort → n, Σx → mean/median → lower/upper halves for Q1/Q3 → range/IQR → deviations → MD/variance/SD → skew/kurtosis if asked. Use the full Module 4B worked table above.</p></div>
-  <div class="card"><h3>6 · Mean Difference Δ</h3><p>Upper-triangle absolute pairwise sum S=81.2, n=8:</p><div class="formula">Δ=2S/n²=162.4/64=<b>2.5375≈2.53</b></div></div>
-  <div class="card"><h3>7 · χ² contingency test</h3><p>Observed = [[30,20],[10,40]]. Row totals 50,50; column totals 40,60; n=100.</p><div class="formula">Expected=[[20,30],[20,30]]<br/>χ²=100/20+100/30+100/20+100/30=<b>16.667</b><br/>df=(2−1)(2−1)=1</div><p>Standard statistical rule: χ² above critical (or p&lt;α) ⇒ reject independence ⇒ evidence of association.</p></div>
-  <div class="card"><h3>8 · Least-squares regression</h3><p>X={1,2,3}, Y={2,3,5}; X̄=2, Ȳ=3.333.</p><div class="formula">a=Σ[(x−X̄)(y−Ȳ)]/Σ(x−X̄)²=3/2=<b>1.5</b><br/>b=Ȳ−aX̄=3.333−3=<b>.333</b><br/>ŷ=<b>1.5x+.333</b></div></div>
-  <div class="card"><h3>9 · Correlation ratio η</h3><p>Think “between conditional-mean variation / total variation.” Example groups A:{1,2}, B:{5,6}; grand mean=3.5, group means=1.5,5.5.</p><div class="formula">SS_between=2(1.5−3.5)²+2(5.5−3.5)²=16<br/>SS_total=17<br/>η²=16/17=<b>.941</b> ⇒ η≈<b>.970</b></div></div>
-  <div class="card"><h3>10 · K-means centroid update</h3><p>C2={E(6,5),F(4,4),G(6,2)}:</p><div class="formula">μ=( (6+4+6)/3 , (5+4+2)/3 )=<b>(5.33,3.67)</b></div><p>Then recompute every point-to-centroid distance.</p></div>
-  <div class="card"><h3>11 · K-means WCSS</h3><p>For C2 around μ=(5.33,3.67), squared distances are about 2.222,1.889,3.222 ⇒ C2 WCSS=<b>7.333</b>. Final course clusters give total WCSS ≈ <b>36.833</b>.</p><p>Elbow: repeat whole fit for several K and plot WCSS; choose the bend.</p></div>
-  <div class="card"><h3>12 · Hierarchical linkage row update</h3><p>After merge {P3,P6}, distances to P4:</p><div class="formula">Single=min(.15,.22)=.15<br/>Complete=max(.15,.22)=.22<br/>Average=(.15+.22)/2=.185</div><p>For Complete, the entire new row is P1=.23, P2=.25, P4=.22, P5=.39. For Average: .225,.20,.185,.335.</p></div>
-  <div class="card"><h3>13 · DBSCAN neighbor counting</h3><p>ε=1.9, MinPts=4; count the point itself as in the course example. Neighbor counts:</p><div class="formula">P1=3, P2=4, P3=3, P4=3, P5=5, P6=3,<br/>P7=3, P8=2, P9=2, P10=3, P11=4, P12=3</div><p>Core=P2,P5,P11. Non-core points within ε of a core are border. P9 is the remaining noise point.</p></div>
-  <div class="card"><h3>14 · Tiny spectral-clustering calculation</h3><p>For a 3-node chain 1—2—3:</p><div class="formula">A=[[0,1,0],[1,0,1],[0,1,0]]<br/>D=diag(1,2,1)<br/>L=D−A=[[1,−1,0],[−1,2,−1],[0,−1,1]]</div><p>Eigenvalues are 0,1,3. The second eigenvector is proportional to [1,0,−1], showing the sign-based spectral split idea.</p></div>
-  <div class="card"><h3>15 · MST divisive clustering</h3><p>Course MST edge weights include AB=2, BC=3.1, CD=2, DF=4, FE=1.4, EH=5, HG=1.</p><div class="formula">k=2: remove largest EH=5<br/>k=3: also remove DF=4</div><p>After both cuts, components are {A,B,C,D}, {E,F}, {G,H}.</p></div>
-  <div class="card"><h3>16 · EM for a Gaussian mixture</h3><p><b>E-step responsibility:</b></p><div class="formula">rᵢk = πₖ N(xᵢ|μₖ,σₖ²) / Σⱼ πⱼN(xᵢ|μⱼ,σⱼ²)</div><p><b>M-step:</b> Nₖ=Σᵢrᵢk; μₖ=Σrᵢkxᵢ/Nₖ; σₖ²=Σrᵢk(xᵢ−μₖ)²/Nₖ; πₖ=Nₖ/n. Repeat until likelihood/parameters stabilize.</p></div>
-  <div class="card"><h3>17 · Cosine from vectors</h3><p>Vocabulary order must be fixed. For the C2 query, Q has three 1s ⇒ ||Q||=√3. Doc1 has six 1s and shares all 3 query terms.</p><div class="formula">cos(D1,Q)=3/(√6·√3)=<b>.7071</b></div><p>Do the same for each document and rank descending.</p></div>
-  <div class="card"><h3>18 · Sunray / ternary coordinates</h3><p><b>Sunray:</b> scale each requested statistic to a plotting radius, preserve order, plot on rays, connect. <b>Ternary:</b> verify a+b+c is the fixed total; normalize to proportions if necessary; then place the point by its three barycentric shares.</p></div>
+  <div class="card"><h3>1 · z-standardization</h3><div class="formula">z=(x−μ)/σ</div><p>The supplied C1 key uses this before Euclidean AHC because features have different scales. It gives Spending mean 8.14, SD≈7.41 and Items mean 26.6, SD≈19.07, producing points such as C03=(0.05,−0.61), C04=(0.12,−0.45).</p></div>
+  <div class="card"><h3>2 · Pearson correlation</h3><div class="formula">ρ=Cov(X,Y)/(σXσY)</div><p>The Module 3 material explicitly teaches Pearson correlation and computes it in Python with <code>pearsonr</code>/<code>corr</code>. If raw pairs are given, calculate covariance/standard deviations or use the equivalent deviation-table form.</p></div>
+  <div class="card"><h3>3 · Forecast-error metrics</h3><div class="formula">MAD=(1/n)Σ|Y−Ŷ|<br/>MAPE=(100/n)Σ|Y−Ŷ|/Y<br/>MSE=(1/n)Σ(Y−Ŷ)²<br/>RMSE=√MSE</div><p>These formulas are shown in the supplied time-series material. Smaller error is better; MSE/RMSE emphasize large errors because of squaring.</p></div>
+  <div class="card"><h3>4 · Differencing + resampling</h3><div class="formula">First difference: Δxₜ=xₜ−xₜ₋₁</div><p>Use <code>resample(...).sum()</code> for period totals and <code>.mean()</code> for period average level, exactly as demonstrated across the supplied notebook/key patterns.</p></div>
+  <div class="card"><h3>5 · Complete 1-D calculation</h3><p>Sort → n/Σx → mean → median → course-key Q1/Q3 → IQR/range → deviation table → variance/SD/mean deviation → skewness if requested. The full TotalMarks working is in Module 4B above.</p></div>
+  <div class="card"><h3>6 · Mean Difference Δ</h3><p>The supplied Module 4/C2 material gives the all-pairs definition. For the CAT data, upper-triangle difference sum S=81.2, n=8:</p><div class="formula">Δ=2S/n²=162.4/64≈<b>2.53</b></div></div>
+  <div class="card"><h3>7 · Contingency χ²</h3><div class="formula">Eᵢⱼ=(row totalᵢ×column totalⱼ)/n<br/>χ²=Σ(O−E)²/E</div><p>The Module 4 book explicitly develops expected counts, χ², row/column profiles and degrees of freedom. Use the table's own counts rather than an unrelated synthetic dataset.</p></div>
+  <div class="card"><h3>8 · Least-squares line</h3><div class="formula">a=Σ(x−X̄)(y−Ȳ)/Σ(x−X̄)²<br/>b=Ȳ−aX̄</div><p>These equations are derived in the Module 4 book. No extra made-up dataset is required for this final page.</p></div>
+  <div class="card"><h3>9 · K-means</h3><p>Use Euclidean distance → assign each point → recompute each centroid as the coordinate-wise mean → repeat until assignments stop changing. The exact 8-point worked course example is reproduced in the K-means section.</p></div>
+  <div class="card"><h3>10 · Hierarchical linkage</h3><div class="formula">Single=min · Complete=max · Average=mean of all cross-pair distances</div><p>The supplied slides explicitly teach all three and the CAT question asks Complete and Average. Show the reduced distance matrix after every merge.</p></div>
+  <div class="card"><h3>11 · DBSCAN</h3><p>For the supplied ε=1.9, MinPts=4 example: determine each ε-neighborhood → mark core → mark non-core points within ε of a core as border → remaining points are noise. The exact neighbor table is in the DBSCAN section.</p></div>
+  <div class="card"><h3>12 · Spectral clustering</h3><div class="formula">L=D−A · L<sub>norm</sub>=I−D<sup>−1/2</sup>AD<sup>−1/2</sup></div><p>Your material focuses on the graph/Laplacian/eigenvector/eigengap pipeline rather than a separate hand-eigenvalue numerical.</p></div>
+  <div class="card"><h3>13 · MST</h3><p>The supplied worked edge list explicitly demonstrates k=2: remove the longest MST edge EH=5 to obtain {A,B,C,D,E,F} and {G,H}. Prim and Kruskal are named as the construction algorithms.</p></div>
+  <div class="card"><h3>14 · EM</h3><p>Study Initialization → E-step → M-step → convergence exactly as described in the supplied reference. No extra Gaussian-update equations are required from the material you gave me.</p></div>
+  <div class="card"><h3>15 · Document cosine</h3><div class="formula">cos(D,Q)=(D·Q)/(||D||||Q||)</div><p>The CAT/vector-space slides provide actual document/query vectors and cosine ranking. Build the common vocabulary, vectors, dot products and norms, then rank descending.</p></div>
+  <div class="card"><h3>16 · Sunray + ternary</h3><p>These are construction questions in your supplied material: preserve the requested Sunray statistic order; for ternary, use an equilateral triangle with equal side scales and plot fixed-sum three-component observations.</p></div>
  </div>
 </section>
 
@@ -1234,17 +1205,7 @@ sns.pairplot(df, vars=["symboling","normalized-losses","wheel-base"],
   <div class="callout warn"><strong>Simpson’s paradox</strong>A trend can reverse/change when groups are aggregated versus analyzed separately. Your textbook’s console example exists to force one lesson: inspect group sizes and lurking grouping variables before trusting the aggregate.</div>
   <div class="callout dark"><strong>Correlation ≠ causation</strong>Correlation says variables move together; causation says changing one <em>causes</em> the other to change. A third/confounding factor can create correlation. In an answer: describe the association, then explicitly avoid a causal claim unless the design supports it.</div>
  </div>
-<details open><summary>Pearson by hand · table method</summary><div>
-   <p>If the exam gives raw pairs instead of asking for Python, use this table method. Example: X={1,2,3,4}, Y={2,4,5,8}; X̄=2.5, Ȳ=4.75.</p>
-   <table class="compare"><tr><th>x</th><th>y</th><th>dx</th><th>dy</th><th>dx·dy</th><th>dx²</th><th>dy²</th></tr>
-    <tr><td>1</td><td>2</td><td>−1.5</td><td>−2.75</td><td>4.125</td><td>2.25</td><td>7.5625</td></tr>
-    <tr><td>2</td><td>4</td><td>−0.5</td><td>−0.75</td><td>.375</td><td>.25</td><td>.5625</td></tr>
-    <tr><td>3</td><td>5</td><td>.5</td><td>.25</td><td>.125</td><td>.25</td><td>.0625</td></tr>
-    <tr><td>4</td><td>8</td><td>1.5</td><td>3.25</td><td>4.875</td><td>2.25</td><td>10.5625</td></tr>
-    <tr><th>Σ</th><th></th><th>0</th><th>0</th><th>9.5</th><th>5</th><th>18.75</th></tr>
-   </table>
-   <div class="formula">r=9.5/√(5×18.75)=<b>0.981</b> ⇒ very strong positive linear relationship.</div>
-  </div></details></section>
+</section>
 
 <section class="section searchable" id="timeseries" data-keywords="module 3 time series trend cycle seasonality random variation datetime index grouping resampling weekly monthly">
  <div class="section-head"><div class="section-no">03</div><div class="section-title"><h2>Time series · make time the structure</h2><p>The notebook’s workflow is simple: convert time correctly, index by it, slice it, visualize it, group it, then resample it. The test keys add stationarity and forecasting.</p></div><button class="done-btn" data-topic="timeseries">Mark done</button></div>
@@ -1286,11 +1247,10 @@ yearly = df["Demand"].resample("Y").mean()</pre></div></div>
   <div class="card"><h3>Resample with sum</h3><p>The C1 ad/sales key uses <b>sum</b> because the quantity is total weekly spend / sales.</p><div class="codebox"><button class="copy">Copy</button><pre>weekly_data = df.resample("W").sum()</pre></div><p class="mini"><b>Rule:</b> choose aggregation by meaning, not habit.</p></div>
  </div>
  <div class="callout good"><strong>Interpretation sentence to steal</strong>“Resampling aligns the observations with the process frequency and can reduce high-frequency noise. I use <u>sum</u> for totals accumulated over the period and <u>mean</u> for the average level during the period.”</div>
-<details open><summary>Worked resampling + differencing arithmetic</summary><div>
-   <p><b>Weekly total example:</b> daily sales 10,12,9,11,13,15,14 ⇒ weekly <b>sum=84</b>; weekly mean=84/7=<b>12</b>. Which one you use depends on meaning: “total sold” ⇒ 84; “average daily level that week” ⇒ 12.</p>
-   <p><b>Differencing:</b> series 100,108,105,115 ⇒ first differences are NaN,8,−3,10 because each value subtracts its immediate predecessor.</p>
-   <p><b>Forecast-error worked example:</b> actual={100,120,80}, forecast={90,130,100}. Absolute errors={10,10,20}; MAD=13.33; MAPE≈14.44%; squared errors={100,100,400}; MSE=200; RMSE≈14.14.</p>
-   <div class="callout warn"><strong>MAPE trap</strong>MAPE divides by the actual value; if an actual Y is zero, ordinary MAPE is undefined/problematic. State how zeros are handled if they occur.</div>
+<details open><summary>Resampling + differencing · exactly what to do from the supplied examples</summary><div>
+   <p><b>Resampling:</b> convert Date → DateTime index, then use <code>resample()</code>. The supplied ad/sales key uses weekly <b>sum</b> because it asks for weekly totals; the power/demand material uses <b>mean</b> for lower-frequency average level.</p>
+   <p><b>Differencing:</b> <code>series.diff()</code> computes xₜ−xₜ₋₁. The supplied demand question uses this before discussing stationarity/ADF.</p>
+   <p><b>Error metrics:</b> MAD, MAPE, MSE and RMSE formulas are already reproduced from the supplied time-series material in the Module 3 complete chapter; no unrelated synthetic forecast data are added.</p>
   </div></details></section>
 
 <section class="section searchable" id="stationarity" data-keywords="ADF augmented dickey fuller stationarity differencing ARIMA forecast train test p value">
@@ -1401,18 +1361,15 @@ forecast = fit.forecast(steps=365)</pre></div>
    <svg id="ternPlot" viewBox="0 0 500 390"></svg>
   </div>
  </div>
-<details open><summary>Ternary coordinates by hand · from percentages to a point</summary><div>
-  <p>Pick triangle vertices Reading A=(0,0), Writing B=(1,0), Speaking C=(0.5,√3/2). Convert percentages to proportions a,b,c so a+b+c=1. Barycentric coordinates are:</p>
-  <div class="formula">P=aA+bB+cC ⇒ x=b+0.5c, &nbsp; y=(√3/2)c</div>
-  <p>For P=(Reading 50%, Writing 30%, Speaking 20%): a=.50,b=.30,c=.20:</p>
-  <div class="formula">x=.30+.5(.20)=<b>.40</b><br/>y=.8660(.20)=<b>.1732</b></div>
-  <p>You normally construct a ternary graph with parallel guide lines rather than Cartesian coordinates, but this shows exactly why each three-part profile has one unique point.</p>
- </div></details>
- <details><summary>Sunray scaling · why raw variance and skew cannot share one radius blindly</summary><div>
-  <p>A Sunray/radar profile uses different statistics on different rays. Their raw magnitudes can be incomparable: variance may be >100 while skewness is around 0. Therefore either use a stated normalization or give each ray its own scale, and always label the raw value.</p>
-  <p><b>Simple max-absolute normalization for hand plotting:</b> choose a meaningful maximum Mⱼ for each ray and plot radius rⱼ=|valueⱼ|/Mⱼ. Preserve sign separately if a statistic can be negative (e.g. label skewness −0.16 rather than pretending its sign is positive).</p>
-  <p>For an exam where only the shape is requested, the safest marks come from: <b>correct statistic order + labelled rays + clearly stated scaling + raw values written beside plotted points</b>.</p>
- </div></details></section>
+<details open><summary>Ternary construction · exactly the method taught in the Module 4 book</summary><div>
+   <p>Use a triangular diagram when the three quantitative variables have an <b>equal fixed sum</b>, especially percentages.</p>
+   <ol><li>Draw an equilateral triangle.</li><li>Draw the same scale on each side in the specified variable order.</li><li>Plot each observation inside the triangle from its three component values.</li><li>Equal percentages lie at the center; 100% of one variable lies at that variable's vertex.</li></ol>
+   <p>The supplied material teaches this geometric construction; it does <b>not</b> require a separate barycentric-coordinate formula, so none is added here.</p>
+  </div></details>
+  <details><summary>Sunray construction · course-level method</summary><div>
+   <p>Use one ray per requested statistic, preserve the requested order, place the statistic values on the corresponding rays, join neighboring points, and label the values. The CAT question explicitly asks that the summarization order not be changed.</p>
+   <p>Do not invent an extra normalization formula unless the question or plotting method specifies one; the important exam requirements in your supplied material are the correct statistics, order, labelled rays and explanation.</p>
+  </div></details></section>
 
 <section class="section searchable" id="kmeans" data-keywords="module 5 k means centroid inertia WCSS elbow kmeans++ iteration euclidean">
  <div class="section-head"><div class="section-no">05</div><div class="section-title"><h2>K-means · assign → average → repeat</h2><p>The algorithm is mechanical. The exam skill is keeping distance calculations, assignments and centroid updates organized.</p></div><button class="done-btn" data-topic="kmeans">Mark done</button></div>
@@ -1546,18 +1503,19 @@ plt.plot(range(1,11), wcss)</pre></div>
    <p class="mini">In this course, EM is connected with Gaussian-mixture clustering and missing/hidden data.</p>
   </div>
  </div>
- <details><summary>K-medoids — small but mentioned in your Module 5 summary</summary><div><p>The course summary describes it as similar in structure to K-means but using <b>medoids</b> rather than centroids. For your source coverage, remember that distinction; the uploaded material does not develop a full worked K-medoids numerical.</p></div></details>
-<details open><summary>Tiny Laplacian worked example · actually build A, D, L</summary><div>
-  <p>For a simple unweighted chain 1—2—3, adjacency/affinity is:</p>
-  <div class="formula">A = [[0,1,0],[1,0,1],[0,1,0]]</div>
-  <p>Row sums are 1,2,1, so:</p><div class="formula">D=diag(1,2,1)<br/>L=D−A=[[1,−1,0],[−1,2,−1],[0,−1,1]]</div>
-  <p>The eigenvalues are 0,1,3. The eigenvector for λ₂=1 is proportional to [1,0,−1]. Its signs illustrate the Fiedler split: node 1 on one side, node 3 on the other, node 2 at the boundary.</p>
- </div></details>
- <details open><summary>MST cutting · k=2 and k=3 from the course edge list</summary><div><p>Given MST edges AB=2, BC=3.1, CD=2, DF=4, FE=1.4, EH=5, HG=1: sort the expensive bridge edges. For k=2 remove the single largest edge EH=5. For k=3 remove EH=5 and DF=4, leaving <b>{A,B,C,D}, {E,F}, {G,H}</b>.</p></div></details>
- <details><summary>EM · the actual update equations</summary><div><p>For Gaussian-mixture clustering, EM alternates soft memberships and parameter re-estimation:</p>
- <div class="formula">E: rᵢk = πₖN(xᵢ|μₖ,σₖ²) / ΣⱼπⱼN(xᵢ|μⱼ,σⱼ²)</div>
- <div class="formula">M: Nₖ=Σᵢrᵢk<br/>μₖ=Σᵢrᵢkxᵢ/Nₖ<br/>σₖ²=Σᵢrᵢk(xᵢ−μₖ)²/Nₖ<br/>πₖ=Nₖ/n</div>
- <p>Responsibilities are probabilities/soft assignments, unlike K-means' hard nearest-centroid assignment.</p></div></details></section>
+ 
+<details open><summary>Spectral matrices · what your supplied slides/key require</summary><div>
+   <p>The supplied material teaches the graph pipeline: build an affinity/adjacency representation, compute the degree matrix D, form the Laplacian, perform eigenvalue/eigenvector decomposition, then use the spectral representation for clustering. For the CAT-style answer, you need the pipeline and the eigengap logic; the supplied material does not give you a separate hand-calculation eigenvalue numerical that justifies inventing one here.</p>
+   <div class="formula">L=D−A<br/>L<sub>norm</sub>=I−D<sup>−1/2</sup>AD<sup>−1/2</sup></div>
+  </div></details>
+  <details open><summary>MST cutting · the exact worked edge list in your slides</summary><div>
+   <p>The supplied MST example gives AB=2, BC=3.1, CD=2, DF=4, FE=1.4, EH=5, HG=1 and explicitly shows that for <b>k=2</b> you remove the maximum-weight edge <b>EH=5</b>, producing <b>{A,B,C,D,E,F}</b> and <b>{G,H}</b>.</p>
+   <p>The slides then give a separate <b>try-yourself k=3</b> task using Prim's and Kruskal's algorithms. Because no worked k=3 answer is supplied, this page does not invent a final partition for it.</p>
+  </div></details>
+  <details><summary>EM · only the steps actually taught in your reference</summary><div>
+   <p><b>Initialization:</b> start with initial parameters/model assumptions. <b>E-step:</b> estimate hidden/missing values and posterior responsibilities using the current parameters; compute the current log-likelihood. <b>M-step:</b> update model parameters by maximizing that log-likelihood. <b>Convergence:</b> stop when parameter/log-likelihood changes are below the threshold; otherwise repeat.</p>
+   <p>Your supplied reference explains the algorithm at this step level. It does not provide Gaussian-mixture responsibility/update equations, so those extra formulas have been removed.</p>
+  </div></details></section>
 
 <section class="section searchable" id="documents" data-keywords="document clustering vector space model cosine similarity DTM TF query ranking stop words">
  <div class="section-head"><div class="section-no">05</div><div class="section-title"><h2>Document clustering/retrieval · cosine by hand</h2><p>The slides and C2 key use a Vector Space Model workflow. This is one of the cleanest 10-mark numericals if you keep vocabulary order consistent.</p></div><button class="done-btn" data-topic="documents">Mark done</button></div>
@@ -1602,7 +1560,7 @@ plt.plot(range(1,11), wcss)</pre></div>
    <div class="formula">ρ(X,Y)=Cov(X,Y)/(σXσY)</div>
    <div class="formula">Mean = Σxᵢ/n · Range=max−min · IQR=Q₃−Q₁</div>
    <div class="formula">Variance = mean of squared deviations (use the course/software convention requested)<br/>SD=√Variance</div>
-   <div class="formula">CV = SD / Mean (relative dispersion)</div>
+   <div class="formula">Relative dispersion / coefficient of variation: use the exact form given in the Module 4 section when requested.</div>
    <p class="mini">For skew/outliers, the median is usually the course's robust center choice. Always interpret correlation after inspecting the scatter structure.</p>
   </div>
   <div class="card"><h3>Special Module 4 measures</h3>
