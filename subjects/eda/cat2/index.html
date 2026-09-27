@@ -421,10 +421,9 @@ plt.legend(); plt.show()</pre></div>
  </div></details>
 
  <details><summary>C2 · Q2 — 1-D summary + Sunray</summary><div>
-  <p>Given TotalMarks = [78,85,67,90,72,88,60,95,70,80], the supplied answer key reports:</p>
-  <table class="compare"><tr><th>Statistic</th><th>Key value</th></tr><tr><td>Mean</td><td>78.5</td></tr><tr><td>Median</td><td>79.0</td></tr><tr><td>IQR</td><td>18</td></tr><tr><td>Variance</td><td>≈110.83</td></tr><tr><td>SD</td><td>≈10.53</td></tr><tr><td>Skewness</td><td>≈−0.17 (slightly left-skewed)</td></tr><tr><td>Minimum</td><td>60</td></tr><tr><td>Maximum</td><td>95</td></tr><tr><td>Q1</td><td>70</td></tr></table>
-  <p><b>Sunray:</b> preserve exactly the requested order: Mean → Median → IQR → Variance → SD → Skewness → Minimum → Maximum → Q1. Draw one ray per statistic, scale appropriately, place each value on its ray and join neighboring points to form the profile polygon.</p>
-  <div class="callout warn"><strong>Convention issue</strong>Quantile/variance software conventions can produce different numbers. For this exact course problem, the table above is the supplied-key convention.</div>
+  <p>Given TotalMarks = [78,85,67,90,72,88,60,95,70,80], sort first: 60,67,70,72,78,80,85,88,90,95. The key's mean, median and quartiles match the hand calculations below; its printed variance/SD do not match the listed values.</p>
+  <table class="compare"><tr><th>Statistic</th><th>Hand calculation / course handling</th></tr><tr><td>Mean</td><td>785/10 = <b>78.5</b></td></tr><tr><td>Median</td><td>(78+80)/2 = <b>79</b></td></tr><tr><td>Q1 / Q3</td><td>median of halves ⇒ <b>70 / 88</b></td></tr><tr><td>IQR</td><td>88−70=<b>18</b></td></tr><tr><td>Population variance / SD</td><td>Σd²=1128.5 ⇒ <b>112.85 / 10.623</b></td></tr><tr><td>Sample variance / SD</td><td>1128.5/9 ⇒ <b>125.389 / 11.198</b></td></tr><tr><td>Adjusted sample skew</td><td>≈<b>−0.158</b> (key rounds/prints about −0.17)</td></tr><tr><td>Min / Max</td><td><b>60 / 95</b></td></tr></table>
+  <div class="callout warn"><strong>Printed-key inconsistency</strong>The supplied key prints variance≈110.83 and SD≈10.53, but those do not follow from the ten listed marks under the standard n or n−1 denominator. In a fresh problem, show Σ(x−X̄)² and the denominator you use.</div>
  </div></details>
 
  <details><summary>C2 · Q3 — Mean Difference Δ + ternary plot</summary><div>
@@ -505,37 +504,148 @@ sns.lineplot(data=random_walk)</pre></div></div>
  </div>
 </section>
 
-<section class="section searchable" id="m4-1d-complete" data-keywords="median arithmetic weighted quadratic harmonic geometric alpha mean mode quantile range IQR mean deviation coefficient variation skewness kurtosis frequency histogram ogive boxplot">
- <div class="section-head"><div class="section-no">04B</div><div class="section-title"><h2>Module 4B · 1-D quantitative analysis, complete</h2><p>The exam key sampled only a subset. The book is much broader. This section gives you every named family and the relationships worth writing.</p></div><button class="done-btn" data-topic="m4-1d-complete">Mark done</button></div>
- <div class="grid-3">
-  <div class="card"><span class="tag">Central tendency</span><h3>Median M</h3><p>Middle ordered value; divides the histogram into two equal-frequency parts. The book notes that the sum of absolute deviations is minimized at the median.</p></div>
-  <div class="card"><span class="tag">Central tendency</span><h3>Arithmetic mean X̄</h3><div class="formula">X̄ = Σxᵢ / n</div><p>Weighted form: <b>Σpᵢxᵢ / Σpᵢ</b>. The mean balances signed deviations and minimizes squared deviations.</p></div>
-  <div class="card"><span class="tag">Generalized means</span><h3>Q · H · G · α-mean</h3><p><b>Quadratic:</b> √(Σxᵢ²/n). <b>Harmonic:</b> n/Σ(1/xᵢ). <b>Geometric:</b> (∏xᵢ)<sup>1/n</sup>. The text presents α-means as a unifying family and states <b>H ≤ G ≤ X̄ ≤ Q</b>.</p></div>
-  <div class="card"><span class="tag">Central tendency</span><h3>Mode M₀</h3><p>Value at the maximum of the frequency distribution. For a unimodal, slightly symmetric distribution the text gives the empirical relation <b>M₀ = 3M − 2X̄</b>.</p></div>
-  <div class="card"><span class="tag">Position</span><h3>Quantiles</h3><p>Quartiles Q1,Q2,Q3 divide into four parts; Q2=median. Deciles divide into 10; percentiles divide into 100.</p></div>
-  <div class="card"><span class="tag num">Dispersion</span><h3>Range + IQR</h3><div class="formula">R = max − min<br/>IQR = Q₃ − Q₁</div><p>IQR reduces sensitivity to extremes relative to the full range. The text also introduces semi-quartile/quartile deviation.</p></div>
-  <div class="card"><span class="tag num">Dispersion</span><h3>Mean Difference Δ</h3><div class="formula">Δ = ΣᵢΣⱼ |xᵢ−xⱼ| / n²</div><p>Covered separately in the worked numerical section because it already appeared in C2.</p></div>
-  <div class="card"><span class="tag num">Dispersion</span><h3>Mean deviation MD</h3><div class="formula">MD = (1/n) Σ |xᵢ − X̄|</div><p>The book also discusses median deviation and geometric deviation.</p></div>
-  <div class="card"><span class="tag num">Dispersion</span><h3>Variance + SD</h3><div class="formula">s = √[(1/n)Σ(xᵢ−X̄)²] · variance = s²</div><p>The text notes that a sample estimate may use n−1 instead of n. Always follow the convention demonstrated by the question/key.</p></div>
-  <div class="card"><span class="tag">Relative spread</span><h3>Coefficient of variation</h3><p>The book moves from absolute dispersion to relative dispersion so series on different scales can be compared. Common form: spread relative to central level.</p></div>
-  <div class="card"><span class="tag">Shape</span><h3>Skewness</h3><p>Degree of asymmetry. The book presents Pearson-, quartile-, percentile- and Fisher-style coefficients. In an applied answer, always state direction and what tail is longer.</p></div>
-  <div class="card"><span class="tag">Shape</span><h3>Kurtosis</h3><p>Degree of peakedness/tail shape relative to normal: <b>leptokurtic</b>, <b>platykurtic</b>, <b>mesokurtic</b>. The book presents Kelley, Pearson β₂ and Fisher γ₂ coefficients; for its Fisher convention normal γ₂=0.</p></div>
- </div>
- <details open><summary>Frequency-distribution construction · all named pieces</summary><div>
-  <table class="compare"><tr><th>Term</th><th>What to know</th></tr>
-  <tr><td>Class interval / limits</td><td>A class such as 10–19 has lower and upper limits.</td></tr>
-  <tr><td>Class boundaries</td><td>Actual dividing points between adjacent classes; for integer classes, e.g. 9.5–19.5.</td></tr>
-  <tr><td>Class width</td><td>Difference between class boundaries; for equal-width classes also equals successive lower-limit difference.</td></tr>
-  <tr><td>Histogram</td><td>Rectangles; area proportional to frequency. With equal widths, height can represent frequency directly.</td></tr>
-  <tr><td>Frequency polygon</td><td>Join plotted frequency points at class midpoints.</td></tr>
-  <tr><td>Relative frequency</td><td>class frequency / total, often percentage.</td></tr>
-  <tr><td>Cumulative frequency</td><td>running total; plotted as an ogive/cumulative histogram.</td></tr>
-  <tr><td>Relative cumulative</td><td>cumulative/total; percentage ogive.</td></tr>
-  <tr><td>Smoothed frequency curve / ogive</td><td>smooth approximation of frequency polygon / cumulative polygon.</td></tr>
-  <tr><td>Labelled histogram</td><td>class rectangles also carry labels for observations in that class.</td></tr>
+<section class="section searchable" id="m4-1d-complete" data-keywords="median mean weighted quadratic harmonic geometric alpha mode quartile quantile Q1 Q3 range IQR mean deviation variance standard deviation coefficient variation skewness kurtosis frequency histogram ogive boxplot calculate worked">
+ <div class="section-head"><div class="section-no">04B</div><div class="section-title"><h2>Module 4B · 1-D quantitative analysis — calculate everything</h2><p>This is no longer a definition list. For every measure, learn <b>what it means → exact formula → hand-calculation recipe → worked number → interpretation</b>. The worked dataset below is the same 10-value TotalMarks set used in the supplied CAT key.</p></div><button class="done-btn" data-topic="m4-1d-complete">Mark done</button></div>
+
+ <div class="callout good"><strong>Anchor dataset used throughout this section</strong>Raw values: <b>78, 85, 67, 90, 72, 88, 60, 95, 70, 80</b><br/>Sorted: <b>60, 67, 70, 72, 78, 80, 85, 88, 90, 95</b> · n=10 · Σx=785. When you get a 1-D numerical, <b>sort first</b>; it immediately makes median, quartiles, range and outliers safer.</div>
+
+ <details open><summary>1 · Mean, weighted mean, median, mode — full calculation</summary><div>
+  <div class="grid-2">
+   <div class="card"><h3>Arithmetic mean X̄</h3>
+    <div class="formula">X̄ = Σxᵢ/n</div>
+    <p><b>Recipe:</b> add every observation → count observations → divide.</p>
+    <div class="formula">Σx = 78+85+67+90+72+88+60+95+70+80 = 785<br/>X̄ = 785/10 = <b>78.5</b></div>
+    <p><b>Check:</b> Σ(xᵢ−X̄)=0, apart from rounding.</p>
+   </div>
+   <div class="card"><h3>Weighted mean</h3>
+    <div class="formula">X̄<sub>w</sub> = Σ(wᵢxᵢ) / Σwᵢ</div>
+    <p><b>Example:</b> Internal=80 worth 40%, External=90 worth 60%:</p>
+    <div class="formula">(0.4×80 + 0.6×90)/(0.4+0.6)=32+54=<b>86</b></div>
+    <p>Use weights/frequencies when observations do not contribute equally.</p>
+   </div>
+   <div class="card"><h3>Median M</h3>
+    <p><b>Recipe:</b> sort. If n is odd, take position (n+1)/2. If n is even, average positions n/2 and n/2+1.</p>
+    <div class="formula">n=10 ⇒ middle positions 5 and 6 ⇒ (78+80)/2 = <b>79</b></div>
+    <p>The median minimizes the sum of absolute deviations and is robust to extremes.</p>
+   </div>
+   <div class="card"><h3>Mode M₀</h3>
+    <p><b>Recipe:</b> make a frequency count; the value with greatest frequency is the mode. If every value occurs once, the set has <b>no mode</b>.</p>
+    <p>Here all 10 TotalMarks values are unique ⇒ <b>no mode</b>.</p>
+    <div class="formula">For a unimodal, mildly skewed distribution only: M₀ ≈ 3M − 2X̄</div>
+   </div>
+  </div>
+ </div></details>
+
+ <details open><summary>2 · Quartiles, quantiles, deciles, percentiles — including the course convention</summary><div>
+  <div class="callout warn"><strong>Critical convention issue</strong>Quartiles are not unique across all software. The supplied CAT key uses the <b>median-of-halves</b> method on the 10 marks, because that gives Q1=70 and Q3=88. Use that method for a hand solution unless the question explicitly specifies a software/interpolation convention.</div>
+  <div class="grid-2">
+   <div class="card"><h3>Course-key Q1, Q2, Q3</h3>
+    <p>Sorted values:</p><div class="formula">60, 67, 70, 72, 78 | 80, 85, 88, 90, 95</div>
+    <p><b>Q2:</b> full median = 79.<br/><b>Q1:</b> median of lower half = <b>70</b>.<br/><b>Q3:</b> median of upper half = <b>88</b>.</p>
+    <div class="formula">IQR = Q3−Q1 = 88−70 = <b>18</b></div>
+   </div>
+   <div class="card"><h3>General quantile idea</h3>
+    <p>Q1 is the 25th percentile, Q2 the 50th, Q3 the 75th. Deciles split the ordered data into 10 equal-frequency parts; percentiles into 100.</p>
+    <p><b>Manual exam rule:</b> state the rank/interpolation convention if the requested percentile does not land exactly on an observation. Do not mix a calculator/software convention with the hand-solution convention halfway through.</p>
+   </div>
+  </div>
+ </div></details>
+
+ <details open><summary>3 · Range, IQR, semi-quartile range, outlier fences</summary><div>
+  <div class="grid-3">
+   <div class="card"><h3>Range</h3><div class="formula">R=max−min=95−60=<b>35</b></div><p>Uses only the two extremes, so one unusual value can change it a lot.</p></div>
+   <div class="card"><h3>IQR + quartile deviation</h3><div class="formula">IQR=88−70=<b>18</b><br/>Semi-IQR=IQR/2=<b>9</b></div><p>The middle 50% lies between Q1 and Q3.</p></div>
+   <div class="card"><h3>Box-plot fences</h3><div class="formula">Lower=Q1−1.5IQR=70−27=<b>43</b><br/>Upper=Q3+1.5IQR=88+27=<b>115</b></div><p>All marks are between 43 and 115 ⇒ <b>no 1.5·IQR outliers</b>.</p></div>
+  </div>
+  <div class="formula">Quartile coefficient of relative dispersion = (Q3−Q1)/(Q3+Q1) = 18/158 ≈ <b>0.114</b></div>
+ </div></details>
+
+ <details open><summary>4 · Mean deviation, variance, standard deviation — show the working table</summary><div>
+  <p>Start with X̄=78.5. For each value compute <b>d=x−X̄</b>, then |d| and d².</p>
+  <table class="compare"><tr><th>x</th><th>d=x−78.5</th><th>|d|</th><th>d²</th></tr>
+   <tr><td>78</td><td>−0.5</td><td>0.5</td><td>0.25</td></tr>
+   <tr><td>85</td><td>6.5</td><td>6.5</td><td>42.25</td></tr>
+   <tr><td>67</td><td>−11.5</td><td>11.5</td><td>132.25</td></tr>
+   <tr><td>90</td><td>11.5</td><td>11.5</td><td>132.25</td></tr>
+   <tr><td>72</td><td>−6.5</td><td>6.5</td><td>42.25</td></tr>
+   <tr><td>88</td><td>9.5</td><td>9.5</td><td>90.25</td></tr>
+   <tr><td>60</td><td>−18.5</td><td>18.5</td><td>342.25</td></tr>
+   <tr><td>95</td><td>16.5</td><td>16.5</td><td>272.25</td></tr>
+   <tr><td>70</td><td>−8.5</td><td>8.5</td><td>72.25</td></tr>
+   <tr><td>80</td><td>1.5</td><td>1.5</td><td>2.25</td></tr>
+   <tr><th>Σ</th><th>0</th><th>91</th><th>1128.5</th></tr>
+  </table>
+  <div class="grid-2">
+   <div class="card"><h3>Mean deviation about mean</h3><div class="formula">MD=(Σ|x−X̄|)/n = 91/10 = <b>9.1</b></div><p>Absolute deviations do not cancel, unlike signed deviations.</p></div>
+   <div class="card"><h3>Population variance + SD</h3><div class="formula">σ²=Σd²/n=1128.5/10=<b>112.85</b><br/>σ=√112.85=<b>10.623</b></div><p>If the observed 10 values are treated as the entire population, divide by n.</p></div>
+   <div class="card"><h3>Sample variance + SD</h3><div class="formula">s²=Σd²/(n−1)=1128.5/9=<b>125.389</b><br/>s=√125.389=<b>11.198</b></div><p>If estimating a population variance from a sample, use n−1 when that is the requested convention.</p></div>
+   <div class="card"><h3>Coefficient of variation</h3><div class="formula">CV=SD/X̄ ×100%</div><p>Using population SD: 10.623/78.5×100 ≈ <b>13.53%</b>. It compares spread relative to the level of the data.</p></div>
+  </div>
+  <div class="callout warn"><strong>Important supplied-key arithmetic issue</strong>The CAT key prints variance ≈110.83 and SD≈10.53 for exactly these ten marks. Direct calculation from the listed values gives <b>112.85 and 10.623</b> with denominator n, or <b>125.389 and 11.198</b> with denominator n−1. So do not try to reverse-engineer 110.83 as a standard variance convention. In a fresh numerical, show Σd² and your denominator so your method is defensible.</div>
+ </div></details>
+
+ <details><summary>5 · Mean Difference Δ — all-pairs dispersion</summary><div>
+  <div class="formula">Δ = [ΣᵢΣⱼ|xᵢ−xⱼ|]/n²</div>
+  <p><b>Recipe:</b> sort values → make the upper-triangular pairwise absolute-difference table → add each unordered pair once to S → because the double sum contains both (i,j) and (j,i), use <b>Δ=2S/n²</b>.</p>
+  <p>For the CAT improvement data, S=81.2 and n=8:</p><div class="formula">Δ=2×81.2/64=<b>2.5375≈2.53</b></div>
+ </div></details>
+
+ <details open><summary>6 · Skewness — several coefficients exist, so identify the one you use</summary><div>
+  <div class="grid-2">
+   <div class="card"><h3>Pearson coefficients</h3>
+    <div class="formula">Pearson I = (X̄−Mode)/SD<br/>Pearson II = 3(X̄−Median)/SD</div>
+    <p>For TotalMarks, using population SD=10.623:</p>
+    <div class="formula">Pearson II = 3(78.5−79)/10.623 ≈ <b>−0.141</b></div>
+    <p>Negative ⇒ a slightly longer left tail.</p>
+   </div>
+   <div class="card"><h3>Quartile / moment forms</h3>
+    <div class="formula">Yule = (Q3−2Q2+Q1)/(Q3−Q1)</div>
+    <div class="formula">Fisher moment skew γ₁ = μ₃ / μ₂<sup>3/2</sup></div>
+    <p>Software such as Pandas uses an adjusted sample-skew convention. For these marks it is about <b>−0.158</b>, which explains why a key/software output can be near −0.17 while Pearson II is different.</p>
+   </div>
+  </div>
+  <div class="callout dark"><strong>Exam habit</strong>Never write only “skewness = …” if you calculated it manually and the definition is not specified. Name the coefficient or use the software function the question asks for.</div>
+ </div></details>
+
+ <details open><summary>7 · Kurtosis — calculate β₂ and Fisher excess γ₂</summary><div>
+  <p>Let μ₂ be the second central moment and μ₄ the fourth central moment.</p>
+  <div class="formula">μ₂=(1/n)Σ(x−X̄)² · μ₄=(1/n)Σ(x−X̄)⁴<br/>β₂ = μ₄/μ₂² · γ₂ = β₂−3</div>
+  <p><b>Worked simple example:</b> x={1,2,3,4,5}, X̄=3. Deviations are −2,−1,0,1,2.</p>
+  <div class="formula">μ₂=(4+1+0+1+4)/5=2<br/>μ₄=(16+1+0+1+16)/5=6.8<br/>β₂=6.8/2²=<b>1.7</b><br/>γ₂=1.7−3=<b>−1.3</b></div>
+  <p>Fisher excess γ₂&lt;0 ⇒ <b>platykurtic</b>; γ₂=0 ⇒ mesokurtic/normal reference; γ₂&gt;0 ⇒ leptokurtic.</p>
+ </div></details>
+
+ <details><summary>8 · Generalized means Q, H, G, α-mean — how to calculate them</summary><div>
+  <p>Use x={2,8} so every operation is visible.</p>
+  <table class="compare"><tr><th>Mean</th><th>Formula</th><th>Worked value</th></tr>
+   <tr><td>Arithmetic A</td><td>Σx/n</td><td>(2+8)/2=<b>5</b></td></tr>
+   <tr><td>Harmonic H</td><td>n/Σ(1/x)</td><td>2/(1/2+1/8)=<b>3.2</b></td></tr>
+   <tr><td>Geometric G</td><td>(∏x)<sup>1/n</sup></td><td>√(2×8)=<b>4</b></td></tr>
+   <tr><td>Quadratic Q</td><td>√(Σx²/n)</td><td>√((4+64)/2)=√34=<b>5.831</b></td></tr>
+   <tr><td>α-mean</td><td>[Σxᵢ<sup>α</sup>/n]<sup>1/α</sup></td><td>α=2 gives Q; α=−1 gives H; α→0 gives G</td></tr>
+  </table>
+  <p><b>Sanity check from the book:</b> H ≤ G ≤ A ≤ Q. Here 3.2 ≤ 4 ≤ 5 ≤ 5.831.</p>
+ </div></details>
+
+ <details open><summary>9 · Frequency table, histogram, cumulative frequency, box plot — construct them from raw marks</summary><div>
+  <p>Choose equal-width classes of 10:</p>
+  <table class="compare"><tr><th>Class</th><th>Boundaries</th><th>Midpoint</th><th>f</th><th>Relative f</th><th>Cumulative f</th></tr>
+   <tr><td>60–69</td><td>59.5–69.5</td><td>64.5</td><td>2</td><td>0.20</td><td>2</td></tr>
+   <tr><td>70–79</td><td>69.5–79.5</td><td>74.5</td><td>3</td><td>0.30</td><td>5</td></tr>
+   <tr><td>80–89</td><td>79.5–89.5</td><td>84.5</td><td>3</td><td>0.30</td><td>8</td></tr>
+   <tr><td>90–99</td><td>89.5–99.5</td><td>94.5</td><td>2</td><td>0.20</td><td>10</td></tr>
+  </table>
+  <p><b>Histogram:</b> adjacent rectangles over class boundaries; equal widths mean heights can be the frequencies 2,3,3,2. <b>Frequency polygon:</b> plot midpoint vs frequency and join. <b>Ogive:</b> plot upper class boundary against cumulative frequency. <b>Box plot:</b> Q1=70, median=79, Q3=88, then whiskers/extremes subject to the 1.5·IQR fences.</p>
+ </div></details>
+
+ <details><summary>10 · Lower-priority named dispersion measures — still know the recipe</summary><div>
+  <table class="compare"><tr><th>Measure</th><th>How to calculate</th></tr>
+   <tr><td>Median deviation</td><td>Compute |xᵢ−Median| for every observation, sort those deviations, then take their median.</td></tr>
+   <tr><td>Geometric deviation</td><td>For positive x, take logarithms, compute the SD of log(x), then exponentiate; equivalently log(s<sub>G</sub>) is the SD of log values.</td></tr>
+   <tr><td>Interdecile range</td><td>D9−D1.</td></tr>
+   <tr><td>Interpercentile range</td><td>Example P90−P10.</td></tr>
   </table>
  </div></details>
- <details><summary>Dispersion box plot · construction logic from the book</summary><div><p>The box spans Q1 to Q3, the median is drawn inside, and outliers satisfy the conventional fences <b>x &gt; Q3 + 1.5·IQR</b> or <b>x &lt; Q1 − 1.5·IQR</b>. The plot summarizes position and dispersion while explicitly exposing extreme values.</p></div></details>
 </section>
 
 <section class="section searchable" id="m4-categorical-time" data-keywords="1D categorical pie chart component part bar chart chronological line graph cartogram">
@@ -565,7 +675,22 @@ sns.lineplot(data=random_walk)</pre></div></div>
   <div class="card"><span class="tag num">Linear r</span><h3>Use only for linear structure</h3><div class="formula">r = Cov(X,Y) / [s(X)s(Y)], −1 ≤ r ≤ 1</div><p>Source emphasis: interpret r only after looking at the scatter plot. Different-shaped clouds can share the same r.</p></div>
  </div>
  <div class="card" style="margin-top:18px"><span class="tag">Quantitative + categorical</span><h3>Use the category as a filter</h3><p>For every category/form, create the corresponding quantitative subpopulation and perform a 1-D quantitative analysis on it. The book recommends showing:</p><div class="chips"><span class="chip">statistical characteristics by form</span><span class="chip">box plots by form</span><span class="chip">histograms by form</span><span class="chip">Sunray characteristics by form</span></div><p>Alternatively, recode the quantitative variable into categories and then use two-categorical analysis.</p></div>
-</section>
+<details open><summary>Worked χ² table · from counts to decision</summary><div>
+   <p>Observed counts:</p><table class="compare"><tr><th></th><th>Yes</th><th>No</th><th>Row total</th></tr><tr><td>A</td><td>30</td><td>20</td><td>50</td></tr><tr><td>B</td><td>10</td><td>40</td><td>50</td></tr><tr><th>Column total</th><th>40</th><th>60</th><th>100</th></tr></table>
+   <p>Expected A-Yes=(50×40)/100=20; A-No=30; B-Yes=20; B-No=30.</p>
+   <div class="formula">χ²=(30−20)²/20 +(20−30)²/30 +(10−20)²/20 +(40−30)²/30<br/>=5+3.333+5+3.333=<b>16.667</b></div>
+   <p>df=(2−1)(2−1)=1. Standard statistical decision: if χ² exceeds the critical value (or p&lt;α), <b>reject independence</b> and conclude evidence of association. The scanned book sentence that says to “accept independence” when χ² is greater is a source typo/inconsistency.</p>
+  </div></details>
+  <details open><summary>Worked least-squares line + r</summary><div>
+   <p>X={1,2,3}, Y={2,3,5}; X̄=2, Ȳ=10/3≈3.333.</p>
+   <div class="formula">slope a = Σ(x−X̄)(y−Ȳ) / Σ(x−X̄)² = 3/2=<b>1.5</b><br/>intercept b = Ȳ−aX̄ = 3.333−3=<b>.333</b><br/>ŷ=<b>1.5x+.333</b></div>
+   <p>The fitted least-squares line passes through (X̄,Ȳ). For the same points, r≈.982, so the linear fit is strong.</p>
+  </div></details>
+  <details><summary>Worked correlation ratio η²</summary><div>
+   <p>Groups A:{1,2}, B:{5,6}. Grand mean=3.5; conditional means are 1.5 and 5.5.</p>
+   <div class="formula">SS_between=2(1.5−3.5)²+2(5.5−3.5)²=16<br/>SS_total=(1−3.5)²+(2−3.5)²+(5−3.5)²+(6−3.5)²=17<br/>η²=16/17=<b>.941</b>; η≈<b>.970</b></div>
+   <p>Interpret η as strength of the general dependence captured by conditional means; unlike r, it is not restricted to a straight-line relation.</p>
+  </div></details></section>
 
 <section class="section searchable" id="m4-nd" data-keywords="3D ND profile stereogram hachured scatter triangular sunray quality multiple contingency mixed cartogram">
  <div class="section-head"><div class="section-no">04E</div><div class="section-title"><h2>Module 4E · 3-D and N-D analysis</h2><p>This is the textbook context behind the C2 ternary/Sunray questions. Know which visualization belongs to which mixture of variable types.</p></div><button class="done-btn" data-topic="m4-nd">Mark done</button></div>
@@ -604,15 +729,27 @@ sns.lineplot(data=random_walk)</pre></div></div>
  <details><summary>MST: Prim vs Kruskal reminder</summary><div><p><b>What the uploaded spectral/MST slides explicitly require:</b> construct an MST using Prim’s and Kruskal’s algorithms, then use edge cutting for clustering.</p><p><b>Standard algorithm reminder (added explanation):</b> Prim grows one connected tree by repeatedly adding the cheapest edge from the current tree to a new vertex. Kruskal sorts edges globally by weight and adds the cheapest edge that does not create a cycle. Both yield an MST; ties can produce different-looking but equal-weight MSTs.</p></div></details>
 </section>
 
-<section class="section searchable" id="numerical-masterclass" data-keywords="worked numericals masterclass all steps mean difference kmeans AHC DBSCAN cosine standardization">
- <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical masterclass · what you should be able to reproduce cold</h2><p>For an open-book paper, these are the computations worth practicing rather than merely rereading.</p></div><button class="done-btn" data-topic="numerical-masterclass">Mark done</button></div>
+<section class="section searchable" id="numerical-masterclass" data-keywords="worked numericals masterclass all steps mean median quartile variance skew kurtosis correlation forecast chi square regression kmeans AHC DBSCAN spectral MST EM cosine standardization">
+ <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical masterclass · every calculation family on one page</h2><p>If a quantity can plausibly be asked as “calculate / compute / perform,” this section gives you the mechanical recipe and at least one worked step.</p></div><button class="done-btn" data-topic="numerical-masterclass">Mark done</button></div>
  <div class="grid-2">
-  <div class="card"><h3>1 · z-standardization</h3><div class="formula">z = (x − μ)/σ</div><p>C1 key: Spending mean 8.14, SD≈7.41; Items mean 26.6, SD≈19.07. Standardized pairs include C03=(0.05,−0.61), C04=(0.12,−0.45).</p><div class="formula">d(C03,C04)=√[(.12−.05)²+(−.45+.61)²]≈0.175</div></div>
-  <div class="card"><h3>2 · K-means centroid update</h3><p>If C2={E(6,5),F(4,4),G(6,2)}:</p><div class="formula">μx=(6+4+6)/3=5.33<br/>μy=(5+4+2)/3=3.67</div><p>Always show one centroid calculation explicitly even if you tabulate the rest.</p></div>
-  <div class="card"><h3>3 · linkage update</h3><p>After merging P3,P6, distance to P4:</p><div class="formula">Single=min(.15,.22)=.15<br/>Complete=max(.15,.22)=.22<br/>Average=(.15+.22)/2=.185</div><p>This one line is the essence of hierarchical-clustering marks.</p></div>
-  <div class="card"><h3>4 · cosine</h3><p>If Q and D share 3 unit-count terms, ||D||=√6 and ||Q||=√3:</p><div class="formula">cos(D,Q)=3/(√6·√3)=3/√18≈.7071</div><p>Write dot, each norm, division, then ranking.</p></div>
-  <div class="card"><h3>5 · Mean Difference</h3><p>Upper-triangle absolute pairwise sum S=81.2, n=8:</p><div class="formula">Δ=2S/n²=162.4/64≈2.53</div><p>Do not divide by number of unordered pairs if following the textbook’s Δ definition.</p></div>
-  <div class="card"><h3>6 · DBSCAN classification</h3><p>For each point, count points within ε (course example effectively includes the point itself), mark core, then mark every non-core within ε of a core as border; leftovers are noise.</p></div>
+  <div class="card"><h3>1 · z-standardization</h3><div class="formula">z=(x−μ)/σ</div><p>Example: x=8.5, μ=8.14, σ=7.41 ⇒ z=(.36/7.41)=<b>.049≈.05</b>. Standardize each feature separately before Euclidean clustering when scales differ.</p></div>
+  <div class="card"><h3>2 · Pearson correlation by hand</h3><p>For paired X,Y: compute X̄,Ȳ → columns dx,dy,dx·dy,dx²,dy².</p><div class="formula">r=Σ(dx·dy)/√[Σdx²·Σdy²]</div><p>X={1,2,3,4}, Y={2,4,5,8}: Σdxdy=9.5, Σdx²=5, Σdy²=18.75 ⇒ r=9.5/√93.75=<b>.981</b>.</p></div>
+  <div class="card"><h3>3 · Forecast errors</h3><p>Actual={100,120,80}, Forecast={90,130,100}; absolute errors={10,10,20}.</p><div class="formula">MAD=40/3=<b>13.33</b><br/>MAPE=(10%+8.33%+25%)/3=<b>14.44%</b><br/>MSE=(100+100+400)/3=<b>200</b><br/>RMSE=√200=<b>14.14</b></div></div>
+  <div class="card"><h3>4 · First differencing</h3><p>Subtract each previous observation.</p><div class="formula">100,108,105,115 → first difference:<br/>NaN, <b>8, −3, 10</b></div><p>Differencing removes level/trend components; it is not the same thing as resampling.</p></div>
+  <div class="card"><h3>5 · Complete 1-D statistics</h3><p>Sort → n, Σx → mean/median → lower/upper halves for Q1/Q3 → range/IQR → deviations → MD/variance/SD → skew/kurtosis if asked. Use the full Module 4B worked table above.</p></div>
+  <div class="card"><h3>6 · Mean Difference Δ</h3><p>Upper-triangle absolute pairwise sum S=81.2, n=8:</p><div class="formula">Δ=2S/n²=162.4/64=<b>2.5375≈2.53</b></div></div>
+  <div class="card"><h3>7 · χ² contingency test</h3><p>Observed = [[30,20],[10,40]]. Row totals 50,50; column totals 40,60; n=100.</p><div class="formula">Expected=[[20,30],[20,30]]<br/>χ²=100/20+100/30+100/20+100/30=<b>16.667</b><br/>df=(2−1)(2−1)=1</div><p>Standard statistical rule: χ² above critical (or p&lt;α) ⇒ reject independence ⇒ evidence of association.</p></div>
+  <div class="card"><h3>8 · Least-squares regression</h3><p>X={1,2,3}, Y={2,3,5}; X̄=2, Ȳ=3.333.</p><div class="formula">a=Σ[(x−X̄)(y−Ȳ)]/Σ(x−X̄)²=3/2=<b>1.5</b><br/>b=Ȳ−aX̄=3.333−3=<b>.333</b><br/>ŷ=<b>1.5x+.333</b></div></div>
+  <div class="card"><h3>9 · Correlation ratio η</h3><p>Think “between conditional-mean variation / total variation.” Example groups A:{1,2}, B:{5,6}; grand mean=3.5, group means=1.5,5.5.</p><div class="formula">SS_between=2(1.5−3.5)²+2(5.5−3.5)²=16<br/>SS_total=17<br/>η²=16/17=<b>.941</b> ⇒ η≈<b>.970</b></div></div>
+  <div class="card"><h3>10 · K-means centroid update</h3><p>C2={E(6,5),F(4,4),G(6,2)}:</p><div class="formula">μ=( (6+4+6)/3 , (5+4+2)/3 )=<b>(5.33,3.67)</b></div><p>Then recompute every point-to-centroid distance.</p></div>
+  <div class="card"><h3>11 · K-means WCSS</h3><p>For C2 around μ=(5.33,3.67), squared distances are about 2.222,1.889,3.222 ⇒ C2 WCSS=<b>7.333</b>. Final course clusters give total WCSS ≈ <b>36.833</b>.</p><p>Elbow: repeat whole fit for several K and plot WCSS; choose the bend.</p></div>
+  <div class="card"><h3>12 · Hierarchical linkage row update</h3><p>After merge {P3,P6}, distances to P4:</p><div class="formula">Single=min(.15,.22)=.15<br/>Complete=max(.15,.22)=.22<br/>Average=(.15+.22)/2=.185</div><p>For Complete, the entire new row is P1=.23, P2=.25, P4=.22, P5=.39. For Average: .225,.20,.185,.335.</p></div>
+  <div class="card"><h3>13 · DBSCAN neighbor counting</h3><p>ε=1.9, MinPts=4; count the point itself as in the course example. Neighbor counts:</p><div class="formula">P1=3, P2=4, P3=3, P4=3, P5=5, P6=3,<br/>P7=3, P8=2, P9=2, P10=3, P11=4, P12=3</div><p>Core=P2,P5,P11. Non-core points within ε of a core are border. P9 is the remaining noise point.</p></div>
+  <div class="card"><h3>14 · Tiny spectral-clustering calculation</h3><p>For a 3-node chain 1—2—3:</p><div class="formula">A=[[0,1,0],[1,0,1],[0,1,0]]<br/>D=diag(1,2,1)<br/>L=D−A=[[1,−1,0],[−1,2,−1],[0,−1,1]]</div><p>Eigenvalues are 0,1,3. The second eigenvector is proportional to [1,0,−1], showing the sign-based spectral split idea.</p></div>
+  <div class="card"><h3>15 · MST divisive clustering</h3><p>Course MST edge weights include AB=2, BC=3.1, CD=2, DF=4, FE=1.4, EH=5, HG=1.</p><div class="formula">k=2: remove largest EH=5<br/>k=3: also remove DF=4</div><p>After both cuts, components are {A,B,C,D}, {E,F}, {G,H}.</p></div>
+  <div class="card"><h3>16 · EM for a Gaussian mixture</h3><p><b>E-step responsibility:</b></p><div class="formula">rᵢk = πₖ N(xᵢ|μₖ,σₖ²) / Σⱼ πⱼN(xᵢ|μⱼ,σⱼ²)</div><p><b>M-step:</b> Nₖ=Σᵢrᵢk; μₖ=Σrᵢkxᵢ/Nₖ; σₖ²=Σrᵢk(xᵢ−μₖ)²/Nₖ; πₖ=Nₖ/n. Repeat until likelihood/parameters stabilize.</p></div>
+  <div class="card"><h3>17 · Cosine from vectors</h3><p>Vocabulary order must be fixed. For the C2 query, Q has three 1s ⇒ ||Q||=√3. Doc1 has six 1s and shares all 3 query terms.</p><div class="formula">cos(D1,Q)=3/(√6·√3)=<b>.7071</b></div><p>Do the same for each document and rank descending.</p></div>
+  <div class="card"><h3>18 · Sunray / ternary coordinates</h3><p><b>Sunray:</b> scale each requested statistic to a plotting radius, preserve order, plot on rays, connect. <b>Ternary:</b> verify a+b+c is the fixed total; normalize to proportions if necessary; then place the point by its three barycentric shares.</p></div>
  </div>
 </section>
 
@@ -1076,7 +1213,17 @@ sns.pairplot(df, vars=["symboling","normalized-losses","wheel-base"],
   <div class="callout warn"><strong>Simpson’s paradox</strong>A trend can reverse/change when groups are aggregated versus analyzed separately. Your textbook’s console example exists to force one lesson: inspect group sizes and lurking grouping variables before trusting the aggregate.</div>
   <div class="callout dark"><strong>Correlation ≠ causation</strong>Correlation says variables move together; causation says changing one <em>causes</em> the other to change. A third/confounding factor can create correlation. In an answer: describe the association, then explicitly avoid a causal claim unless the design supports it.</div>
  </div>
-</section>
+<details open><summary>Pearson by hand · table method</summary><div>
+   <p>If the exam gives raw pairs instead of asking for Python, use this table method. Example: X={1,2,3,4}, Y={2,4,5,8}; X̄=2.5, Ȳ=4.75.</p>
+   <table class="compare"><tr><th>x</th><th>y</th><th>dx</th><th>dy</th><th>dx·dy</th><th>dx²</th><th>dy²</th></tr>
+    <tr><td>1</td><td>2</td><td>−1.5</td><td>−2.75</td><td>4.125</td><td>2.25</td><td>7.5625</td></tr>
+    <tr><td>2</td><td>4</td><td>−0.5</td><td>−0.75</td><td>.375</td><td>.25</td><td>.5625</td></tr>
+    <tr><td>3</td><td>5</td><td>.5</td><td>.25</td><td>.125</td><td>.25</td><td>.0625</td></tr>
+    <tr><td>4</td><td>8</td><td>1.5</td><td>3.25</td><td>4.875</td><td>2.25</td><td>10.5625</td></tr>
+    <tr><th>Σ</th><th></th><th>0</th><th>0</th><th>9.5</th><th>5</th><th>18.75</th></tr>
+   </table>
+   <div class="formula">r=9.5/√(5×18.75)=<b>0.981</b> ⇒ very strong positive linear relationship.</div>
+  </div></details></section>
 
 <section class="section searchable" id="timeseries" data-keywords="module 3 time series trend cycle seasonality random variation datetime index grouping resampling weekly monthly">
  <div class="section-head"><div class="section-no">03</div><div class="section-title"><h2>Time series · make time the structure</h2><p>The notebook’s workflow is simple: convert time correctly, index by it, slice it, visualize it, group it, then resample it. The test keys add stationarity and forecasting.</p></div><button class="done-btn" data-topic="timeseries">Mark done</button></div>
@@ -1118,7 +1265,12 @@ yearly = df["Demand"].resample("Y").mean()</pre></div></div>
   <div class="card"><h3>Resample with sum</h3><p>The C1 ad/sales key uses <b>sum</b> because the quantity is total weekly spend / sales.</p><div class="codebox"><button class="copy">Copy</button><pre>weekly_data = df.resample("W").sum()</pre></div><p class="mini"><b>Rule:</b> choose aggregation by meaning, not habit.</p></div>
  </div>
  <div class="callout good"><strong>Interpretation sentence to steal</strong>“Resampling aligns the observations with the process frequency and can reduce high-frequency noise. I use <u>sum</u> for totals accumulated over the period and <u>mean</u> for the average level during the period.”</div>
-</section>
+<details open><summary>Worked resampling + differencing arithmetic</summary><div>
+   <p><b>Weekly total example:</b> daily sales 10,12,9,11,13,15,14 ⇒ weekly <b>sum=84</b>; weekly mean=84/7=<b>12</b>. Which one you use depends on meaning: “total sold” ⇒ 84; “average daily level that week” ⇒ 12.</p>
+   <p><b>Differencing:</b> series 100,108,105,115 ⇒ first differences are NaN,8,−3,10 because each value subtracts its immediate predecessor.</p>
+   <p><b>Forecast-error worked example:</b> actual={100,120,80}, forecast={90,130,100}. Absolute errors={10,10,20}; MAD=13.33; MAPE≈14.44%; squared errors={100,100,400}; MSE=200; RMSE≈14.14.</p>
+   <div class="callout warn"><strong>MAPE trap</strong>MAPE divides by the actual value; if an actual Y is zero, ordinary MAPE is undefined/problematic. State how zeros are handled if they occur.</div>
+  </div></details></section>
 
 <section class="section searchable" id="stationarity" data-keywords="ADF augmented dickey fuller stationarity differencing ARIMA forecast train test p value">
  <div class="section-head"><div class="section-no">03</div><div class="section-title"><h2>Stationarity · ADF · differencing · ARIMA</h2><p>For the exam patterns represented here, you need both the hypothesis decision and the forecasting skeleton below.</p></div><button class="done-btn" data-topic="stationarity">Mark done</button></div>
@@ -1146,7 +1298,7 @@ adf_result = adfuller(df["Demand"].dropna())
 print("ADF Statistic:", adf_result[0])
 print("p-value:", adf_result[1])
 
-train = df["Demand"][:-365]test  = df["Demand"][-365:]
+train = df["Demand"][:-365]\ntest  = df["Demand"][-365:]
 
 model = ARIMA(train, order=(5,1,2))
 fit = model.fit()
@@ -1156,36 +1308,22 @@ forecast = fit.forecast(steps=365)</pre></div>
  <div class="editorial-note"><div class="label">ARIMA notation</div><div><b>(p,d,q)</b>: the supplied key uses <b>(5,1,2)</b>. For this exam, the crucial move is recognizing that <b>d=1 means first differencing is built into the model</b>. Unless the question gives/asks you to select p,d,q, do not invent an elaborate order-selection procedure.</div></div>
 </section>
 
-<section class="section searchable" id="oned" data-keywords="module 4 1D mean median mode quartile IQR variance standard deviation skewness kurtosis histogram boxplot">
- <div class="section-head"><div class="section-no">04</div><div class="section-title"><h2>1-D analysis · center, spread, shape</h2><p>Module 4’s notebook and textbook converge on a clean three-part view of one quantitative variable: representative value, dispersion, and shape.</p></div><button class="done-btn" data-topic="oned">Mark done</button></div>
+<section class="section searchable" id="oned" data-keywords="module 4 1D mean median mode quartile Q1 Q3 IQR variance standard deviation skewness kurtosis histogram boxplot calculate">
+ <div class="section-head"><div class="section-no">04</div><div class="section-title"><h2>1-D exam desk · do not just recognize the terms</h2><p>This is the compact exam-facing version of the complete calculation chapter above. Every card tells you what operation to perform by hand.</p></div><button class="done-btn" data-topic="oned">Mark done</button></div>
  <div class="grid-3">
-  <div class="card"><span class="tag">Center</span><h3>Representative value</h3><div class="formula">Mean = Σxᵢ/n</div><p>Median = middle ordered value. Mode = most frequent. For a heavily skewed variable, the supplied C1 key favors the <b>median</b> because it is robust to extremes.</p></div>
-  <div class="card"><span class="tag num">Spread</span><h3>Dispersion</h3><div class="formula">Range = max−min<br/>IQR = Q₃−Q₁<br/>s = √variance</div><p>Know range, IQR, variance, standard deviation, mean deviation and mean difference.</p></div>
-  <div class="card"><span class="tag">Shape</span><h3>Skew + kurtosis</h3><p><b>Skewness</b> describes asymmetry. Positive: longer right tail; negative: longer left tail. <b>Kurtosis</b> describes tail/peak character relative to the convention used by the software.</p></div>
+  <div class="card"><span class="tag">Center</span><h3>Mean · median · mode</h3><p><b>Mean:</b> add all values and divide by n. <b>Median:</b> sort; take the middle or average the two middle values. <b>Mode:</b> highest frequency.</p><div class="formula">CAT marks: mean=785/10=78.5<br/>median=(78+80)/2=79<br/>mode=none</div></div>
+  <div class="card"><span class="tag num">Position + spread</span><h3>Q1 · Q3 · IQR · range</h3><p>Course-key quartiles use median of lower/upper halves.</p><div class="formula">Q1=70 · Q3=88<br/>IQR=18 · Range=95−60=35</div><p>Outlier fences: 70−27=43 and 88+27=115.</p></div>
+  <div class="card"><span class="tag num">Squared spread</span><h3>Variance · SD</h3><p>Find X̄, compute every d=x−X̄, square, add.</p><div class="formula">Σd²=1128.5<br/>population variance=1128.5/10=112.85<br/>population SD=√112.85=10.623</div><p>Use n−1 instead only when the sample convention is requested.</p></div>
+  <div class="card"><span class="tag">Absolute spread</span><h3>Mean deviation</h3><p>Compute |x−X̄| rather than squared deviation; add and divide by n.</p><div class="formula">Σ|x−78.5|=91 ⇒ MD=<b>9.1</b></div></div>
+  <div class="card"><span class="tag">Shape</span><h3>Skewness</h3><p>First identify the definition. A hand-friendly course formula is Pearson II.</p><div class="formula">Sk=3(X̄−M)/SD<br/>≈3(78.5−79)/10.623=−0.141</div><p>Software adjusted skew for the same marks is around −0.158; different definitions need not match exactly.</p></div>
+  <div class="card"><span class="tag">Shape</span><h3>Kurtosis</h3><p>Compute central moments μ2 and μ4.</p><div class="formula">β2=μ4/μ2²<br/>Fisher excess γ2=β2−3</div><p>γ2&gt;0 leptokurtic; =0 mesokurtic reference; &lt;0 platykurtic.</p></div>
  </div>
  <div class="interactive" style="margin-top:18px">
-  <h3>1-D calculator</h3><p>Paste numbers. This is for intuition/checking, not a substitute for your instructor’s quantile/variance convention.</p>
+  <h3>1-D calculator · now shows the conventions that matter</h3><p>Paste values to check your hand work. It shows median-of-halves quartiles, both n and n−1 variance conventions, mean deviation, CV, and adjusted sample skew.</p>
   <div class="lab-controls"><input id="statsInput" type="text" style="flex:1;min-width:320px" value="78,85,67,90,72,88,60,95,70,80"/><button class="lab-btn" id="statsCalc">Calculate</button></div>
   <div id="statsOut" class="grid-3"></div>
  </div>
- <div class="callout warn"><strong>Convention warning from your supplied material</strong>The C2 key reports Q1=70, Q3=88, variance≈110.83 and SD≈10.53 for its TotalMarks data. Different software/interpolation and population/sample conventions can give different values. In the test, state the convention or follow the convention demonstrated by the course/key.</div>
- <details><summary>Module 4 notebook plotting patterns</summary><div>
-  <div class="codebox"><button class="copy">Copy</button><pre>mean_val = df[col].mean()
-median_val = df[col].median()
-mode_val = df[col].mode().values[0]
-skewness_val = df[col].skew()
-kurtosis_val = df[col].kurt()
-
-sns.histplot(df[col], bins=20)
-sns.kdeplot(df[col])
-sns.boxplot(x=df[col])
-df[col].value_counts().plot(kind="bar")
-df[col].plot(kind="hist", cumulative=True, bins=20)</pre></div>
- </div></details>
- <details><summary>Complete Module 4 map</summary><div>
-  <p>The complete Module 4 book broadens EDA beyond the notebook: 1-D quantitative/categorical/chronological summaries; 2-D categorical×categorical and quantitative×quantitative relationships; quantitative×categorical comparisons; and 3-D/N-D displays such as profiles, Sunray plots, multiple scatter diagrams and triangular diagrams.</p>
-  <table class="compare"><tr><th>Variable types</th><th>Useful view</th><th>Question being answered</th></tr><tr><td>1 quantitative</td><td>stats, histogram, boxplot</td><td>center/spread/shape?</td></tr><tr><td>2 quantitative</td><td>scatter / curve fit</td><td>relationship?</td></tr><tr><td>categorical + quantitative</td><td>boxplots/histograms by form</td><td>how does distribution change by group?</td></tr><tr><td>N quantitative</td><td>profile / Sunray / multiple scatter</td><td>compare multivariate profiles?</td></tr><tr><td>3 percentages summing equally</td><td>triangular/ternary</td><td>composition?</td></tr></table>
- </div></details>
+ <div class="callout warn"><strong>Do not memorize the supplied key's variance typo as a formula.</strong>For the ten listed marks, direct arithmetic gives population variance 112.85 and SD 10.623. The supplied key prints 110.83 / 10.53. In a fresh problem, show the deviation sum and denominator.</div>
 </section>
 
 <section class="section searchable" id="mean-difference" data-keywords="mean difference delta pairwise absolute differences module 4 numerical">
@@ -1329,7 +1467,16 @@ plt.plot(range(1,11), wcss)</pre></div>
   </div>
  </div>
  <div class="callout warn"><strong>Exam workflow</strong>Distance matrix → list ε-neighbors → mark core points → expand density-connected clusters → mark border points → remaining points are noise. Your reference explicitly says: if none remain, write <b>“NO OUTLIERS found.”</b></div>
-</section>
+<details open><summary>Exact ε-neighborhood table for the course example</summary><div>
+  <table class="compare"><tr><th>Point</th><th>ε-neighbors at 1.9 (including itself)</th><th>Count</th><th>Type after expansion</th></tr>
+   <tr><td>P1</td><td>P1,P2,P10</td><td>3</td><td>Border</td></tr><tr><td>P2</td><td>P1,P2,P3,P11</td><td>4</td><td><b>Core</b></td></tr>
+   <tr><td>P3</td><td>P2,P3,P4</td><td>3</td><td>Border</td></tr><tr><td>P4</td><td>P3,P4,P5</td><td>3</td><td>Border</td></tr>
+   <tr><td>P5</td><td>P4,P5,P6,P7,P8</td><td>5</td><td><b>Core</b></td></tr><tr><td>P6</td><td>P5,P6,P7</td><td>3</td><td>Border</td></tr>
+   <tr><td>P7</td><td>P5,P6,P7</td><td>3</td><td>Border</td></tr><tr><td>P8</td><td>P5,P8</td><td>2</td><td>Border</td></tr>
+   <tr><td>P9</td><td>P9,P12</td><td>2</td><td><b>Noise</b></td></tr><tr><td>P10</td><td>P1,P10,P11</td><td>3</td><td>Border</td></tr>
+   <tr><td>P11</td><td>P2,P10,P11,P12</td><td>4</td><td><b>Core</b></td></tr><tr><td>P12</td><td>P9,P11,P12</td><td>3</td><td>Border</td></tr>
+  </table><p><b>Why P8 can be border with only two neighbors:</b> border points do not need MinPts themselves; they only need to lie inside ε of a core point (here P5).</p>
+ </div></details></section>
 
 <section class="section searchable" id="spectral" data-keywords="spectral clustering affinity adjacency degree laplacian eigenvalue eigenvector eigengap MST minimum spanning tree EM expectation maximization">
  <div class="section-head"><div class="section-no">05</div><div class="section-title"><h2>Spectral · MST · EM</h2><p>Three different ideas that often become theory/steps questions. Learn their pipelines and the one or two equations that anchor each.</p></div><button class="done-btn" data-topic="spectral">Mark done</button></div>
@@ -1368,7 +1515,17 @@ plt.plot(range(1,11), wcss)</pre></div>
   </div>
  </div>
  <details><summary>K-medoids — small but mentioned in your Module 5 summary</summary><div><p>The course summary describes it as similar in structure to K-means but using <b>medoids</b> rather than centroids. For your source coverage, remember that distinction; the uploaded material does not develop a full worked K-medoids numerical.</p></div></details>
-</section>
+<details open><summary>Tiny Laplacian worked example · actually build A, D, L</summary><div>
+  <p>For a simple unweighted chain 1—2—3, adjacency/affinity is:</p>
+  <div class="formula">A = [[0,1,0],[1,0,1],[0,1,0]]</div>
+  <p>Row sums are 1,2,1, so:</p><div class="formula">D=diag(1,2,1)<br/>L=D−A=[[1,−1,0],[−1,2,−1],[0,−1,1]]</div>
+  <p>The eigenvalues are 0,1,3. The eigenvector for λ₂=1 is proportional to [1,0,−1]. Its signs illustrate the Fiedler split: node 1 on one side, node 3 on the other, node 2 at the boundary.</p>
+ </div></details>
+ <details open><summary>MST cutting · k=2 and k=3 from the course edge list</summary><div><p>Given MST edges AB=2, BC=3.1, CD=2, DF=4, FE=1.4, EH=5, HG=1: sort the expensive bridge edges. For k=2 remove the single largest edge EH=5. For k=3 remove EH=5 and DF=4, leaving <b>{A,B,C,D}, {E,F}, {G,H}</b>.</p></div></details>
+ <details><summary>EM · the actual update equations</summary><div><p>For Gaussian-mixture clustering, EM alternates soft memberships and parameter re-estimation:</p>
+ <div class="formula">E: rᵢk = πₖN(xᵢ|μₖ,σₖ²) / ΣⱼπⱼN(xᵢ|μⱼ,σⱼ²)</div>
+ <div class="formula">M: Nₖ=Σᵢrᵢk<br/>μₖ=Σᵢrᵢkxᵢ/Nₖ<br/>σₖ²=Σᵢrᵢk(xᵢ−μₖ)²/Nₖ<br/>πₖ=Nₖ/n</div>
+ <p>Responsibilities are probabilities/soft assignments, unlike K-means' hard nearest-centroid assignment.</p></div></details></section>
 
 <section class="section searchable" id="documents" data-keywords="document clustering vector space model cosine similarity DTM TF query ranking stop words">
  <div class="section-head"><div class="section-no">05</div><div class="section-title"><h2>Document clustering/retrieval · cosine by hand</h2><p>The slides and C2 key use a Vector Space Model workflow. This is one of the cleanest 10-mark numericals if you keep vocabulary order consistent.</p></div><button class="done-btn" data-topic="documents">Mark done</button></div>
@@ -1393,7 +1550,17 @@ plt.plot(range(1,11), wcss)</pre></div>
   <table class="compare"><tr><th>Document</th><th>Dot with Q</th><th>||Doc||</th><th>Cosine</th></tr><tr><td>Doc1</td><td>3</td><td>2.44949</td><td>0.7071</td></tr><tr><td>Doc2</td><td>2</td><td>2.00000</td><td>0.5774</td></tr><tr><td>Doc3</td><td>2</td><td>1.41421</td><td><b>0.8165</b></td></tr><tr><td>Doc4</td><td>3</td><td>2.23607</td><td>0.7746</td></tr></table>
  </div></details>
  <details><summary>Slide practice example: query “brown dog”</summary><div><p>Vocabulary: {quick, brown, fox, jumps, lazy, dog, chased}. The supplied slides use D1=(1,1,1,1,1,1,0), D2=(0,1,1,0,0,1,1), D3=(0,0,0,0,1,1,0), Q=(0,1,0,0,0,1,0). Cosines: D1≈.577, D2≈.707, D3=.5 → <b>D2 → D1 → D3</b>.</p></div></details>
-</section>
+<details open><summary>Build the actual C2 vectors before taking cosine</summary><div>
+  <p>After removing common stop words, use vocabulary order:</p><div class="formula">[quick, brown, fox, jumps, lazy, dog, chased, befriended]</div>
+  <table class="compare"><tr><th>Text</th><th>Vector</th><th>Norm</th></tr>
+   <tr><td>D1</td><td>[1,1,1,1,1,1,0,0]</td><td>√6</td></tr>
+   <tr><td>D2</td><td>[0,1,1,0,0,1,1,0]</td><td>√4=2</td></tr>
+   <tr><td>D3</td><td>[0,0,0,0,1,1,0,0]</td><td>√2</td></tr>
+   <tr><td>D4</td><td>[0,1,1,0,1,1,0,1]</td><td>√5</td></tr>
+   <tr><td>Q</td><td>[0,1,0,0,1,1,0,0]</td><td>√3</td></tr>
+  </table>
+  <p>D1·Q=3, so cos(D1,Q)=3/(√6·√3)=.7071. D3·Q=2, so cos(D3,Q)=2/(√2·√3)=.8165. This is why D3 outranks D1 even though D1 shares more total vocabulary terms: cosine normalizes for vector length.</p>
+ </div></details></section>
 
 
 <section class="section searchable" id="formula-desk" data-keywords="formula decision rules master formulas equations">
@@ -1584,13 +1751,17 @@ function drawTs(){const svg=$("#tsPlot");svg.innerHTML="";for(let i=0;i<6;i++)li
 $$(".ts-mode").forEach(b=>b.onclick=()=>{$$(".ts-mode").forEach(x=>x.classList.remove("active"));b.classList.add("active");tsMode=b.dataset.mode;drawTs()});drawTs();
 
 /* statistics */
-function quantileSorted(s,q){const pos=(s.length-1)*q,lo=Math.floor(pos),hi=Math.ceil(pos);return s[lo]+(s[hi]-s[lo])*(pos-lo)}
+function medianSorted(s){const n=s.length,m=Math.floor(n/2);return n%2?s[m]:(s[m-1]+s[m])/2}
+function courseQuartiles(s){const n=s.length,m=Math.floor(n/2);const lower=s.slice(0,m),upper=s.slice(n%2?m+1:m);return [medianSorted(lower),medianSorted(upper)]}
 function calcStats(){
- const a=$("#statsInput").value.split(/[,\s]+/).map(Number).filter(Number.isFinite);if(!a.length)return;
- const s=[...a].sort((x,y)=>x-y),n=s.length,mean=a.reduce((p,c)=>p+c,0)/n,med=quantileSorted(s,.5),q1=quantileSorted(s,.25),q3=quantileSorted(s,.75),pv=a.reduce((p,c)=>p+(c-mean)**2,0)/n,sd=Math.sqrt(pv);
- const m3=a.reduce((p,c)=>p+(c-mean)**3,0)/n,sk=sd?m3/sd**3:0;
- const vals=[["n",n],["Mean",mean.toFixed(3)],["Median",med.toFixed(3)],["Q1 / Q3",`${q1.toFixed(3)} / ${q3.toFixed(3)}`],["IQR",(q3-q1).toFixed(3)],["Pop. variance",pv.toFixed(3)],["Pop. SD",sd.toFixed(3)],["Moment skew",sk.toFixed(3)],["Min / Max",`${s[0]} / ${s[n-1]}`]];
- $("#statsOut").innerHTML=vals.map(([k,v])=>`<div style="background:#173b48;border:1px solid #42606a;border-radius:12px;padding:10px"><div style="font-size:9px;color:#8fb0a8;text-transform:uppercase">${k}</div><b style="font-size:16px">${v}</b></div>`).join("");
+ const a=$("#statsInput").value.split(/[,\\s]+/).map(Number).filter(Number.isFinite);if(!a.length)return;
+ const s=[...a].sort((x,y)=>x-y),n=s.length,mean=a.reduce((p,c)=>p+c,0)/n,med=medianSorted(s),[q1,q3]=courseQuartiles(s);
+ const ss=a.reduce((p,c)=>p+(c-mean)**2,0),pv=ss/n,psd=Math.sqrt(pv),sv=n>1?ss/(n-1):0,ssd=Math.sqrt(sv);
+ const md=a.reduce((p,c)=>p+Math.abs(c-mean),0)/n;
+ const counts={};a.forEach(v=>counts[v]=(counts[v]||0)+1);const mf=Math.max(...Object.values(counts));const modes=mf>1?Object.entries(counts).filter(([,c])=>c===mf).map(([v])=>v).join(", "):"none";
+ let skew=0;if(n>2&&ssd){skew=n/((n-1)*(n-2))*a.reduce((p,c)=>p+((c-mean)/ssd)**3,0)}
+ const vals=[["Sorted",s.join(", ")],["n / Σx",n+" / "+a.reduce((p,c)=>p+c,0)],["Mean",mean.toFixed(3)],["Median",med.toFixed(3)],["Mode",modes],["Course Q1 / Q3",q1.toFixed(3)+" / "+q3.toFixed(3)],["IQR",(q3-q1).toFixed(3)],["Range",(s[n-1]-s[0]).toFixed(3)],["Σ squared deviations",ss.toFixed(3)],["Population variance / SD",pv.toFixed(3)+" / "+psd.toFixed(3)],["Sample variance / SD",sv.toFixed(3)+" / "+ssd.toFixed(3)],["Mean deviation",md.toFixed(3)],["CV (pop.)",(mean?psd/Math.abs(mean)*100:0).toFixed(2)+"%"],["Adjusted sample skew",skew.toFixed(3)],["Outlier fences",(q1-1.5*(q3-q1)).toFixed(3)+" to "+(q3+1.5*(q3-q1)).toFixed(3)]];
+ $("#statsOut").innerHTML=vals.map(([k,v])=>`<div style="background:#173b48;border:1px solid #42606a;border-radius:12px;padding:10px"><div style="font-size:9px;color:#8fb0a8;text-transform:uppercase">${k}</div><b style="font-size:14px;word-break:break-word">${v}</b></div>`).join("");
 }
 $("#statsCalc").onclick=calcStats;calcStats();
 
