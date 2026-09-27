@@ -262,7 +262,7 @@ footer{padding:32px clamp(18px,4vw,54px);background:#0f2d38;color:#bdd0cb;font-s
 
 <section class="section searchable" id="standalone-contract" data-keywords="standalone final only page complete syllabus self contained">
  <div class="section-head"><div class="section-no">★</div><div class="section-title"><h2>Final-edition contract · this is the only study source you need</h2><p>This section defines exactly what “complete” means for this page. You should be able to prepare from here without opening any of the original course files or any older website version.</p></div><button class="done-btn" data-topic="standalone-contract">Mark done</button></div>
- <div class="callout good"><strong>Study assumption</strong>From this point onward, treat every PDF/PPT/notebook and every older generated page as closed. If a fact, formula, code pattern, worked method, or course-specific warning matters for the supplied Module 3–5 material, it must be represented here. Where the course material itself is internally inconsistent, the inconsistency and the safest exam handling are written directly into this page.</div>
+ <div class="callout good"><strong>Study assumption</strong>From this point onward, treat every PDF/PPT/notebook and every older generated page as closed. If a fact, formula, code pattern, worked method, or course-specific warning matters for the supplied Module 3–5 material, it must be represented here. Where the course material itself is internally inconsistent, the inconsistency and the safest exam handling are written directly into this page.</div><div class="callout warn"><strong>Depth standard for this final edition</strong>Nothing computational is allowed to stop at a definition. If a topic has a formula, you should find on this page the formula, the hand-calculation sequence, a worked example, and an interpretation. Overview cards are only indexes; the worked calculation appears in the same chapter or in Numerical Masterclass.</div>
  <div class="grid-3">
   <div class="card"><span class="tag hot">Learn</span><h3>Concepts are explained here</h3><p>Definitions are not left as labels. For every major topic, you get the purpose, the algorithm/logic, the interpretation, and the common mistake that loses marks.</p></div>
   <div class="card"><span class="tag num">Solve</span><h3>Numericals are executable here</h3><p>K-means, linkage updates, DBSCAN classification, mean difference, cosine similarity, z-standardization, 1-D summaries and spectral/MST reasoning are all reduced to repeatable steps.</p></div>
@@ -690,7 +690,12 @@ sns.lineplot(data=random_walk)</pre></div></div>
    <p>Groups A:{1,2}, B:{5,6}. Grand mean=3.5; conditional means are 1.5 and 5.5.</p>
    <div class="formula">SS_between=2(1.5−3.5)²+2(5.5−3.5)²=16<br/>SS_total=(1−3.5)²+(2−3.5)²+(5−3.5)²+(6−3.5)²=17<br/>η²=16/17=<b>.941</b>; η≈<b>.970</b></div>
    <p>Interpret η as strength of the general dependence captured by conditional means; unlike r, it is not restricted to a straight-line relation.</p>
-  </div></details></section>
+  </div></details><details><summary>Association strength after χ² · φ, Cramér V, Tschuprow T</summary><div>
+  <p>Once χ² says the variables are associated, these scale the strength of association.</p>
+  <div class="formula">φ = √(χ²/n) &nbsp; (especially 2×2)<br/>Cramér V = √[χ² / (n·min(r−1,c−1))]<br/>Tschuprow T = √[χ² / (n·√((r−1)(c−1)))]</div>
+  <p>For the worked 2×2 example χ²=16.667 and n=100: φ=√(.16667)=<b>.408</b>. In a 2×2 table, Cramér V is the same because min(r−1,c−1)=1.</p>
+  <p><b>Profiles:</b> row profile = cell/row total; column profile = cell/column total. For A-Yes=30, row profile=30/50=<b>.60</b>; column profile=30/40=<b>.75</b>.</p>
+ </div></details></section>
 
 <section class="section searchable" id="m4-nd" data-keywords="3D ND profile stereogram hachured scatter triangular sunray quality multiple contingency mixed cartogram">
  <div class="section-head"><div class="section-no">04E</div><div class="section-title"><h2>Module 4E · 3-D and N-D analysis</h2><p>This is the textbook context behind the C2 ternary/Sunray questions. Know which visualization belongs to which mixture of variable types.</p></div><button class="done-btn" data-topic="m4-nd">Mark done</button></div>
@@ -727,7 +732,23 @@ sns.lineplot(data=random_walk)</pre></div></div>
   <div class="formula">Dendrogram merge heights: 1, 2, 3, 4, 15</div>
  </div></details>
  <details><summary>MST: Prim vs Kruskal reminder</summary><div><p><b>What the uploaded spectral/MST slides explicitly require:</b> construct an MST using Prim’s and Kruskal’s algorithms, then use edge cutting for clustering.</p><p><b>Standard algorithm reminder (added explanation):</b> Prim grows one connected tree by repeatedly adding the cheapest edge from the current tree to a new vertex. Kruskal sorts edges globally by weight and adds the cheapest edge that does not create a cycle. Both yield an MST; ties can produce different-looking but equal-weight MSTs.</p></div></details>
-</section>
+<details open><summary>Distance formulas · calculate, do not just name</summary><div>
+  <table class="compare"><tr><th>Measure</th><th>Formula</th><th>Example</th></tr>
+   <tr><td>Euclidean</td><td>√Σ|xᵢ−yᵢ|²</td><td>(1,2) to (4,6): √(9+16)=<b>5</b></td></tr>
+   <tr><td>Manhattan</td><td>Σ|xᵢ−yᵢ|</td><td>|1−4|+|2−6|=<b>7</b></td></tr>
+   <tr><td>Minkowski p</td><td>[Σ|xᵢ−yᵢ|ᵖ]<sup>1/p</sup></td><td>p=3: (27+64)<sup>1/3</sup>≈<b>4.498</b></td></tr>
+   <tr><td>Cosine similarity</td><td>(x·y)/(||x||||y||)</td><td>convert to distance if needed: <b>1−cosine similarity</b></td></tr>
+   <tr><td>Jaccard similarity</td><td>|A∩B|/|A∪B|</td><td>{a,b,c} vs {b,c,d,e}: 2/5=<b>.4</b>; Jaccard distance=.6</td></tr>
+  </table>
+  <p><b>Exam default in the supplied Module 5 material:</b> if no metric is specified for the worked clustering style, Euclidean is the stated default.</p>
+ </div></details>
+ <details><summary>Centroid linkage, Ward, and K-medoids — enough to compute them</summary><div>
+  <p><b>Centroid linkage:</b> compute μA and μB, then use the chosen point-distance between those two centroids.</p>
+  <div class="formula">d<sub>centroid</sub>(A,B)=||μA−μB||</div>
+  <p><b>Ward:</b> choose the merge causing the smallest increase in within-cluster squared error. A useful form is:</p>
+  <div class="formula">Δ(A,B) = |A||B|/(|A|+|B|) · ||μA−μB||²</div>
+  <p><b>K-medoids:</b> the representative must be an actual data point. Inside a candidate cluster, calculate each point's total distance to the others and choose the smallest. Example {0,2,10}: totals are 12,10,18 ⇒ medoid=<b>2</b>.</p>
+ </div></details></section>
 
 <section class="section searchable" id="numerical-masterclass" data-keywords="worked numericals masterclass all steps mean median quartile variance skew kurtosis correlation forecast chi square regression kmeans AHC DBSCAN spectral MST EM cosine standardization">
  <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical masterclass · every calculation family on one page</h2><p>If a quantity can plausibly be asked as “calculate / compute / perform,” this section gives you the mechanical recipe and at least one worked step.</p></div><button class="done-btn" data-topic="numerical-masterclass">Mark done</button></div>
@@ -1380,7 +1401,18 @@ forecast = fit.forecast(steps=365)</pre></div>
    <svg id="ternPlot" viewBox="0 0 500 390"></svg>
   </div>
  </div>
-</section>
+<details open><summary>Ternary coordinates by hand · from percentages to a point</summary><div>
+  <p>Pick triangle vertices Reading A=(0,0), Writing B=(1,0), Speaking C=(0.5,√3/2). Convert percentages to proportions a,b,c so a+b+c=1. Barycentric coordinates are:</p>
+  <div class="formula">P=aA+bB+cC ⇒ x=b+0.5c, &nbsp; y=(√3/2)c</div>
+  <p>For P=(Reading 50%, Writing 30%, Speaking 20%): a=.50,b=.30,c=.20:</p>
+  <div class="formula">x=.30+.5(.20)=<b>.40</b><br/>y=.8660(.20)=<b>.1732</b></div>
+  <p>You normally construct a ternary graph with parallel guide lines rather than Cartesian coordinates, but this shows exactly why each three-part profile has one unique point.</p>
+ </div></details>
+ <details><summary>Sunray scaling · why raw variance and skew cannot share one radius blindly</summary><div>
+  <p>A Sunray/radar profile uses different statistics on different rays. Their raw magnitudes can be incomparable: variance may be >100 while skewness is around 0. Therefore either use a stated normalization or give each ray its own scale, and always label the raw value.</p>
+  <p><b>Simple max-absolute normalization for hand plotting:</b> choose a meaningful maximum Mⱼ for each ray and plot radius rⱼ=|valueⱼ|/Mⱼ. Preserve sign separately if a statistic can be negative (e.g. label skewness −0.16 rather than pretending its sign is positive).</p>
+  <p>For an exam where only the shape is requested, the safest marks come from: <b>correct statistic order + labelled rays + clearly stated scaling + raw values written beside plotted points</b>.</p>
+ </div></details></section>
 
 <section class="section searchable" id="kmeans" data-keywords="module 5 k means centroid inertia WCSS elbow kmeans++ iteration euclidean">
  <div class="section-head"><div class="section-no">05</div><div class="section-title"><h2>K-means · assign → average → repeat</h2><p>The algorithm is mechanical. The exam skill is keeping distance calculations, assignments and centroid updates organized.</p></div><button class="done-btn" data-topic="kmeans">Mark done</button></div>
