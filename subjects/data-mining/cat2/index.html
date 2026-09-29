@@ -325,7 +325,40 @@
    <li><b>Semantic attribute expansion:</b> a high-level location concept can expand to number/street/city/state/country while preserving user control.</li>
   </ul>
  </div></details>
-</section><section class="section searchable" id="m4-association" data-keywords="association rule mining frequent pattern support support count confidence minsup minconf market basket">
+
+ <details><summary>Python patterns from the Data-processing PDF</summary><div>
+  <p>The 98-page source contains an implementation section. These are the major code patterns it actually uses:</p>
+  <div class="codebox"><button class="copy">Copy</button><pre>from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.feature_selection import SelectKBest, f_classif
+from sklearn.linear_model import LinearRegression
+from sklearn.cluster import KMeans
+
+# missing-value imputation
+df["Age"] = df["Age"].fillna(df["Age"].median())
+
+# min-max / z-score
+df[["Age","Income"]] = MinMaxScaler().fit_transform(df[["Age","Income"]])
+z = StandardScaler().fit_transform(df[["Age","Income"]])
+
+# PCA
+X_pca = PCA(n_components=2).fit_transform(z)
+
+# feature selection
+X_sel = SelectKBest(score_func=f_classif, k=2).fit_transform(X, y)
+
+# regression-based reduction/prediction
+reg = LinearRegression().fit(X, y)
+pred = reg.predict(X_new)
+
+# sampling
+sample = df.sample(frac=0.5, random_state=42)
+
+# clustering as a reduction summary
+labels = KMeans(n_clusters=2, random_state=42).fit_predict(X)</pre></div>
+  <p>The same source also demonstrates <code>pd.cut</code>/<code>pd.qcut</code> for discretization, <code>pd.crosstab</code> with <code>chi2_contingency</code> for nominal redundancy, <code>.corr()</code> and <code>.cov()</code> for numeric redundancy, duplicate detection, unit conversion and one-hot encoding.</p>
+ </div></details></section><section class="section searchable" id="m4-association" data-keywords="association rule mining frequent pattern support support count confidence minsup minconf market basket">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Association rules · the concepts underneath Apriori and FP-Growth</h2><p>FP-Growth makes much more sense when support and transaction structure are automatic to you.</p></div><button class="done" data-topic="m4-association">Mark done</button></div>
  <div class="grid3">
   <div class="card"><h3>Frequent pattern</h3><p>A pattern that occurs frequently in data. It can be an itemset, sequence or structure.</p></div>
@@ -351,6 +384,9 @@
  </div></details>
  <details><summary>Association-mining road map from the source</summary><div>
   <ul><li>Boolean vs quantitative associations.</li><li>Single-dimensional vs multidimensional associations.</li><li>Single-level vs multilevel analysis.</li><li>Transactional databases and data warehouses.</li><li>Association mining → correlation analysis.</li><li>Constraint-based association mining is named as a direction.</li></ul>
+ </div></details>
+ <details><summary>Frequent sequential and structured patterns</summary><div>
+  <p>The association deck does not restrict “frequent pattern” to itemsets. It also names <b>frequent sequential patterns</b> (a recurring ordered subsequence, such as one purchase followed by another) and <b>frequent structured patterns</b> such as recurring graph/tree/lattice structures.</p>
  </div></details></section>
 
 <section class="section searchable" id="m4-apriori" data-keywords="apriori principle candidate generation join prune C1 L1 C2 L2 frequent itemsets">
@@ -511,7 +547,11 @@
  </div>
 
  <details><summary>Other model-selection criteria in the classification slides</summary><div><p>Do not assume “best classifier” means only highest accuracy. The source lists <b>accuracy, speed</b> (training and prediction time), <b>robustness</b> to noise/missing values, <b>scalability</b>, <b>interpretability</b>, and goodness/compactness of rules or the decision tree.</p></div></details>
-</section>
+
+ <details><summary>Multiclass confusion matrix + source applications</summary><div>
+  <p>For more than two classes, rows represent actual classes and columns represent predicted classes. Diagonal cells are correct predictions; off-diagonal cells show which classes are confused with which others.</p>
+  <p>The Confusion-Matrix deck names applications including model evaluation, medical diagnosis, fraud detection, NLP/text classification, churn prediction, image/object recognition and A/B testing.</p>
+ </div></details></section>
 
 <section class="section searchable exam-hot" id="m4-crossval" data-keywords="cross validation numerical split training validation derivation half two thirds one third 70 30">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Cross-validation / validation split · numerical handling from your slides</h2><p>Your supplied confusion-matrix deck uses the term cross-validation for splitting the original sample into a training/derivation part and a validation/testing part. It gives explicit split proportions, so these are the calculations to know from the supplied material.</p></div><button class="done" data-topic="m4-crossval">Mark done</button></div>
@@ -813,6 +853,10 @@
  </div></details>
  <details><summary>Case-based reasoning cycle + source pseudocode</summary><div>
   <p>The KNN lecture includes the case-based reasoning cycle <b>Retrieve → Reuse → Revise → Retain</b>. It also gives pseudocode for KNN missing-value imputation: compute distances to records with known values, sort by similarity/distance, choose top k and infer the missing attribute from those neighbors.</p>
+ </div></details>
+ <details><summary>KNN properties and best practices from the later PDF</summary><div>
+  <p>The later KNN tutorial explicitly discusses <b>consistency</b>, a Bayes-optimal error bound for 1-NN, and the <b>curse of dimensionality</b>: as dimensionality grows, distances become less informative.</p>
+  <p>Its practical recommendations are: scale/normalize features; use dimensionality reduction such as PCA in high dimensions; select important features; use KD-trees/Ball Trees for speed where suitable; and consider weighted KNN so closer neighbors have more influence.</p>
  </div></details></section>
 
 <section class="section searchable" id="m5-bayes" data-keywords="Bayes naive bayes Bayesian belief network BBN conditional probability CPT">
@@ -842,6 +886,11 @@
  <details><summary>Naïve Bayes vs BBN + applications / limitations</summary><div>
   <p>Naïve Bayes assumes broad conditional independence among predictors; BBN can model explicit dependency structure. Applications named include medical systems, engineering, AI systems, robotics and finance.</p>
   <p>Advantages listed include causal/probabilistic reasoning, interpretability and handling uncertainty. Limitations include graph/CPT complexity, computational cost and dependence on model/data quality.</p>
+ </div></details>
+ <details><summary>Second BBN source example · Study → Pass → Interview</summary><div>
+  <p>The supplied BBN PPT asks for the probability that a student <b>Studied, Passed, but did not get an Interview</b>. Difficulty is an unobserved parent of Pass, so the source evaluates both difficulty states and adds them.</p>
+  <div class="formula">P(Study,Pass,~Interview)=P(case with Difficulty=High)+P(case with Difficulty=Low)=<b>0.1218</b></div>
+  <p>The important exam lesson is <b>marginalization</b>: when an influencing variable is not specified, sum over its possible states rather than pretending it has one fixed value.</p>
  </div></details></section>
 
 <section class="section searchable" id="m5-clustering" data-keywords="k means dbscan k medoids clustering backup numerical">
