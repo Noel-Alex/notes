@@ -5,7 +5,7 @@
     "subject_name": "Exploratory Data Analysis",
     "exam": "cat2",
     "exam_name": "CAT 2",
-    "title": "Modules 3\u20135 \u00b7 Complete Exam Command Center",
+    "title": "Modules 3–5 · Complete Exam Command Center",
     "path": "subjects/eda/cat2/",
     "modules": [
       3,
@@ -29,6 +29,51 @@
       "mst",
       "em",
       "cosine similarity"
+    ],
+    "status": "ready"
+  },
+  {
+    "id": "data-mining-cat2-m3-m5",
+    "subject": "data-mining",
+    "subject_name": "Data Mining",
+    "exam": "cat2",
+    "exam_name": "CAT 2",
+    "title": "Modules 3–5 · Complete Exam Command Center",
+    "path": "subjects/data-mining/cat2/",
+    "modules": [
+      3,
+      4,
+      5
+    ],
+    "keywords": [
+      "data reduction",
+      "pca",
+      "normalization",
+      "min-max",
+      "z-score",
+      "decimal scaling",
+      "discretization",
+      "association rules",
+      "support",
+      "confidence",
+      "apriori",
+      "fp-growth",
+      "fp-tree",
+      "performance metrics",
+      "confusion matrix",
+      "cross-validation",
+      "classification",
+      "prediction",
+      "decision tree",
+      "id3",
+      "entropy",
+      "information gain",
+      "gini",
+      "knn",
+      "bayesian belief network",
+      "k-means",
+      "dbscan",
+      "k-medoids"
     ],
     "status": "ready"
   }
