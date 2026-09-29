@@ -27,16 +27,19 @@
   <a class="nav-link hot" href="#m3-normalization"><i class="dot"></i>Normalization · T + N</a>
   <a class="nav-link hot" href="#m3-discretization"><i class="dot"></i>Discretization · T + N</a>
   <a class="nav-link" href="#m3-preprocess"><i class="dot"></i>Cleaning + integration</a>
+  <a class="nav-link" href="#m3-complete-zip"><i class="dot"></i>M3 full ZIP coverage</a>
   <div class="nav-group">Module 4 · 20 marks</div>
   <a class="nav-link" href="#m4-association"><i class="dot"></i>Association concepts</a>
   <a class="nav-link" href="#m4-apriori"><i class="dot"></i>Apriori</a>
   <a class="nav-link hot" href="#m4-fpgrowth"><i class="dot"></i>FP-Growth · full numerical</a>
   <a class="nav-link hot" href="#m4-metrics"><i class="dot"></i>Performance metrics · ALL</a>
   <a class="nav-link hot" href="#m4-crossval"><i class="dot"></i>Cross-validation numericals</a>
+  <a class="nav-link" href="#m4-classification-full"><i class="dot"></i>Classification full ZIP pass</a>
   <div class="nav-group">Module 5 · 20 marks</div>
   <a class="nav-link hot" href="#m5-classification"><i class="dot"></i>Classification vs prediction</a>
   <a class="nav-link hot" href="#m5-tree"><i class="dot"></i>Decision tree</a>
   <a class="nav-link hot" href="#m5-id3"><i class="dot"></i>ID3 · full PlayTennis</a>
+  <a class="nav-link" href="#m5-tree-selection"><i class="dot"></i>C4.5 / CART / split measures</a>
   <a class="nav-link" href="#m5-gini"><i class="dot"></i>Gini split</a>
   <a class="nav-link" href="#m5-knn"><i class="dot"></i>KNN</a>
   <a class="nav-link" href="#m5-bayes"><i class="dot"></i>Bayes + BBN</a>
@@ -45,6 +48,7 @@
   <a class="nav-link hot" href="#templates"><i class="dot"></i>10/20-mark templates</a>
   <a class="nav-link" href="#drill"><i class="dot"></i>Rapid drill</a>
   <a class="nav-link hot" href="#cheatsheet"><i class="dot"></i>Printable clue sheet</a>
+  <a class="nav-link" href="#zip-audit"><i class="dot"></i>33-file coverage audit</a>
   <div class="side-actions"><button onclick="document.querySelector('#exam-map').scrollIntoView()">Top</button><button onclick="printCheat()">Print sheet</button></div>
 </aside>
 
@@ -54,7 +58,7 @@
 <header class="hero">
   <div class="eyebrow">DATA MINING · CAT 2 · MODULES 3–5 · SOURCE-BOUND FINAL EDITION</div>
   <h1>Know the algorithm.<br>Show every step.<br>Take every mark.</h1>
-  <p class="dek"><b>This page is designed as the material you actually study.</b> It was built from the files in the uploaded CAT-2 bundle and the question emphasis your professor gave you. The professor-flagged topics are deliberately much deeper than the rest: you get formulas, algorithms, numerical workflows, intermediate structures and final answers—not just definitions.</p>
+  <p class="dek"><b>ZIP-ONLY FINAL EDITION.</b> This page is now audited only against the 33 files inside the Data Mining CAT-2 ZIP you supplied. No EDA notebook/PDF/PPT, no previous EDA website, and no unrelated course material is used as a source. If a concept overlaps with EDA—such as covariance, cosine distance, K-means or DBSCAN—it appears here only when it is explicitly present in the Data Mining ZIP.</p>
   <div class="mark-grid">
     <div class="mark hot"><b>10</b><span>Module 3 · reduction, normalization, discretization</span></div>
     <div class="mark hot"><b>20</b><span>Module 4 · FP-growth, metrics, cross-validation, association</span></div>
@@ -226,7 +230,102 @@
  <details><summary>Data integration</summary><div><p>Combine multiple databases/files/cubes into a coherent store. Important issues: schema integration, entity identification, conflicting representations/scales, duplicate/redundant attributes and derivable attributes. Correlation analysis can help detect redundant attributes.</p></div></details>
 </section>
 
-<section class="section searchable" id="m4-association" data-keywords="association rule mining frequent pattern support support count confidence minsup minconf market basket">
+
+<section class="section searchable" id="m3-complete-zip" data-keywords="data cleaning discrepancy metadata declarative interactive integration schema semantic tuple duplicate data conflict compression wavelet DWT one hot distance encoding source zip">
+ <div class="section-head"><div class="section-no">M3Σ</div><div class="section-title"><h2>Module 3 · full ZIP-only coverage pass</h2><p>This section fills every Module-3/preprocessing topic that exists in the ZIP but was too compressed in the first Data Mining version. It is intentionally secondary to the professor-flagged reduction/normalization/discretization chapters above.</p></div><button class="done" data-topic="m3-complete-zip">Mark done</button></div>
+
+ <details open><summary>Data quality, dirty data, cleaning objectives and discrepancy detection</summary><div>
+  <div class="grid3">
+   <div class="card"><h3>Why preprocessing?</h3><p>The source says real-world data can be <b>incomplete, noisy and inconsistent</b>. Poor-quality data produce poor mining results.</p><p>Quality dimensions listed: accuracy, completeness, consistency, timeliness, believability, value added, interpretability and accessibility.</p></div>
+   <div class="card"><h3>Cleaning objectives</h3><p>Handle missing values, smooth noisy data, identify/remove outliers and resolve inconsistencies.</p></div>
+   <div class="card"><h3>Discrepancy detection</h3><p>The 98-page Data-processing source adds human data-entry errors, inconsistent formats, data decay and integration conflicts as causes. It also mentions metadata, statistical detection and rule-based checks.</p></div>
+  </div>
+  <p><b>Rules/tools explicitly taught in the ZIP:</b> unique rule, consecutive/sequence rule, null rule; spell checking, address validation, fuzzy matching; statistical detection with a μ±2σ-style outlier rule; data-auditing tools; interactive cleaning interfaces; declarative cleaning using rules rather than ad-hoc edits.</p>
+ </div></details>
+
+ <details open><summary>Missing data · all source handling methods</summary><div>
+  <ol class="algo">
+   <li><b>Ignore the tuple</b>, especially if the classification label is missing.</li>
+   <li><b>Fill manually.</b></li>
+   <li><b>Use a global constant</b>, e.g. “unknown”.</li>
+   <li><b>Use mean/median of the attribute.</b> The Data-processing PDF specifically says median can be preferable under extreme values.</li>
+   <li><b>Use mean/median within the same class.</b></li>
+   <li><b>Use the most probable/model-based value</b>, with regression, decision trees or Bayesian inference named as techniques.</li>
+  </ol>
+  <div class="formula">Source mean-imputation example: observed incomes 40k,50k,60k,70k ⇒ mean = 55k ⇒ fill missing income with <b>₹55,000</b>.</div>
+  <div class="formula">Source median example: ages 22,25,45,50 with a missing middle value ⇒ median=(25+45)/2=<b>35</b>.</div>
+ </div></details>
+
+ <details open><summary>Noisy data, smoothing and outliers</summary><div>
+  <p>The ZIP teaches <b>binning, regression, clustering</b> and combined computer+human inspection for noise.</p>
+  <p>For sorted values 4,8,9,15,21,21,24,25,26,28,29,34 with equal-frequency bins of size 4:</p>
+  <div class="formula">Bin1: 4,8,9,15 → mean=9<br>Bin2: 21,21,24,25 → mean≈23<br>Bin3: 26,28,29,34 → mean≈29</div>
+  <p>So smoothing by bin means replaces each bin by its mean. The source also teaches bin medians and bin boundaries.</p>
+  <p><b>Outlier detection methods named:</b> clustering, statistical distance and visualization. A worked Data-processing example uses a mean±2σ rule and identifies 500 as an outlier in a small daily-sales set.</p>
+ </div></details>
+
+ <details open><summary>Data integration · the detailed source checklist</summary><div>
+  <table>
+   <tr><th>Problem</th><th>What the ZIP teaches</th></tr>
+   <tr><td>Schema heterogeneity</td><td>Different attribute names/structures for the same meaning. Example: customer_id vs cust_number.</td></tr>
+   <tr><td>Semantic heterogeneity</td><td>Same concept represented differently across sources.</td></tr>
+   <tr><td>Entity identification</td><td>Determine whether records/attributes from different sources refer to the same real-world entity; use metadata such as attribute name, meaning, data type, domain and null rules.</td></tr>
+   <tr><td>Redundancy</td><td>Duplicate/derivable attributes. Example: annual revenue may be derivable from monthly revenue.</td></tr>
+   <tr><td>Tuple duplication</td><td>Identical/near-identical tuples for the same entity must be detected.</td></tr>
+   <tr><td>Data value conflicts</td><td>Unit mismatch (kg vs lb), currency mismatch, different abstraction levels or different date/format conventions.</td></tr>
+  </table>
+  <p><b>Redundancy analysis in this Data Mining source</b> explicitly includes χ² for nominal data and correlation/covariance for numeric data. These are not imported from EDA; they are pages in the Data-processing PDF.</p>
+  <div class="formula">χ² = Σ (O−E)²/E &nbsp;&nbsp; with &nbsp;&nbsp; E=(row total×column total)/n</div>
+  <p>The source Gender × Reading Preference example reports χ²≈507.93 and compares it with a critical value ≈10.828, concluding strong association.</p>
+ </div></details>
+
+ <details open><summary>Data reduction · complete source taxonomy</summary><div>
+  <table>
+   <tr><th>Family</th><th>Methods explicitly present in ZIP</th><th>Core idea</th></tr>
+   <tr><td>Dimensionality reduction</td><td>PCA, attribute subset selection, attribute construction</td><td>Reduce number of attributes or transform into fewer dimensions.</td></tr>
+   <tr><td>Parametric numerosity reduction</td><td>Linear regression, multiple linear regression, log-linear models</td><td>Store model parameters rather than every raw record.</td></tr>
+   <tr><td>Non-parametric numerosity reduction</td><td>Histograms, clustering, sampling, data-cube aggregation</td><td>Represent data by bins, clusters, samples or aggregate cells.</td></tr>
+   <tr><td>Data compression</td><td>Lossless vs lossy; wavelet transform</td><td>Reduce storage size by exact or approximate reconstruction.</td></tr>
+  </table>
+  <p><b>Lossless:</b> exact reconstruction. <b>Lossy:</b> approximate reconstruction.</p>
+ </div></details>
+
+ <details open><summary>Wavelet transform / DWT · present in the ZIP, so know the steps</summary><div>
+  <p>The Data-processing PDF explicitly lists wavelet transforms as a dimensionality/data-compression technique. Its DWT workflow is:</p>
+  <ol class="algo"><li>Input length should be a power of 2.</li><li>Apply smoothing and difference functions.</li><li>Process paired values.</li><li>Recursively repeat on the reduced representation.</li><li>Select useful/relevant coefficients.</li></ol>
+  <p>Advantages stated: better lossy compression than DFT for the discussed use, preserves local detail, and is effective for noise removal. Applications named: image compression, time-series analysis, data cleaning and computer vision.</p>
+ </div></details>
+
+ <details open><summary>Transformation techniques that are genuinely inside the Data Mining ZIP</summary><div>
+  <div class="grid3">
+   <div class="card"><h3>Centering</h3><div class="formula">x' = x − μ</div><p>Subtract the mean so the transformed data have mean zero. The transformation deck motivates it for regression/PCA.</p></div>
+   <div class="card"><h3>Spatial sign</h3><p>Transform a vector to unit length so direction matters more than magnitude; used to reduce the influence of outliers. The supplied exercise asks for spatial signs of 2-D points such as (3,4), (1,1), (0,5), (5,0), (−2,−3).</p></div>
+   <div class="card"><h3>One-hot encoding</h3><p>The Data-processing PDF contains a solved tabular example converting categories such as Red/Blue/Green into binary indicator columns.</p></div>
+  </div>
+ </div></details>
+
+ <details open><summary>Distance / similarity numericals included in the Data-processing PDF</summary><div>
+  <p>These formulas overlap with other subjects, but they are <b>explicitly printed and solved in this Data Mining ZIP</b>.</p>
+  <table>
+   <tr><th>Measure</th><th>Source formula / worked result</th></tr>
+   <tr><td>Euclidean</td><td>d(x,y)=√Σ(xᵢ−yᵢ)². Source points A=(2,3), B=(6,7) give √32≈<b>5.66</b>.</td></tr>
+   <tr><td>Manhattan</td><td>d=Σ|xᵢ−yᵢ|. Same points give |6−2|+|7−3|=<b>8</b>.</td></tr>
+   <tr><td>Minkowski p=3</td><td>[Σ|xᵢ−yᵢ|³]^(1/3). Source worked value ≈<b>5.04</b>.</td></tr>
+   <tr><td>Jaccard similarity</td><td>|A∩B|/|A∪B|. Source sets give 2/5=<b>0.4</b>.</td></tr>
+   <tr><td>Cosine similarity</td><td>(A·B)/(||A||||B||). Source worked vectors give ≈<b>0.892</b>.</td></tr>
+  </table>
+ </div></details>
+
+ <details><summary>Concept hierarchy generation · all approaches in the ZIP</summary><div>
+  <ul>
+   <li><b>Numeric intervals:</b> fine-grained ranges → broader low/medium/high or cheap/moderate/expensive concepts.</li>
+   <li><b>Schema ordering:</b> street &lt; city &lt; state &lt; country.</li>
+   <li><b>Explicit/manual grouping:</b> group values such as provinces into regions.</li>
+   <li><b>Distinct-value heuristic:</b> automatically order nominal attributes by number of distinct values; fewer distinct values correspond to higher abstraction levels.</li>
+   <li><b>Semantic attribute expansion:</b> a high-level location concept can expand to number/street/city/state/country while preserving user control.</li>
+  </ul>
+ </div></details>
+</section><section class="section searchable" id="m4-association" data-keywords="association rule mining frequent pattern support support count confidence minsup minconf market basket">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Association rules · the concepts underneath Apriori and FP-Growth</h2><p>FP-Growth makes much more sense when support and transaction structure are automatic to you.</p></div><button class="done" data-topic="m4-association">Mark done</button></div>
  <div class="grid3">
   <div class="card"><h3>Frequent pattern</h3><p>A pattern that occurs frequently in data. It can be an itemset, sequence or structure.</p></div>
@@ -243,7 +342,16 @@
   <div class="formula">support(A→C)=2/4=<b>50%</b><br>confidence(A→C)=2/3=<b>66.6%</b><br>confidence(C→A)=2/2=<b>100%</b></div>
  </div></details>
  <details><summary>Road-map concepts that can appear as short theory</summary><div><p>The source distinguishes Boolean vs quantitative associations, single-dimensional vs multidimensional associations, and single-level vs multilevel analysis. Market-basket data can be represented as Boolean presence/absence vectors.</p></div></details>
-</section>
+
+ <details open><summary>Closed vs maximal frequent patterns · explicitly taught in the Apriori/FP-Growth deck</summary><div>
+  <p>A long frequent itemset can imply an enormous number of frequent subpatterns, so the source introduces compact pattern families.</p>
+  <p><b>Closed frequent itemset:</b> frequent X with no proper super-pattern Y having the <b>same support</b> as X. The source describes closed patterns as a lossless compression of frequent patterns.</p>
+  <p><b>Max-pattern / maximal frequent itemset:</b> frequent X with <b>no frequent proper super-pattern</b>.</p>
+  <div class="callout good"><strong>Difference</strong>Closed asks “same support?”; maximal asks “any frequent superset at all?” Every maximal pattern is closed under the usual definitions, but not every closed pattern is maximal.</div>
+ </div></details>
+ <details><summary>Association-mining road map from the source</summary><div>
+  <ul><li>Boolean vs quantitative associations.</li><li>Single-dimensional vs multidimensional associations.</li><li>Single-level vs multilevel analysis.</li><li>Transactional databases and data warehouses.</li><li>Association mining → correlation analysis.</li><li>Constraint-based association mining is named as a direction.</li></ul>
+ </div></details></section>
 
 <section class="section searchable" id="m4-apriori" data-keywords="apriori principle candidate generation join prune C1 L1 C2 L2 frequent itemsets">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Apriori · know it because FP-Growth is solving its bottleneck</h2><p>The source teaches Apriori through candidate generation and pruning. This is secondary to FP-Growth for your stated test, but it is central context and can appear in association sub-questions.</p></div><button class="done" data-topic="m4-apriori">Mark done</button></div>
@@ -258,7 +366,13 @@
   <p>Candidate-generation example in the source: L3={abc,abd,acd,ace,bcd}. Self-join gives abcd and acde. Prune acde because subset ade is not in L3. So C4={abcd}.</p>
  </div></details>
  <details><summary>Why Apriori can be slow + source improvements</summary><div><p>Main bottlenecks: <b>huge candidate sets</b> and <b>multiple database scans</b>. Source improvements: transaction reduction, partitioning, sampling, and dynamic itemset counting.</p></div></details>
-</section>
+
+ <details><summary>Hash-tree support counting · why it appears</summary><div>
+  <p>The source asks why candidate support counting is hard: candidate sets can be huge and one transaction can contain many candidates. Its solution stores candidates in a <b>hash tree</b>: leaf nodes contain candidate itemsets and counts; internal nodes contain hash tables; a subset function finds candidates contained in each transaction.</p>
+ </div></details>
+ <details><summary>Apriori efficiency improvements · all four in the association slides</summary><div>
+  <ul><li><b>Transaction reduction:</b> a transaction containing no frequent k-itemset is useless for later scans.</li><li><b>Partitioning:</b> an itemset frequent globally must be frequent in at least one partition.</li><li><b>Sampling:</b> mine a subset with a lower support threshold plus a completeness check.</li><li><b>Dynamic itemset counting:</b> introduce new candidates at intermediate points while scanning.</li></ul>
+ </div></details></section>
 
 <section class="section searchable exam-hot" id="m4-fpgrowth" data-keywords="FP growth frequent pattern tree T100 T200 transaction support conditional pattern base conditional FP tree">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>FP-Growth · the full numerical you should be able to reproduce</h2><p>This is one of your highest-priority questions. Learn the <b>two scans, global support order, ordered transactions, tree insertion, conditional pattern bases, conditional FP-trees and generated patterns</b>.</p></div><button class="done" data-topic="m4-fpgrowth">Mark done</button></div>
@@ -332,7 +446,18 @@
  </div></details>
 
  <details><summary>FP-Growth properties from the final slide</summary><div><ul><li>Transforms long-pattern search into recursively searching shorter patterns and concatenating a suffix.</li><li>Uses a least-frequent suffix, giving good selectivity.</li><li>Reduces search cost.</li><li>If the FP-tree does not fit memory, partition the database.</li><li>Designed to be efficient and scalable for both long and short frequent patterns.</li></ul></div></details>
-</section>
+
+ <details><summary>The second FP-tree example in the ZIP · f-c-a-b-m-p</summary><div>
+  <p>The larger Apriori/FP-Growth deck also uses min_support=3 and derives the global F-list <b>f → c → a → b → m → p</b> before constructing the tree. It teaches how patterns are partitioned by suffix, how a suffix's node-links are followed to collect prefix paths, and how those paths become a conditional pattern base.</p>
+  <p>Its example conditional bases include: c: f:3; a: fc:3; b: fca:1, f:1, c:1; m: fca:2, fcab:1; p: fcam:2, cb:1.</p>
+ </div></details>
+ <details><summary>Single-prefix-path special case</summary><div>
+  <p>If a conditional FP-tree has a single shared prefix path, the source says mining can be decomposed and all combinations of the path's subpaths can generate frequent patterns. This avoids unnecessary recursive branching.</p>
+ </div></details>
+ <details><summary>Scaling FP-Growth when the tree does not fit memory</summary><div>
+  <p>The source introduces <b>database projection</b>: partition/project the database into smaller projected databases, build/mine an FP-tree for each, and process them independently/parallel where possible.</p>
+  <p>Benefits repeated in the deck: no explicit candidate generation/testing, compressed database representation, focused divide-and-conquer search, and no repeated full-database scans during conditional mining.</p>
+ </div></details></section>
 
 <section class="section searchable exam-hot" id="m4-metrics" data-keywords="performance metrics accuracy precision recall sensitivity specificity F1 FPR FNR MCC kappa balanced ROC AUC PR AUC confusion matrix twist">
  <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Classification performance metrics · the “twist” section</h2><p>Your source bundle contains both the standard confusion-matrix slides and a dedicated “all classification metrics” document. Do not stop at accuracy. Know <b>which denominator each metric uses and what kind of mistake it cares about</b>.</p></div><button class="done" data-topic="m4-metrics">Mark done</button></div>
@@ -408,7 +533,68 @@
  </div>
 </section>
 
-<section class="section searchable exam-hot" id="m5-classification" data-keywords="classification prediction supervised unsupervised model construction model usage numeric prediction">
+
+<section class="section searchable" id="m4-classification-full" data-keywords="classification complete naive bayes laplace bagging boosting adaboost random forest imbalance holdout bootstrap evaluation ensemble predictor error zip">
+ <div class="section-head"><div class="section-no">M4Σ</div><div class="section-title"><h2>Classification · full ZIP coverage beyond the professor's metric question</h2><p>The 51-slide classification deck is much broader than the confusion-matrix formulas. The likely question areas are still highlighted above; this is the safety net so you are not exposed to a surprise theory sub-question.</p></div><button class="done" data-topic="m4-classification-full">Mark done</button></div>
+
+ <details open><summary>Supervised vs unsupervised + two-step classification process</summary><div>
+  <p><b>Supervised learning:</b> training observations come with class labels; new data are classified from the learned model. <b>Unsupervised learning:</b> labels are unknown; the aim is to discover structure/clusters.</p>
+  <p>Classification uses a <b>training set</b> for model construction and an independent <b>test/validation set</b> for model usage/evaluation. Models may be represented as rules, trees or mathematical formulae.</p>
+ </div></details>
+
+ <details open><summary>Continuous-valued decision-tree attributes</summary><div>
+  <p>The classification deck explicitly says: sort the continuous attribute A; consider midpoints between adjacent values as candidate split points; evaluate the expected information after each binary split; choose the split point with the <b>minimum expected information</b> / best resulting gain.</p>
+  <div class="formula">Candidate split = (aᵢ + aᵢ₊₁)/2<br>D₁: A ≤ split &nbsp;&nbsp; D₂: A &gt; split</div>
+ </div></details>
+
+ <details open><summary>Naïve Bayes · full source numerical</summary><div>
+  <p><b>Bayes:</b> posterior = likelihood × prior / evidence. Classification chooses the class with maximum posterior probability. Naïve Bayes assumes attributes are conditionally independent given the class.</p>
+  <p>For X=(age≤30, income=medium, student=yes, credit_rating=fair), the source uses:</p>
+  <div class="formula">P(Yes)=9/14=.643 &nbsp;&nbsp; P(No)=5/14=.357</div>
+  <div class="formula">P(X|Yes)=2/9·4/9·6/9·6/9≈<b>.044</b><br>P(X|No)=3/5·2/5·1/5·2/5≈<b>.019</b></div>
+  <div class="formula">.044×.643≈<b>.028</b> &gt; .019×.357≈<b>.007</b> ⇒ predict <b>buys_computer=Yes</b>.</div>
+ </div></details>
+
+ <details open><summary>Zero-probability problem + Laplacian correction</summary><div>
+  <p>A single zero conditional probability makes the whole Naïve Bayes product zero. The source applies Laplacian correction by adding 1 to category counts.</p>
+  <p>Example: among 1000 tuples, income low=0, medium=990, high=10. With three categories:</p>
+  <div class="formula">P(low)=1/1003 · P(medium)=991/1003 · P(high)=11/1003</div>
+ </div></details>
+
+ <details open><summary>Model-evaluation methods named in the classification deck</summary><div>
+  <p>The source explicitly lists: <b>holdout method, random subsampling, cross-validation and bootstrap</b>. It also mentions classifier comparison using confidence intervals, cost-benefit analysis and ROC curves.</p>
+  <div class="callout warn"><strong>Scope</strong>The ZIP does not provide k-fold/LOOCV arithmetic, so this site does not invent it. The concrete validation-split arithmetic is kept in the professor-priority Cross-Validation section above.</div>
+ </div></details>
+
+ <details open><summary>Ensemble methods · Bagging, Boosting, AdaBoost, Random Forest</summary><div>
+  <div class="grid2">
+   <div class="card"><h3>Bagging</h3><p>Generate bootstrap training sets by sampling with replacement; train one classifier on each; classification uses majority vote. For continuous prediction, average predictions. The source describes it as robust to noisy data.</p></div>
+   <div class="card"><h3>Boosting</h3><p>Train a sequence of classifiers while increasing attention/weight on tuples misclassified by earlier models. Final prediction combines weighted classifier votes. The source notes higher accuracy potential but possible overfitting to difficult/misclassified cases.</p></div>
+   <div class="card"><h3>AdaBoost</h3><p>Start all tuple weights at 1/d; repeatedly sample/train; calculate classifier error; increase weights for misclassified tuples; use an accuracy-dependent classifier vote weight.</p></div>
+   <div class="card"><h3>Random Forest</h3><p>An ensemble of decision trees. Each tree uses random attribute selection at splits; final class is the popular vote. The source names Forest-RI and Forest-RC construction variants.</p></div>
+  </div>
+ </div></details>
+
+ <details open><summary>Class imbalance · the source's remedies</summary><div>
+  <p>The source identifies rare positive classes such as fraud/medical diagnosis and says ordinary accuracy can be misleading. It lists:</p>
+  <ul><li><b>Oversampling</b> the positive/rare class.</li><li><b>Under-sampling</b> the majority/negative class.</li><li><b>Threshold moving</b> so rare-class tuples are easier to classify and costly false negatives are reduced.</li><li><b>Ensemble techniques.</b></li></ul>
+ </div></details>
+
+ <details open><summary>Predictor error measures taught in classification</summary><div>
+  <p>For numeric prediction, the classification deck frames error via a loss function and explicitly names absolute error, squared error, mean absolute error, mean squared error, relative absolute error, relative squared error, root mean-square error and root relative squared error.</p>
+  <p>The separate regression-error PDF then works MAE, MSE, RMSE and R² in detail.</p>
+ </div></details>
+
+ <details open><summary>Linear regression error PDF · both solved problems</summary><div>
+  <p><b>House-price example:</b> the supplied PDF derives <b>Price = 0.145·Size + 46</b>, then reports MAE=13.58, MSE=306.97, RMSE=17.52 and R²=0.726.</p>
+  <p><b>Study-hours example:</b> the PDF derives <b>Score = 5.48·StudyHours + 45.08</b> and then computes prediction errors and R²; its final R² is approximately 0.969.</p>
+  <div class="formula">MAE=(1/n)Σ|Y−Ŷ| · MSE=(1/n)Σ(Y−Ŷ)² · RMSE=√MSE · R²=1−Σ(Y−Ŷ)²/Σ(Y−Ȳ)²</div>
+ </div></details>
+
+ <details open><summary>Lazy vs eager learning · Advanced-classification deck</summary><div>
+  <p><b>Eager learning</b> constructs a generalization/model before receiving a new query. <b>Lazy learning</b> delays generalization until a query arrives and stores training cases. The source uses KNN/instance-based methods as the key lazy-learning example.</p>
+ </div></details>
+</section><section class="section searchable exam-hot" id="m5-classification" data-keywords="classification prediction supervised unsupervised model construction model usage numeric prediction">
  <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Classification and prediction · know the distinction exactly</h2><p>This is the conceptual foundation for decision trees, KNN and Bayes.</p></div><button class="done" data-topic="m5-classification">Mark done</button></div>
  <div class="grid2">
   <div class="card"><span class="tag hot">Classification</span><h3>Predicts categorical labels</h3><p>Supervised training data include class labels. Build a model from the training set, then use it to assign a discrete/nominal class to new data.</p><p>Source applications: loan approval, cancerous vs benign diagnosis, fraud detection, web-page categorization.</p></div>
@@ -564,7 +750,34 @@
  </div>
 </section>
 
-<section class="section searchable" id="m5-gini" data-keywords="gini impurity weighted gini decision tree class gender stay hotel">
+
+<section class="section searchable" id="m5-tree-selection" data-keywords="gain ratio C4.5 CART gini continuous attribute split info selection measures CHAID pruning">
+ <div class="section-head"><div class="section-no">TREE+</div><div class="section-title"><h2>Decision-tree split measures · ID3, C4.5 and CART from the ZIP</h2><p>Your professor specifically named ID3, but the Decision Tree PDF and basic-classification deck explicitly compare the three split criteria, so this is the source-complete backup.</p></div><button class="done" data-topic="m5-tree-selection">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><h3>ID3 · Information Gain</h3><div class="formula">Gain(S,A)=Entropy(S)−Σv(|Sv|/|S|)Entropy(Sv)</div><p>Choose the <b>maximum information gain</b>.</p></div>
+  <div class="card"><h3>C4.5 · Gain Ratio</h3><div class="formula">GainRatio(A)=Gain(A)/SplitInfo(A)</div><p>The source says information gain is biased toward attributes with many values. C4.5 normalizes by split information and selects maximum gain ratio.</p></div>
+  <div class="card"><h3>CART · Gini</h3><div class="formula">Gini(S)=1−Σpᵢ²</div><p>Evaluate weighted Gini after a split and choose the <b>smallest Gini</b> / largest impurity reduction.</p></div>
+ </div>
+
+ <details open><summary>AllElectronics Age example in the Decision Tree PDF</summary><div>
+  <p>The PDF uses 14 rows with 9 Yes and 5 No, so Entropy(S)=0.940. For attribute Age, the source obtains:</p>
+  <div class="formula">Information Gain(Age)=<b>0.245</b></div>
+  <p>It computes SplitInfo(Age)=1.577 and therefore:</p>
+  <div class="formula">GainRatio(Age)=0.245/1.577=<b>0.155</b></div>
+  <p>For a CART-style binary Age split, the same PDF reports a weighted Gini around <b>0.357</b>.</p>
+ </div></details>
+
+ <details><summary>Comparison caveats stated in the classification deck</summary><div>
+  <ul><li>Information gain is biased toward multivalued attributes.</li><li>Gain ratio can prefer unbalanced splits.</li><li>Gini can be biased toward multivalued attributes, can struggle with many classes, and tends to favor equal-sized/pure partitions.</li></ul>
+  <p>Other split measures named in the source: CHAID (χ² based), C-SEP, G-statistic, MDL principle and multivariate splits. These are <b>named theory items</b>; the ZIP does not develop full numericals for them.</p>
+ </div></details>
+
+ <details><summary>Decision-tree enhancements / scalability from the source</summary><div>
+  <p>The classification deck also teaches handling continuous-valued attributes, missing values, attribute construction, and large databases. Missing values may use the most common value or probabilistic assignment. Attribute construction can create useful new attributes and reduce fragmentation/repetition.</p>
+  <p>For large databases, decision-tree induction is highlighted because learning is relatively fast, rules are interpretable and accuracy is competitive. RainForest/AVC-list is named as a scalable approach.</p>
+ </div></details>
+</section><section class="section searchable" id="m5-gini" data-keywords="gini impurity weighted gini decision tree class gender stay hotel">
  <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Gini impurity · secondary tree criterion in your source</h2><p>Your professor highlighted ID3, but a dedicated Gini PDF is in the bundle, so know the calculation as a backup.</p></div><button class="done" data-topic="m5-gini">Mark done</button></div>
  <div class="grid2">
   <div class="card"><h3>Node Gini</h3><div class="formula">Gini = 1 − Σ pᵢ²</div><p>Lower = purer. Gini=0 when every sample in the node belongs to one class.</p></div>
@@ -588,7 +801,19 @@
   <div class="card"><h3>Hamming / categorical</h3><p>Same category → distance 0; different category → 1. Hamming sums mismatches across categorical positions.</p></div>
  </div>
  <details><summary>Source regression example idea</summary><div><p>For a missing weight, the KNN slide takes nearest IDs and averages their weights. With k=3, weights 77,72,60 → predicted weight=(77+72+60)/3=<b>69.66 kg</b>. With k=5, the slide gives 65.2 kg.</p><p>The source also shows that too-small k can overfit and too-large k can underfit; the shown validation-error curve reaches its minimum at k=9.</p></div></details>
-</section>
+
+ <details open><summary>Generalized KNN source material · distance choices and k</summary><div>
+  <p>The later KNN PDF goes beyond Euclidean/Manhattan and lists:</p>
+  <ul><li><b>Minkowski:</b> generalized distance; p=1 gives Manhattan, p=2 gives Euclidean.</li><li><b>Cosine similarity:</b> compares vector angle rather than magnitude.</li><li><b>Hamming:</b> categorical/binary mismatch count.</li><li><b>Chebyshev:</b> maximum absolute coordinate difference.</li></ul>
+  <p>It repeatedly warns to <b>scale/normalize features</b> before distance-based KNN when feature scales differ.</p>
+  <p>The older KNN deck uses the validation-error curve to choose k: too-small k can overfit; too-large k can underfit. Its shown example reaches a minimum validation error at <b>k=9</b>.</p>
+ </div></details>
+ <details open><summary>Detailed KNN classification numerical from the later PDF</summary><div>
+  <p>New point=(20,35). The source calculates Euclidean distances to the 7 training points, sorts them, takes k=5 nearest neighbors and applies majority voting. The five neighbor classes are Red, Red, Blue, Blue, Red ⇒ <b>3 Red vs 2 Blue ⇒ predict Red</b>.</p>
+ </div></details>
+ <details><summary>Case-based reasoning cycle + source pseudocode</summary><div>
+  <p>The KNN lecture includes the case-based reasoning cycle <b>Retrieve → Reuse → Revise → Retain</b>. It also gives pseudocode for KNN missing-value imputation: compute distances to records with known values, sort by similarity/distance, choose top k and infer the missing attribute from those neighbors.</p>
+ </div></details></section>
 
 <section class="section searchable" id="m5-bayes" data-keywords="Bayes naive bayes Bayesian belief network BBN conditional probability CPT">
  <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Bayes and Bayesian Belief Networks · compact backup</h2><p>These are in the supplied classification/BBN material but were not in the professor's stated high-priority list.</p></div><button class="done" data-topic="m5-bayes">Mark done</button></div>
@@ -600,7 +825,24 @@
   <p>Find P(P1,P2,A,~B,~F). Using the parent structure:</p>
   <div class="formula">P(P1|A)·P(P2|A)·P(A|~B,~F)·P(~B)·P(~F)<br>=0.95·0.80·0.001·0.999·0.998≈<b>0.00075</b></div>
  </div></details>
-</section>
+
+ <details open><summary>BBN full ZIP coverage · DAG, nodes, edges, parents and CPTs</summary><div>
+  <p>A BBN is a <b>directed acyclic graph (DAG)</b>. Nodes are random variables; directed edges encode dependency. A parent influences a child; nodes with no parents use prior probabilities. Every non-root node has a <b>Conditional Probability Table (CPT)</b>.</p>
+  <p>The source stresses conditional independence: once a node's parents are known, the node can be independent of certain non-descendants.</p>
+ </div></details>
+ <details open><summary>Joint probability factorization</summary><div>
+  <div class="formula">P(X₁,…,Xₙ)=∏ᵢ P(Xᵢ | Parents(Xᵢ))</div>
+  <p>The supplied burglary/alarm/caller example computes P(P1,P2,A,~B,~F) by multiplying exactly the local probabilities selected from the prior/CPT tables.</p>
+  <div class="formula">0.95 × 0.80 × 0.001 × 0.999 × 0.998 ≈ <b>0.00075</b></div>
+ </div></details>
+ <details open><summary>Inference tasks and learning in the BBN PDF</summary><div>
+  <p>The BBN PDF distinguishes probability queries and most-probable explanations (MPE), and shows classification as selecting a class posterior given evidence.</p>
+  <p><b>Learning a BBN:</b> the source separates <b>structure learning</b> (finding graph structure; expert knowledge/search algorithms/constraint methods are named) and <b>parameter learning</b> (estimating CPT probabilities once the structure is fixed).</p>
+ </div></details>
+ <details><summary>Naïve Bayes vs BBN + applications / limitations</summary><div>
+  <p>Naïve Bayes assumes broad conditional independence among predictors; BBN can model explicit dependency structure. Applications named include medical systems, engineering, AI systems, robotics and finance.</p>
+  <p>Advantages listed include causal/probabilistic reasoning, interpretability and handling uncertainty. Limitations include graph/CPT complexity, computational cost and dependence on model/data quality.</p>
+ </div></details></section>
 
 <section class="section searchable" id="m5-clustering" data-keywords="k means dbscan k medoids clustering backup numerical">
  <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Clustering backup · K-means, DBSCAN and K-medoids</h2><p>These are substantial files in the bundle. They are not in the professor's stated CAT-2 question list, so this section gives you a usable safety net without stealing revision time from ID3/FP-growth.</p></div><button class="done" data-topic="m5-clustering">Mark done</button></div>
@@ -621,7 +863,35 @@
   <p>A medoid is an actual point in the cluster whose total dissimilarity to the others is small. Algorithm: choose k random medoids → assign each point to closest medoid → try swapping a medoid with a non-medoid → recompute total cost → keep the swap only if cost decreases.</p>
   <p>Source example starts medoids C1=(4,5), C2=(8,5), using Manhattan distance. Initial cost=<b>20</b>. Trying C2=(8,4) gives new cost=<b>22</b>; swap cost=22−20=+2, so undo it. Final medoids remain (4,5) and (8,5).</p>
  </div></details>
-</section>
+
+ <details open><summary>Clustering foundations and distance metrics from the ZIP</summary><div>
+  <p>The k-means-2 deck explicitly covers clustering purpose, applications, major approaches, challenges, similarity, evaluation, intra-cluster vs inter-cluster distance, and partitional vs hierarchical clustering.</p>
+  <p><b>Good clustering:</b> low intra-cluster dissimilarity and high inter-cluster separation.</p>
+  <table><tr><th>Distance / similarity</th><th>What the source teaches</th></tr>
+   <tr><td>Euclidean</td><td>L2 straight-line distance.</td></tr>
+   <tr><td>Manhattan</td><td>L1 sum of absolute coordinate differences.</td></tr>
+   <tr><td>Chebyshev</td><td>Largest absolute coordinate difference.</td></tr>
+   <tr><td>Cosine similarity</td><td>Uses vector angle and ignores magnitude; source works x=[1,2,−1], y=[2,1,1].</td></tr>
+   <tr><td>Correlation distance</td><td>Uses Pearson correlation between vectors.</td></tr>
+   <tr><td>Mahalanobis</td><td>Accounts for covariance/scale through a positive-definite matrix.</td></tr>
+   <tr><td>Minkowski</td><td>Generalizes Euclidean and Manhattan.</td></tr>
+  </table>
+ </div></details>
+
+ <details open><summary>K-means · strengths, weaknesses, initialization and k</summary><div>
+  <p>The bundle contains several K-means decks. The recurring algorithm is: choose k centroids → assign by distance → recompute centroids → repeat. The source notes different initializations can yield different clusterings.</p>
+  <p><b>Strength:</b> relatively efficient; one slide gives O(tkn) with n objects, k clusters and t iterations. <b>Weaknesses:</b> requires k in advance, mean must be meaningful, sensitive to noise/outliers, and poor for non-convex clusters.</p>
+  <p>The earlier K-means deck also discusses <b>getting k right</b> with examples/plots and includes a medicine/malignant-vs-benign numerical using Euclidean distance.</p>
+ </div></details>
+
+ <details><summary>Nearest-neighbor clustering · threshold version</summary><div>
+  <p>The k-means-2 deck teaches a separate incremental clustering idea: k is not fixed in advance. Choose threshold t; when a new point arrives, add it to the nearest existing cluster if it lies within t, otherwise create a new cluster. The source emphasizes that choosing t is difficult and different t values yield different clusterings.</p>
+ </div></details>
+
+ <details><summary>DBSCAN concepts beyond the final cluster answer</summary><div>
+  <p>DBSCAN measures density by the number of objects within ε. <b>Core</b> points have dense neighborhoods; clusters are formed by connecting core points and density-reachable neighbors. <b>Border</b> points are not core but lie in a core neighborhood; <b>noise</b> does not become density-reachable from a cluster.</p>
+  <p>The later PDF gives the exact ε-neighbor table, core points P2/P5/P11, two final clusters and P9 as noise, as already reproduced above.</p>
+ </div></details></section>
 
 <section class="section searchable" id="templates" data-keywords="answer template 10 mark 20 mark professor algorithm formula intermediate tree final">
  <div class="section-head"><div class="section-no">ANS</div><div class="section-title"><h2>Answer templates · reproduce these shapes in the exam</h2><p>These are not extra syllabus; they are writing structures for the topics above.</p></div><button class="done" data-topic="templates">Mark done</button></div>
@@ -674,17 +944,42 @@
  </div>
 </section>
 
-<section class="section searchable" id="sources" data-keywords="source audit uploaded zip source bound files">
- <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source boundary · what this edition was built from</h2><p>The page uses the uploaded CAT-2 ZIP as its syllabus boundary and your professor's question list as the priority signal.</p></div></div>
- <div class="card">
-  <p><b>Module 3 / preprocessing:</b> Module-3 material, Data-processing PDF, Data-transformation slides.</p>
-  <p><b>Association / FP:</b> Association Rule Mining, Apriori-and-FP-growth, FP-Growth algorithm decks.</p>
-  <p><b>Classification / metrics:</b> Basic Classification and Performance Analysis, Confusion Matrix deck, Classification Metrics Overview, Linear Regression All Error.</p>
-  <p><b>Decision trees:</b> Decision Tree deck, Gini PDF.</p>
-  <p><b>Additional module safety net:</b> KNN slides/PDF, Bayesian Belief Network, K-means, K-medoids and DBSCAN files.</p>
-  <div class="callout warn"><strong>Known scope gap</strong>The source lists cross-validation as an accuracy-estimation method but does not teach k-fold arithmetic. The only concrete split rules in the supplied materials are half/half for very large samples, 2/3–1/3 for smaller samples, and a 70/30 train_test_split code example. The site does not silently add an unrelated k-fold syllabus.</div>
- </div>
-</section>
+
+<section class="section searchable" id="zip-audit" data-keywords="zip audit 33 files coverage manifest source only complete">
+ <div class="section-head"><div class="section-no">AUD</div><div class="section-title"><h2>33-file ZIP coverage audit · second pass completed</h2><p>This is the provenance check for the final edition. Every source below came from the single Data Mining ZIP supplied for this CAT-2 task. Exact duplicate/repeated-semester files were checked as duplicates rather than treated as new syllabus.</p></div><button class="done" data-topic="zip-audit">Mark done</button></div>
+ <div class="callout good"><strong>No EDA-source dependency.</strong>The audit was performed against an isolated extraction of the Data Mining ZIP. EDA notebooks, EDA PDFs/PPTs and the EDA CAT-2 website were not used to determine this page's syllabus or explanations.</div>
+ <table>
+  <tr><th>Source file / group</th><th>Coverage in this final page</th></tr>
+  <tr><td>Module-3-material.ppt</td><td>Dirty data, quality, preprocessing tasks, cleaning, missing/noisy data, binning, integration, normalization, discretization, concept hierarchy.</td></tr>
+  <tr><td>Data-processing.pdf · 98 pages</td><td>Cleaning process/tools/rules, integration and redundancy, χ²/correlation/covariance, tuple duplication/conflicts, reduction/PCA/subset selection, regression/log-linear, histograms/clustering/sampling/cube aggregation, compression/wavelets, Python implementation patterns, normalization/discretization/hierarchies, solved tabular numericals, one-hot encoding and distance/similarity numericals.</td></tr>
+  <tr><td>Data-transformation_.pptx</td><td>Centering, spatial-sign transformation, z-score standardization and exercises.</td></tr>
+  <tr><td>Association-Rule-Mining.ppt + Mod-3-Assoc-Rule copy</td><td>Frequent patterns/itemsets/sequences/structures, support/confidence, market basket, Boolean/quantitative, single/multidimensional, single/multilevel, Apriori concepts and improvements.</td></tr>
+  <tr><td>Apriori-and-FP-growth.ppt + Mod-3-Apriori version</td><td>Closed/max patterns, Apriori, candidate generation/pruning/support counting/hash tree, scalable methods, FP-tree, conditional bases/trees, recursion, single-prefix path, projection and benefits.</td></tr>
+  <tr><td>FP-Growth-algorithm_.pptx + Mod-3-FP-Growth version</td><td>Exact T100–T900 FP-tree construction, prefix counting, I5 conditional base and FP-growth properties.</td></tr>
+  <tr><td>Basic-Classification-and-Performance-analysis.ppt + Mod-4-Classification version</td><td>Classification/prediction, decision trees, entropy/gain/continuous split/gain ratio/Gini, pruning, Bayes/Naïve Bayes, evaluation metrics, model-selection factors, ensembles, imbalance, predictor errors.</td></tr>
+  <tr><td>Advanced-classification.ppt</td><td>BBN, Bayesian-network training scenarios, lazy vs eager learning, instance-based methods/KNN.</td></tr>
+  <tr><td>Confusion-Matrix-.pptx</td><td>TP/TN/FP/FN, validation split rules, accuracy/precision/recall/F1/specificity/type-I/type-II, multiclass concept and applications.</td></tr>
+  <tr><td>CLASSIFICATIONS.pdf</td><td>All-metrics formulas/example: MCC, κ, balanced accuracy, ROC-AUC/PR-AUC and standard confusion-matrix metrics.</td></tr>
+  <tr><td>LINEAR-REGRESSION-ALL-ERROR.pdf</td><td>Linear-regression theory, two solved regression problems and MAE/MSE/RMSE/R².</td></tr>
+  <tr><td>Decision-Tree.pptx + duplicate semester copy</td><td>Decision-tree types/structure/algorithm, nominal/ordinal splits, full PlayTennis ID3 calculation, intermediate/final tree, Python decision-tree workflow.</td></tr>
+  <tr><td>decision-tree.pdf</td><td>ID3 information gain, C4.5 gain ratio, CART Gini and AllElectronics Age worked comparison.</td></tr>
+  <tr><td>Gini-.pdf</td><td>Gini vs entropy theory, properties/advantages/disadvantages and complete Stay-in-Hotel weighted-Gini tree.</td></tr>
+  <tr><td>KNN.pdf + duplicate Mod-4-KNN.pdf</td><td>KNN classification/regression, distances, choosing k, source regression prediction, categorical distance, case-based reasoning, pseudocode.</td></tr>
+  <tr><td>k-Nearest-Neighbor-Classification.ppt + Mod-4-k-nearest version</td><td>Predictive-modeling context, KNN names/workflow, k=3/k=5 weight prediction, validation-error choice of k, applications and imputation pseudocode.</td></tr>
+  <tr><td>knn.pdf</td><td>Detailed theoretical KNN tutorial, Euclidean/Manhattan/Minkowski/cosine/Hamming/Chebyshev, scaling, properties/best practices and full 5-neighbor classification example.</td></tr>
+  <tr><td>Bayesian-Belief-Network.pptx + duplicate Bayesian-Belief.pptx</td><td>BBN definition, CPTs and two explicit joint-probability examples.</td></tr>
+  <tr><td>bbn.pdf</td><td>DAG/parents/children, conditional independence, CPTs/joint distribution, inference, learning, Naïve Bayes comparison, applications, limitations and multiple numerical exercises.</td></tr>
+  <tr><td>FALL K-means.pptx</td><td>K-means introduction/algorithm, choosing k, multiple Euclidean worked iterations, strength/weakness/variations.</td></tr>
+  <tr><td>Mod-5-k-means-1.ppt</td><td>Exact Manhattan-distance 8-point K-means worked iteration.</td></tr>
+  <tr><td>Mod-5-k-means-2.pptx</td><td>Clustering foundations/applications/challenges/evaluation, distance metrics, partitional/hierarchical overview, K-means complexity/weaknesses, threshold nearest-neighbor clustering.</td></tr>
+  <tr><td>Mod-5-DBScan.pptx + dbscan.pdf</td><td>DBSCAN density idea/algorithm and complete ε=1.9, MinPts=4 numerical with final clusters.</td></tr>
+  <tr><td>Mod-5-k-mediod.pdf</td><td>PAM/K-medoids algorithm and complete cost/swap example.</td></tr>
+ </table>
+ <div class="callout warn"><strong>Why some topics may look familiar from another subject</strong>Covariance, χ², cosine similarity, normalization, K-means and DBSCAN are all explicitly present inside this Data Mining ZIP. They remain here because they are Data Mining source content in this bundle—not because anything was copied from EDA.</div>
+</section><section class="section searchable" id="sources" data-keywords="source boundary zip only">
+ <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source boundary</h2><p>The syllabus/content boundary for this page is the single 33-file Data Mining CAT-2 ZIP supplied in this chat. The professor's topic message controls priority, not source scope.</p></div></div>
+ <div class="card"><p><b>Included:</b> only material found in those ZIP files, with duplicate semester copies consolidated.</p><p><b>Excluded:</b> EDA files/sites, previous EDA uploads, web research, unrelated textbook material and formulas added solely from general knowledge.</p><p><b>Coverage check:</b> see the 33-file audit immediately above.</p></div>
+ </section>
 
 </div>
 <footer class="footer">Data Mining CAT 2 · source-bound final study site · Modules 3–5 · progress is stored locally in your browser.</footer>
