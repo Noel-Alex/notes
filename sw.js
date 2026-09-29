@@ -1,5 +1,5 @@
-const CACHE='notes-v3';
-const CORE=['./','./index.html','./assets/site.css','./assets/site.js','./catalog.json','./subjects/eda/','./subjects/eda/cat2/'];
+const CACHE='notes-v4';
+const CORE=['./','./index.html','./assets/site.css','./assets/site.js','./catalog.json','./subjects/eda/','./subjects/eda/cat2/','./subjects/data-mining/','./subjects/data-mining/cat2/','./subjects/data-mining/cat2/cat2.css','./subjects/data-mining/cat2/cat2.js'];
 
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
@@ -19,7 +19,6 @@ self.addEventListener('fetch',event=>{
   const isNavigation=req.mode==='navigate' || (req.headers.get('accept')||'').includes('text/html');
 
   if(isNavigation){
-    // Network-first for HTML so newly published study notes replace stale exam pages immediately.
     event.respondWith(
       fetch(req)
         .then(response=>{
@@ -32,7 +31,6 @@ self.addEventListener('fetch',event=>{
     return;
   }
 
-  // Static assets: cached first, refresh cache when fetched.
   event.respondWith(
     caches.match(req).then(hit=>hit||fetch(req).then(response=>{
       const copy=response.clone();
