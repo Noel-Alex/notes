@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d303d">
+<title>Data Mining CAT 2 · Modules 3, 4 & 5 · Final Study Site</title>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="cat2.css">
+</head>
+<body>
+<div class="mobilebar"><b>Data Mining CAT 2</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="eyebrow">BCSE208L · CAT 2 · Final source-bound edition</div>
+    <h2>Data Mining<br>Exam Command Center</h2>
+    <p>Modules 3 · 4 · 5</p>
+  </div>
+  <input id="search" class="search" placeholder="Search: FP-growth, ID3, recall…">
+  <div class="progress"><div class="progress-row"><span>Study coverage</span><b id="ptext">0 / 0</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
+  <div class="nav-group">Exam strategy</div>
+  <a class="nav-link hot" href="#exam-map"><i class="dot"></i>Professor question map</a>
+  <a class="nav-link hot" href="#answer-style"><i class="dot"></i>How to write numericals</a>
+  <div class="nav-group">Module 3 · 10 marks</div>
+  <a class="nav-link hot" href="#m3-reduction"><i class="dot"></i>Data reduction · types</a>
+  <a class="nav-link hot" href="#m3-normalization"><i class="dot"></i>Normalization · T + N</a>
+  <a class="nav-link hot" href="#m3-discretization"><i class="dot"></i>Discretization · T + N</a>
+  <a class="nav-link" href="#m3-preprocess"><i class="dot"></i>Cleaning + integration</a>
+  <div class="nav-group">Module 4 · 20 marks</div>
+  <a class="nav-link" href="#m4-association"><i class="dot"></i>Association concepts</a>
+  <a class="nav-link" href="#m4-apriori"><i class="dot"></i>Apriori</a>
+  <a class="nav-link hot" href="#m4-fpgrowth"><i class="dot"></i>FP-Growth · full numerical</a>
+  <a class="nav-link hot" href="#m4-metrics"><i class="dot"></i>Performance metrics · ALL</a>
+  <a class="nav-link hot" href="#m4-crossval"><i class="dot"></i>Cross-validation numericals</a>
+  <div class="nav-group">Module 5 · 20 marks</div>
+  <a class="nav-link hot" href="#m5-classification"><i class="dot"></i>Classification vs prediction</a>
+  <a class="nav-link hot" href="#m5-tree"><i class="dot"></i>Decision tree</a>
+  <a class="nav-link hot" href="#m5-id3"><i class="dot"></i>ID3 · full PlayTennis</a>
+  <a class="nav-link" href="#m5-gini"><i class="dot"></i>Gini split</a>
+  <a class="nav-link" href="#m5-knn"><i class="dot"></i>KNN</a>
+  <a class="nav-link" href="#m5-bayes"><i class="dot"></i>Bayes + BBN</a>
+  <a class="nav-link" href="#m5-clustering"><i class="dot"></i>K-means · DBSCAN · medoids</a>
+  <div class="nav-group">Final pass</div>
+  <a class="nav-link hot" href="#templates"><i class="dot"></i>10/20-mark templates</a>
+  <a class="nav-link" href="#drill"><i class="dot"></i>Rapid drill</a>
+  <a class="nav-link hot" href="#cheatsheet"><i class="dot"></i>Printable clue sheet</a>
+  <div class="side-actions"><button onclick="document.querySelector('#exam-map').scrollIntoView()">Top</button><button onclick="printCheat()">Print sheet</button></div>
+</aside>
+
+<main class="main">
+<div class="portalbar"><div class="crumb"><a href="../../../">NOTES</a><span>›</span><a href="../">Data Mining</a><span>›</span><b>CAT 2</b></div><a href="../">Subject home →</a></div>
+
+<header class="hero">
+  <div class="eyebrow">DATA MINING · CAT 2 · MODULES 3–5 · SOURCE-BOUND FINAL EDITION</div>
+  <h1>Know the algorithm.<br>Show every step.<br>Take every mark.</h1>
+  <p class="dek"><b>This page is designed as the material you actually study.</b> It was built from the files in the uploaded CAT-2 bundle and the question emphasis your professor gave you. The professor-flagged topics are deliberately much deeper than the rest: you get formulas, algorithms, numerical workflows, intermediate structures and final answers—not just definitions.</p>
+  <div class="mark-grid">
+    <div class="mark hot"><b>10</b><span>Module 3 · reduction, normalization, discretization</span></div>
+    <div class="mark hot"><b>20</b><span>Module 4 · FP-growth, metrics, cross-validation, association</span></div>
+    <div class="mark hot"><b>20</b><span>Module 5 · decision tree, ID3, classification & prediction</span></div>
+  </div>
+  <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('#exam-map').scrollIntoView()">Start with the exact exam map</button><button class="btn ghost" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Open final cheat sheet</button></div>
+</header>
+
+<div class="content">
+
+<section class="section searchable" id="exam-map" data-keywords="professor marks exact topics 10 20 20 question map">
+ <div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>Your professor's CAT-2 map</h2><p>This is the priority order of the site. Gold rows are the areas you explicitly said are expected questions.</p></div><button class="done" data-topic="exam-map">Mark done</button></div>
+ <div class="priority">
+   <div class="head">Marks</div><div class="head">Expected area</div><div class="head">What your answer must contain</div>
+   <div class="hot">M3 · 10</div><div><b>Data reduction: types</b>; <b>normalization</b>; <b>discretization / description</b> with theory + numerical work.</div><div>Definition + types + formula + substitution + final transformed/binned values.</div>
+   <div class="hot">M4 · 20</div><div><b>FP-Growth</b>, including transaction ID / transaction support structure; <b>performance metrics</b> with a theory twist; <b>cross-validation numerical</b>; association concepts.</div><div>Algorithm first. Show scans, counts, tree / conditional bases, or metric formula substitutions.</div>
+   <div class="hot">M5 · 20</div><div><b>Decision tree</b>, <b>ID3</b>, <b>classification and prediction</b>.</div><div>Write algorithm, formulas, entropy/gain table, <b>intermediate tree</b>, and <b>final tree</b>.</div>
+ </div>
+ <div class="callout good"><strong>The writing rule your professor gave you is built into every numerical below.</strong>For a numerical: write the algorithm or numbered method first; state the formula if one exists; show every important intermediate table/tree/count; then box the final answer. Do not jump from question to answer.</div>
+ <div class="callout warn"><strong>Source-only rule</strong>This site does not pad the syllabus with unrelated formulas just because they exist in data mining. If a topic is merely mentioned in a source, it stays brief. The extra depth is concentrated where the supplied files actually teach a method or where your professor explicitly flagged the topic.</div>
+</section>
+
+<section class="section searchable" id="answer-style" data-keywords="algorithm formula intermediate tree final tree numerical answer style">
+ <div class="section-head"><div class="section-no">EX</div><div class="section-title"><h2>How to write a numerical for maximum marks</h2><p>The exact same answer skeleton works for normalization, FP-growth, cross-validation, ID3, K-means and DBSCAN.</p></div><button class="done" data-topic="answer-style">Mark done</button></div>
+ <div class="grid4">
+  <div class="card"><div class="big">1</div><h3>State the method</h3><p>Write the algorithm or the ordered steps. This proves you know what you are doing even if arithmetic later slips.</p></div>
+  <div class="card"><div class="big">2</div><h3>Write formula / rule</h3><p>Example: min-max equation, support/confidence, entropy/information gain, confusion-matrix metric.</p></div>
+  <div class="card"><div class="big">3</div><h3>Show intermediate work</h3><p>Counts, candidate sets, FP-tree prefixes, gain table, split table, transformed values, folds/split sizes.</p></div>
+  <div class="card"><div class="big">4</div><h3>Box final structure</h3><p>Final tree, final frequent patterns, final clusters, final transformed value, or final metric + interpretation.</p></div>
+ </div>
+</section>
+
+<section class="section searchable exam-hot" id="m3-reduction" data-keywords="module 3 data reduction types PCA attribute subset selection regression histogram clustering sampling cube aggregation">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Data reduction · types and exactly what each type reduces</h2><p>Data reduction gives a smaller representation while preserving the same or similar analytical result. Your supplied preprocessing material develops dimensionality reduction, parametric/numerosity reduction and aggregation methods.</p></div><button class="done" data-topic="m3-reduction">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><span class="tag hot">Dimensionality</span><h3>PCA</h3><p>Transforms <b>n correlated original attributes</b> into a smaller set <b>k ≤ n</b> of new orthogonal/uncorrelated principal components. It creates new variables; it does not merely select old ones.</p></div>
+  <div class="card"><span class="tag hot">Dimensionality</span><h3>Attribute subset selection</h3><p>Removes irrelevant or redundant attributes while keeping the original attributes that matter. Exhaustive search has <b>2ⁿ</b> subsets, so greedy heuristics are used.</p></div>
+  <div class="card"><span class="tag hot">Parametric</span><h3>Regression</h3><p>Replace a large set of raw points by model parameters. The source gives simple linear <b>y = wx+b</b>, multiple linear, and log-linear models.</p></div>
+  <div class="card"><span class="tag hot">Numerosity</span><h3>Histograms</h3><p>Approximate the data distribution using bins rather than storing every observation individually.</p></div>
+  <div class="card"><span class="tag hot">Numerosity</span><h3>Clustering</h3><p>Group similar objects and replace raw data by a cluster centroid or cluster summary.</p></div>
+  <div class="card"><span class="tag hot">Numerosity</span><h3>Sampling</h3><p>Analyze a representative subset rather than the entire dataset. The source lists SRSWOR, SRSWR, cluster sampling and stratified sampling.</p></div>
+  <div class="card"><span class="tag hot">Aggregation</span><h3>Data cube aggregation</h3><p>Summarize detailed data at a higher level—for example quarterly sales rolled into annual sales.</p></div>
+  <div class="card"><span class="tag theory">Construction</span><h3>Attribute construction</h3><p>Create useful new attributes from existing ones; the source example is <b>Area = Height × Width</b>.</p></div>
+  <div class="card"><span class="tag theory">Why</span><h3>What reduction buys you</h3><p>Lower storage and processing cost, fewer attributes/records, and a representation that still supports the intended analysis.</p></div>
+ </div>
+
+ <details open><summary>PCA · the step-by-step algorithm and the supplied numerical</summary><div>
+  <p><b>Key idea:</b> principal components are new linear combinations. PC1 captures the largest variance; PC2 the next largest, and so on.</p>
+  <ol class="algo">
+   <li><b>Normalize / scale</b> attributes when their ranges differ, so one attribute does not dominate.</li>
+   <li><b>Compute orthonormal component directions</b>: unit-length vectors perpendicular to one another.</li>
+   <li><b>Sort components by variance explained.</b></li>
+   <li><b>Keep the high-variance components</b> and discard low-variance components.</li>
+  </ol>
+  <table><tr><th>Object</th><th>X1</th><th>X2</th><th>X1 − μ1</th><th>X2 − μ2</th></tr>
+    <tr><td>A</td><td>2</td><td>0</td><td>−0.25</td><td>−2.25</td></tr>
+    <tr><td>B</td><td>0</td><td>2</td><td>−2.25</td><td>−0.25</td></tr>
+    <tr><td>C</td><td>3</td><td>3</td><td>0.75</td><td>0.75</td></tr>
+    <tr><td>D</td><td>4</td><td>4</td><td>1.75</td><td>1.75</td></tr>
+  </table>
+  <div class="formula">μ1 = (2+0+3+4)/4 = 2.25 &nbsp;&nbsp; μ2 = (0+2+3+4)/4 = 2.25</div>
+  <div class="formula">Covariance matrix shown in the source ≈ [[1.583, 1.417], [1.417, 1.583]]</div>
+  <p>The source identifies <b>PC1 direction (1,1)</b> as high variance and <b>PC2 direction (1,−1)</b> as low variance. Keep PC1 and discard PC2 ⇒ <b>2D → 1D reduction</b>.</p>
+  <table><tr><th>Aspect</th><th>PCA</th><th>Attribute subset selection</th></tr><tr><td>Method</td><td>Attribute transformation</td><td>Attribute selection</td></tr><tr><td>Output</td><td>New variables</td><td>Subset of original variables</td></tr><tr><td>Correlation</td><td>Removes correlation through orthogonal components</td><td>May retain correlation</td></tr><tr><td>Interpretability</td><td>Lower</td><td>Higher</td></tr></table>
+ </div></details>
+
+ <details><summary>Attribute subset selection · the four methods in the source</summary><div>
+  <p><b>Problem:</b> with n attributes there are 2ⁿ possible subsets, so exhaustive search becomes infeasible.</p>
+  <div class="grid2">
+   <div class="card"><h3>Stepwise forward selection</h3><p>Begin with no attributes. Repeatedly add the attribute that gives the best improvement.</p><div class="formula">∅ → {A1} → {A1,A3} → {A1,A3,A4} …</div></div>
+   <div class="card"><h3>Stepwise backward elimination</h3><p>Begin with all attributes. Repeatedly remove the least useful attribute.</p><div class="formula">{A1,A2,A3,A4,A5} → … → smaller subset</div></div>
+   <div class="card"><h3>Combined approach</h3><p>Add the best and remove the worst at each step.</p></div>
+   <div class="card"><h3>Decision-tree induction</h3><p>Attributes used by the tree are treated as selected; unused attributes are irrelevant for that induced tree.</p></div>
+  </div>
+ </div></details>
+
+ <details><summary>Regression, histogram, clustering, sampling, cube aggregation · what to write</summary><div>
+  <table>
+   <tr><th>Method</th><th>Source method</th><th>Exam explanation</th></tr>
+   <tr><td>Simple regression</td><td>y = wx+b</td><td>Store model parameters rather than all raw points. Source numerical: x=1,2,3 and y=3,5,7 gives y=2x+1.</td></tr>
+   <tr><td>Histogram</td><td>Use bins</td><td>Source prices: 1,1,5,5,5,8,10,10,12,15,18,20,25,30. With width 10: 1–10 → 8, 11–20 → 4, 21–30 → 2.</td></tr>
+   <tr><td>Clustering</td><td>Replace raw points by centroid / summary</td><td>Quality ideas named: diameter = max distance in cluster; centroid distance = average distance to center.</td></tr>
+   <tr><td>Sampling</td><td>SRSWOR, SRSWR, cluster, stratified</td><td>Source illustration: N=1,000,000 and sample s=5,000; process O(s) rather than O(N).</td></tr>
+   <tr><td>Cube aggregation</td><td>Quarterly → annual</td><td>Roll detailed cube values upward to a summarized level.</td></tr>
+  </table>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m3-normalization" data-keywords="normalization min max z score decimal scaling centering spatial sign numerical">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Normalization · formulas, substitution, interpretation</h2><p>Your core preprocessing slides explicitly teach three normalization techniques: min–max, z-score, and decimal scaling. Know all three and be able to substitute values cleanly.</p></div><button class="done" data-topic="m3-normalization">Mark done</button></div>
+ <div class="grid3">
+  <div class="card"><span class="tag hot">1</span><h3>Min–max normalization</h3><div class="formula">v' = [(v−minA)/(maxA−minA)](new_maxA−new_minA)+new_minA</div><p>Maps a value from its old range into a specified new range.</p><div class="formula">Income: 12,000…98,000 → [0,1]<br>v=73,600 ⇒ (73,600−12,000)/(98,000−12,000)=<b>0.716</b></div></div>
+  <div class="card"><span class="tag hot">2</span><h3>Z-score normalization</h3><div class="formula">v' = (v−μA)/σA</div><p>Centers by the mean and scales by standard deviation.</p><div class="formula">μ=54,000, σ=16,000, v=73,600<br>(73,600−54,000)/16,000=<b>1.225</b></div></div>
+  <div class="card"><span class="tag hot">3</span><h3>Decimal scaling</h3><div class="formula">v' = v / 10ʲ</div><p>Choose the smallest integer j such that max(|v'|)&lt;1.</p><div class="formula">Source example: 986 → <b>0.986</b> with j=3.</div></div>
+ </div>
+ <div class="callout good"><strong>How to choose quickly</strong>If the question gives an explicit target range, use min–max. If it gives μ and σ or asks for standardization, use z-score. If it asks decimal scaling, choose j from the largest absolute value.</div>
+
+ <div class="lab">
+  <h3>Normalization calculator · check your handwritten work</h3>
+  <p>The defaults reproduce the supplied min–max and z-score examples.</p>
+  <div class="controls">
+   <label>v <input id="nv" value="73600"></label><label>min <input id="nmin" value="12000"></label><label>max <input id="nmax" value="98000"></label>
+   <label>new min <input id="nnewmin" value="0"></label><label>new max <input id="nnewmax" value="1"></label>
+   <label>μ <input id="nmu" value="54000"></label><label>σ <input id="nsd" value="16000"></label><label>j <input id="nj" value="5"></label>
+   <button id="normCalc" class="labbtn">Calculate</button>
+  </div>
+  <div id="normOut" class="metric-grid"></div>
+ </div>
+
+ <details><summary>Other transformation techniques in the supplied transformation file</summary><div>
+  <p><b>Centering:</b> calculate the mean μ and transform every point as <span class="formula" style="display:inline-block">x' = x−μ</span>. The resulting data have mean zero.</p>
+  <p><b>Spatial sign transformation:</b> normalize each vector to unit length so direction matters more than magnitude; the source specifically motivates it for reducing outlier influence and gives a practice set of 2-D points.</p>
+  <p>These are in the uploaded transformation slides, but your professor's stated CAT-2 priority is <b>normalization</b>, so spend your memorization time on the three formulas above first.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m3-discretization" data-keywords="discretization equal width equal frequency histogram based clustering decision tree chimerge concept hierarchy numerical">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Discretization · theory + numerical workflow</h2><p>Discretization reduces the number of values of a continuous attribute by replacing numeric ranges with interval labels. It is both a reduction technique and a preparation step for algorithms that require categorical attributes.</p></div><button class="done" data-topic="m3-discretization">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><h3>Binning · unsupervised</h3><p><b>Equal-width:</b> fixed interval size. <b>Equal-frequency:</b> approximately the same number of observations in each bin.</p></div>
+  <div class="card"><h3>Histogram-based</h3><p>Recursively use histogram bins to form a concept hierarchy.</p></div>
+  <div class="card"><h3>Clustering-based</h3><p>Clusters form the intervals: observations assigned to the same cluster receive the same discretized region/label.</p></div>
+  <div class="card"><h3>Decision-tree based</h3><p>Supervised. Choose split points that improve class separation / reduce class impurity.</p></div>
+  <div class="card"><h3>ChiMerge</h3><p>Supervised, bottom-up. Uses a χ² test and merges adjacent intervals with similar class distributions.</p></div>
+  <div class="card"><h3>Concept hierarchy</h3><p>Replace lower-level values with higher-level concepts—for example age values → young / middle-aged / senior.</p></div>
+ </div>
+
+ <details open><summary>Equal-width numerical · use the source price data</summary><div>
+  <p>Sorted source prices:</p><div class="formula">1, 1, 5, 5, 5, 8, 10, 10, 12, 15, 18, 20, 25, 30</div>
+  <p>With a fixed width of 10, the source histogram is:</p>
+  <table><tr><th>Interval</th><th>Values</th><th>Count</th></tr><tr><td>1–10</td><td>1,1,5,5,5,8,10,10</td><td><b>8</b></td></tr><tr><td>11–20</td><td>12,15,18,20</td><td><b>4</b></td></tr><tr><td>21–30</td><td>25,30</td><td><b>2</b></td></tr></table>
+  <p><b>What to write:</b> state interval width → list interval boundaries → place each sorted value → give counts / labels.</p>
+ </div></details>
+
+ <details open><summary>Equal-frequency numerical · same source data, same idea</summary><div>
+  <p>Equal-frequency means the number of observations per bin is approximately equal. With 14 values and 3 bins, a reasonable hand partition is approximately 5,5,4 observations after sorting.</p>
+  <div class="formula">Bin 1: 1,1,5,5,5<br>Bin 2: 8,10,10,12,15<br>Bin 3: 18,20,25,30</div>
+  <p>This is not a new method beyond the notes—it is the direct application of the notes' definition “same count per bin.” If the question specifies a different tie convention, follow the question.</p>
+ </div></details>
+
+ <div class="lab">
+  <h3>Binning lab</h3><p>Paste a numeric list, choose k, and compare equal-width with equal-frequency bins.</p>
+  <div class="controls"><input id="binVals" style="flex:1;min-width:330px" value="1,1,5,5,5,8,10,10,12,15,18,20,25,30"><label>k <input id="binK" value="3" style="width:55px"></label><button id="binCalc" class="labbtn">Build bins</button></div>
+  <div id="binOut" style="font-size:11px;color:#dce9e5"></div>
+ </div>
+
+ <details><summary>Concept hierarchy generation for nominal data</summary><div>
+  <p>The source gives several routes:</p>
+  <ul>
+   <li><b>Schema ordering:</b> street &lt; city &lt; state &lt; country.</li>
+   <li><b>Explicit grouping:</b> group values into a named higher concept.</li>
+   <li><b>Partial ordering:</b> specify only part of the hierarchy.</li>
+   <li><b>Automatic distinct-value heuristic:</b> attribute with the most distinct values goes at the lowest level. Source example: country 15, state 365, city 3567, street 674,339 ⇒ country → state → city → street from high to low abstraction.</li>
+  </ul>
+ </div></details>
+</section>
+
+<section class="section searchable" id="m3-preprocess" data-keywords="data preprocessing dirty cleaning missing noisy integration redundancy smoothing binning quality">
+ <div class="section-head"><div class="section-no">M3+</div><div class="section-title"><h2>Module 3 safety net · preprocessing beyond the professor's main question</h2><p>Study this after the gold sections. It covers the rest of the preprocessing material so a surprise theory sub-question does not hurt you.</p></div><button class="done" data-topic="m3-preprocess">Mark done</button></div>
+ <div class="grid3">
+  <div class="card"><h3>Why data are dirty</h3><p><b>Incomplete:</b> missing attributes/values. <b>Noisy:</b> errors or outliers. <b>Inconsistent:</b> conflicting codes/names/linked values. Duplicates also require cleaning.</p></div>
+  <div class="card"><h3>Data quality dimensions</h3><p>Accuracy, completeness, consistency, timeliness, believability, value added, interpretability and accessibility.</p></div>
+  <div class="card"><h3>Major preprocessing tasks</h3><p>Cleaning, integration, transformation, reduction and discretization.</p></div>
+ </div>
+ <details><summary>Missing values · all handling methods listed in the source</summary><div><ul><li>Ignore the tuple—commonly when a classification class label is missing.</li><li>Fill manually.</li><li>Use a global constant such as “unknown”.</li><li>Use the attribute mean.</li><li>Use the mean for samples in the same class.</li><li>Infer the most probable value using a method such as Bayesian reasoning or a decision tree.</li></ul></div></details>
+ <details><summary>Noisy data · smoothing and outlier handling</summary><div><p>The source lists <b>binning</b>, <b>regression</b>, <b>clustering</b>, and combined computer + human inspection.</p><p>Source smoothing example begins with 4,8,9,15 | 21,21,24,25 | 26,28,29,34. By bin means the bins become 9,9,9,9 | 23,23,23,23 | 29,29,29,29. By bin boundaries, each interior value moves to the nearest boundary.</p></div></details>
+ <details><summary>Data integration</summary><div><p>Combine multiple databases/files/cubes into a coherent store. Important issues: schema integration, entity identification, conflicting representations/scales, duplicate/redundant attributes and derivable attributes. Correlation analysis can help detect redundant attributes.</p></div></details>
+</section>
+
+<section class="section searchable" id="m4-association" data-keywords="association rule mining frequent pattern support support count confidence minsup minconf market basket">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Association rules · the concepts underneath Apriori and FP-Growth</h2><p>FP-Growth makes much more sense when support and transaction structure are automatic to you.</p></div><button class="done" data-topic="m4-association">Mark done</button></div>
+ <div class="grid3">
+  <div class="card"><h3>Frequent pattern</h3><p>A pattern that occurs frequently in data. It can be an itemset, sequence or structure.</p></div>
+  <div class="card"><h3>Frequent itemset</h3><p>A set of items that appear together often in a transactional dataset.</p></div>
+  <div class="card"><h3>Support count</h3><p><b>X.count</b> = number of transactions containing itemset X.</p></div>
+ </div>
+ <div class="grid2" style="margin-top:14px">
+  <div class="card exam-hot"><h3>Support</h3><div class="formula">support(X→Y) = count(X ∪ Y) / total transactions</div><p>Probability/fraction that a transaction contains both the antecedent and consequent items.</p></div>
+  <div class="card exam-hot"><h3>Confidence</h3><div class="formula">confidence(X→Y) = count(X ∪ Y) / count(X)</div><p>Conditional probability that a transaction containing X also contains Y.</p></div>
+ </div>
+ <details open><summary>Exact support/confidence examples from the association slides</summary><div>
+  <p><b>Bag & Uniform:</b> the slides give support({Bag,Uniform}) = 5/10 = <b>0.5</b>. Bag occurs 8 times, so confidence(Bag→Uniform) = 5/8 = <b>0.625</b>.</p>
+  <p><b>A→C example:</b> 4 transactions: ABC, AC, AD, BEF. A occurs 3/4=75%, C occurs 2/4=50%, AC occurs 2/4=50%.</p>
+  <div class="formula">support(A→C)=2/4=<b>50%</b><br>confidence(A→C)=2/3=<b>66.6%</b><br>confidence(C→A)=2/2=<b>100%</b></div>
+ </div></details>
+ <details><summary>Road-map concepts that can appear as short theory</summary><div><p>The source distinguishes Boolean vs quantitative associations, single-dimensional vs multidimensional associations, and single-level vs multilevel analysis. Market-basket data can be represented as Boolean presence/absence vectors.</p></div></details>
+</section>
+
+<section class="section searchable" id="m4-apriori" data-keywords="apriori principle candidate generation join prune C1 L1 C2 L2 frequent itemsets">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Apriori · know it because FP-Growth is solving its bottleneck</h2><p>The source teaches Apriori through candidate generation and pruning. This is secondary to FP-Growth for your stated test, but it is central context and can appear in association sub-questions.</p></div><button class="done" data-topic="m4-apriori">Mark done</button></div>
+ <div class="callout good"><strong>Apriori principle</strong>Every subset of a frequent itemset must also be frequent. Equivalently, if a subset is infrequent, any superset containing it can be pruned.</div>
+ <div class="flow"><div class="step">Find frequent 1-itemsets L1</div><div class="arrow">→</div><div class="step">Join Lk−1 with itself → candidates Ck</div><div class="arrow">→</div><div class="step">Prune candidates with infrequent subsets</div><div class="arrow">→</div><div class="step">Scan database and count support</div><div class="arrow">→</div><div class="step">Keep candidates meeting minsup → Lk</div></div>
+ <details open><summary>Supplied Apriori numerical</summary><div>
+  <table><tr><th>TID</th><th>Items</th></tr><tr><td>100</td><td>1,3,4</td></tr><tr><td>200</td><td>2,3,5</td></tr><tr><td>300</td><td>1,2,3,5</td></tr><tr><td>400</td><td>2,5</td></tr></table>
+  <p>Minimum support count = 2 transactions.</p>
+  <div class="formula">C1 counts: {1}:2, {2}:3, {3}:3, {4}:1, {5}:3<br>L1 = {1},{2},{3},{5}</div>
+  <div class="formula">C2 counts: {1,2}:1, {1,3}:2, {1,5}:1, {2,3}:2, {2,5}:3, {3,5}:2<br>L2 = {1,3},{2,3},{2,5},{3,5}</div>
+  <div class="formula">C3 → {2,3,5}; support count = 2 ⇒ L3 = {2,3,5}</div>
+  <p>Candidate-generation example in the source: L3={abc,abd,acd,ace,bcd}. Self-join gives abcd and acde. Prune acde because subset ade is not in L3. So C4={abcd}.</p>
+ </div></details>
+ <details><summary>Why Apriori can be slow + source improvements</summary><div><p>Main bottlenecks: <b>huge candidate sets</b> and <b>multiple database scans</b>. Source improvements: transaction reduction, partitioning, sampling, and dynamic itemset counting.</p></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-fpgrowth" data-keywords="FP growth frequent pattern tree T100 T200 transaction support conditional pattern base conditional FP tree">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>FP-Growth · the full numerical you should be able to reproduce</h2><p>This is one of your highest-priority questions. Learn the <b>two scans, global support order, ordered transactions, tree insertion, conditional pattern bases, conditional FP-trees and generated patterns</b>.</p></div><button class="done" data-topic="m4-fpgrowth">Mark done</button></div>
+
+ <div class="callout good"><strong>Core idea</strong>FP-Growth uses divide-and-conquer. It compresses frequent-item information into an FP-tree, then mines smaller conditional databases rather than generating huge candidate sets like Apriori.</div>
+ <ol class="algo">
+  <li><b>First scan:</b> count every item and discard items below minimum support.</li>
+  <li><b>Sort frequent items globally by descending support.</b></li>
+  <li><b>Second scan:</b> reorder each transaction using that global order.</li>
+  <li><b>Insert each ordered transaction into the FP-tree.</b> Shared prefixes share nodes; increment counts instead of duplicating the prefix.</li>
+  <li><b>Mine from the least-frequent suffix upward.</b> For each suffix, collect all prefix paths → conditional pattern base.</li>
+  <li><b>Prune infrequent items in the conditional base</b> and build the conditional FP-tree.</li>
+  <li><b>Concatenate the suffix</b> with frequent patterns found in that conditional tree.</li>
+ </ol>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>First scan · exact transaction database</h3>
+   <table><tr><th>TID</th><th>Original items</th><th>Ordered for FP-tree</th></tr>
+    <tr><td>T100</td><td>I1,I2,I5</td><td><b>I2,I1,I5</b></td></tr>
+    <tr><td>T200</td><td>I2,I4</td><td><b>I2,I4</b></td></tr>
+    <tr><td>T300</td><td>I2,I3</td><td><b>I2,I3</b></td></tr>
+    <tr><td>T400</td><td>I1,I2,I4</td><td><b>I2,I1,I4</b></td></tr>
+    <tr><td>T500</td><td>I1,I3</td><td><b>I1,I3</b></td></tr>
+    <tr><td>T600</td><td>I2,I3</td><td><b>I2,I3</b></td></tr>
+    <tr><td>T700</td><td>I1,I3</td><td><b>I1,I3</b></td></tr>
+    <tr><td>T800</td><td>I1,I2,I3,I5</td><td><b>I2,I1,I3,I5</b></td></tr>
+    <tr><td>T900</td><td>I1,I2,I3</td><td><b>I2,I1,I3</b></td></tr>
+   </table>
+  </div>
+  <div class="card">
+   <h3>Support counts and F-list</h3>
+   <p>Minimum support count = <b>2</b>.</p>
+   <table><tr><th>Item</th><th>Support count</th></tr><tr><td>I2</td><td><b>7</b></td></tr><tr><td>I1</td><td><b>6</b></td></tr><tr><td>I3</td><td><b>6</b></td></tr><tr><td>I4</td><td><b>2</b></td></tr><tr><td>I5</td><td><b>2</b></td></tr></table>
+   <div class="formula">Global descending order: <b>I2 → I1 → I3 → I4 → I5</b></div>
+   <p class="tiny">I1 and I3 tie at 6; use the order provided by the source table consistently.</p>
+  </div>
+ </div>
+
+ <div class="lab" style="margin-top:16px">
+  <h3>FP-tree construction stepper</h3>
+  <p>Advance one transaction at a time. Watch common prefixes increase rather than creating duplicate nodes.</p>
+  <div class="controls"><button class="labbtn" id="fpPrev">← previous</button><b id="fpStepLabel">Start</b><button class="labbtn" id="fpNext">next →</button></div>
+  <div class="grid2"><pre class="tree" id="fpTree"></pre><div id="fpStepInfo" style="font-size:11px;color:#c9dbd6"></div></div>
+ </div>
+
+ <details open><summary>Final FP-tree · memorize the shape by understanding the prefixes</summary><div>
+<pre class="tree">null
+├─ I2:7
+│  ├─ I1:4
+│  │  ├─ I5:1
+│  │  ├─ I4:1
+│  │  └─ I3:2
+│  │     └─ I5:1
+│  ├─ I4:1
+│  └─ I3:2
+└─ I1:2
+   └─ I3:2</pre>
+  <p><b>Why I2 has count 7:</b> seven transactions contain I2 and, after ordering, I2 is first in those transactions. <b>Why I2→I1 has count 4:</b> T100, T400, T800 and T900 share that prefix.</p>
+ </div></details>
+
+ <details open><summary>Conditional pattern bases → conditional FP-trees → frequent patterns</summary><div>
+  <table>
+   <tr><th>Suffix</th><th>Conditional pattern base</th><th>Conditional FP-tree</th><th>Patterns generated</th></tr>
+   <tr><td><b>I5</b></td><td>{{I2,I1:1},{I2,I1,I3:1}}</td><td>&lt;I2:2,I1:2&gt; (I3 pruned: only 1)</td><td>{I2,I5:2}, {I1,I5:2}, {I2,I1,I5:2}</td></tr>
+   <tr><td><b>I4</b></td><td>{{I2,I1:1},{I2:1}}</td><td>&lt;I2:2&gt;</td><td>{I2,I4:2}</td></tr>
+   <tr><td><b>I3</b></td><td>{{I2,I1:2},{I2:2},{I1:2}}</td><td>&lt;I2:4,I1:2&gt;, &lt;I1:2&gt;</td><td>{I2,I3:4}, {I1,I3:4}, {I2,I1,I3:2}</td></tr>
+   <tr><td><b>I1</b></td><td>{I2:4}</td><td>&lt;I2:4&gt;</td><td>{I2,I1:4}</td></tr>
+  </table>
+  <div class="callout warn"><strong>The most common FP-Growth mistake</strong>Do not count the suffix item itself inside its prefix path. The conditional pattern base for I5 consists of paths <i>before</i> I5. Also preserve the path count: if a path reaches I3 with count 1, it contributes 1, not the node's global support.</div>
+ </div></details>
+
+ <details><summary>FP-Growth properties from the final slide</summary><div><ul><li>Transforms long-pattern search into recursively searching shorter patterns and concatenating a suffix.</li><li>Uses a least-frequent suffix, giving good selectivity.</li><li>Reduces search cost.</li><li>If the FP-tree does not fit memory, partition the database.</li><li>Designed to be efficient and scalable for both long and short frequent patterns.</li></ul></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-metrics" data-keywords="performance metrics accuracy precision recall sensitivity specificity F1 FPR FNR MCC kappa balanced ROC AUC PR AUC confusion matrix twist">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Classification performance metrics · the “twist” section</h2><p>Your source bundle contains both the standard confusion-matrix slides and a dedicated “all classification metrics” document. Do not stop at accuracy. Know <b>which denominator each metric uses and what kind of mistake it cares about</b>.</p></div><button class="done" data-topic="m4-metrics">Mark done</button></div>
+
+ <div class="callout warn"><strong>First draw the confusion matrix correctly.</strong>Positive/negative refers to the class you define as positive. TP = actual + predicted +; TN = actual − predicted −; FP = predicted + but actually −; FN = predicted − but actually +.</div>
+ <table><tr><th></th><th>Predicted Positive</th><th>Predicted Negative</th></tr><tr><th>Actual Positive</th><td><b>TP</b></td><td><b>FN</b></td></tr><tr><th>Actual Negative</th><td><b>FP</b></td><td><b>TN</b></td></tr></table>
+
+ <div class="grid3" style="margin-top:14px">
+  <div class="card"><h3>Accuracy</h3><div class="formula">(TP+TN)/(TP+TN+FP+FN)</div><p>Overall correctness. Works best when class distribution is reasonably balanced and error costs are comparable.</p></div>
+  <div class="card"><h3>Precision · PPV</h3><div class="formula">TP/(TP+FP)</div><p>“Of everything I predicted positive, how many were truly positive?” False positives hurt precision.</p></div>
+  <div class="card"><h3>Recall · Sensitivity · TPR</h3><div class="formula">TP/(TP+FN)</div><p>“Of the actual positives, how many did I find?” False negatives hurt recall.</p></div>
+  <div class="card"><h3>Specificity · TNR</h3><div class="formula">TN/(TN+FP)</div><p>Ability to correctly identify actual negatives.</p></div>
+  <div class="card"><h3>F1-score</h3><div class="formula">2·Precision·Recall/(Precision+Recall)</div><p>Harmonic mean balancing precision and recall.</p></div>
+  <div class="card"><h3>Error rate</h3><div class="formula">(FP+FN)/All = 1−Accuracy</div><p>Fraction of test tuples classified incorrectly.</p></div>
+  <div class="card"><h3>FPR · Type I rate</h3><div class="formula">FP/(FP+TN)</div><p>Actual negatives that were incorrectly called positive.</p></div>
+  <div class="card"><h3>FNR · Type II rate</h3><div class="formula">FN/(FN+TP)</div><p>Actual positives that were incorrectly called negative.</p></div>
+  <div class="card"><h3>NPV</h3><div class="formula">TN/(TN+FN)</div><p>“Of everything predicted negative, how many were truly negative?” This appears in the confusion-matrix diagram.</p></div>
+ </div>
+
+ <details open><summary>Exact dog example from the confusion-matrix slides</summary><div>
+  <p>TP=5, FN=1, FP=1, TN=3; total=10.</p>
+  <div class="formula">Accuracy=(5+3)/10=<b>0.80</b><br>Precision=5/(5+1)=<b>0.8333</b><br>Recall=5/(5+1)=<b>0.8333</b><br>F1=<b>0.8333</b><br>Specificity=3/(3+1)=<b>0.75</b><br>Type I / FPR=1/(1+3)=<b>0.25</b><br>Type II / FNR=1/(5+1)=<b>0.1667</b></div>
+ </div></details>
+
+ <details open><summary>The accuracy trap · the cancer example your theory question can twist around</summary><div>
+  <table><tr><th>Actual</th><th>Predicted cancer=yes</th><th>Predicted cancer=no</th><th>Total</th></tr><tr><td>cancer=yes</td><td>90</td><td>210</td><td>300</td></tr><tr><td>cancer=no</td><td>140</td><td>9560</td><td>9700</td></tr></table>
+  <div class="formula">Accuracy = (90+9560)/10000 = <b>96.40%</b><br>Sensitivity = 90/300 = <b>30.00%</b><br>Specificity = 9560/9700 = <b>98.56%</b><br>Precision = 90/230 = <b>39.13%</b></div>
+  <p><b>Interpretation:</b> 96.4% accuracy looks excellent, but the model detects only 30% of actual cancer cases. This is the source's <b>class imbalance problem</b>: when positives are rare, accuracy can hide terrible positive-class performance.</p>
+ </div></details>
+
+ <details open><summary>The extra metrics in the supplied “Classification Metrics Overview” document</summary><div>
+  <div class="grid2">
+   <div class="card"><h3>Matthews Correlation Coefficient · MCC</h3><div class="formula">(TP·TN − FP·FN) / √[(TP+FP)(TP+FN)(TN+FP)(TN+FN)]</div><p>Correlation-style measure from −1 to +1; the source treats +1 as perfect.</p></div>
+   <div class="card"><h3>Cohen's κ</h3><div class="formula">κ = (Pₒ−Pₑ)/(1−Pₑ)</div><p>Pₒ = observed agreement; Pₑ = agreement expected by chance.</p></div>
+   <div class="card"><h3>Balanced Accuracy</h3><div class="formula">(Sensitivity + Specificity)/2</div><p>Source specifically notes usefulness for imbalanced datasets.</p></div>
+   <div class="card"><h3>ROC-AUC</h3><p>Measures ability to distinguish classes. Source interpretation: AUC=1 perfect; 0.5 random guessing.</p></div>
+   <div class="card"><h3>PR-AUC</h3><p>Area under the precision–recall curve; source notes usefulness for imbalanced datasets where precision and recall matter.</p></div>
+   <div class="card"><h3>Fβ</h3><p>The classification slides mention Fβ as a weighted precision/recall measure and state that β controls the extra weight placed on recall.</p></div>
+  </div>
+ </div></details>
+
+ <details open><summary>Complete worked all-metrics source example · TP=50, FP=10, FN=5, TN=35</summary><div>
+  <div class="formula">Accuracy = 85/100 = <b>85%</b><br>Precision = 50/60 = <b>83.33%</b><br>Recall = 50/55 = <b>90.91%</b><br>F1 ≈ <b>86.96%</b><br>Specificity = 35/45 = <b>77.78%</b><br>FPR = 10/45 = <b>22.22%</b><br>FNR = 5/55 = <b>9.09%</b><br>MCC ≈ <b>0.6975</b><br>Cohen κ ≈ <b>0.6939</b><br>Balanced Accuracy ≈ <b>84.34%</b></div>
+  <p>For κ, the source computes Pₒ=0.85 and Pₑ=0.51, so κ=(0.85−0.51)/(1−0.51)=0.6939.</p>
+ </div></details>
+
+ <div class="lab">
+  <h3>Confusion-matrix metric calculator</h3><p>Default values reproduce the “all metrics” source example.</p>
+  <div class="controls"><label>TP <input id="tp" value="50"></label><label>TN <input id="tn" value="35"></label><label>FP <input id="fp" value="10"></label><label>FN <input id="fn" value="5"></label><button id="metricCalc" class="labbtn">Calculate all</button></div>
+  <div id="metricOut" class="metric-grid"></div>
+ </div>
+
+ <details><summary>Other model-selection criteria in the classification slides</summary><div><p>Do not assume “best classifier” means only highest accuracy. The source lists <b>accuracy, speed</b> (training and prediction time), <b>robustness</b> to noise/missing values, <b>scalability</b>, <b>interpretability</b>, and goodness/compactness of rules or the decision tree.</p></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-crossval" data-keywords="cross validation numerical split training validation derivation half two thirds one third 70 30">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Cross-validation / validation split · numerical handling from your slides</h2><p>Your supplied confusion-matrix deck uses the term cross-validation for splitting the original sample into a training/derivation part and a validation/testing part. It gives explicit split proportions, so these are the calculations to know from the supplied material.</p></div><button class="done" data-topic="m4-crossval">Mark done</button></div>
+ <div class="grid3">
+  <div class="card"><h3>Very large sample</h3><div class="formula">Training ≈ N/2<br>Validation ≈ N/2</div><p>The slide says it is often best to split a very large sample in half.</p></div>
+  <div class="card"><h3>Smaller sample</h3><div class="formula">Training ≈ (2/3)N<br>Validation ≈ (1/3)N</div><p>This is the “more conventional” smaller-sample rule stated in the slide.</p></div>
+  <div class="card"><h3>Decision-tree code example</h3><div class="formula">test_size = 0.3</div><p>The source decision-tree code uses 70% training and 30% testing.</p></div>
+ </div>
+ <div class="callout warn"><strong>Important scope note</strong>The uploaded source bundle <b>names</b> cross-validation among accuracy-estimation methods, but it does not develop k-fold/LOOCV arithmetic. I am not inventing a k-fold syllabus here. For the supplied material, prepare the split-size numericals above and the reason for keeping evaluation data independent from training.</div>
+ <details open><summary>Practice the exact arithmetic pattern</summary><div>
+  <p><b>If N=300 and the question applies the smaller-sample rule:</b></p><div class="formula">Training=(2/3)·300=<b>200</b><br>Validation=(1/3)·300=<b>100</b></div>
+  <p><b>If N=1200 and the question says use the half/half large-sample rule:</b></p><div class="formula">Training=<b>600</b> · Validation=<b>600</b></div>
+  <p><b>If test_size=0.3 and N=1000:</b> test≈300, train≈700.</p>
+ </div></details>
+ <div class="lab">
+  <h3>Split calculator</h3>
+  <div class="controls"><label>N <input id="cvN" value="300"></label><select id="cvMode"><option value="two">Smaller · 2/3 + 1/3</option><option value="half">Large · 1/2 + 1/2</option><option value="7030">Code example · 70/30</option></select><button id="cvCalc" class="labbtn">Calculate</button></div>
+  <div id="cvOut" class="metric-grid"></div>
+ </div>
+</section>
+
+<section class="section searchable exam-hot" id="m5-classification" data-keywords="classification prediction supervised unsupervised model construction model usage numeric prediction">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Classification and prediction · know the distinction exactly</h2><p>This is the conceptual foundation for decision trees, KNN and Bayes.</p></div><button class="done" data-topic="m5-classification">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><span class="tag hot">Classification</span><h3>Predicts categorical labels</h3><p>Supervised training data include class labels. Build a model from the training set, then use it to assign a discrete/nominal class to new data.</p><p>Source applications: loan approval, cancerous vs benign diagnosis, fraud detection, web-page categorization.</p></div>
+  <div class="card"><span class="tag hot">Numeric prediction</span><h3>Predicts continuous values</h3><p>Models a continuous-valued function to predict an unknown/missing numeric value.</p><p>The source's regression/error file evaluates numeric predictions with MAE, MSE, RMSE and R².</p></div>
+ </div>
+ <div class="flow" style="margin-top:14px"><div class="step"><b>Step 1 · Model construction</b><br>Training tuples + known labels → classifier/model</div><div class="arrow">→</div><div class="step"><b>Step 2 · Model usage</b><br>Independent test data → predicted labels → evaluate accuracy</div><div class="arrow">→</div><div class="step"><b>Deployment</b><br>If acceptable, classify unseen objects</div></div>
+ <div class="callout good"><strong>Test-set independence matters.</strong>The source explicitly says the test set should be independent from the training set; otherwise you risk overfitting. If the set is used to select models, it is called a validation/test set.</div>
+ <details><summary>Numeric prediction error measures from the supplied regression-error document</summary><div>
+  <div class="formula">MAE = (1/n)Σ|Yi−Ŷi|<br>MSE = (1/n)Σ(Yi−Ŷi)²<br>RMSE = √MSE<br>R² = 1 − Σ(Yi−Ŷi)² / Σ(Yi−Ȳ)²</div>
+  <p>The source's house-size example obtains the fitted model <b>Price = 0.145·Size + 46</b>, then reports MAE=13.58, MSE=306.97, RMSE=17.52 and R²=0.726.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m5-tree" data-keywords="decision tree root internal leaf branch advantages disadvantages splitting nominal ordinal continuous greedy algorithm pruning">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Decision tree · structure, induction, splitting and stopping</h2><p>If ID3 is the numerical, this is the theory surrounding it.</p></div><button class="done" data-topic="m5-tree">Mark done</button></div>
+ <div class="grid4">
+  <div class="card"><h3>Root node</h3><p>Topmost node; the first selected test attribute.</p></div>
+  <div class="card"><h3>Internal node</h3><p>A non-leaf node that tests an attribute.</p></div>
+  <div class="card"><h3>Branch</h3><p>Outcome of the test.</p></div>
+  <div class="card"><h3>Leaf</h3><p>Final class label. A root-to-leaf path can be read as a classification rule.</p></div>
+ </div>
+ <details open><summary>General decision-tree induction algorithm</summary><div>
+  <ol class="algo">
+   <li>Put all training examples at the root.</li>
+   <li>Select the test attribute using a heuristic/statistical measure such as information gain.</li>
+   <li>Partition the examples according to the selected attribute's values / split condition.</li>
+   <li>Recursively repeat for each child subset.</li>
+   <li>Stop if all tuples at a node belong to the same class.</li>
+   <li>If no attributes remain, use majority voting for the leaf.</li>
+   <li>Stop if there are no samples left for a branch.</li>
+  </ol>
+ </div></details>
+ <div class="grid3">
+  <div class="card"><h3>Nominal attributes</h3><p>Can use a multi-way split with one branch per distinct value, or a binary grouping of values.</p></div>
+  <div class="card"><h3>Ordinal attributes</h3><p>Values have order. Multi-way splitting is possible; binary partitioning must respect/find an appropriate ordered partition.</p></div>
+  <div class="card"><h3>Continuous attributes</h3><p>Use a threshold binary condition such as A&lt;v vs A≥v, or ranges.</p></div>
+ </div>
+ <details><summary>Advantages, disadvantages and overfitting</summary><div>
+  <p><b>Advantages in the source:</b> no parameter setting for construction, handles high-dimensional data, easy to interpret when small, learning/classification are simple and fast, competitive accuracy, easy conversion to understandable rules.</p>
+  <p><b>Cons in the decision-tree deck:</b> overfitting due to noise/outliers; large trees become difficult to understand; overfit trees can be inaccurate; memory/efficiency concerns.</p>
+  <p><b>Classification chapter pruning:</b> <b>prepruning</b> halts tree construction early if the goodness improvement is below a threshold; <b>postpruning</b> grows a tree and then removes branches, using separate data to choose the best pruned tree.</p>
+ </div></details>
+ <details><summary>Attribute-selection measures named in your tree slides</summary><div><p>The deck names <b>Information Gain</b>, <b>Gain Ratio</b> and <b>Gini Index</b>. ID3 uses Information Gain; the professor explicitly flagged ID3, so the next section goes all the way through the numerical.</p></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m5-id3" data-keywords="ID3 entropy information gain play tennis outlook temperature humidity windy intermediate tree final tree numerical">
+ <div class="section-head"><div class="section-no">ID3</div><div class="section-title"><h2>ID3 · complete PlayTennis numerical with intermediate and final trees</h2><p>This is exactly the style your professor warned about: algorithm + formula + per-attribute calculations + intermediate tree + recurse + final tree.</p></div><button class="done" data-topic="m5-id3">Mark done</button></div>
+
+ <div class="callout good"><strong>ID3 rule in one sentence</strong>At each node, calculate Information Gain for every remaining attribute and choose the attribute with the <b>highest gain</b>.</div>
+ <ol class="algo">
+  <li>Compute entropy of the current dataset S.</li>
+  <li>For every candidate attribute A, compute entropy of each A-value subset.</li>
+  <li>Compute the weighted average information after splitting on A.</li>
+  <li>Compute <b>Gain(A)=Entropy(S)−I(A)</b>.</li>
+  <li>Choose the highest-gain attribute and draw it as the node.</li>
+  <li>For each non-pure branch, repeat using the remaining attributes.</li>
+  <li>Stop when a branch is pure or no further useful split remains.</li>
+ </ol>
+
+ <div class="grid2">
+  <div class="card">
+   <h3>Entropy</h3>
+   <div class="formula">Entropy(p,n) = −[p/(p+n)]log₂[p/(p+n)] − [n/(p+n)]log₂[n/(p+n)]</div>
+   <p>Pure node: entropy=0. More mixed classes: larger entropy.</p>
+  </div>
+  <div class="card">
+   <h3>Weighted information + gain</h3>
+   <div class="formula">I(A)=Σv (|Sv|/|S|)Entropy(Sv)<br>Gain(A)=Entropy(S)−I(A)</div>
+   <p>Maximum gain means the split reduces uncertainty the most.</p>
+  </div>
+ </div>
+
+ <details open><summary>Training data · 14 PlayTennis rows</summary><div>
+  <table><tr><th>#</th><th>Outlook</th><th>Temperature</th><th>Humidity</th><th>Windy</th><th>PlayTennis</th></tr>
+   <tr><td>1</td><td>Sunny</td><td>Hot</td><td>High</td><td>Weak</td><td>No</td></tr>
+   <tr><td>2</td><td>Sunny</td><td>Hot</td><td>High</td><td>Strong</td><td>No</td></tr>
+   <tr><td>3</td><td>Overcast</td><td>Hot</td><td>High</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>4</td><td>Rainy</td><td>Mild</td><td>High</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>5</td><td>Rainy</td><td>Cool</td><td>Normal</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>6</td><td>Rainy</td><td>Cool</td><td>Normal</td><td>Strong</td><td>No</td></tr>
+   <tr><td>7</td><td>Overcast</td><td>Cool</td><td>Normal</td><td>Strong</td><td>Yes</td></tr>
+   <tr><td>8</td><td>Sunny</td><td>Mild</td><td>High</td><td>Weak</td><td>No</td></tr>
+   <tr><td>9</td><td>Sunny</td><td>Cool</td><td>Normal</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>10</td><td>Rainy</td><td>Mild</td><td>Normal</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>11</td><td>Sunny</td><td>Mild</td><td>Normal</td><td>Strong</td><td>Yes</td></tr>
+   <tr><td>12</td><td>Overcast</td><td>Mild</td><td>High</td><td>Strong</td><td>Yes</td></tr>
+   <tr><td>13</td><td>Overcast</td><td>Hot</td><td>Normal</td><td>Weak</td><td>Yes</td></tr>
+   <tr><td>14</td><td>Rainy</td><td>Mild</td><td>High</td><td>Strong</td><td>No</td></tr>
+  </table>
+ </div></details>
+
+ <details open><summary>Step 1 · entropy of the full dataset</summary><div>
+  <p>Positive Yes=9, Negative No=5, total=14.</p>
+  <div class="formula">Entropy(S)=−(9/14)log₂(9/14)−(5/14)log₂(5/14)=<b>0.940</b></div>
+ </div></details>
+
+ <details open><summary>Step 2 · compute every root attribute, not just the winner</summary><div>
+  <table><tr><th>Attribute</th><th>Value subsets</th><th>Weighted information I(A)</th><th>Gain</th></tr>
+   <tr><td><b>Outlook</b></td><td>Sunny: 2Y,3N, H=0.971 · Rainy:3Y,2N,H=0.971 · Overcast:4Y,0N,H=0</td><td>(5/14)(.971)+(5/14)(.971)+(4/14)(0)=<b>0.693</b></td><td><b>0.247</b></td></tr>
+   <tr><td><b>Temperature</b></td><td>Hot:2Y,2N,H=1 · Mild:4Y,2N,H=.918 · Cool:3Y,1N,H=.811</td><td><b>0.911</b></td><td><b>0.029</b></td></tr>
+   <tr><td><b>Humidity</b></td><td>High:3Y,4N,H=.985 · Normal:6Y,1N,H=.591</td><td><b>0.788</b></td><td><b>0.152</b></td></tr>
+   <tr><td><b>Windy</b></td><td>Strong:3Y,3N,H=1 · Weak:6Y,2N,H=.811</td><td><b>0.892</b></td><td><b>0.048</b></td></tr>
+  </table>
+  <div class="formula">Highest Gain = Gain(Outlook)=<b>0.247</b> ⇒ ROOT = <b>OUTLOOK</b></div>
+ </div></details>
+
+ <div class="grid2">
+  <div class="card"><h3>Intermediate tree after root</h3><pre class="tree">Outlook
+├─ Sunny → ?
+├─ Overcast → YES
+└─ Rainy → ?</pre><p>Overcast is already pure: all 4 are Yes. Sunny and Rainy still need splitting.</p></div>
+  <div class="card"><h3>Never forget to recurse</h3><p>A common lost-mark mistake is choosing the root and stopping. ID3 is recursive. For each impure branch, form only that subset and calculate gains again using remaining attributes.</p></div>
+ </div>
+
+ <details open><summary>Step 3 · Sunny subset → choose Humidity</summary><div>
+  <p>Sunny rows: 5 total, Yes=2, No=3.</p>
+  <div class="formula">Entropy(Sunny)=<b>0.971</b></div>
+  <table><tr><th>Candidate</th><th>Gain in source slides</th></tr><tr><td>Humidity</td><td><b>0.971</b></td></tr><tr><td>Temperature</td><td><b>0.571</b></td></tr><tr><td>Windy</td><td><b>0.020</b></td></tr></table>
+  <p>Humidity is perfect here: Sunny+High → all No; Sunny+Normal → all Yes.</p>
+<pre class="tree">Outlook
+├─ Sunny → Humidity
+│  ├─ High → NO
+│  └─ Normal → YES
+├─ Overcast → YES
+└─ Rainy → ?</pre>
+ </div></details>
+
+ <details open><summary>Step 4 · Rainy subset → choose Windy</summary><div>
+  <p>Rainy rows: 5 total, Yes=3, No=2.</p>
+  <div class="formula">Entropy(Rainy)=<b>0.971</b></div>
+  <table><tr><th>Candidate</th><th>Gain in source slides</th></tr><tr><td>Windy</td><td><b>0.971</b></td></tr><tr><td>Humidity</td><td><b>0.020</b></td></tr><tr><td>Temperature</td><td><b>0.020</b></td></tr></table>
+  <p>Windy perfectly separates the Rainy subset: Weak → Yes; Strong → No.</p>
+ </div></details>
+
+ <div class="card exam-hot">
+  <h3>Final decision tree</h3>
+<pre class="tree">Outlook
+├─ Sunny
+│  └─ Humidity
+│     ├─ High   → NO
+│     └─ Normal → YES
+├─ Overcast     → YES
+└─ Rainy
+   └─ Windy
+      ├─ Weak   → YES
+      └─ Strong → NO</pre>
+ </div>
+
+ <div class="lab" style="margin-top:15px">
+  <h3>ID3 answer stepper</h3><p>Click through exactly what you should write in order.</p>
+  <div class="controls"><button id="id3Step" class="labbtn">Next step</button><b id="id3Title"></b></div>
+  <pre id="id3Text" class="tree" style="white-space:pre-wrap"></pre>
+ </div>
+</section>
+
+<section class="section searchable" id="m5-gini" data-keywords="gini impurity weighted gini decision tree class gender stay hotel">
+ <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Gini impurity · secondary tree criterion in your source</h2><p>Your professor highlighted ID3, but a dedicated Gini PDF is in the bundle, so know the calculation as a backup.</p></div><button class="done" data-topic="m5-gini">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><h3>Node Gini</h3><div class="formula">Gini = 1 − Σ pᵢ²</div><p>Lower = purer. Gini=0 when every sample in the node belongs to one class.</p></div>
+  <div class="card"><h3>Weighted Gini after a split</h3><div class="formula">Gini_split = Σ (|Dj|/|D|)·Gini(Dj)</div><p>Choose the split with the <b>lower weighted Gini</b>.</p></div>
+ </div>
+ <details open><summary>Exact calculation in the supplied Gini file</summary><div>
+  <p>Target Stay in hotel: Yes=8, No=6, N=14.</p>
+  <div class="formula">Gini(root)=1−(8/14)²−(6/14)²≈<b>0.4898 ≈ 0.49</b></div>
+  <p><b>Split by Gender:</b> Male N=8: 5Y,3N → Gini=0.4688. Female N=6: 3Y,3N → Gini=0.5.</p>
+  <div class="formula">Weighted Gini(Gender)=(8/14)(.4688)+(6/14)(.5)=<b>0.4822 ≈ 0.482</b></div>
+  <p><b>Split by Class:</b> source weighted value = <b>0.404</b>. Since 0.404 &lt; 0.482, choose <b>Class</b> as the better split. Source majority leaves: Class 8→Yes, 9→Yes, 10→No, 11→Yes.</p>
+ </div></details>
+</section>
+
+<section class="section searchable" id="m5-knn" data-keywords="KNN nearest neighbor classification regression Euclidean Manhattan hamming standardization k">
+ <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>KNN · compact full-portion backup</h2><p>KNN stores cases and predicts a new case using the nearest cases under a distance/similarity measure.</p></div><button class="done" data-topic="m5-knn">Mark done</button></div>
+ <div class="flow"><div class="step">Choose k</div><div class="arrow">→</div><div class="step">Standardize features when scales differ</div><div class="arrow">→</div><div class="step">Compute distance to all training points</div><div class="arrow">→</div><div class="step">Take k nearest</div><div class="arrow">→</div><div class="step">Classification: majority class · Regression: mean value</div></div>
+ <div class="grid3" style="margin-top:14px">
+  <div class="card"><h3>Euclidean</h3><div class="formula">d=√Σ(xi−yi)²</div></div>
+  <div class="card"><h3>Manhattan</h3><div class="formula">d=Σ|xi−yi|</div></div>
+  <div class="card"><h3>Hamming / categorical</h3><p>Same category → distance 0; different category → 1. Hamming sums mismatches across categorical positions.</p></div>
+ </div>
+ <details><summary>Source regression example idea</summary><div><p>For a missing weight, the KNN slide takes nearest IDs and averages their weights. With k=3, weights 77,72,60 → predicted weight=(77+72+60)/3=<b>69.66 kg</b>. With k=5, the slide gives 65.2 kg.</p><p>The source also shows that too-small k can overfit and too-large k can underfit; the shown validation-error curve reaches its minimum at k=9.</p></div></details>
+</section>
+
+<section class="section searchable" id="m5-bayes" data-keywords="Bayes naive bayes Bayesian belief network BBN conditional probability CPT">
+ <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Bayes and Bayesian Belief Networks · compact backup</h2><p>These are in the supplied classification/BBN material but were not in the professor's stated high-priority list.</p></div><button class="done" data-topic="m5-bayes">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><h3>Bayes classifier</h3><div class="formula">P(H|X)=P(X|H)P(H)/P(X)</div><p>Classification chooses the class with the highest posterior probability. Naïve Bayes makes a conditional-independence assumption across attributes.</p></div>
+  <div class="card"><h3>Bayesian Belief Network</h3><p>Directed acyclic probabilistic graph: nodes are random variables, directed edges represent dependencies, and each node has a conditional probability table given its parents.</p></div>
+ </div>
+ <details open><summary>Exact BBN joint-probability example in the source</summary><div>
+  <p>Find P(P1,P2,A,~B,~F). Using the parent structure:</p>
+  <div class="formula">P(P1|A)·P(P2|A)·P(A|~B,~F)·P(~B)·P(~F)<br>=0.95·0.80·0.001·0.999·0.998≈<b>0.00075</b></div>
+ </div></details>
+</section>
+
+<section class="section searchable" id="m5-clustering" data-keywords="k means dbscan k medoids clustering backup numerical">
+ <div class="section-head"><div class="section-no">M5+</div><div class="section-title"><h2>Clustering backup · K-means, DBSCAN and K-medoids</h2><p>These are substantial files in the bundle. They are not in the professor's stated CAT-2 question list, so this section gives you a usable safety net without stealing revision time from ID3/FP-growth.</p></div><button class="done" data-topic="m5-clustering">Mark done</button></div>
+ <details open><summary>K-means · source algorithm + worked setup</summary><div>
+  <ol class="algo"><li>Choose k nonempty clusters / initial centroids.</li><li>Compute distance of each object to each centroid.</li><li>Assign every object to nearest centroid.</li><li>Recompute each centroid as the mean of the cluster's points.</li><li>Repeat until assignments no longer change.</li></ol>
+  <p>The supplied 8-point example uses <b>Manhattan distance</b> ρ=|x2−x1|+|y2−y1| with initial centers A1(2,10), A4(5,8), A7(1,2). After iteration 1 the clusters are:</p>
+  <div class="formula">C1={A1}<br>C2={A3,A4,A5,A6,A8}<br>C3={A2,A7}</div>
+  <p>New centers: C1=(2,10), C2=(6,6), C3=(1.5,3.5).</p>
+  <p>Source weaknesses: must specify k, sensitive to initial centers/outliers, mean must be defined, and not suitable for non-convex clusters.</p>
+ </div></details>
+ <details open><summary>DBSCAN · exact source result</summary><div>
+  <p>Inputs: dataset D, radius ε, MinPts. Process unvisited point → find ε-neighbors → if neighborhood is dense enough mark core and expand density-reachable points; otherwise it may be noise/border.</p>
+  <p>Source problem: ε=1.9, MinPts=4, 12 points.</p>
+  <div class="formula">Core: <b>P2, P5, P11</b><br>Cluster 1: <b>{P1,P2,P3,P10,P11,P12}</b><br>Cluster 2: <b>{P4,P5,P6,P7,P8}</b><br>Noise: <b>{P9}</b></div>
+  <p>The source counts the point itself toward MinPts: |Nε(p)|+1 ≥ 4.</p>
+ </div></details>
+ <details><summary>K-medoids · Partitioning Around Medoids</summary><div>
+  <p>A medoid is an actual point in the cluster whose total dissimilarity to the others is small. Algorithm: choose k random medoids → assign each point to closest medoid → try swapping a medoid with a non-medoid → recompute total cost → keep the swap only if cost decreases.</p>
+  <p>Source example starts medoids C1=(4,5), C2=(8,5), using Manhattan distance. Initial cost=<b>20</b>. Trying C2=(8,4) gives new cost=<b>22</b>; swap cost=22−20=+2, so undo it. Final medoids remain (4,5) and (8,5).</p>
+ </div></details>
+</section>
+
+<section class="section searchable" id="templates" data-keywords="answer template 10 mark 20 mark professor algorithm formula intermediate tree final">
+ <div class="section-head"><div class="section-no">ANS</div><div class="section-title"><h2>Answer templates · reproduce these shapes in the exam</h2><p>These are not extra syllabus; they are writing structures for the topics above.</p></div><button class="done" data-topic="templates">Mark done</button></div>
+ <div class="grid2">
+  <div class="card exam-hot"><h3>Data reduction · 10-mark style</h3><p><b>Definition → classification/types → explain each type → one source example → normalization/discretization formula if asked → final transformed/bin result.</b></p></div>
+  <div class="card exam-hot"><h3>FP-Growth · 20-mark numerical</h3><p><b>Algorithm → TID table → first-scan support counts → minsup filtering → F-list → reorder every transaction → construct FP-tree incrementally → final tree → conditional bases → conditional FP-trees → frequent patterns.</b></p></div>
+  <div class="card exam-hot"><h3>Performance metrics theory</h3><p><b>Draw confusion matrix → define TP/TN/FP/FN → formulas → denominator interpretation → class-imbalance twist → choose metric based on FP/FN cost → mention model-selection factors if asked.</b></p></div>
+  <div class="card exam-hot"><h3>ID3 · 20-mark numerical</h3><p><b>Write ID3 algorithm → Entropy(S) → every root attribute's weighted entropy + gain → gain comparison table → intermediate tree → repeat on Sunny/Rainy subsets → gains → final tree.</b></p></div>
+ </div>
+</section>
+
+<section class="section searchable" id="drill" data-keywords="quiz rapid drill revision">
+ <div class="section-head"><div class="section-no">Q</div><div class="section-title"><h2>Rapid drill · answer before revealing</h2><p>If you cannot answer one immediately, jump back to that section.</p></div><button class="done" data-topic="drill">Mark done</button></div>
+ <div class="quiz"><div class="q">1. What are the three normalization methods explicitly taught in the preprocessing slides?</div><button class="reveal">Reveal</button><div class="answer">Min–max normalization, z-score normalization, normalization by decimal scaling.</div></div>
+ <div class="quiz"><div class="q">2. Min–max: 73,600 from [12,000,98,000] to [0,1]?</div><button class="reveal">Reveal</button><div class="answer">(73,600−12,000)/(98,000−12,000)=0.716.</div></div>
+ <div class="quiz"><div class="q">3. What is the difference between equal-width and equal-frequency discretization?</div><button class="reveal">Reveal</button><div class="answer">Equal-width fixes interval size; equal-frequency makes the number of observations per bin approximately equal.</div></div>
+ <div class="quiz"><div class="q">4. FP-Growth first-scan counts for I1…I5?</div><button class="reveal">Reveal</button><div class="answer">I1=6, I2=7, I3=6, I4=2, I5=2. Global order used: I2→I1→I3→I4→I5.</div></div>
+ <div class="quiz"><div class="q">5. Reorder T800={I1,I2,I3,I5} for the FP-tree.</div><button class="reveal">Reveal</button><div class="answer">I2,I1,I3,I5.</div></div>
+ <div class="quiz"><div class="q">6. Conditional pattern base for I5?</div><button class="reveal">Reveal</button><div class="answer">{{I2,I1:1},{I2,I1,I3:1}}. With minsup=2, I3 is pruned in the I5 conditional tree.</div></div>
+ <div class="quiz"><div class="q">7. Precision vs recall in one sentence each?</div><button class="reveal">Reveal</button><div class="answer">Precision: of predicted positives, how many are truly positive? Recall: of actual positives, how many did the model find?</div></div>
+ <div class="quiz"><div class="q">8. Why is 96.4% accuracy misleading in the cancer example?</div><button class="reveal">Reveal</button><div class="answer">Because the classes are highly imbalanced; sensitivity is only 30%, so 70% of actual cancer cases are missed despite high overall accuracy.</div></div>
+ <div class="quiz"><div class="q">9. Smaller-sample split rule in the cross-validation slide?</div><button class="reveal">Reveal</button><div class="answer">Approximately 2/3 training/derivation and 1/3 validation/testing.</div></div>
+ <div class="quiz"><div class="q">10. Classification vs numeric prediction?</div><button class="reveal">Reveal</button><div class="answer">Classification predicts categorical/discrete class labels; numeric prediction predicts continuous values.</div></div>
+ <div class="quiz"><div class="q">11. Full PlayTennis entropy before any split?</div><button class="reveal">Reveal</button><div class="answer">Yes=9, No=5 ⇒ Entropy(S)=0.940.</div></div>
+ <div class="quiz"><div class="q">12. Root gains in ID3?</div><button class="reveal">Reveal</button><div class="answer">Outlook 0.247, Temperature 0.029, Humidity 0.152, Windy 0.048 ⇒ Outlook is root.</div></div>
+ <div class="quiz"><div class="q">13. Sunny subtree and Rainy subtree?</div><button class="reveal">Reveal</button><div class="answer">Sunny → Humidity: High No, Normal Yes. Rainy → Windy: Weak Yes, Strong No. Overcast → Yes.</div></div>
+ <div class="quiz"><div class="q">14. Weighted Gini: choose larger or smaller?</div><button class="reveal">Reveal</button><div class="answer">Smaller. In the supplied example Class=0.404 beats Gender=0.482.</div></div>
+ <div class="quiz"><div class="q">15. Source DBSCAN core points at ε=1.9, MinPts=4?</div><button class="reveal">Reveal</button><div class="answer">P2, P5 and P11; P9 is noise.</div></div>
+</section>
+
+<section class="section searchable" id="cheatsheet" data-keywords="cheat sheet formulas final revision handwritten open book">
+ <div class="section-head print-hide"><div class="section-no">✎</div><div class="section-title"><h2>Final handwritten clue sheet</h2><p>This is intentionally compact. Copy/print this after you understand the full chapters above.</p></div><button class="done" data-topic="cheatsheet">Mark done</button></div>
+ <div class="print-hide" style="margin-bottom:11px"><button class="btn primary" onclick="printCheat()">Print only this sheet</button></div>
+ <div class="cheat">
+  <h3>BCSE208L · Data Mining CAT 2 · M3–M5</h3>
+  <div class="cheatcols">
+   <div class="cheatblock"><h4>M3 · Data Reduction</h4><ul><li>PCA: normalize → orthogonal PCs → sort by variance → keep high variance.</li><li>Attribute subset: forward, backward, combined, decision-tree induction.</li><li>Parametric: regression. Numerosity: histogram, clustering, sampling. Also cube aggregation.</li><li>PCA creates new variables; subset selection keeps original variables.</li></ul></div>
+   <div class="cheatblock"><h4>M3 · Normalization</h4><p>Min–max: v'=[(v−min)/(max−min)](newmax−newmin)+newmin. Source: 73,600→0.716.</p><p>Z: (v−μ)/σ. Source: (73,600−54,000)/16,000=1.225.</p><p>Decimal: v/10ʲ; smallest j giving max|v'|&lt;1.</p></div>
+   <div class="cheatblock"><h4>M3 · Discretization</h4><p>Equal-width=fixed interval; equal-frequency≈same count/bin. Also histogram, clustering, supervised tree, ChiMerge. Concept hierarchy replaces low-level values with high-level concepts.</p></div>
+   <div class="cheatblock"><h4>Association</h4><p>Support count = #transactions containing X. Support(X→Y)=count(X∪Y)/N. Confidence=count(X∪Y)/count(X). Apriori: subset of frequent itemset must be frequent.</p></div>
+   <div class="cheatblock"><h4>FP-Growth</h4><p>Scan1 counts → minsup → F-list → reorder transactions → FP-tree with prefix counts → least-frequent suffix → conditional pattern base → conditional FP-tree → patterns.</p><p>Counts: I2=7,I1=6,I3=6,I4=2,I5=2. Order I2→I1→I3→I4→I5.</p><p>I5 base={{I2,I1:1},{I2,I1,I3:1}} → tree I2:2,I1:2.</p></div>
+   <div class="cheatblock"><h4>Metrics</h4><p>Acc=(TP+TN)/All. Prec=TP/(TP+FP). Recall/Sens=TP/(TP+FN). Spec=TN/(TN+FP). F1=2PR/(P+R). Error=(FP+FN)/All. FPR=FP/(FP+TN). FNR=FN/(FN+TP). NPV=TN/(TN+FN). Balanced=(Sens+Spec)/2.</p><p>High accuracy can fail under imbalance: cancer example Accuracy=96.4% but Sensitivity=30%.</p></div>
+   <div class="cheatblock"><h4>Cross-validation in supplied slides</h4><p>Very large sample: ~1/2 training + 1/2 validation. Smaller: ~2/3 training + 1/3 validation. Decision-tree code: 70/30.</p></div>
+   <div class="cheatblock"><h4>Classification / Prediction</h4><p>Classification→categorical class. Numeric prediction→continuous value. Training set constructs model; independent test set evaluates it.</p></div>
+   <div class="cheatblock"><h4>ID3</h4><p>H=−Σpᵢlog₂pᵢ. I(A)=Σ(|Sv|/|S|)H(Sv). Gain=H(S)−I(A). Pick MAX gain recursively.</p><p>Full H=0.940. Root gains: Outlook .247, Temp .029, Humidity .152, Windy .048 ⇒ Outlook.</p><p>Sunny→Humidity (gain .971): High No, Normal Yes. Rainy→Windy (gain .971): Weak Yes, Strong No. Overcast Yes.</p></div>
+   <div class="cheatblock"><h4>Gini backup</h4><p>Gini=1−Σp². Weighted split=Σ(|Dj|/|D|)Gini(Dj). Choose MIN. Source: Class .404 &lt; Gender .482.</p></div>
+   <div class="cheatblock"><h4>KNN / clustering backup</h4><p>KNN: standardize → distances → k nearest → majority for classification / mean for regression.</p><p>K-means: assign nearest centroid → recompute means → repeat. DBSCAN source: core P2,P5,P11; noise P9. K-medoids source cost 20; bad swap cost 22 → undo.</p></div>
+   <div class="cheatblock"><h4>Numerical presentation</h4><p><b>Algorithm → formula → substitution → intermediate table/tree → final answer.</b> For ID3/FP-growth explicitly draw intermediate and final trees.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section searchable" id="sources" data-keywords="source audit uploaded zip source bound files">
+ <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source boundary · what this edition was built from</h2><p>The page uses the uploaded CAT-2 ZIP as its syllabus boundary and your professor's question list as the priority signal.</p></div></div>
+ <div class="card">
+  <p><b>Module 3 / preprocessing:</b> Module-3 material, Data-processing PDF, Data-transformation slides.</p>
+  <p><b>Association / FP:</b> Association Rule Mining, Apriori-and-FP-growth, FP-Growth algorithm decks.</p>
+  <p><b>Classification / metrics:</b> Basic Classification and Performance Analysis, Confusion Matrix deck, Classification Metrics Overview, Linear Regression All Error.</p>
+  <p><b>Decision trees:</b> Decision Tree deck, Gini PDF.</p>
+  <p><b>Additional module safety net:</b> KNN slides/PDF, Bayesian Belief Network, K-means, K-medoids and DBSCAN files.</p>
+  <div class="callout warn"><strong>Known scope gap</strong>The source lists cross-validation as an accuracy-estimation method but does not teach k-fold arithmetic. The only concrete split rules in the supplied materials are half/half for very large samples, 2/3–1/3 for smaller samples, and a 70/30 train_test_split code example. The site does not silently add an unrelated k-fold syllabus.</div>
+ </div>
+</section>
+
+</div>
+<footer class="footer">Data Mining CAT 2 · source-bound final study site · Modules 3–5 · progress is stored locally in your browser.</footer>
+</main>
+</div>
+<script src="cat2.js"></script>
+<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("../../../sw.js").catch(function(){})</script>
+</body>
+</html>
