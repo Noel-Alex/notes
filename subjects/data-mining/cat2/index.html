@@ -940,6 +940,19 @@ labels = KMeans(n_clusters=2, random_state=42).fit_predict(X)</pre></div>
  <details><summary>DBSCAN concepts beyond the final cluster answer</summary><div>
   <p>DBSCAN measures density by the number of objects within ε. <b>Core</b> points have dense neighborhoods; clusters are formed by connecting core points and density-reachable neighbors. <b>Border</b> points are not core but lie in a core neighborhood; <b>noise</b> does not become density-reachable from a cluster.</p>
   <p>The later PDF gives the exact ε-neighbor table, core points P2/P5/P11, two final clusters and P9 as noise, as already reproduced above.</p>
+ </div></details>
+ <details open><summary>Euclidean medicine example · full source iteration</summary><div>
+  <p>The FALL K-means deck uses A=(1,1), B=(2,1), C=(4,3), D=(5,4), with initial centroids c₁=A=(1,1), c₂=B=(2,1).</p>
+  <p><b>Initial distances:</b></p>
+  <div class="formula">to c₁: A=0, B=1, C≈3.61, D=5<br>to c₂: A=1, B=0, C≈2.83, D≈4.24</div>
+  <p>Initial assignment: C₁={A}; C₂={B,C,D}. New centroids:</p>
+  <div class="formula">c₁=(1,1)<br>c₂=((2+4+5)/3,(1+3+4)/3)=(11/3,8/3)</div>
+  <p>After recomputing distances, B moves to cluster 1, so C₁={A,B}, C₂={C,D}. New centroids:</p>
+  <div class="formula">c₁=(1.5,1)<br>c₂=(4.5,3.5)</div>
+  <p>Next distance round gives A/B nearest c₁ and C/D nearest c₂ again, so assignments no longer change. <b>Final clusters: {A,B} and {C,D}.</b></p>
+ </div></details>
+ <details><summary>Choosing k · source elbow idea</summary><div>
+  <p>The K-means deck says to try different k values and inspect the average distance to the centroid as k increases. It falls rapidly until a suitable k and then improves only slightly. That “rapid improvement then flattening” point is the preferred k in the source illustration.</p>
  </div></details></section>
 
 <section class="section searchable" id="templates" data-keywords="answer template 10 mark 20 mark professor algorithm formula intermediate tree final">
@@ -989,6 +1002,7 @@ labels = KMeans(n_clusters=2, random_state=42).fit_predict(X)</pre></div>
    <div class="cheatblock"><h4>Gini backup</h4><p>Gini=1−Σp². Weighted split=Σ(|Dj|/|D|)Gini(Dj). Choose MIN. Source: Class .404 &lt; Gender .482.</p></div>
    <div class="cheatblock"><h4>KNN / clustering backup</h4><p>KNN: standardize → distances → k nearest → majority for classification / mean for regression.</p><p>K-means: assign nearest centroid → recompute means → repeat. DBSCAN source: core P2,P5,P11; noise P9. K-medoids source cost 20; bad swap cost 22 → undo.</p></div>
    <div class="cheatblock"><h4>Numerical presentation</h4><p><b>Algorithm → formula → substitution → intermediate table/tree → final answer.</b> For ID3/FP-growth explicitly draw intermediate and final trees.</p></div>
+   <div class="cheatblock"><h4>ZIP safety-net reminders</h4><p>Compression: lossless vs lossy; DWT/wavelet is explicitly in preprocessing. Closed pattern=no same-support frequent superset; maximal=no frequent superset. C4.5 uses GainRatio=Gain/SplitInfo; CART chooses min weighted Gini. Naïve Bayes: prior×likelihood, Laplace fixes zeros. Ensembles: bagging=bootstrap+vote; boosting=reweight errors; RF=randomized trees. BBN=DAG+CPT+joint product. KNN is lazy/instance-based. Clustering ZIP also contains Euclidean/Manhattan/Chebyshev/cosine/correlation/Mahalanobis/Minkowski distances.</p></div>
   </div>
  </div>
 </section>
