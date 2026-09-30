@@ -76,5 +76,53 @@
       "k-medoids"
     ],
     "status": "ready"
+  },
+  {
+    "id": "deep-learning-cat2-m3-m5",
+    "subject": "deep-learning",
+    "subject_name": "Deep Learning",
+    "exam": "cat2",
+    "exam_name": "CAT 2",
+    "title": "Modules 3–5 · Complete Exam Command Center",
+    "path": "subjects/deep-learning/cat2/",
+    "modules": [
+      3,
+      4,
+      5
+    ],
+    "keywords": [
+      "cnn",
+      "convolution",
+      "padding",
+      "stride",
+      "pooling",
+      "parameter count",
+      "lenet",
+      "alexnet",
+      "vgg",
+      "googlenet",
+      "inception",
+      "resnet",
+      "rnn",
+      "bptt",
+      "bidirectional rnn",
+      "autoencoder",
+      "variational autoencoder",
+      "denoising autoencoder",
+      "seq2seq",
+      "deep rnn",
+      "bert",
+      "masked language modeling",
+      "next sentence prediction",
+      "recursive neural network",
+      "echo state network",
+      "lstm",
+      "gru",
+      "vanishing gradient",
+      "exploding gradient",
+      "gradient clipping",
+      "explicit memory"
+    ],
+    "status": "ready"
   }
 ]
