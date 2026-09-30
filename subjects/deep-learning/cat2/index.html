@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#211a46">
+<title>Deep Learning CAT 2 · Modules 3, 4 & 5 · Final Study Site</title>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="cat2.css">
+</head>
+<body>
+<div class="mobilebar"><b>Deep Learning CAT 2</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="eyebrow">BCSE332L · CAT 2 · FINAL ZIP-ONLY EDITION</div>
+    <h2>Deep Learning<br>Exam Command Center</h2>
+    <p>Modules 3 · 4 · 5</p>
+  </div>
+  <input id="search" class="search" placeholder="Search: BPTT, LSTM, ResNet…">
+  <div class="progress"><div class="progress-row"><span>Study coverage</span><b id="ptext">0 / 0</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
+  <div class="nav-group">Start here</div>
+  <a class="nav-link hot" href="#exam-map"><i class="dot"></i>What to master</a>
+  <a class="nav-link" href="#source-rule"><i class="dot"></i>Source boundary</a>
+  <div class="nav-group">Module 3 · CNNs</div>
+  <a class="nav-link hot" href="#m3-foundations"><i class="dot"></i>CNN foundations</a>
+  <a class="nav-link hot" href="#m3-convolution"><i class="dot"></i>Convolution · output size</a>
+  <a class="nav-link hot" href="#m3-pooling"><i class="dot"></i>Pooling · activation · flatten</a>
+  <a class="nav-link hot" href="#m3-parameters"><i class="dot"></i>Parameter numerical</a>
+  <a class="nav-link hot" href="#m3-architectures"><i class="dot"></i>LeNet → ResNet</a>
+  <a class="nav-link" href="#m3-complete"><i class="dot"></i>M3 full coverage</a>
+  <div class="nav-group">Module 4 · Sequence models</div>
+  <a class="nav-link hot" href="#m4-rnn"><i class="dot"></i>RNN fundamentals</a>
+  <a class="nav-link hot" href="#m4-rnn-numerical"><i class="dot"></i>RNN numerical</a>
+  <a class="nav-link hot" href="#m4-bptt"><i class="dot"></i>BPTT full numerical</a>
+  <a class="nav-link" href="#m4-brnn"><i class="dot"></i>Bidirectional RNN</a>
+  <a class="nav-link" href="#m4-autoencoder"><i class="dot"></i>Autoencoders</a>
+  <a class="nav-link" href="#m4-seq2seq"><i class="dot"></i>Seq2Seq</a>
+  <a class="nav-link" href="#m4-deeprnn"><i class="dot"></i>Deep RNN</a>
+  <a class="nav-link hot" href="#m4-bert"><i class="dot"></i>BERT · MLM · NSP</a>
+  <div class="nav-group">Module 5 · Long memory</div>
+  <a class="nav-link" href="#m5-recursive"><i class="dot"></i>Recursive NN</a>
+  <a class="nav-link hot" href="#m5-longterm"><i class="dot"></i>Long-term dependencies</a>
+  <a class="nav-link" href="#m5-esn"><i class="dot"></i>Echo State Networks</a>
+  <a class="nav-link hot" href="#m5-lstm"><i class="dot"></i>LSTM · all gates</a>
+  <a class="nav-link hot" href="#m5-gru"><i class="dot"></i>GRU · formulas</a>
+  <a class="nav-link" href="#m5-optimization"><i class="dot"></i>Optimization · memory</a>
+  <div class="nav-group">Final pass</div>
+  <a class="nav-link hot" href="#numericals"><i class="dot"></i>Numerical master desk</a>
+  <a class="nav-link" href="#comparisons"><i class="dot"></i>Comparison tables</a>
+  <a class="nav-link" href="#drill"><i class="dot"></i>Rapid drill</a>
+  <a class="nav-link hot" href="#cheatsheet"><i class="dot"></i>Printable clue sheet</a>
+  <a class="nav-link" href="#audit"><i class="dot"></i>14-file coverage audit</a>
+  <div class="side-actions"><button onclick="document.querySelector('#exam-map').scrollIntoView()">Top</button><button onclick="printCheat()">Print sheet</button></div>
+</aside>
+
+<main class="main">
+<div class="portalbar"><div class="crumb"><a href="../../../">NOTES</a><span>›</span><a href="../">Deep Learning</a><span>›</span><b>CAT 2</b></div><a href="../">Subject home →</a></div>
+
+<header class="hero">
+  <div class="eyebrow">DEEP LEARNING · CAT 2 · MODULES 3–5 · ZIP-ONLY FINAL EDITION</div>
+  <h1>See the shape.<br>Follow the state.<br>Show the math.</h1>
+  <p class="dek"><b>This page is meant to replace the ZIP for revision.</b> I audited the 14 files inside the Deep Learning ZIP only. Module 3 is CNNs and major CNN architectures; Module 4 is RNN/BPTT plus BRNN, autoencoders, Seq2Seq, deep RNNs and BERT; Module 5 is long-term dependency machinery—RecNN, ESN, LSTM, GRU and optimization. Numericals are worked in the same order the slides use.</p>
+  <div class="mark-grid">
+    <div class="mark hot"><b>M3</b><span>CNN operations · dimensions · parameters · architectures</span></div>
+    <div class="mark hot"><b>M4</b><span>RNN · BPTT · BRNN · Autoencoder · Seq2Seq · Deep RNN · BERT</span></div>
+    <div class="mark hot"><b>M5</b><span>Long dependencies · ESN · LSTM · GRU · optimization</span></div>
+  </div>
+  <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('#exam-map').scrollIntoView()">Start the master route</button><button class="btn ghost" onclick="document.querySelector('#numericals').scrollIntoView()">Numericals first</button><button class="btn ghost" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
+</header>
+
+<div class="content">
+
+<section class="section searchable" id="exam-map" data-keywords="exam map module 3 4 5 study order">
+ <div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>The route I would use tonight</h2><p>You did not give a professor leak/list this time, so the page weights the topics by how much the ZIP itself develops them and how numerical/diagram-heavy they are.</p></div><button class="done" data-topic="exam-map">Mark done</button></div>
+ <div class="grid3">
+  <div class="card exam-hot"><span class="tag hot">Module 3</span><h3>CNN mechanics + architecture numericals</h3><p>Be able to calculate convolution/pooling output dimensions, count trainable parameters, explain padding/stride/pooling/flattening, and compare LeNet, AlexNet, VGG, GoogLeNet and ResNet.</p></div>
+  <div class="card exam-hot"><span class="tag hot">Module 4</span><h3>RNN forward pass + BPTT</h3><p>The current slides contain an explicit 3-step RNN forward numerical and an explicit 2-step BPTT gradient/weight-update numerical. These are high-value revision targets.</p></div>
+  <div class="card exam-hot"><span class="tag hot">Module 5</span><h3>LSTM + GRU gates</h3><p>Know every gate, its purpose, the equations shown in the slides, the cell/hidden-state flow, LSTM vs GRU, vanishing/exploding gradients, gradient clipping and explicit memory.</p></div>
+ </div>
+ <div class="callout good"><strong>Exam-writing habit</strong>For a numerical: write the architecture/equation first → substitute values → calculate each time step/layer → show intermediate dimensions/states → box the final output, class, parameter count or updated weights. For architecture questions, draw the data flow and then annotate what each block solves.</div>
+</section>
+
+<section class="section searchable source-bound" id="source-rule" data-keywords="source only zip audit boundary">
+ <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source boundary · Deep Learning ZIP only</h2><p>The site is intentionally isolated from EDA, Data Mining, Compiler Design and outside web material.</p></div><button class="done" data-topic="source-rule">Mark done</button></div>
+ <div class="callout dark"><strong>What “complete” means here</strong>The current Fall-2026 Module 3/4/5 files are treated as the main course presentation. Older WIN/SUM semester files inside the same ZIP are used only to capture extra worked examples, code snippets or slide details that are still clearly the same modules. If two supplied slides use slightly different counting conventions, the page tells you rather than silently choosing one.</div>
+</section>
+
+<section class="section searchable exam-hot" id="m3-foundations" data-keywords="module 3 cnn convolution neural network image channels local connectivity weight sharing ann limitations">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>CNN foundations · why convolution exists</h2><p>Module 3 begins by contrasting ordinary fully connected ANNs with image structure, then builds the CNN layer stack from local connectivity and weight sharing.</p></div><button class="done" data-topic="m3-foundations">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><h3>Image representation</h3><p>Grayscale images are 2-D arrays; color images use multiple channels such as RGB. Each spatial cell stores intensity/value information. The slides use dimensions such as 28×28×1 and 100×100×3.</p></div>
+  <div class="card"><h3>Why plain ANN is inefficient</h3><p>Flattening a large image directly into a dense network creates huge parameter counts and ignores local spatial structure such as edges, corners and textures.</p></div>
+  <div class="card"><h3>CNN solution</h3><p><b>Local connectivity:</b> a filter sees a small receptive field. <b>Weight sharing:</b> the same filter weights slide across locations. This lets one learned detector search the entire image.</p></div>
+ </div>
+
+ <div class="neuron-flow">
+  <div class="neuron">Input image<br><b>H×W×C</b></div><div class="arrow">→</div>
+  <div class="neuron">Convolution<br><b>features</b></div><div class="arrow">→</div>
+  <div class="neuron">Activation<br><b>non-linearity</b></div><div class="arrow">→</div>
+  <div class="neuron">Pooling<br><b>downsample</b></div><div class="arrow">→</div>
+  <div class="neuron">Flatten<br><b>1-D vector</b></div><div class="arrow">→</div>
+  <div class="neuron">Fully connected<br><b>reason/classify</b></div><div class="arrow">→</div>
+  <div class="neuron">Softmax / output<br><b>prediction</b></div>
+ </div>
+
+ <details open><summary>Kernel / filter · what it actually does</summary><div>
+  <p>The smaller WIN slides define a kernel as a small learned weight matrix that slides over the input. At every location:</p>
+  <ol class="algo"><li>Place the kernel over a local region.</li><li>Multiply input and kernel values element-by-element.</li><li>Sum the products.</li><li>Store that scalar in the output feature map.</li><li>Slide to the next valid location and repeat.</li></ol>
+  <p>Different kernels can act as edge/texture/shape detectors. The source names simple edge filters, Sobel kernels, Gaussian-blur kernels and pooling kernels as examples of filter ideas; CNN convolution kernels are learned during training.</p>
+ </div></details>
+
+ <details><summary>RGB convolution + multiple filters</summary><div>
+  <p>For an RGB input, a convolution filter spans all input channels: e.g. a 3×3 spatial filter over RGB is 3×3×3. The dot product across the full depth produces one scalar per spatial position.</p>
+  <p>If one filter produces one feature-map channel, then <b>K filters produce K output channels</b>. The source example states that if a 6×6 input convolved with 3×3 gives a 4×4 spatial map, then 10 filters give <b>4×4×10</b>.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m3-convolution" data-keywords="convolution output size padding stride same valid filter feature map numerical">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Convolution, padding and stride · calculate dimensions without hesitation</h2><p>This is one of the most mechanical—and easiest to score—parts of Module 3.</p></div><button class="done" data-topic="m3-convolution">Mark done</button></div>
+
+ <div class="formula">Spatial output used throughout the slides: <b>O = ((N + 2P − F) / S) + 1</b><br>N=input size · P=padding · F=filter size · S=stride</div>
+ <div class="callout warn"><strong>Rectangular inputs</strong>Apply the same relation independently to height and width. The WIN slide's 6×7 input, 3×3 kernel, stride 2 example produces a 2×3 map.</div>
+
+ <div class="grid3">
+  <div class="card"><h3>No padding · stride 1</h3><p>6×6 input, 3×3 filter:</p><div class="formula">6−3+1=<b>4</b> ⇒ 4×4</div><p>Repeated valid convolution shrinks spatial size and can lose border information.</p></div>
+  <div class="card"><h3>Padding</h3><p>6×6 input, 3×3 filter, P=1:</p><div class="formula">6+2(1)−3+1=<b>6</b> ⇒ 6×6</div><p>Padding preserves border participation and can preserve spatial size.</p></div>
+  <div class="card"><h3>Stride</h3><p>Stride is how many pixels the filter moves each step. Larger stride downsamples more aggressively and reduces compute/memory.</p></div>
+ </div>
+
+ <table style="margin-top:14px"><tr><th>Padding type</th><th>What the source says</th><th>Typical result at stride 1</th></tr><tr><td><b>SAME</b></td><td>Zeros are added around the input.</td><td>Output spatial size maintained.</td></tr><tr><td><b>VALID</b></td><td>No padding; filter used only where it fully fits.</td><td>Output smaller than input.</td></tr></table>
+
+ <details open><summary>Current Module-3 example · 32×32×3, 5×5, 6 filters</summary><div>
+  <p><b>Without padding:</b> N=32,F=5,S=1,P=0 → 28×28 spatial size. Six filters → <b>28×28×6</b>.</p>
+  <p><b>With P=2:</b> (32+4−5)+1=32 → <b>32×32×6</b>.</p>
+ </div></details>
+
+ <div class="lab">
+  <h3>Convolution dimension + parameter calculator</h3>
+  <p>Use it to check your hand arithmetic. The “source preset” is Layer A of the 100×100×3 parameter numerical.</p>
+  <div class="controls">
+    <label>H <input id="inH" value="32"></label><label>W <input id="inW" value="32"></label><label>Cin <input id="inC" value="3"></label>
+    <label>Fh <input id="fH" value="5"></label><label>Fw <input id="fW" value="5"></label><label>filters <input id="outC" value="6"></label>
+    <label>P <input id="pad" value="0"></label><label>S <input id="stride" value="1"></label>
+    <button id="convCalc" class="labbtn">Calculate</button><button id="convPreset" class="labbtn">100×100 source preset</button>
+  </div>
+  <div id="convOut" class="metric-grid"></div>
+ </div>
+</section>
+
+<section class="section searchable" id="m3-pooling" data-keywords="pooling max average l2 relu activation flatten fully connected softmax">
+ <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Pooling, activation, flatten and fully connected layers</h2><p>Know what each layer changes: spatial dimensions, values, vector shape—or trainable parameters.</p></div><button class="done" data-topic="m3-pooling">Mark done</button></div>
+
+ <div class="grid4">
+  <div class="card"><h3>Max pooling</h3><p>Reports the maximum in each local neighborhood. The source calls this the most common pooling operation.</p></div>
+  <div class="card"><h3>Average pooling</h3><p>Averages a neighborhood. The WIN slides say it retains more of the less-dominant information and can improve noise robustness.</p></div>
+  <div class="card"><h3>L2-norm pooling</h3><p>WIN pooling deck: square-root of the sum of squares inside the neighborhood; listed as a way to highlight important features and improve noise robustness.</p></div>
+  <div class="card"><h3>Weighted pooling</h3><p>The same deck also names weighted averaging based on distance from the central pixel.</p></div>
+ </div>
+
+ <details open><summary>Exact max-pooling example</summary><div>
+  <p>Input 4×4:</p>
+  <pre class="tree">3 1 1 3
+2 5 0 2
+1 4 2 1
+4 7 2 4</pre>
+  <p>With 2×2 max pooling, stride 2, the four neighborhoods produce:</p>
+  <pre class="tree">5 3
+7 4</pre>
+  <p>For multi-channel feature maps, pooling is applied spatially per channel; the source illustrates <b>8×8×3 → 4×4×3</b>.</p>
+ </div></details>
+
+ <div class="grid3">
+  <div class="card"><h3>Why pooling?</h3><p>Downsampling reduces compute and memory, shortens training, controls overfitting, and provides some invariance to small translations/scale changes.</p></div>
+  <div class="card"><h3>Pooling drawbacks</h3><p>The source lists information loss and reduced spatial resolution; it warns that architecture choices must balance compression against fine detail.</p></div>
+  <div class="card"><h3>Trainable params</h3><p>Max/average pooling have <b>0 trainable weights/biases</b>. They aggregate; they do not learn parameters.</p></div>
+ </div>
+
+ <div class="lab" style="margin-top:16px">
+  <h3>Pooling output calculator</h3>
+  <div class="controls"><label>H <input id="pH" value="102"></label><label>W <input id="pW" value="102"></label><label>C <input id="pC" value="10"></label><label>pool <input id="pF" value="2"></label><label>stride <input id="pS" value="2"></label><label>pad <input id="pP" value="0"></label><button id="poolCalc" class="labbtn">Calculate</button></div>
+  <div id="poolOut" class="metric-grid"></div>
+ </div>
+
+ <details open><summary>Non-linearity · functions named in the CNN slides</summary><div>
+  <table><tr><th>Function</th><th>Source-level idea</th></tr>
+   <tr><td><b>ReLU</b></td><td>Most common CNN non-linearity; output max(0,x).</td></tr>
+   <tr><td><b>Sigmoid</b></td><td>Output lies between 0 and 1; often associated with output prediction in the slides.</td></tr>
+   <tr><td><b>tanh</b></td><td>Output lies between −1 and 1; the slides associate it mainly with hidden layers / older CNN architectures.</td></tr>
+   <tr><td><b>Leaky ReLU</b></td><td>Allows a small negative response instead of killing all negative inputs.</td></tr>
+   <tr><td><b>ELU</b></td><td>Uses a negative exponential response for negative inputs; presented as another expressive ReLU-family choice.</td></tr>
+  </table>
+  <p>Without a non-linearity, stacked convolution operations remain linear and cannot represent the complex mappings the CNN needs.</p>
+ </div></details>
+
+ <details open><summary>Flatten → Fully Connected → Output</summary><div>
+  <p><b>Flatten:</b> reshapes H×W×C feature maps into a 1-D vector; it has <b>0 trainable parameters</b>.</p>
+  <p><b>Fully connected:</b> every input neuron connects to every output neuron; the last dense representation performs high-level reasoning/classification.</p>
+  <p><b>Output:</b> the current Module-3 slides mention SVM/hinge-loss or Softmax/cross-entropy classification. For a C-class softmax output, the final layer has C output units.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m3-parameters" data-keywords="cnn parameters numerical 100x100 filters fully connected total 139820">
+ <div class="section-head"><div class="section-no">M3#</div><div class="section-title"><h2>CNN parameter-count numerical · full source problem</h2><p>The current 179-page Module-3 PDF gives an explicit A→F network and calculates every output shape and trainable parameter count.</p></div><button class="done" data-topic="m3-parameters">Mark done</button></div>
+
+ <div class="formula"><b>Conv params</b> = (Fh × Fw × input_channels + 1 bias) × number_of_filters</div>
+ <div class="formula"><b>FC params</b> = input_neurons × output_neurons + output_neurons = output_neurons × (input_neurons + 1)</div>
+ <div class="callout good"><strong>Zero-parameter layers in the source table</strong>ReLU, pooling, flatten and the softmax operation itself have no trainable weights in this counting scheme.</div>
+
+ <p><b>Given:</b> input 100×100×3; convolution stride 1; pooling stride 2; output classes 10.</p>
+ <table>
+  <tr><th>Layer</th><th>Operation</th><th>Output</th><th>Parameter work</th><th>Params</th></tr>
+  <tr><td><b>A · C1</b></td><td>3×3 conv, 10 filters, P=2</td><td>102×102×10</td><td>(3×3×3+1)×10</td><td><b>280</b></td></tr>
+  <tr><td><b>B · C2</b></td><td>5×5 conv, 10 filters, P=2</td><td>102×102×10</td><td>(5×5×10+1)×10</td><td><b>2,510</b></td></tr>
+  <tr><td><b>C · P1</b></td><td>2×2 max-pool, S=2</td><td>51×51×10</td><td>no weights</td><td><b>0</b></td></tr>
+  <tr><td><b>D · C3</b></td><td>3×3 conv, 20 filters, P=2</td><td>53×53×20</td><td>(3×3×10+1)×20</td><td><b>1,820</b></td></tr>
+  <tr><td><b>E · P2</b></td><td>2×2 max-pool, S=2</td><td>26×26×20</td><td>no weights</td><td><b>0</b></td></tr>
+  <tr><td><b>F · FC1</b></td><td>Flatten → 10 neurons</td><td>10</td><td>26×26×20=13,520 inputs; 13,520×10+10</td><td><b>135,210</b></td></tr>
+ </table>
+ <div class="formula">Total = 280 + 2,510 + 0 + 1,820 + 0 + 135,210 = <b>139,820 parameters</b></div>
+
+ <details><summary>Why fully connected layers can dominate parameter count</summary><div><p>The source numerical makes this obvious: the convolution layers together use only thousands of parameters, while flattening 13,520 activations into a dense 10-unit layer alone creates 135,210 parameters. The architecture slides repeatedly point out that late FC layers can be parameter-heavy.</p></div></details>
+
+ <details><summary>AlexNet micro-numerical in the current slides</summary><div>
+  <p>Input 227×227×3. CONV1 has 96 filters of size 11×11, stride 4, pad 0:</p>
+  <div class="formula">(227−11)/4+1 = <b>55</b> ⇒ output <b>55×55×96</b></div>
+  <p>The slides show about <b>35K weights</b> for this convolution using (11×11×3)×96; the detailed summary table lists 34,944 when biases are included.</p>
+  <p>POOL1 uses 3×3, stride 2:</p><div class="formula">(55−3)/2+1 = <b>27</b> ⇒ 27×27×96 · parameters = <b>0</b></div>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m3-architectures" data-keywords="lenet alexnet vgg googlenet inception resnet architectures comparison">
+ <div class="section-head"><div class="section-no">M3A</div><div class="section-title"><h2>Major CNN architectures · understand the innovation chain</h2><p>Do not memorize five disconnected diagrams. Learn what problem each architecture changed.</p></div><button class="done" data-topic="m3-architectures">Mark done</button></div>
+
+ <div class="arch-strip">
+  <div class="arch"><b>LeNet-5</b><span>classic conv→pool template</span></div>
+  <div class="arch"><b>AlexNet</b><span>deep CNN wins ImageNet</span></div>
+  <div class="arch"><b>VGG</b><span>small 3×3 filters, deeper</span></div>
+  <div class="arch"><b>GoogLeNet</b><span>parallel multi-scale Inception</span></div>
+  <div class="arch"><b>ResNet</b><span>skip connections enable depth</span></div>
+ </div>
+
+ <div class="controls"><button class="labbtn" data-arch="LeNet-5">LeNet-5</button><button class="labbtn" data-arch="AlexNet">AlexNet</button><button class="labbtn" data-arch="VGG">VGG</button><button class="labbtn" data-arch="GoogLeNet">GoogLeNet</button><button class="labbtn" data-arch="ResNet">ResNet</button></div>
+ <div id="archOut"></div>
+
+ <details open><summary>LeNet-5 · the exact source summary</summary><div>
+  <p>Introduced by Yann LeCun (1998), designed for handwritten digit recognition/MNIST. The source describes it as the early template: convolution + pooling repeated, then dense classification.</p>
+  <table><tr><th>Layer</th><th>Feature map / units</th><th>Activation</th><th>Source params</th></tr>
+   <tr><td>Input</td><td>32×32×1</td><td>—</td><td>0</td></tr>
+   <tr><td>C1</td><td>28×28×6 · 5×5</td><td>tanh</td><td>156</td></tr>
+   <tr><td>S2 avg-pool</td><td>14×14×6</td><td>tanh</td><td>12 in source table</td></tr>
+   <tr><td>C3</td><td>10×10×16 · 5×5</td><td>tanh</td><td>1,516</td></tr>
+   <tr><td>S4 avg-pool</td><td>5×5×16</td><td>tanh</td><td>32 in source table</td></tr>
+   <tr><td>C5</td><td>1×1×120 · 5×5</td><td>tanh</td><td>48,120</td></tr>
+   <tr><td>F6</td><td>84</td><td>tanh</td><td>10,164</td></tr>
+   <tr><td>Output</td><td>10</td><td>RBF/Softmax</td><td>850</td></tr>
+  </table>
+  <p>The “5” in LeNet-5 is explained in the current PDF as the number of trainable weight layers.</p>
+ </div></details>
+
+ <details open><summary>AlexNet · what changed</summary><div>
+  <p>2012 ImageNet winner; current slides use input 227×227×3 and the simplified chain:</p>
+  <div class="formula">CONV1 96@11×11,S4 → POOL → NORM → CONV2 256@5×5 → POOL/NORM → CONV3 384@3×3 → CONV4 384 → CONV5 256 → POOL → FC6 4096 → FC7 4096 → FC8 1000</div>
+  <p>Features emphasized across the ZIP: <b>ReLU</b>, overlapping max-pooling, local response normalization in the original architecture, heavy data augmentation, dropout/L2-type regularization in the older deck, SGD+momentum, and distributed two-GPU training.</p>
+  <div class="callout warn"><strong>Counting convention inside the ZIP</strong>The older WIN slide calls AlexNet “7 layers (5 Conv + 2 FC)” because it treats the final output separately; the current PDF lists 5 convolution + 3 fully connected (FC6, FC7, FC8). For an exam, describe the actual layer chain and you avoid the naming ambiguity.</div>
+ </div></details>
+
+ <details open><summary>VGG · why stacks of 3×3?</summary><div>
+  <p>VGG-16/VGG-19 use a simple sequential pattern: mostly <b>3×3 convolution, stride 1, pad 1</b>, with <b>2×2 max-pooling, stride 2</b>.</p>
+  <p>The source's key reasoning: three stacked 3×3 stride-1 convolutions have an effective receptive field of <b>7×7</b>, but give more non-linearities and fewer parameters than one 7×7 layer at the same channel width.</p>
+  <p>The PDF states VGG is parameter/memory heavy—about <b>138M parameters</b> for VGG-16, with early convolution activations dominating memory and late FC layers dominating parameter count.</p>
+ </div></details>
+
+ <details open><summary>GoogLeNet / Inception · parallel filters + bottlenecks</summary><div>
+  <p>An Inception module applies several operations <b>in parallel</b>—1×1, 3×3, 5×5 convolutions and pooling—then concatenates outputs depth-wise. This captures features at multiple scales.</p>
+  <p>Naively doing all branches is expensive. The source therefore inserts <b>1×1 bottleneck convolutions</b> before larger filters to reduce channel depth. A 1×1 conv preserves spatial H×W while projecting depth.</p>
+  <p>Current slides give an example reducing a naive Inception block from about <b>854M operations</b> to about <b>358M operations</b> after bottlenecks.</p>
+  <p>GoogLeNet also uses global average pooling instead of large FC stacks and auxiliary classifiers to inject gradients into lower layers. The slides quote roughly 5–6.8M parameters depending on the summary slide.</p>
+ </div></details>
+
+ <details open><summary>ResNet · residual learning</summary><div>
+  <div class="formula"><b>Residual block:</b> y = F(x) + x</div>
+  <p>As networks become very deep, the slides emphasize vanishing gradients and the <b>degradation problem</b>. Skip/identity connections create a direct path for information/gradients and make very deep networks easier to optimize.</p>
+  <p>Source architecture points: stack residual blocks; a basic block uses two 3×3 conv layers; periodically downsample with stride 2 while increasing filters; use global average pooling near the end; common depths include 18,34,50,101,152.</p>
+ </div></details>
+
+ <table>
+  <tr><th>Feature</th><th>VGG</th><th>GoogLeNet</th><th>ResNet</th></tr>
+  <tr><td>Main objective</td><td>Simple deeper CNN</td><td>Accuracy with less computation</td><td>Train very deep networks</td></tr>
+  <tr><td>Building block</td><td>3×3 conv stack</td><td>Inception module</td><td>Residual block</td></tr>
+  <tr><td>Topology</td><td>Sequential</td><td>Parallel branches</td><td>Sequential blocks + skips</td></tr>
+  <tr><td>Skip connection</td><td>No</td><td>No</td><td><b>Yes</b></td></tr>
+  <tr><td>Source complexity summary</td><td>Highest memory/ops</td><td>Most efficient</td><td>Moderate-to-high efficiency, strongest accuracy in comparison</td></tr>
+ </table>
+</section>
+
+<section class="section searchable" id="m3-complete" data-keywords="module 3 complete applications stacking forward backprop cnn advantages disadvantages code">
+ <div class="section-head"><div class="section-no">M3Σ</div><div class="section-title"><h2>Module 3 safety net · the rest of the ZIP</h2><p>Once the mechanics and five architectures above are solid, sweep these remaining source points.</p></div><button class="done" data-topic="m3-complete">Mark done</button></div>
+ <details open><summary>Stacking convolutional layers</summary><div><p>Earlier layers learn primitive patterns such as edges; deeper layers combine them into shapes and object-level features. Benefits named in the WIN deck: more complex features, better accuracy and robustness. Challenges: more computation, higher overfitting risk and harder architecture/hyperparameter selection.</p></div></details>
+ <details open><summary>Forward / back propagation in CNN</summary><div><p>The WIN deck's simple CNN is: image → convolution → ReLU → max-pool → flatten → dense output. It explicitly labels backpropagation through <b>convolution, max-pooling and flatten</b>, and notes that convolution/dense weights are the trainable parameters while ReLU/pooling/flatten have no learned weights.</p><p>A tiny source diagram counts <b>15 trainable parameters</b> for a 3×3 convolution (9 weights + bias) followed by a dense connection from a 4-element pooled/flattened vector to one neuron (4 weights + bias).</p></div></details>
+ <details open><summary>CNN advantages / disadvantages</summary><div><p>Advantages emphasized: automatic feature extraction, local connectivity/weight sharing, fewer parameters than naive dense image models, hierarchical features and strong image/spatial performance. Disadvantages/risks include compute/memory cost, architecture tuning and information loss from aggressive downsampling.</p></div></details>
+ <details><summary>Applications listed across Module 3</summary><div><p>Image classification, object/feature recognition, computer vision tasks, medical/image analysis, autonomous/industry use cases and other sectors. The slides also connect CNN feature extractors with transfer learning.</p></div></details>
+ <details><summary>Keras code patterns in the older Module-3 decks</summary><div>
+  <div class="codebox"><button class="copy">Copy</button><pre>model = Sequential()
+model.add(Conv2D(32, (3,3), padding='valid',
+                 activation='relu', input_shape=(28,28,1)))
+model.add(MaxPooling2D(pool_size=(2,2), strides=2))
+model.add(Conv2D(32, (3,3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2,2), strides=2))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dense(10, activation='softmax'))</pre></div>
+  <p>The code is useful mainly as a memory aid for layer order, padding/stride effects and which layers have parameters.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-rnn" data-keywords="module 4 rnn recurrent neural network hidden state types one many many one many to many equation">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>RNN fundamentals · the network carries state through time</h2><p>Module 4 shifts from spatial structure to sequence structure. The defining idea is the hidden state/memory passed from one time step to the next.</p></div><button class="done" data-topic="m4-rnn">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><h3>Why RNN?</h3><p>Feed-forward networks do not naturally carry previous sequence context. RNNs are designed for sequential data such as text, speech, video and time series.</p></div>
+  <div class="card"><h3>Hidden state</h3><p>The current hidden state combines the current input and previous hidden state using shared weights. The same recurrent computation repeats at every time step.</p></div>
+  <div class="card"><h3>Parameter sharing</h3><p>The same input/recurrent/output weight matrices are reused across time, reducing parameter growth relative to giving every time step independent weights.</p></div>
+ </div>
+
+ <div class="formula">hₜ = tanh(Wₕₕ hₜ₋₁ + Wₓₕ xₜ) &nbsp;&nbsp; (bias may be included)</div>
+ <div class="formula">yₜ = Wₕᵧ hₜ &nbsp;&nbsp; (then apply the task's output activation if required)</div>
+
+ <div class="branch">
+  <div><b>One → One</b><br>single input, single output; source example: ordinary image classification.</div>
+  <div><b>One → Many</b><br>single input generates a sequence; image captioning / music generation.</div>
+  <div><b>Many → One</b><br>sequence → one decision; sentiment/language/emotion/spam classification.</div>
+  <div><b>Many → Many</b><br>sequence → sequence; equal length for sequence tagging/NER; unequal length for translation.</div>
+ </div>
+
+ <details><summary>RNN vs CNN in the source</summary><div><p>The Module-4 deck frames RNNs as better suited to temporal/sequential data and CNNs as spatial image models. RNN results feed back into future recurrent computation; CNNs are feed-forward feature extractors with filters/pooling.</p></div></details>
+
+ <details><summary>Applications + limitations</summary><div><p>Applications named include stock/time-series analysis, forecasting, translation, NLP, speech recognition, image captioning and sequence classification. Limitations listed: sequential computation is slow, long sequences are difficult for vanilla tanh/ReLU RNNs, future context is unavailable in a one-directional RNN, training is complicated, and gradients can vanish or explode.</p></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-rnn-numerical" data-keywords="rnn numerical sigmoid x1 x2 x3 1.8 0.5 1.1 argmax validation 70000">
+ <div class="section-head"><div class="section-no">M4#1</div><div class="section-title"><h2>RNN forward numerical · exact 3-time-step source problem</h2><p>This is a direct calculation problem from the current Fall-2026 Module-4 slides.</p></div><button class="done" data-topic="m4-rnn-numerical">Mark done</button></div>
+
+ <div class="callout good"><strong>Given</strong>x₁=1, x₂=0.5, x₃=0.5; input weight Wₓ=1.8; recurrent weight Wₕ=0.5; output weight Wᵧ=1.1; bias b=0; h₀=0. The problem uses sigmoid hidden activation.</div>
+ <div class="formula">σ(z)=1/(1+e⁻ᶻ)<br>hₜ=σ(Wₓxₜ + Wₕhₜ₋₁ + b)<br>yₜ=Wᵧhₜ</div>
+
+ <table>
+  <tr><th>t</th><th>Hidden pre-activation</th><th>hₜ</th><th>Output</th></tr>
+  <tr><td>1</td><td>1.8(1)+0.5(0)=1.8</td><td>σ(1.8)=<b>0.858</b></td><td>1.1×0.858≈<b>0.944</b></td></tr>
+  <tr><td>2</td><td>1.8(0.5)+0.5(0.858)=1.329</td><td>σ(1.329)=<b>0.791</b></td><td>1.1×0.791≈<b>0.870</b></td></tr>
+  <tr><td>3</td><td>1.8(0.5)+0.5(0.791)=1.2955</td><td>σ(1.2955)=<b>0.785</b></td><td>1.1×0.785≈<b>0.864</b></td></tr>
+ </table>
+
+ <p>The next slide frames a 2-class argmax with outputs +Wᵧh₃ and −Wᵧh₃. Since +0.8636 is greater than −0.8636, the prediction is <b>Class A</b>.</p>
+
+ <div class="lab">
+  <h3>RNN numerical stepper</h3><div class="controls"><button id="rnnPrev" class="labbtn">← previous</button><b id="rnnStepTitle"></b><button id="rnnNext" class="labbtn">next →</button></div><pre id="rnnStepText" class="tree" style="white-space:pre-wrap"></pre>
+ </div>
+
+ <details><summary>Surprise arithmetic slide · train/validation/test sizes</summary><div>
+  <p>Another current RNN slide gives 50,000 training, 10,000 validation and 10,000 testing reviews.</p>
+  <div class="formula">Total = 50,000+10,000+10,000 = <b>70,000</b><br>Validation % = 10,000/70,000×100 ≈ <b>14.29%</b><br>Training : Validation = 50,000 : 10,000 = <b>5 : 1</b></div>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-bptt" data-keywords="BPTT backpropagation through time numerical gradient weight update tanh mse">
+ <div class="section-head"><div class="section-no">M4#2</div><div class="section-title"><h2>BPTT · complete two-step gradient numerical</h2><p>The current Module-4_2 PDF gives the forward pass, loss, backward error signals, three gradients and updated weights. Learn the order more than the arithmetic.</p></div><button class="done" data-topic="m4-bptt">Mark done</button></div>
+
+ <ol class="algo">
+  <li><b>Forward pass:</b> run the whole sequence and store hidden states/outputs.</li>
+  <li><b>Loss:</b> compute loss at every time step and sum it.</li>
+  <li><b>Backward pass:</b> start from the last time step and propagate errors backward through time; shared weights receive contributions from multiple steps.</li>
+  <li><b>Weight update:</b> W_new = W − η·gradient.</li>
+ </ol>
+
+ <div class="callout good"><strong>Given in source</strong>x₁=1.0, x₂=0.5; h₀=0; Wₓ=0.8; Wₕ=0.5; Wₒ=1.0; targets y₁*=0.5, y₂*=1.0; tanh hidden activation; linear output; Lₜ=½(yₜ−yₜ*)²; learning rate η=0.1.</div>
+
+ <details open><summary>Step 1 · forward pass</summary><div>
+  <div class="formula">h₁=tanh(0.8·1 + 0.5·0)=tanh(0.8)≈<b>0.6640</b><br>y₁=1.0·0.6640=<b>0.6640</b><br>L₁=½(0.6640−0.5)²≈<b>0.0134</b></div>
+  <div class="formula">h₂=tanh(0.8·0.5 + 0.5·0.6640)=tanh(0.7320)≈<b>0.6253</b><br>y₂=<b>0.6253</b><br>L₂=½(0.6253−1.0)²≈<b>0.0702</b></div>
+  <div class="formula">L_total≈0.0134+0.0702=<b>0.0836</b></div>
+ </div></details>
+
+ <details open><summary>Step 2 · gradient of output weight Wₒ</summary><div>
+  <div class="formula">∂L/∂Wₒ = Σₜ (yₜ−yₜ*)hₜ</div>
+  <div class="formula">=(0.6640−0.5)(0.6640)+(0.6253−1.0)(0.6253)<br>≈0.1089−0.2343=<b>−0.1254</b></div>
+ </div></details>
+
+ <details open><summary>Step 3 · backpropagated error signals</summary><div>
+  <p>For tanh, the source uses the derivative factor (1−h²).</p>
+  <div class="formula">δ₂=(y₂−y₂*)Wₒ(1−h₂²)<br>=(-0.3747)(1)(1−0.6253²)≈<b>−0.2282</b></div>
+  <div class="formula">δ₁=[(y₁−y₁*)Wₒ + δ₂Wₕ](1−h₁²)<br>≈[0.1640 + (-0.2282)(0.5)](1−0.6640²)≈<b>0.0279</b></div>
+ </div></details>
+
+ <details open><summary>Step 4 · recurrent/input gradients and update</summary><div>
+  <div class="formula">∂L/∂Wₕ = δ₂h₁ + δ₁h₀ = (-0.2282)(0.6640)+0 = <b>−0.1517</b></div>
+  <div class="formula">∂L/∂Wₓ = δ₂x₂ + δ₁x₁ = (-0.2282)(0.5)+(0.0279)(1)=<b>−0.0862</b></div>
+  <div class="formula">Wₓ,new = 0.8−0.1(−0.0862)=<b>0.80862</b><br>Wₕ,new = 0.5−0.1(−0.1517)=<b>0.51517</b><br>Wₒ,new = 1.0−0.1(−0.1254)=<b>1.01254</b></div>
+ </div></details>
+
+ <div class="callout warn"><strong>Why BPTT becomes difficult on long sequences</strong>The same recurrent weights are multiplied through many time steps. The Module-4/5 slides connect this with <b>vanishing gradients</b> (updates become too small to carry old context) and <b>exploding gradients</b> (updates become unstable/huge).</div>
+</section>
+
+<section class="section searchable" id="m4-brnn" data-keywords="bidirectional rnn brnn ner forward backward applications advantages disadvantages">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Bidirectional RNN · past + future context</h2><p>A BRNN runs one recurrent chain forward and another backward over the same sequence, then combines their contextual information.</p></div><button class="done" data-topic="m4-brnn">Mark done</button></div>
+ <div class="neuron-flow"><div class="neuron">Forward RNN<br>past → current</div><div class="neuron">Input sequence</div><div class="neuron">Backward RNN<br>future → current</div><div class="arrow">→</div><div class="neuron mem">Combined context<br>prediction</div></div>
+ <p>The slides use the sentence <b>“Dhaval loves Apple”</b> to show why knowing both previous and following words can disambiguate meaning/entity type. They explicitly connect BRNNs with Named Entity Recognition.</p>
+ <div class="grid2">
+  <div class="card"><h3>Applications named</h3><p>Sentiment analysis, NER, part-of-speech tagging, machine translation and speech recognition.</p></div>
+  <div class="card"><h3>Trade-off named</h3><p>Better past+future context, but more compute, longer training, harder parallelization, overfitting risk and lower interpretability are listed disadvantages.</p></div>
+ </div>
+</section>
+
+<section class="section searchable" id="m4-autoencoder" data-keywords="autoencoder encoder decoder bottleneck latent denoising convolutional variational deep autoencoder">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Autoencoders · compress, represent, reconstruct</h2><p>The current Module-4_2 PDF treats autoencoders as unsupervised representation-learning networks with an encoder, bottleneck/latent code and decoder.</p></div><button class="done" data-topic="m4-autoencoder">Mark done</button></div>
+
+ <div class="neuron-flow"><div class="neuron">Input x</div><div class="arrow">→</div><div class="neuron">Encoder</div><div class="arrow">→</div><div class="neuron mem">Latent z<br>bottleneck</div><div class="arrow">→</div><div class="neuron">Decoder</div><div class="arrow">→</div><div class="neuron">Reconstruction x̂</div></div>
+ <p><b>Encoder:</b> reduces dimensionality and captures important features. <b>Bottleneck:</b> compressed knowledge representation. <b>Decoder:</b> expands from the code and tries to reconstruct the original input as closely as possible.</p>
+ <p>The source says the training loss is typically a reconstruction loss such as <b>MSE for continuous data</b> or <b>binary cross-entropy for binary data</b>.</p>
+
+ <div class="grid4">
+  <div class="card"><h3>Convolutional AE</h3><p>Encoder uses conv layers; decoder uses deconvolution/upsampling/transposed-convolution style layers. Useful for image compression, denoising and feature extraction.</p></div>
+  <div class="card"><h3>Variational AE</h3><p>Learns a probability distribution in latent space rather than a single fixed code; source mentions Gaussian latent variables and KL divergence as an extra loss term.</p></div>
+  <div class="card"><h3>Denoising AE</h3><p>Add noise to the input during training and reconstruct the original clean input. This prevents trivial copying and forces useful features.</p></div>
+  <div class="card"><h3>Deep AE</h3><p>Multiple encoder/decoder layers learn more complex, abstract representations than a shallow bottleneck.</p></div>
+ </div>
+
+ <details open><summary>Applications in source</summary><div><p>Dimensionality reduction, image compression, anomaly detection, image denoising, feature extraction and generative/data-generation settings (especially VAE).</p></div></details>
+</section>
+
+<section class="section searchable" id="m4-seq2seq" data-keywords="sequence to sequence seq2seq encoder decoder context vector machine translation summarization speech">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Sequence-to-Sequence · encoder → context → decoder</h2><p>Seq2Seq maps an input sequence of variable length to an output sequence that can also have a different length.</p></div><button class="done" data-topic="m4-seq2seq">Mark done</button></div>
+
+ <div class="neuron-flow"><div class="neuron">Input sequence<br>x₁…xₙ</div><div class="arrow">→</div><div class="neuron">Encoder<br>step-by-step</div><div class="arrow">→</div><div class="neuron mem">Context vector<br>“thought”</div><div class="arrow">→</div><div class="neuron">Decoder<br>step-by-step</div><div class="arrow">→</div><div class="neuron">Output sequence<br>y₁…yₘ</div></div>
+
+ <div class="grid2">
+  <div class="card"><h3>Encoder</h3><p>Embeds the input, processes it through recurrent layers (or transformers in modern variants), and accumulates essential information into a fixed-size context vector in the source's classic explanation.</p></div>
+  <div class="card"><h3>Decoder</h3><p>Uses the context vector and previous generated output to produce the target sequence one step at a time. A softmax output can generate token probabilities.</p></div>
+ </div>
+
+ <details open><summary>Source build workflow</summary><div>
+  <ol class="algo"><li>Prepare paired source/target sequence data and preprocess/tokenize.</li><li>Define encoder, decoder, embeddings; optional attention; choose loss/optimizer.</li><li>Train, validate and test; tune hyperparameters / early stop as needed.</li><li>Inference pipeline: preprocess input → encoder → decoder output; beam search is named as an optional generation improvement.</li><li>Fine-tune/iterate; deploy if required.</li></ol>
+ </div></details>
+
+ <p><b>Applications named:</b> machine translation, text summarization and speech recognition, plus other sequence-generation/mapping tasks.</p>
+</section>
+
+<section class="section searchable" id="m4-deeprnn" data-keywords="deep recurrent neural network stacked rnn mathematical notation sentiment speech">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Deep RNN · depth in time + depth in layers</h2><p>A simple RNN is already deep over time. A Deep RNN additionally stacks recurrent hidden layers at each time step to learn hierarchical temporal features.</p></div><button class="done" data-topic="m4-deeprnn">Mark done</button></div>
+
+ <div class="timeline-rnn"><div class="tcell"><strong>xₜ</strong>input</div><div class="arrow">→</div><div class="tcell"><strong>hₜ¹</strong>recurrent layer 1</div><div class="arrow">→</div><div class="tcell"><strong>hₜ²</strong>recurrent layer 2</div><div class="arrow">→</div><div class="tcell"><strong>yₜ</strong>output</div></div>
+ <div class="formula">Source notation: Hₜˡ = φ(Hₜ₋₁ˡ·Wₕₕˡ + Hₜˡ⁻¹·Wₓₕˡ + bₕˡ)<br>Oₜ = Hₜˡ·Wₕᵧ + bᵧ</div>
+ <p>Training is still BPTT, now through additional recurrent layers. The source motivates Deep RNNs from speech recognition and names speech systems, translation, music generation, image captioning and autonomous driving as applications.</p>
+ <details><summary>Deep-RNN sentiment-analysis development steps</summary><div><ol class="algo"><li>Collect/clean/tokenize labeled text and convert it into numerical form.</li><li>Design number of recurrent layers, hidden units, activation (ReLU/LSTM/GRU in the slide), padding/truncation.</li><li>Train with an optimizer; choose learning rate/batch size.</li><li>Evaluate with accuracy, precision, recall and F1.</li><li>Deploy for real-time sentiment classification if required.</li></ol></div></details>
+</section>
+
+<section class="section searchable exam-hot" id="m4-bert" data-keywords="bert transformer encoder mlm masked language modeling nsp next sentence prediction embeddings base large 80 10 10">
+ <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>BERT · bidirectional Transformer encoder, MLM + NSP</h2><p>The end of Module 4 gives BERT substantial coverage. Learn the architecture blocks, input representation and the two pre-training tasks exactly as presented.</p></div><button class="done" data-topic="m4-bert">Mark done</button></div>
+
+ <div class="callout good"><strong>BERT in one line</strong>Bidirectional Encoder Representations from Transformers: a Google pre-trained language model (2018) using the Transformer <b>encoder</b> so each token can use context from both directions.</div>
+
+ <div class="grid3">
+  <div class="card"><h3>Why BERT?</h3><p>Large unlabeled text pre-training reduces reliance on scarce task-specific labeled data and avoids a purely one-directional context representation.</p></div>
+  <div class="card"><h3>Two stages</h3><p><b>Pre-training</b> on unlabeled corpora with MLM + NSP, then <b>fine-tuning</b> on a specific downstream task.</p></div>
+  <div class="card"><h3>Uses named</h3><p>NER, question answering and sentiment analysis; the slides also discuss context-dependent word meaning.</p></div>
+ </div>
+
+ <details open><summary>BERT input representation</summary><div>
+  <div class="formula">Input embedding = <b>Token embedding + Positional embedding + Segment embedding</b></div>
+  <p><b>[CLS]</b> is the first token and serves as an aggregate representation for classification. <b>[SEP]</b> separates sentence segments. Segment embeddings distinguish sentence A from sentence B; position embeddings encode order.</p>
+ </div></details>
+
+ <details open><summary>Transformer encoder inside BERT</summary><div>
+  <ol class="algo"><li>Multi-head self-attention learns relationships between all tokens.</li><li>Feed-forward network adds non-linear token transformations.</li><li>Add & Norm uses residual connections + layer normalization.</li><li>Stacked encoder layers refine contextual token representations.</li></ol>
+  <table><tr><th>Model</th><th>Encoder layers</th><th>Attention heads</th><th>Parameters</th><th>Hidden size</th></tr><tr><td>BERT Base</td><td>12</td><td>12</td><td>110M</td><td>768</td></tr><tr><td>BERT Large</td><td>24</td><td>16</td><td>340M</td><td>1024</td></tr></table>
+ </div></details>
+
+ <details open><summary>MLM · Masked Language Modeling</summary><div>
+  <p>Select about <b>15%</b> of tokens for prediction. For those selected tokens, the source gives the classic policy:</p>
+  <div class="formula"><b>80%</b> → replace with [MASK]<br><b>10%</b> → replace with a random word<br><b>10%</b> → keep unchanged</div>
+  <p>The encoder processes the whole context and the MLM head uses a feed-forward layer + softmax to assign probabilities to candidate vocabulary tokens.</p>
+  <div class="lab"><h3>80/10/10 masking simulator</h3><div class="controls"><button id="maskNext" class="labbtn">Next masking case</button><b id="maskMode"></b></div><pre id="maskText" class="tree"></pre></div>
+ </div></details>
+
+ <details open><summary>NSP · Next Sentence Prediction</summary><div>
+  <p>BERT receives sentence A and B with [CLS]/[SEP] framing and performs binary classification:</p>
+  <div class="formula"><b>IsNext</b> · B genuinely follows A<br><b>NotNext</b> · B is an unrelated random sentence</div>
+  <p>The slides say pre-training uses 50% actual-next pairs and 50% random pairs. The [CLS] representation is passed to a classifier/softmax. The source example contrasts “They revised all the topics before the test” with “The sun sets in the west” after “The students prepared well for the exam.”</p>
+ </div></details>
+</section>
+
+<section class="section searchable" id="m5-recursive" data-keywords="recursive neural network recnn tree structured hierarchical">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Recursive Neural Networks · tree structure, not time sequence</h2><p>Module 5 begins with a distinction that is easy to mix up.</p></div><button class="done" data-topic="m5-recursive">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><h3>RecNN</h3><p>Designed for hierarchical/tree-structured data. Smaller child representations are recursively combined bottom-up into parent representations.</p><p>Source use cases: NLP sentence parsing/sentiment and computer-vision scene/object-part composition.</p></div>
+  <div class="card"><h3>RNN</h3><p>Designed for sequential/time-ordered data. The same recurrent computation carries state through the sequence.</p></div>
+ </div>
+</section>
+
+<section class="section searchable exam-hot" id="m5-longterm" data-keywords="long term dependency vanishing exploding gradient gated attention self attention">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Long-term dependencies · the problem LSTM/GRU are solving</h2><p>Vanilla RNNs may fail when relevant information is many time steps away.</p></div><button class="done" data-topic="m5-longterm">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><h3>Vanishing gradient</h3><p>Gradients become extremely small during BPTT, so distant earlier information has almost no effect on weight updates. The source's language example: remembering “France” far back to predict “French.”</p></div>
+  <div class="card"><h3>Exploding gradient</h3><p>Gradients grow too large, causing unstable parameter updates/training. Module 5 later gives gradient clipping as a direct remedy.</p></div>
+ </div>
+ <p>The slides give two high-level solution families:</p>
+ <div class="neuron-flow"><div class="neuron gate">Gated units<br><b>LSTM / GRU</b></div><div class="arrow">or</div><div class="neuron mem">Attention<br><b>self-attention</b></div></div>
+ <p>Gates decide what to remember/forget; self-attention lets the model directly focus on relevant sequence positions regardless of distance.</p>
+</section>
+
+<section class="section searchable" id="m5-esn" data-keywords="echo state network esn reservoir computing win wres wout fixed train output">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Echo State Networks · fixed reservoir, trained output</h2><p>ESN is presented as a reservoir-computing RNN designed for efficient sequential modelling.</p></div><button class="done" data-topic="m5-esn">Mark done</button></div>
+ <div class="neuron-flow"><div class="neuron">Input U(t)<br>via W<sub>in</sub></div><div class="arrow">→</div><div class="neuron mem">Reservoir<br>random recurrent W<sub>res</sub></div><div class="arrow">→</div><div class="neuron">Output Y(t)<br>via W<sub>out</sub></div></div>
+ <div class="callout good"><strong>The exam sentence to remember</strong>The reservoir has fixed random recurrent connections that transform input into rich dynamic patterns and retain a short “echo” of past inputs; <b>only Wout is trained</b>.</div>
+ <p>The source mentions time-series forecasting and signal processing as especially natural ESN applications.</p>
+</section>
+
+<section class="section searchable exam-hot" id="m5-lstm" data-keywords="lstm long short term memory forget input output gate cell state hidden candidate formula">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>LSTM · three gates + a dedicated cell-state memory path</h2><p>If you understand the role of Cₜ and can reproduce the six equations, you understand LSTM at the depth of these slides.</p></div><button class="done" data-topic="m5-lstm">Mark done</button></div>
+
+ <div class="callout good"><strong>Inputs to one LSTM unit</strong>xₜ = current input · hₜ₋₁ = previous hidden/output state · Cₜ₋₁ = previous cell memory. Outputs: hₜ and Cₜ.</div>
+
+ <div class="gate-row"><div class="gname">Forget gate</div><p>Decides what fraction of old cell memory Cₜ₋₁ should survive.</p></div>
+ <div class="gate-row"><div class="gname">Input gate</div><p>Decides how much new candidate content should be written.</p></div>
+ <div class="gate-row"><div class="gname">Output gate</div><p>Decides how much of the updated cell state should be exposed as hₜ.</p></div>
+
+ <div class="controls"><button class="labbtn" data-lstm="forget">1 · Forget</button><button class="labbtn" data-lstm="input">2–3 · Input + candidate</button><button class="labbtn" data-lstm="cell">4 · Cell update</button><button class="labbtn" data-lstm="output">5–6 · Output</button></div>
+ <div id="lstmGate" class="card"></div>
+
+ <details open><summary>All LSTM equations from the source</summary><div>
+  <div class="formula">fₜ = σ(Wf xₜ + Uf hₜ₋₁ + b_f)</div>
+  <div class="formula">iₜ = σ(Wi xₜ + Ui hₜ₋₁ + b_i)</div>
+  <div class="formula">C̃ₜ = tanh(Wc xₜ + Uc hₜ₋₁ + b_c)</div>
+  <div class="formula">Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ</div>
+  <div class="formula">oₜ = σ(Wo xₜ + Uo hₜ₋₁ + b_o)</div>
+  <div class="formula">hₜ = oₜ ⊙ tanh(Cₜ)</div>
+  <p>The source then shows a final dense/sigmoid classification step based on the last hidden state.</p>
+ </div></details>
+
+ <details open><summary>How to explain the gates in words</summary><div>
+  <ol class="algo"><li><b>Forget:</b> scale old memory by fₜ.</li><li><b>Propose new content:</b> C̃ₜ creates candidate information.</li><li><b>Write:</b> input gate iₜ scales how much candidate enters.</li><li><b>Update memory:</b> add retained old memory + selected new memory.</li><li><b>Expose:</b> output gate oₜ decides how much of tanh(Cₜ) becomes hₜ.</li></ol>
+ </div></details>
+
+ <div class="grid2">
+  <div class="card"><h3>Advantages in source</h3><p>Learns long-term dependencies, preserves information over long sequences, avoids/mitigates vanishing/exploding-gradient behavior relative to simple RNNs, and handles complex sequential patterns.</p></div>
+  <div class="card"><h3>Disadvantages in source</h3><p>More computationally expensive, more memory/time, more parameters/operations, can overfit, and is harder to interpret than a simple RNN.</p></div>
+ </div>
+ <p><b>Applications named:</b> language generation/modeling, voice recognition, sentiment analysis, handwriting recognition, video analysis and time-series prediction.</p>
+</section>
+
+<section class="section searchable exam-hot" id="m5-gru" data-keywords="gru gated recurrent unit update reset candidate hidden state formula comparison lstm">
+ <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>GRU · simpler gated memory with no separate cell state</h2><p>GRU keeps only hₜ and uses two gates: reset and update. The current Module-5 deck gives all four equations.</p></div><button class="done" data-topic="m5-gru">Mark done</button></div>
+
+ <div class="callout good"><strong>Source distinction</strong>LSTM has separate Cₜ + hₜ and three gates; GRU has no separate cell state and uses hidden state hₜ with reset + update gates. The slides therefore describe GRU as simpler/faster to train.</div>
+
+ <div class="controls"><button class="labbtn" data-gru="update">1 · Update gate</button><button class="labbtn" data-gru="reset">2 · Reset gate</button><button class="labbtn" data-gru="candidate">3 · Candidate</button><button class="labbtn" data-gru="final">4 · Final hidden</button></div>
+ <div id="gruGate" class="card"></div>
+
+ <details open><summary>All GRU equations from the source</summary><div>
+  <div class="formula">zₜ = σ(Wz xₜ + Uz hₜ₋₁ + b_z)</div>
+  <div class="formula">rₜ = σ(Wr xₜ + Ur hₜ₋₁ + b_r)</div>
+  <div class="formula">h̃ₜ = tanh(Wh xₜ + Uh(rₜ ⊙ hₜ₋₁) + b_h)</div>
+  <div class="formula">hₜ = (1−zₜ)⊙hₜ₋₁ + zₜ⊙h̃ₜ</div>
+ </div></details>
+
+ <details open><summary>Pasta / cheese analogy from the slides</summary><div>
+  <p>The source sentence contrasts “Samosa” context with later “Pasta” and “Cheese.” <b>Reset gate</b> suppresses irrelevant old memory (“Samosa”) while forming the new candidate; <b>update gate</b> decides how much of the new “Pasta/Cheese” candidate replaces the old hidden state. The final hₜ therefore reflects the newer Italian-food context.</p>
+ </div></details>
+
+ <table><tr><th>Feature</th><th>GRU</th><th>LSTM</th></tr><tr><td>Gates</td><td>Update + Reset</td><td>Input + Forget + Output</td></tr><tr><td>Separate cell state</td><td>No</td><td>Yes</td></tr><tr><td>Parameters</td><td>Fewer in source comparison</td><td>More</td></tr><tr><td>Training</td><td>Usually faster/simpler</td><td>More compute/memory</td></tr><tr><td>Performance statement in slides</td><td>Often similar; can work better on some tasks</td><td>Often strong when longer/more complex dependencies matter</td></tr></table>
+</section>
+
+<section class="section searchable" id="m5-optimization" data-keywords="optimization long term dependencies attention positional encoding hierarchical dilated memory augmented regularization feature engineering augmentation gradient clipping explicit memory">
+ <div class="section-head"><div class="section-no">M5Σ</div><div class="section-title"><h2>Optimization for long-term dependencies + explicit memory</h2><p>The final Module-5 slides list a wide set of strategies. Know the role of each; only gradient clipping and explicit memory are developed in detail.</p></div><button class="done" data-topic="m5-optimization">Mark done</button></div>
+
+ <div class="grid3">
+  <div class="card"><h3>RNN / LSTM / GRU</h3><p>Use recurrent memory and gated units to preserve useful information over time.</p></div>
+  <div class="card"><h3>Attention</h3><p>Self-attention and multi-head attention let the model directly focus on relevant sequence positions.</p></div>
+  <div class="card"><h3>Positional encoding</h3><p>Maintains sequence position/order information in Transformer-style models.</p></div>
+  <div class="card"><h3>Hierarchical models</h3><p>Process sequence information at multiple granularities to capture local and global dependencies.</p></div>
+  <div class="card"><h3>Dilated convolutions</h3><p>Capture wider context without proportionally increasing parameter count.</p></div>
+  <div class="card"><h3>Memory-augmented networks</h3><p>Use an external memory component; source names Neural Turing Machines and Differentiable Neural Computers.</p></div>
+  <div class="card"><h3>Regularization</h3><p>Reduce overfitting that can make models less reliable on long-term dependencies.</p></div>
+  <div class="card"><h3>Feature engineering / augmentation</h3><p>Create long-trend features or expand training examples to expose models to varied long dependencies.</p></div>
+  <div class="card"><h3>Normalization / curriculum / advanced arch</h3><p>Batch/layer normalization, training from simpler to harder sequences, and architectures such as Transformers/memory networks are named.</p></div>
+ </div>
+
+ <details open><summary>Gradient clipping</summary><div>
+  <p>When gradients become extremely large, gradient clipping imposes a threshold / rescales values into a manageable range. The slide emphasizes that the goal is to control <b>magnitude</b>, not alter the intended descent direction. This stabilizes learning and prevents extreme parameter updates/divergence.</p>
+ </div></details>
+
+ <details open><summary>Explicit memory</summary><div>
+  <p>Standard RNN/LSTM memory is implicit inside hidden/cell state and has finite context. <b>Explicit memory</b> adds a separate component the model can read from and write to—similar to external computer memory—so information can be stored and retrieved over longer periods.</p>
+  <p>The source motivates it for story understanding, dialogue systems and reasoning, and mentions Transformer attention as a memory-retrieval mechanism. Applications named include QA, chatbots, reasoning/planning, long-text understanding and robotics/control.</p>
+ </div></details>
+</section>
+
+<section class="section searchable exam-hot" id="numericals" data-keywords="numerical master formulas output parameter bptt rnn cnn exam calculations">
+ <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical master desk · what you should be able to calculate cold</h2><p>These are the calculation families actually present in the ZIP.</p></div><button class="done" data-topic="numericals">Mark done</button></div>
+ <div class="grid2">
+  <div class="card"><h3>1 · Convolution output</h3><div class="formula">O=((N+2P−F)/S)+1</div><p>Example: 32, F=5, P=0, S=1 ⇒ 28. With 6 filters ⇒ 28×28×6.</p></div>
+  <div class="card"><h3>2 · Pooling output</h3><div class="formula">O=((N+2P−F)/S)+1</div><p>Pooling has 0 trainable parameters. 102 with 2×2,S2 ⇒ 51.</p></div>
+  <div class="card"><h3>3 · Conv params</h3><div class="formula">(Fh·Fw·Cin + 1)·Cout</div><p>Source C1: (3·3·3+1)·10=<b>280</b>.</p></div>
+  <div class="card"><h3>4 · Fully connected params</h3><div class="formula">Nin·Nout + Nout</div><p>Source FC1: 13,520·10+10=<b>135,210</b>.</p></div>
+  <div class="card"><h3>5 · RNN forward state</h3><div class="formula">hₜ=activation(Wₓxₜ+Wₕhₜ₋₁+b)</div><p>Source sigmoid sequence ends h₃≈0.785.</p></div>
+  <div class="card"><h3>6 · RNN output</h3><div class="formula">yₜ=Wᵧhₜ</div><p>Source y₃≈0.864; argmax selects Class A in its two-score illustration.</p></div>
+  <div class="card"><h3>7 · BPTT loss</h3><div class="formula">Lₜ=½(yₜ−yₜ*)²</div><p>Source two-step total ≈<b>0.0836</b>.</p></div>
+  <div class="card"><h3>8 · BPTT update</h3><div class="formula">W_new=W−η∂L/∂W</div><p>Source final: Wₓ=.80862, Wₕ=.51517, Wₒ=1.01254.</p></div>
+  <div class="card"><h3>9 · LSTM</h3><p>You are more likely to be asked to reproduce/interpret the gate equations than do a full numeric, because the ZIP provides formulas but no numeric substitution problem.</p></div>
+  <div class="card"><h3>10 · GRU</h3><p>Same: know zₜ, rₜ, h̃ₜ, hₜ equations and the role of each gate; no full numeric substitution problem is provided.</p></div>
+ </div>
+</section>
+
+<section class="section searchable" id="comparisons" data-keywords="compare cnn rnn lstm gru vgg googlenet resnet autoencoder seq2seq">
+ <div class="section-head"><div class="section-no">CMP</div><div class="section-title"><h2>Comparison tables · fast theory marks</h2><p>Use these to avoid mixing similarly named architectures.</p></div><button class="done" data-topic="comparisons">Mark done</button></div>
+
+ <details open><summary>CNN vs RNN vs RecNN</summary><div>
+  <table><tr><th>Model</th><th>Best mental model</th><th>Structure</th><th>Typical source use</th></tr><tr><td>CNN</td><td>scan local spatial patterns</td><td>filters over grids</td><td>images/spatial data</td></tr><tr><td>RNN</td><td>carry state through time</td><td>sequence recurrence</td><td>text/speech/time series</td></tr><tr><td>RecNN</td><td>combine children into parents</td><td>tree/hierarchy</td><td>parsing/hierarchical composition</td></tr></table>
+ </div></details>
+
+ <details open><summary>Vanilla RNN vs LSTM vs GRU</summary><div>
+  <table><tr><th>Feature</th><th>RNN</th><th>LSTM</th><th>GRU</th></tr><tr><td>Memory</td><td>hidden hₜ</td><td>hidden hₜ + cell Cₜ</td><td>hidden hₜ</td></tr><tr><td>Gates</td><td>none</td><td>forget/input/output</td><td>reset/update</td></tr><tr><td>Long dependencies</td><td>struggles</td><td>designed for them</td><td>designed for them</td></tr><tr><td>Complexity</td><td>lowest</td><td>highest of three</td><td>between/simple gated</td></tr></table>
+ </div></details>
+
+ <details open><summary>Autoencoder vs Seq2Seq</summary><div>
+  <table><tr><th></th><th>Autoencoder</th><th>Seq2Seq</th></tr><tr><td>Main goal</td><td>learn compressed representation and reconstruct input</td><td>map one sequence to another</td></tr><tr><td>Middle representation</td><td>latent code / bottleneck</td><td>context vector in classic encoder-decoder</td></tr><tr><td>Target</td><td>original clean/input representation</td><td>separate target sequence</td></tr><tr><td>Examples</td><td>compression, denoising, anomaly detection</td><td>translation, summarization, speech mapping</td></tr></table>
+ </div></details>
+</section>
+
+<section class="section searchable" id="drill" data-keywords="quiz rapid drill revision">
+ <div class="section-head"><div class="section-no">Q</div><div class="section-title"><h2>Rapid drill · no notes until you answer</h2><p>These questions are deliberately concentrated on the most examinable mechanics in the ZIP.</p></div><button class="done" data-topic="drill">Mark done</button></div>
+
+ <div class="quiz"><div class="q">1. 32×32×3 input, 5×5 filters, stride 1, no padding, 6 filters. Output?</div><button class="reveal">Reveal</button><div class="answer">28×28×6.</div></div>
+ <div class="quiz"><div class="q">2. Why does padding matter beyond “same size”?</div><button class="reveal">Reveal</button><div class="answer">Without padding, repeated convolution shrinks maps and border pixels participate in fewer windows; padding preserves border information/participation.</div></div>
+ <div class="quiz"><div class="q">3. Conv params for 3×3, Cin=3, Cout=10 with one bias/filter?</div><button class="reveal">Reveal</button><div class="answer">(3×3×3+1)×10=280.</div></div>
+ <div class="quiz"><div class="q">4. Which Module-3 layers have zero trainable parameters?</div><button class="reveal">Reveal</button><div class="answer">ReLU/activation, max/average pooling and flatten. The source also treats softmax itself as no trainable weights; the preceding dense output weights are trainable.</div></div>
+ <div class="quiz"><div class="q">5. Inception's 1×1 convolution solves what?</div><button class="reveal">Reveal</button><div class="answer">It projects/reduces channel depth before expensive 3×3/5×5 branches, cutting parameters and computation while preserving spatial dimensions.</div></div>
+ <div class="quiz"><div class="q">6. ResNet's defining equation?</div><button class="reveal">Reveal</button><div class="answer">y=F(x)+x.</div></div>
+ <div class="quiz"><div class="q">7. RNN hidden-state equation in the slides?</div><button class="reveal">Reveal</button><div class="answer">hₜ=tanh(Wₕₕhₜ₋₁+Wₓₕxₜ) in the conceptual slide; another numerical uses sigmoid with bias.</div></div>
+ <div class="quiz"><div class="q">8. Source 3-step RNN h₃ and y₃ approximately?</div><button class="reveal">Reveal</button><div class="answer">h₃≈0.785; y₃≈0.864.</div></div>
+ <div class="quiz"><div class="q">9. Four BPTT stages?</div><button class="reveal">Reveal</button><div class="answer">Forward pass → total loss → backward through time → weight update.</div></div>
+ <div class="quiz"><div class="q">10. BPTT source updated weights after one step?</div><button class="reveal">Reveal</button><div class="answer">Wₓ=.80862, Wₕ=.51517, Wₒ=1.01254.</div></div>
+ <div class="quiz"><div class="q">11. What makes BRNN different?</div><button class="reveal">Reveal</button><div class="answer">It processes the same sequence in forward and backward directions, using past and future context.</div></div>
+ <div class="quiz"><div class="q">12. Autoencoder's three conceptual parts?</div><button class="reveal">Reveal</button><div class="answer">Encoder → latent/bottleneck code → decoder.</div></div>
+ <div class="quiz"><div class="q">13. Seq2Seq decoder uses what to generate each output?</div><button class="reveal">Reveal</button><div class="answer">The encoder context vector plus previous generated output / decoder state, one step at a time.</div></div>
+ <div class="quiz"><div class="q">14. BERT input embedding is the sum of what three embeddings?</div><button class="reveal">Reveal</button><div class="answer">Token + positional + segment embeddings.</div></div>
+ <div class="quiz"><div class="q">15. BERT MLM 80/10/10 rule?</div><button class="reveal">Reveal</button><div class="answer">Of selected (~15%) tokens: 80% [MASK], 10% random word, 10% unchanged.</div></div>
+ <div class="quiz"><div class="q">16. LSTM cell update?</div><button class="reveal">Reveal</button><div class="answer">Cₜ=fₜ⊙Cₜ₋₁+iₜ⊙C̃ₜ.</div></div>
+ <div class="quiz"><div class="q">17. GRU has which gates and what state is absent?</div><button class="reveal">Reveal</button><div class="answer">Update and reset gates; there is no separate cell state Cₜ.</div></div>
+ <div class="quiz"><div class="q">18. Echo State Network: which weights are trained?</div><button class="reveal">Reveal</button><div class="answer">Only output weights Wout; the reservoir recurrent connections stay fixed/random in the source model.</div></div>
+ <div class="quiz"><div class="q">19. What does gradient clipping actually control?</div><button class="reveal">Reveal</button><div class="answer">Excessive gradient magnitude, to prevent unstable/exploding parameter updates while preserving the intended gradient direction.</div></div>
+ <div class="quiz"><div class="q">20. RecNN vs RNN?</div><button class="reveal">Reveal</button><div class="answer">RecNN models tree/hierarchical structure; RNN models sequential/time-ordered structure.</div></div>
+</section>
+
+<section class="section searchable" id="cheatsheet" data-keywords="cheat sheet final revision formulas">
+ <div class="section-head print-hide"><div class="section-no">✎</div><div class="section-title"><h2>Final handwritten clue sheet</h2><p>Use this only after learning the detailed sections above.</p></div><button class="done" data-topic="cheatsheet">Mark done</button></div>
+ <div class="print-hide" style="margin-bottom:11px"><button class="btn primary" onclick="printCheat()">Print only this sheet</button></div>
+ <div class="cheat">
+  <h3>BCSE332L · Deep Learning CAT 2 · Modules 3–5</h3>
+  <div class="cheatcols">
+   <div class="cheatblock"><h4>M3 · CNN dimensions</h4><p>O=((N+2P−F)/S)+1. K filters ⇒ K output channels. SAME keeps size (S=1); VALID=no padding. Conv params=(FhFwCin+1)Cout. FC=NinNout+Nout. Pool/flatten=0 params.</p></div>
+   <div class="cheatblock"><h4>M3 · source parameter numerical</h4><p>A C1=280; B C2=2510; C P1=0; D C3=1820; E P2=0; F FC1=135210 ⇒ total=<b>139820</b>.</p></div>
+   <div class="cheatblock"><h4>M3 · architecture memory</h4><p>LeNet: 5×5 conv + avg pool + tanh. AlexNet: ReLU, big early kernels, max-pool, augmentation, FC-heavy. VGG: stacked 3×3. GoogLeNet: parallel Inception + 1×1 bottleneck + GAP. ResNet: y=F(x)+x skip.</p></div>
+   <div class="cheatblock"><h4>M4 · RNN</h4><p>hₜ=activation(Wₓxₜ+Wₕhₜ₋₁+b); yₜ=Wᵧhₜ. Types: 1→1,1→many,many→1,many→many.</p><p>Source numerical: h1=.858,h2=.791,h3=.785; y3≈.864.</p></div>
+   <div class="cheatblock"><h4>M4 · BPTT</h4><p>Forward → losses → backprop last→first → update. Source: total L=.0836; dWo=-.1254, dWh=-.1517, dWx=-.0862; new Wx=.80862, Wh=.51517, Wo=1.01254.</p></div>
+   <div class="cheatblock"><h4>M4 · BRNN / AE / Seq2Seq</h4><p>BRNN=past+future chains. AE=encoder→latent→decoder; CAE/VAE/DAE/deep AE. Seq2Seq=input sequence→encoder→context→decoder→output sequence.</p></div>
+   <div class="cheatblock"><h4>M4 · BERT</h4><p>Encoder-only Transformer, bidirectional. Input=Token+Position+Segment. [CLS] aggregate, [SEP] separator. Base 12L/12H/768/110M; Large 24L/16H/1024/340M. Pretrain MLM+NSP. MLM select 15%; 80 MASK/10 random/10 unchanged. NSP IsNext vs NotNext.</p></div>
+   <div class="cheatblock"><h4>M5 · long dependency</h4><p>Vanishing=gradient→tiny, old context forgotten. Exploding=gradient→huge/unstable. Gated units and attention are source solution families.</p></div>
+   <div class="cheatblock"><h4>M5 · ESN</h4><p>Input via Win → fixed random reservoir Wres → output via Wout. <b>Only Wout trained.</b></p></div>
+   <div class="cheatblock"><h4>M5 · LSTM</h4><p>f=σ(Wfx+Ufh+b); i=σ(Wix+Uih+b); C~=tanh(Wcx+Uch+b); C=f⊙Cold+i⊙C~; o=σ(Wox+Uoh+b); h=o⊙tanh(C).</p></div>
+   <div class="cheatblock"><h4>M5 · GRU</h4><p>z=σ(Wzx+Uzh+b); r=σ(Wrx+Urh+b); h~=tanh(Whx+Uh(r⊙hprev)+b); h=(1−z)⊙hprev+z⊙h~. No separate C state.</p></div>
+   <div class="cheatblock"><h4>M5 · optimization</h4><p>RNN/LSTM/GRU, attention/multi-head, positional encoding, hierarchy, dilated conv, memory-augmented networks, regularization, features/augmentation, gradient clipping, batch/layer norm, curriculum, advanced architectures. Explicit memory=separate read/write store.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section searchable" id="audit" data-keywords="source audit 14 files zip complete">
+ <div class="section-head"><div class="section-no">AUD</div><div class="section-title"><h2>14-file ZIP coverage audit</h2><p>The final page was checked against every file in the uploaded ZIP. Repeated semester versions were used as corroborating/detail sources, not treated as separate modules.</p></div><button class="done" data-topic="audit">Mark done</button></div>
+ <table>
+  <tr><th>ZIP file / group</th><th>What is covered here</th></tr>
+  <tr><td>FALL Module-3.pdf · 179 pages</td><td>CNN foundations, image representation, local connectivity/weight sharing, layer operations, padding/stride, trainable parameters, full A–F parameter numerical, LeNet/AlexNet/VGG/GoogLeNet/ResNet and architecture comparison.</td></tr>
+  <tr><td>FALL Module-3.pptx · 114 slides + SUM module-3.pdf</td><td>CNN intuition, convolution, pooling/flatten/dense, VGG/ResNet/GoogLeNet applications and current-semester architecture explanations.</td></tr>
+  <tr><td>WIN Module3_1…Module3_6 · six PPTX files</td><td>CNN intro; convolution/image/channel/kernel details; padding/stride Keras effects; pooling variants/examples; non-linearities, stacking, flatten, forward/backprop; LeNet/AlexNet architecture details and popular architecture list.</td></tr>
+  <tr><td>FALL Module-4_1.pdf · 38 pages</td><td>RNN motivation/definition/architecture/types, hidden-state/output equations, 3-step sigmoid numerical, data-split arithmetic and BPTT concept.</td></tr>
+  <tr><td>FALL Module-4_2.pdf · 108 pages</td><td>Full BPTT gradient numerical, RNN applications/limitations, BRNN, autoencoders/types, Seq2Seq, Deep RNN, BERT architecture, MLM and NSP.</td></tr>
+  <tr><td>SUM Module-4.pdf · 108 pages</td><td>Visual duplicate/semester variant of the same Module-4 sequence material; checked for alignment with the current content.</td></tr>
+  <tr><td>FALL Module-5.pptx · 51 slides + SUM Module-5.pdf</td><td>Recursive NN, long-term dependency problem, gated/attention solution idea, ESN, LSTM gates/formulas, GRU gates/formulas, LSTM-vs-GRU, long-term optimization list, gradient clipping and explicit memory.</td></tr>
+ </table>
+ <div class="callout good"><strong>Scope result</strong>All unique taught topic families in the 14-file ZIP are represented in this site. The deepest source numericals—CNN output/parameter counts, RNN forward computation and BPTT weight updates—are reproduced step-by-step rather than reduced to formulas.</div>
+</section>
+
+</div>
+<footer class="footer">Deep Learning CAT 2 · ZIP-only final study site · Modules 3–5 · progress is stored locally in your browser.</footer>
+</main>
+</div>
+<script src="cat2.js"></script>
+<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("../../../sw.js").catch(function(){})</script>
+</body>
+</html>
