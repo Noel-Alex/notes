@@ -1,4 +1,4 @@
-const CACHE='notes-v5';
+const CACHE='notes-v6';
 const CORE=['./','./index.html','./assets/site.css','./assets/site.js','./catalog.json','./subjects/eda/','./subjects/eda/cat2/','./subjects/data-mining/','./subjects/data-mining/cat2/','./subjects/data-mining/cat2/cat2.css','./subjects/data-mining/cat2/cat2.js','./subjects/deep-learning/','./subjects/deep-learning/cat2/','./subjects/deep-learning/cat2/cat2.css','./subjects/deep-learning/cat2/cat2.js'];
 
 self.addEventListener('install',event=>{
