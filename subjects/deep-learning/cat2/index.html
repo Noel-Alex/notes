@@ -3,698 +3,626 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#211a46">
-<title>Deep Learning CAT 2 · Modules 3, 4 & 5 · Final Study Site</title>
-<link rel="stylesheet" href="../../../assets/site.css">
-<link rel="stylesheet" href="cat2.css">
+<title>Deep Learning CAT 2 · Visual Command Center</title>
+<style>
+:root{
+  --bg:#0d1020;--bg2:#12162c;--panel:#161b34;--panel2:#1c2342;--text:#eef2ff;--muted:#adb8dc;
+  --cyan:#7fe7ff;--teal:#5ad5c4;--violet:#9f89ff;--pink:#f38cd8;--gold:#ffd887;--red:#ff9086;
+  --green:#8fe7a2;--line:rgba(255,255,255,.1);--shadow:0 16px 50px rgba(0,0,0,.28);
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(circle at top right,rgba(159,137,255,.13),transparent 24%),radial-gradient(circle at 20% 30%,rgba(127,231,255,.09),transparent 22%),linear-gradient(180deg,var(--bg),#090c17 65%,#080b16);color:var(--text);line-height:1.55}
+a{color:inherit;text-decoration:none}
+.layout{display:grid;grid-template-columns:310px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;align-self:start;height:100vh;padding:22px 16px;border-right:1px solid var(--line);background:rgba(8,10,20,.75);backdrop-filter:blur(16px);overflow:auto}
+.brand{padding:18px 18px 16px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));box-shadow:var(--shadow)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(127,231,255,.11);color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.11em;text-transform:uppercase}
+.brand h1{margin:14px 0 6px;font-size:28px;line-height:1.02;font-family:Georgia,serif}
+.brand p{margin:0;color:var(--muted);font-size:13px}
+.search{width:100%;margin:14px 0 12px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:#0f1430;color:#fff;outline:none}
+.progress{border:1px solid var(--line);border-radius:16px;padding:12px 14px;background:rgba(255,255,255,.03);margin-bottom:12px}
+.progress .row{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);margin-bottom:8px}
+.track{height:10px;border-radius:999px;background:#0a1028;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--pink));transition:width .25s}
+.navgroup{margin:18px 8px 8px;font-size:12px;font-weight:800;letter-spacing:.12em;color:#7d89b5;text-transform:uppercase}
+.nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;color:#dbe5ff;font-size:14px}
+.nav a:hover,.nav a.active{background:linear-gradient(90deg,rgba(127,231,255,.12),rgba(159,137,255,.12));border:1px solid rgba(255,255,255,.08)}
+.dot{width:7px;height:7px;border-radius:99px;background:var(--cyan);box-shadow:0 0 0 5px rgba(127,231,255,.1)}
+.dot.hot{background:var(--gold);box-shadow:0 0 0 5px rgba(255,216,135,.11)}
+.main{padding:24px 32px 60px;max-width:1400px}
+.portal{display:flex;justify-content:space-between;gap:10px;align-items:center;color:#b8c2e7;font-size:14px;margin-bottom:14px;flex-wrap:wrap}
+.portal .crumb{display:flex;gap:8px;align-items:center}.portal .crumb span{opacity:.35}
+.hero{position:relative;padding:32px;border-radius:34px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(circle at 85% 15%,rgba(159,137,255,.3),transparent 24%),radial-gradient(circle at 10% 20%,rgba(127,231,255,.14),transparent 27%),linear-gradient(180deg,#141a35,#0f1430);box-shadow:var(--shadow)}
+.hero h2{margin:16px 0 10px;font-size:64px;line-height:.96;font-family:Georgia,serif;max-width:820px}
+.hero p{max-width:900px;color:#d2daf7;font-size:18px}
+.hero .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+.btn{padding:12px 16px;border-radius:14px;border:1px solid var(--line);background:#161b38;color:#fff;font-weight:700;cursor:pointer}.btn.primary{background:linear-gradient(90deg,var(--cyan),#80b8ff);color:#07101e}.btn.alt{background:linear-gradient(90deg,var(--violet),var(--pink))}
+.hero .mesh{position:absolute;right:-40px;bottom:-40px;width:360px;height:360px;opacity:.9}
+.badges{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.badge{padding:16px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+.badge b{display:block;font-size:18px;margin-bottom:4px}.badge span{color:#c7d0f2;font-size:14px}
+.section{margin-top:26px;padding:24px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));box-shadow:var(--shadow)}
+.head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+.head h3{margin:0;font-size:34px;line-height:1.05;font-family:Georgia,serif}.head p{margin:8px 0 0;color:var(--muted)}
+.done{padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#0d1431;color:#fff;font-weight:700;cursor:pointer}.done.on{background:linear-gradient(90deg,var(--green),var(--teal));color:#042018}
+.grid2,.grid3,.grid4{display:grid;gap:16px}.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{padding:18px;border-radius:22px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.015))}
+.card h4{margin:0 0 10px;font-size:20px}.card p{margin:0;color:#d4dcf9}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(127,231,255,.09);color:var(--cyan);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.tag.gold{background:rgba(255,216,135,.12);color:var(--gold)}.tag.violet{background:rgba(159,137,255,.12);color:#c5b9ff}.tag.green{background:rgba(143,231,162,.1);color:var(--green)}
+.formula{padding:16px 18px;border-radius:18px;background:#0c1229;border:1px solid rgba(255,255,255,.08);font-family:"Times New Roman",Georgia,serif;font-size:22px;color:#fff;overflow:auto}
+.callout{padding:16px 18px;border-radius:18px;border:1px solid rgba(255,255,255,.08);background:#101632;color:#deebff}.callout strong{color:#fff}.callout.good{background:rgba(90,213,196,.08);border-color:rgba(90,213,196,.25)}.callout.warn{background:rgba(255,216,135,.08);border-color:rgba(255,216,135,.25)}
+.chips{display:flex;gap:10px;flex-wrap:wrap}.chip{padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:#121934;color:#dae2ff;font-size:13px}
+figure{margin:0}.viz{margin-top:14px;padding:16px;border-radius:20px;border:1px solid var(--line);background:#0b1127;overflow:auto}
+svg text{font-family:Inter,Arial,sans-serif}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric{padding:14px;border-radius:16px;background:#0e1532;border:1px solid var(--line)} .metric span{display:block;font-size:12px;color:#91a1d8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}.metric b{font-size:24px}
+.controls{display:flex;gap:12px;flex-wrap:wrap;margin:14px 0}.controls label{display:flex;flex-direction:column;gap:6px;font-size:12px;color:#aeb8db}.controls input,.controls select{padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:#0e1430;color:#fff;min-width:92px}.labbtn{padding:10px 14px;border-radius:12px;border:1px solid var(--line);background:#172044;color:#fff;font-weight:700;cursor:pointer}
+pre.tree{white-space:pre-wrap;margin:0;padding:16px;border-radius:16px;background:#0c1229;border:1px solid var(--line);color:#eaf0ff;font-size:14px;overflow:auto}
+summary{cursor:pointer;font-weight:800;font-size:18px;padding:12px 0} details{border-top:1px solid rgba(255,255,255,.08);padding-top:8px;margin-top:10px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{border:1px solid rgba(255,255,255,.09);padding:12px 10px;text-align:left;vertical-align:top}th{background:#101734;color:#fff}td{color:#d9e2ff}
+.timeline{display:flex;gap:14px;flex-wrap:wrap}.step{flex:1;min-width:180px;padding:16px;border-radius:18px;border:1px solid var(--line);background:#10162f;position:relative}.step:after{content:"→";position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:#556497;font-size:22px}.step:last-child:after{display:none}
+.quiz{padding:16px;border-radius:18px;border:1px solid var(--line);background:#0f1631;margin-top:12px}.quiz .q{font-weight:800;margin-bottom:10px}.quiz .a{display:none;margin-top:10px;color:#cfe7ff}.quiz.show .a{display:block}
+.hidden{display:none !important}
+.footer{padding:30px 4px 10px;color:#8c97bc;text-align:center;font-size:13px}.cheat{background:#fff;color:#111;border-radius:24px;padding:22px}.cheat h4{margin:0 0 8px;font-size:16px}.cheatcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.cheatblock{border:1px solid #ddd;border-radius:14px;padding:14px;background:#fafafa}.cheatblock p{margin:0;font-size:14px;line-height:1.45}
+.printonly{display:none}
+@media (max-width:1200px){.layout{grid-template-columns:1fr}.sidebar{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}.main{padding:20px}.badges,.grid3,.grid4,.metric-grid,.cheatcols{grid-template-columns:1fr 1fr}.hero h2{font-size:52px}}
+@media (max-width:760px){.grid2,.grid3,.grid4,.metric-grid,.cheatcols{grid-template-columns:1fr}.hero h2{font-size:42px}.main{padding:14px}.section{padding:18px}.head{flex-direction:column}.hero .mesh{display:none}}
+@media print{body{background:#fff;color:#111}.sidebar,.portal,.hero,.print-hide,.footer{display:none !important}.main{padding:0;max-width:none}.section{display:none;border:none;padding:0;box-shadow:none;background:#fff}.section#printsheet{display:block}.cheat{box-shadow:none;border-radius:0}.cheatcols{grid-template-columns:1fr 1fr 1fr}}
+</style>
 </head>
 <body>
-<div class="mobilebar"><b>Deep Learning CAT 2</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
 <div class="layout">
-<aside class="sidebar">
-  <div class="brand">
-    <div class="eyebrow">BCSE332L · CAT 2 · FINAL ZIP-ONLY EDITION</div>
-    <h2>Deep Learning<br>Exam Command Center</h2>
-    <p>Modules 3 · 4 · 5</p>
-  </div>
-  <input id="search" class="search" placeholder="Search: BPTT, LSTM, ResNet…">
-  <div class="progress"><div class="progress-row"><span>Study coverage</span><b id="ptext">0 / 0</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
-  <div class="nav-group">Start here</div>
-  <a class="nav-link hot" href="#exam-map"><i class="dot"></i>What to master</a>
-  <a class="nav-link" href="#source-rule"><i class="dot"></i>Source boundary</a>
-  <div class="nav-group">Module 3 · CNNs</div>
-  <a class="nav-link hot" href="#m3-foundations"><i class="dot"></i>CNN foundations</a>
-  <a class="nav-link hot" href="#m3-convolution"><i class="dot"></i>Convolution · output size</a>
-  <a class="nav-link hot" href="#m3-pooling"><i class="dot"></i>Pooling · activation · flatten</a>
-  <a class="nav-link hot" href="#m3-parameters"><i class="dot"></i>Parameter numerical</a>
-  <a class="nav-link hot" href="#m3-architectures"><i class="dot"></i>LeNet → ResNet</a>
-  <a class="nav-link" href="#m3-complete"><i class="dot"></i>M3 full coverage</a>
-  <div class="nav-group">Module 4 · Sequence models</div>
-  <a class="nav-link hot" href="#m4-rnn"><i class="dot"></i>RNN fundamentals</a>
-  <a class="nav-link hot" href="#m4-rnn-numerical"><i class="dot"></i>RNN numerical</a>
-  <a class="nav-link hot" href="#m4-bptt"><i class="dot"></i>BPTT full numerical</a>
-  <a class="nav-link" href="#m4-brnn"><i class="dot"></i>Bidirectional RNN</a>
-  <a class="nav-link" href="#m4-autoencoder"><i class="dot"></i>Autoencoders</a>
-  <a class="nav-link" href="#m4-seq2seq"><i class="dot"></i>Seq2Seq</a>
-  <a class="nav-link" href="#m4-deeprnn"><i class="dot"></i>Deep RNN</a>
-  <a class="nav-link hot" href="#m4-bert"><i class="dot"></i>BERT · MLM · NSP</a>
-  <div class="nav-group">Module 5 · Long memory</div>
-  <a class="nav-link" href="#m5-recursive"><i class="dot"></i>Recursive NN</a>
-  <a class="nav-link hot" href="#m5-longterm"><i class="dot"></i>Long-term dependencies</a>
-  <a class="nav-link" href="#m5-esn"><i class="dot"></i>Echo State Networks</a>
-  <a class="nav-link hot" href="#m5-lstm"><i class="dot"></i>LSTM · all gates</a>
-  <a class="nav-link hot" href="#m5-gru"><i class="dot"></i>GRU · formulas</a>
-  <a class="nav-link" href="#m5-optimization"><i class="dot"></i>Optimization · memory</a>
-  <div class="nav-group">Final pass</div>
-  <a class="nav-link hot" href="#numericals"><i class="dot"></i>Numerical master desk</a>
-  <a class="nav-link" href="#comparisons"><i class="dot"></i>Comparison tables</a>
-  <a class="nav-link" href="#drill"><i class="dot"></i>Rapid drill</a>
-  <a class="nav-link hot" href="#cheatsheet"><i class="dot"></i>Printable clue sheet</a>
-  <a class="nav-link" href="#audit"><i class="dot"></i>14-file coverage audit</a>
-  <div class="side-actions"><button onclick="document.querySelector('#exam-map').scrollIntoView()">Top</button><button onclick="printCheat()">Print sheet</button></div>
-</aside>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="eyebrow">BCSE332L · CAT 2 · Visual Edition</div>
+      <h1>Deep Learning<br>Command Center</h1>
+      <p>Modules 3 · 4 · 5. Built to be visually teachable, not just readable.</p>
+    </div>
+    <input id="search" class="search" placeholder="Search: BPTT, LSTM, BERT, ResNet…">
+    <div class="progress"><div class="row"><span>Coverage progress</span><b id="ptext">0 / 0</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
+    <div class="nav">
+      <div class="navgroup">Start</div>
+      <a href="#route"><span class="dot hot"></span>Study route</a>
+      <a href="#visual-atlas"><span class="dot"></span>Visual atlas</a>
+      <div class="navgroup">Module 3</div>
+      <a href="#cnn-core"><span class="dot hot"></span>CNN foundations</a>
+      <a href="#cnn-calcs"><span class="dot hot"></span>Convolution + pooling</a>
+      <a href="#cnn-params"><span class="dot hot"></span>Parameter counting</a>
+      <a href="#architectures"><span class="dot hot"></span>LeNet → ResNet</a>
+      <div class="navgroup">Module 4</div>
+      <a href="#rnn-core"><span class="dot hot"></span>RNN basics</a>
+      <a href="#rnn-num"><span class="dot hot"></span>RNN numerical</a>
+      <a href="#bptt"><span class="dot hot"></span>BPTT visual</a>
+      <a href="#seq-models"><span class="dot"></span>BRNN, AE, Seq2Seq, Deep RNN</a>
+      <a href="#bert"><span class="dot hot"></span>BERT</a>
+      <div class="navgroup">Module 5</div>
+      <a href="#longdep"><span class="dot hot"></span>Long dependencies</a>
+      <a href="#lstm"><span class="dot hot"></span>LSTM</a>
+      <a href="#gru"><span class="dot hot"></span>GRU</a>
+      <a href="#memory"><span class="dot"></span>Optimization + explicit memory</a>
+      <div class="navgroup">Finish</div>
+      <a href="#revision"><span class="dot"></span>Rapid drill</a>
+      <a href="#printsheet"><span class="dot hot"></span>Printable clue sheet</a>
+    </div>
+  </aside>
 
-<main class="main">
-<div class="portalbar"><div class="crumb"><a href="../../../">NOTES</a><span>›</span><a href="../">Deep Learning</a><span>›</span><b>CAT 2</b></div><a href="../">Subject home →</a></div>
+  <main class="main">
+    <div class="portal print-hide"><div class="crumb"><a href="../../../">NOTES</a><span>›</span><a href="../">Deep Learning</a><span>›</span><b>CAT 2 Visual Edition</b></div><div>Source scope: Deep Learning ZIP only</div></div>
 
-<header class="hero">
-  <div class="eyebrow">DEEP LEARNING · CAT 2 · MODULES 3–5 · ZIP-ONLY FINAL EDITION</div>
-  <h1>See the shape.<br>Follow the state.<br>Show the math.</h1>
-  <p class="dek"><b>This page is meant to replace the ZIP for revision.</b> I audited the 14 files inside the Deep Learning ZIP only. Module 3 is CNNs and major CNN architectures; Module 4 is RNN/BPTT plus BRNN, autoencoders, Seq2Seq, deep RNNs and BERT; Module 5 is long-term dependency machinery—RecNN, ESN, LSTM, GRU and optimization. Numericals are worked in the same order the slides use.</p>
-  <div class="mark-grid">
-    <div class="mark hot"><b>M3</b><span>CNN operations · dimensions · parameters · architectures</span></div>
-    <div class="mark hot"><b>M4</b><span>RNN · BPTT · BRNN · Autoencoder · Seq2Seq · Deep RNN · BERT</span></div>
-    <div class="mark hot"><b>M5</b><span>Long dependencies · ESN · LSTM · GRU · optimization</span></div>
-  </div>
-  <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('#exam-map').scrollIntoView()">Start the master route</button><button class="btn ghost" onclick="document.querySelector('#numericals').scrollIntoView()">Numericals first</button><button class="btn ghost" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
-</header>
+    <header class="hero print-hide">
+      <div class="eyebrow">Make the page teach you</div>
+      <h2>See the network.<br>See the data flow.<br>See the math.</h2>
+      <p>This version leans much harder into <b>visual learning</b>: richer diagrams, flow maps, architectural comparisons, step visuals, equation blocks, and interactive calculators/steppers. The content stays aligned to the <b>Deep Learning ZIP only</b>, but the presentation is much more visual and memorable.</p>
+      <div class="actions"><button class="btn primary" onclick="document.querySelector('#route').scrollIntoView()">Start the route</button><button class="btn alt" onclick="document.querySelector('#cnn-calcs').scrollIntoView()">Jump to numericals</button><button class="btn" onclick="window.print()">Print clue sheet</button></div>
+      <div class="badges">
+        <div class="badge"><b>Module 3</b><span>CNN mechanics, dimensions, parameters and architecture evolution</span></div>
+        <div class="badge"><b>Module 4</b><span>RNN, BPTT, BRNN, AE, Seq2Seq, Deep RNN and BERT</span></div>
+        <div class="badge"><b>Module 5</b><span>Long dependencies, ESN, LSTM, GRU, clipping and memory</span></div>
+      </div>
+      <svg class="mesh" viewBox="0 0 380 380" aria-hidden="true">
+        <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7fe7ff"/><stop offset="1" stop-color="#9f89ff"/></linearGradient></defs>
+        <circle cx="175" cy="190" r="128" fill="none" stroke="url(#g1)" stroke-width="2" opacity=".45"/>
+        <circle cx="175" cy="190" r="88" fill="none" stroke="#f38cd8" stroke-width="2" opacity=".45"/>
+        <circle cx="175" cy="190" r="46" fill="none" stroke="#ffd887" stroke-width="2" opacity=".45"/>
+        <g fill="#7fe7ff"><circle cx="54" cy="112" r="7"/><circle cx="102" cy="82" r="7"/><circle cx="124" cy="166" r="7"/><circle cx="242" cy="72" r="7"/><circle cx="296" cy="134" r="7"/><circle cx="237" cy="214" r="7"/><circle cx="123" cy="278" r="7"/><circle cx="211" cy="311" r="7"/></g>
+        <g stroke="#8cb8ff" stroke-opacity=".45"><line x1="54" y1="112" x2="102" y2="82"/><line x1="102" y1="82" x2="124" y2="166"/><line x1="124" y1="166" x2="242" y2="72"/><line x1="242" y1="72" x2="296" y2="134"/><line x1="124" y1="166" x2="237" y2="214"/><line x1="237" y1="214" x2="123" y2="278"/><line x1="123" y1="278" x2="211" y2="311"/></g>
+      </svg>
+    </header>
 
-<div class="content">
+    <section class="section searchable" id="route" data-keywords="route plan study order">
+      <div class="head"><div><h3>Tonight's best route</h3><p>If you want max score efficiency, this is the highest-yield order.</p></div><button class="done" data-topic="route">Mark done</button></div>
+      <div class="timeline">
+        <div class="step"><b>1. CNN mechanics</b><div>Understand filters, padding, stride, pooling, flattening.</div></div>
+        <div class="step"><b>2. CNN numericals</b><div>Output-size and parameter-count questions.</div></div>
+        <div class="step"><b>3. RNN + BPTT</b><div>Forward pass first, then backprop through time.</div></div>
+        <div class="step"><b>4. BERT</b><div>MLM, NSP, embeddings and encoder structure.</div></div>
+        <div class="step"><b>5. LSTM + GRU</b><div>Master gates, equations and long-dependency intuition.</div></div>
+      </div>
+      <div class="callout good" style="margin-top:14px"><strong>Exam-writing pattern:</strong> write the formula first → define symbols → substitute values clearly → show all intermediate steps → box the final answer. Even if the final number slips, visible method can still save marks.</div>
+    </section>
 
-<section class="section searchable" id="exam-map" data-keywords="exam map module 3 4 5 study order">
- <div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>The route I would use tonight</h2><p>You did not give a professor leak/list this time, so the page weights the topics by how much the ZIP itself develops them and how numerical/diagram-heavy they are.</p></div><button class="done" data-topic="exam-map">Mark done</button></div>
- <div class="grid3">
-  <div class="card exam-hot"><span class="tag hot">Module 3</span><h3>CNN mechanics + architecture numericals</h3><p>Be able to calculate convolution/pooling output dimensions, count trainable parameters, explain padding/stride/pooling/flattening, and compare LeNet, AlexNet, VGG, GoogLeNet and ResNet.</p></div>
-  <div class="card exam-hot"><span class="tag hot">Module 4</span><h3>RNN forward pass + BPTT</h3><p>The current slides contain an explicit 3-step RNN forward numerical and an explicit 2-step BPTT gradient/weight-update numerical. These are high-value revision targets.</p></div>
-  <div class="card exam-hot"><span class="tag hot">Module 5</span><h3>LSTM + GRU gates</h3><p>Know every gate, its purpose, the equations shown in the slides, the cell/hidden-state flow, LSTM vs GRU, vanishing/exploding gradients, gradient clipping and explicit memory.</p></div>
- </div>
- <div class="callout good"><strong>Exam-writing habit</strong>For a numerical: write the architecture/equation first → substitute values → calculate each time step/layer → show intermediate dimensions/states → box the final output, class, parameter count or updated weights. For architecture questions, draw the data flow and then annotate what each block solves.</div>
-</section>
+    <section class="section searchable" id="visual-atlas" data-keywords="atlas overview map concepts visual atlas">
+      <div class="head"><div><h3>Visual atlas · one-screen concept map</h3><p>Use this as your “where am I?” map before drilling details.</p></div><button class="done" data-topic="atlas">Mark done</button></div>
+      <div class="viz">
+        <svg viewBox="0 0 1200 430" width="100%" role="img" aria-label="Deep learning concept map">
+          <defs>
+            <linearGradient id="box1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2b58"/><stop offset="1" stop-color="#16203f"/></linearGradient>
+            <linearGradient id="box2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#203f56"/><stop offset="1" stop-color="#14263c"/></linearGradient>
+            <linearGradient id="box3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a2559"/><stop offset="1" stop-color="#23193e"/></linearGradient>
+          </defs>
+          <rect x="20" y="20" rx="22" ry="22" width="360" height="150" fill="url(#box1)" stroke="#7fe7ff" stroke-opacity=".35"/>
+          <text x="42" y="58" fill="#7fe7ff" font-size="14" font-weight="700">MODULE 3</text>
+          <text x="42" y="98" fill="#fff" font-size="34" font-weight="700">CNNs</text>
+          <text x="42" y="126" fill="#d7e3ff" font-size="16">Convolution · Pooling · Parameters</text>
+          <text x="42" y="146" fill="#d7e3ff" font-size="16">LeNet · AlexNet · VGG · GoogLeNet · ResNet</text>
 
-<section class="section searchable source-bound" id="source-rule" data-keywords="source only zip audit boundary">
- <div class="section-head"><div class="section-no">SRC</div><div class="section-title"><h2>Source boundary · Deep Learning ZIP only</h2><p>The site is intentionally isolated from EDA, Data Mining, Compiler Design and outside web material.</p></div><button class="done" data-topic="source-rule">Mark done</button></div>
- <div class="callout dark"><strong>What “complete” means here</strong>The current Fall-2026 Module 3/4/5 files are treated as the main course presentation. Older WIN/SUM semester files inside the same ZIP are used only to capture extra worked examples, code snippets or slide details that are still clearly the same modules. If two supplied slides use slightly different counting conventions, the page tells you rather than silently choosing one.</div>
-</section>
+          <rect x="420" y="20" rx="22" ry="22" width="360" height="150" fill="url(#box2)" stroke="#5ad5c4" stroke-opacity=".35"/>
+          <text x="442" y="58" fill="#5ad5c4" font-size="14" font-weight="700">MODULE 4</text>
+          <text x="442" y="98" fill="#fff" font-size="34" font-weight="700">Sequence models</text>
+          <text x="442" y="126" fill="#d7e3ff" font-size="16">RNN · BPTT · BRNN · Autoencoder</text>
+          <text x="442" y="146" fill="#d7e3ff" font-size="16">Seq2Seq · Deep RNN · BERT</text>
 
-<section class="section searchable exam-hot" id="m3-foundations" data-keywords="module 3 cnn convolution neural network image channels local connectivity weight sharing ann limitations">
- <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>CNN foundations · why convolution exists</h2><p>Module 3 begins by contrasting ordinary fully connected ANNs with image structure, then builds the CNN layer stack from local connectivity and weight sharing.</p></div><button class="done" data-topic="m3-foundations">Mark done</button></div>
+          <rect x="820" y="20" rx="22" ry="22" width="360" height="150" fill="url(#box3)" stroke="#f38cd8" stroke-opacity=".35"/>
+          <text x="842" y="58" fill="#f38cd8" font-size="14" font-weight="700">MODULE 5</text>
+          <text x="842" y="98" fill="#fff" font-size="34" font-weight="700">Long memory</text>
+          <text x="842" y="126" fill="#d7e3ff" font-size="16">Long dependencies · ESN</text>
+          <text x="842" y="146" fill="#d7e3ff" font-size="16">LSTM · GRU · Clipping · Explicit memory</text>
 
- <div class="grid3">
-  <div class="card"><h3>Image representation</h3><p>Grayscale images are 2-D arrays; color images use multiple channels such as RGB. Each spatial cell stores intensity/value information. The slides use dimensions such as 28×28×1 and 100×100×3.</p></div>
-  <div class="card"><h3>Why plain ANN is inefficient</h3><p>Flattening a large image directly into a dense network creates huge parameter counts and ignores local spatial structure such as edges, corners and textures.</p></div>
-  <div class="card"><h3>CNN solution</h3><p><b>Local connectivity:</b> a filter sees a small receptive field. <b>Weight sharing:</b> the same filter weights slide across locations. This lets one learned detector search the entire image.</p></div>
- </div>
+          <rect x="88" y="232" rx="18" ry="18" width="235" height="118" fill="#101935" stroke="#7fe7ff" stroke-opacity=".2"/>
+          <text x="112" y="265" fill="#fff" font-size="22" font-weight="700">Core numericals</text>
+          <text x="112" y="293" fill="#d7e3ff" font-size="16">• output sizes</text>
+          <text x="112" y="316" fill="#d7e3ff" font-size="16">• parameter counts</text>
+          <text x="112" y="339" fill="#d7e3ff" font-size="16">• BPTT gradients</text>
 
- <div class="neuron-flow">
-  <div class="neuron">Input image<br><b>H×W×C</b></div><div class="arrow">→</div>
-  <div class="neuron">Convolution<br><b>features</b></div><div class="arrow">→</div>
-  <div class="neuron">Activation<br><b>non-linearity</b></div><div class="arrow">→</div>
-  <div class="neuron">Pooling<br><b>downsample</b></div><div class="arrow">→</div>
-  <div class="neuron">Flatten<br><b>1-D vector</b></div><div class="arrow">→</div>
-  <div class="neuron">Fully connected<br><b>reason/classify</b></div><div class="arrow">→</div>
-  <div class="neuron">Softmax / output<br><b>prediction</b></div>
- </div>
+          <rect x="485" y="232" rx="18" ry="18" width="235" height="118" fill="#101935" stroke="#5ad5c4" stroke-opacity=".2"/>
+          <text x="507" y="265" fill="#fff" font-size="22" font-weight="700">Memory equations</text>
+          <text x="507" y="293" fill="#d7e3ff" font-size="16">• hₜ, yₜ</text>
+          <text x="507" y="316" fill="#d7e3ff" font-size="16">• fₜ, iₜ, Cₜ, oₜ</text>
+          <text x="507" y="339" fill="#d7e3ff" font-size="16">• zₜ, rₜ, h̃ₜ, hₜ</text>
 
- <details open><summary>Kernel / filter · what it actually does</summary><div>
-  <p>The smaller WIN slides define a kernel as a small learned weight matrix that slides over the input. At every location:</p>
-  <ol class="algo"><li>Place the kernel over a local region.</li><li>Multiply input and kernel values element-by-element.</li><li>Sum the products.</li><li>Store that scalar in the output feature map.</li><li>Slide to the next valid location and repeat.</li></ol>
-  <p>Different kernels can act as edge/texture/shape detectors. The source names simple edge filters, Sobel kernels, Gaussian-blur kernels and pooling kernels as examples of filter ideas; CNN convolution kernels are learned during training.</p>
- </div></details>
+          <rect x="882" y="232" rx="18" ry="18" width="235" height="118" fill="#101935" stroke="#ffd887" stroke-opacity=".25"/>
+          <text x="905" y="265" fill="#fff" font-size="22" font-weight="700">Theory clusters</text>
+          <text x="905" y="293" fill="#d7e3ff" font-size="16">• architecture comparisons</text>
+          <text x="905" y="316" fill="#d7e3ff" font-size="16">• BERT pretraining tasks</text>
+          <text x="905" y="339" fill="#d7e3ff" font-size="16">• long-term dependency fixes</text>
 
- <details><summary>RGB convolution + multiple filters</summary><div>
-  <p>For an RGB input, a convolution filter spans all input channels: e.g. a 3×3 spatial filter over RGB is 3×3×3. The dot product across the full depth produces one scalar per spatial position.</p>
-  <p>If one filter produces one feature-map channel, then <b>K filters produce K output channels</b>. The source example states that if a 6×6 input convolved with 3×3 gives a 4×4 spatial map, then 10 filters give <b>4×4×10</b>.</p>
- </div></details>
-</section>
+          <g stroke="#7d88b8" stroke-width="2" stroke-dasharray="7 7" fill="none">
+            <path d="M200 170 C200 200, 205 210, 205 230"/>
+            <path d="M600 170 C600 200, 603 210, 603 230"/>
+            <path d="M1000 170 C1000 200, 999 210, 999 230"/>
+          </g>
+        </svg>
+      </div>
+    </section>
 
-<section class="section searchable exam-hot" id="m3-convolution" data-keywords="convolution output size padding stride same valid filter feature map numerical">
- <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Convolution, padding and stride · calculate dimensions without hesitation</h2><p>This is one of the most mechanical—and easiest to score—parts of Module 3.</p></div><button class="done" data-topic="m3-convolution">Mark done</button></div>
+    <section class="section searchable" id="cnn-core" data-keywords="cnn basics local connectivity weight sharing image representation receptive field">
+      <div class="head"><div><h3>Module 3 · CNN foundations</h3><p>Why CNNs exist: keep spatial structure, reuse local detectors, reduce parameter explosion.</p></div><button class="done" data-topic="cnn-core">Mark done</button></div>
+      <div class="grid3">
+        <div class="card"><span class="tag">Input idea</span><h4>Images are grids</h4><p>A grayscale image is a 2-D grid. An RGB image is a 3-D stack: height × width × channels. CNNs exploit that neighboring pixels are related.</p></div>
+        <div class="card"><span class="tag gold">Problem</span><h4>Dense ANN is wasteful</h4><p>Flattening a large image immediately into a dense layer destroys spatial locality and creates huge numbers of parameters.</p></div>
+        <div class="card"><span class="tag green">CNN fix</span><h4>Local connectivity + weight sharing</h4><p>A small filter scans the image. The same weights are reused at every location, so one learned detector can look everywhere.</p></div>
+      </div>
+      <div class="viz">
+        <svg viewBox="0 0 1200 360" width="100%" role="img" aria-label="CNN data flow">
+          <defs><linearGradient id="cna" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d2852"/><stop offset="1" stop-color="#13203c"/></linearGradient></defs>
+          <g transform="translate(18,65)">
+            <rect x="0" y="0" width="140" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="70" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">INPUT</text>
+            <g fill="#cde5ff">
+              <rect x="24" y="38" width="18" height="18" rx="3"/><rect x="46" y="38" width="18" height="18" rx="3"/><rect x="68" y="38" width="18" height="18" rx="3"/><rect x="90" y="38" width="18" height="18" rx="3"/>
+              <rect x="24" y="60" width="18" height="18" rx="3"/><rect x="46" y="60" width="18" height="18" rx="3" fill="#7fe7ff"/><rect x="68" y="60" width="18" height="18" rx="3" fill="#5ad5c4"/><rect x="90" y="60" width="18" height="18" rx="3"/>
+              <rect x="24" y="82" width="18" height="18" rx="3"/><rect x="46" y="82" width="18" height="18" rx="3" fill="#ffd887"/><rect x="68" y="82" width="18" height="18" rx="3" fill="#f38cd8"/><rect x="90" y="82" width="18" height="18" rx="3"/>
+            </g>
+          </g>
+          <g transform="translate(205,65)">
+            <rect x="0" y="0" width="140" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="70" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">CONVOLUTION</text>
+            <rect x="38" y="48" width="62" height="62" rx="10" fill="#0f1734" stroke="#ffd887"/>
+            <g fill="#ffd887"><circle cx="54" cy="64" r="5"/><circle cx="69" cy="64" r="5"/><circle cx="84" cy="64" r="5"/><circle cx="54" cy="80" r="5"/><circle cx="69" cy="80" r="5"/><circle cx="84" cy="80" r="5"/><circle cx="54" cy="96" r="5"/><circle cx="69" cy="96" r="5"/><circle cx="84" cy="96" r="5"/></g>
+          </g>
+          <g transform="translate(392,65)">
+            <rect x="0" y="0" width="140" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="70" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">ACTIVATION</text>
+            <path d="M30 101 L50 101 L74 52 L96 101 L113 101" fill="none" stroke="#f38cd8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="69" y="125" fill="#d7e3ff" font-size="13" text-anchor="middle">ReLU / tanh / sigmoid</text>
+          </g>
+          <g transform="translate(579,65)">
+            <rect x="0" y="0" width="140" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="70" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">POOLING</text>
+            <g fill="#cde5ff"><rect x="30" y="45" width="22" height="22" rx="4"/><rect x="56" y="45" width="22" height="22" rx="4"/><rect x="82" y="45" width="22" height="22" rx="4"/><rect x="30" y="71" width="22" height="22" rx="4"/><rect x="56" y="71" width="22" height="22" rx="4" fill="#7fe7ff"/><rect x="82" y="71" width="22" height="22" rx="4"/><rect x="30" y="97" width="22" height="22" rx="4"/><rect x="56" y="97" width="22" height="22" rx="4"/><rect x="82" y="97" width="22" height="22" rx="4"/></g>
+            <text x="70" y="125" fill="#d7e3ff" font-size="13" text-anchor="middle">keep strongest / average</text>
+          </g>
+          <g transform="translate(766,65)">
+            <rect x="0" y="0" width="140" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="70" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">FLATTEN</text>
+            <g fill="#cde5ff"><rect x="18" y="62" width="20" height="20" rx="4"/><rect x="42" y="62" width="20" height="20" rx="4"/><rect x="66" y="62" width="20" height="20" rx="4"/><rect x="90" y="62" width="20" height="20" rx="4"/></g>
+            <path d="M44 100 H102" stroke="#7fe7ff" stroke-width="5" stroke-linecap="round"/>
+            <text x="70" y="125" fill="#d7e3ff" font-size="13" text-anchor="middle">H×W×C → vector</text>
+          </g>
+          <g transform="translate(953,65)">
+            <rect x="0" y="0" width="210" height="140" rx="18" fill="url(#cna)" stroke="#7fe7ff" stroke-opacity=".3"/>
+            <text x="105" y="28" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">FULLY CONNECTED / OUTPUT</text>
+            <g fill="#7fe7ff"><circle cx="50" cy="58" r="8"/><circle cx="50" cy="86" r="8"/><circle cx="50" cy="114" r="8"/></g>
+            <g fill="#ffd887"><circle cx="108" cy="72" r="8"/><circle cx="108" cy="100" r="8"/></g>
+            <g fill="#f38cd8"><circle cx="164" cy="86" r="9"/></g>
+            <g stroke="#b7d8ff" stroke-opacity=".45"><line x1="58" y1="58" x2="100" y2="72"/><line x1="58" y1="58" x2="100" y2="100"/><line x1="58" y1="86" x2="100" y2="72"/><line x1="58" y1="86" x2="100" y2="100"/><line x1="58" y1="114" x2="100" y2="72"/><line x1="58" y1="114" x2="100" y2="100"/><line x1="116" y1="72" x2="155" y2="86"/><line x1="116" y1="100" x2="155" y2="86"/></g>
+          </g>
+          <g stroke="#91a7ff" stroke-width="3" stroke-linecap="round"><line x1="164" y1="135" x2="190" y2="135"/><line x1="351" y1="135" x2="377" y2="135"/><line x1="538" y1="135" x2="564" y2="135"/><line x1="725" y1="135" x2="751" y2="135"/><line x1="912" y1="135" x2="938" y2="135"/></g>
+        </svg>
+      </div>
+      <div class="chips" style="margin-top:14px"><div class="chip">local connectivity</div><div class="chip">weight sharing</div><div class="chip">receptive field</div><div class="chip">feature map</div><div class="chip">hierarchical features</div></div>
+    </section>
 
- <div class="formula">Spatial output used throughout the slides: <b>O = ((N + 2P − F) / S) + 1</b><br>N=input size · P=padding · F=filter size · S=stride</div>
- <div class="callout warn"><strong>Rectangular inputs</strong>Apply the same relation independently to height and width. The WIN slide's 6×7 input, 3×3 kernel, stride 2 example produces a 2×3 map.</div>
-
- <div class="grid3">
-  <div class="card"><h3>No padding · stride 1</h3><p>6×6 input, 3×3 filter:</p><div class="formula">6−3+1=<b>4</b> ⇒ 4×4</div><p>Repeated valid convolution shrinks spatial size and can lose border information.</p></div>
-  <div class="card"><h3>Padding</h3><p>6×6 input, 3×3 filter, P=1:</p><div class="formula">6+2(1)−3+1=<b>6</b> ⇒ 6×6</div><p>Padding preserves border participation and can preserve spatial size.</p></div>
-  <div class="card"><h3>Stride</h3><p>Stride is how many pixels the filter moves each step. Larger stride downsamples more aggressively and reduces compute/memory.</p></div>
- </div>
-
- <table style="margin-top:14px"><tr><th>Padding type</th><th>What the source says</th><th>Typical result at stride 1</th></tr><tr><td><b>SAME</b></td><td>Zeros are added around the input.</td><td>Output spatial size maintained.</td></tr><tr><td><b>VALID</b></td><td>No padding; filter used only where it fully fits.</td><td>Output smaller than input.</td></tr></table>
-
- <details open><summary>Current Module-3 example · 32×32×3, 5×5, 6 filters</summary><div>
-  <p><b>Without padding:</b> N=32,F=5,S=1,P=0 → 28×28 spatial size. Six filters → <b>28×28×6</b>.</p>
-  <p><b>With P=2:</b> (32+4−5)+1=32 → <b>32×32×6</b>.</p>
- </div></details>
-
- <div class="lab">
-  <h3>Convolution dimension + parameter calculator</h3>
-  <p>Use it to check your hand arithmetic. The “source preset” is Layer A of the 100×100×3 parameter numerical.</p>
-  <div class="controls">
-    <label>H <input id="inH" value="32"></label><label>W <input id="inW" value="32"></label><label>Cin <input id="inC" value="3"></label>
-    <label>Fh <input id="fH" value="5"></label><label>Fw <input id="fW" value="5"></label><label>filters <input id="outC" value="6"></label>
-    <label>P <input id="pad" value="0"></label><label>S <input id="stride" value="1"></label>
-    <button id="convCalc" class="labbtn">Calculate</button><button id="convPreset" class="labbtn">100×100 source preset</button>
-  </div>
-  <div id="convOut" class="metric-grid"></div>
- </div>
-</section>
-
-<section class="section searchable" id="m3-pooling" data-keywords="pooling max average l2 relu activation flatten fully connected softmax">
- <div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Pooling, activation, flatten and fully connected layers</h2><p>Know what each layer changes: spatial dimensions, values, vector shape—or trainable parameters.</p></div><button class="done" data-topic="m3-pooling">Mark done</button></div>
-
- <div class="grid4">
-  <div class="card"><h3>Max pooling</h3><p>Reports the maximum in each local neighborhood. The source calls this the most common pooling operation.</p></div>
-  <div class="card"><h3>Average pooling</h3><p>Averages a neighborhood. The WIN slides say it retains more of the less-dominant information and can improve noise robustness.</p></div>
-  <div class="card"><h3>L2-norm pooling</h3><p>WIN pooling deck: square-root of the sum of squares inside the neighborhood; listed as a way to highlight important features and improve noise robustness.</p></div>
-  <div class="card"><h3>Weighted pooling</h3><p>The same deck also names weighted averaging based on distance from the central pixel.</p></div>
- </div>
-
- <details open><summary>Exact max-pooling example</summary><div>
-  <p>Input 4×4:</p>
-  <pre class="tree">3 1 1 3
+    <section class="section searchable" id="cnn-calcs" data-keywords="convolution output size padding stride pooling calculator same valid">
+      <div class="head"><div><h3>Convolution + pooling · make the dimensions obvious</h3><p>These are the easiest marks to secure if you show the structure clearly.</p></div><button class="done" data-topic="cnn-calcs">Mark done</button></div>
+      <div class="grid2">
+        <div>
+          <div class="formula">Output size: O = ((N + 2P − F) / S) + 1</div>
+          <div class="callout warn" style="margin-top:12px"><strong>Remember:</strong> apply the formula separately to height and width. Number of filters = output depth.</div>
+          <div class="viz" style="margin-top:14px">
+            <svg viewBox="0 0 640 270" width="100%" role="img" aria-label="Padding and stride illustration">
+              <text x="20" y="24" fill="#7fe7ff" font-size="16" font-weight="700">Visual intuition: padding and stride</text>
+              <text x="20" y="48" fill="#cfe1ff" font-size="13">Left: no padding. Right: same input with 1-pixel zero padding.</text>
+              <g transform="translate(24,70)">
+                <text x="70" y="-10" fill="#ffd887" font-size="14" font-weight="700" text-anchor="middle">No padding</text>
+                <g fill="#d3defd" stroke="#7f8cbc" stroke-opacity=".32">
+                  <rect x="0" y="0" width="28" height="28"/><rect x="30" y="0" width="28" height="28"/><rect x="60" y="0" width="28" height="28"/><rect x="90" y="0" width="28" height="28"/><rect x="120" y="0" width="28" height="28"/>
+                  <rect x="0" y="30" width="28" height="28"/><rect x="30" y="30" width="28" height="28"/><rect x="60" y="30" width="28" height="28"/><rect x="90" y="30" width="28" height="28"/><rect x="120" y="30" width="28" height="28"/>
+                  <rect x="0" y="60" width="28" height="28"/><rect x="30" y="60" width="28" height="28"/><rect x="60" y="60" width="28" height="28" fill="#7fe7ff"/><rect x="90" y="60" width="28" height="28" fill="#5ad5c4"/><rect x="120" y="60" width="28" height="28"/>
+                  <rect x="0" y="90" width="28" height="28"/><rect x="30" y="90" width="28" height="28"/><rect x="60" y="90" width="28" height="28" fill="#ffd887"/><rect x="90" y="90" width="28" height="28" fill="#f38cd8"/><rect x="120" y="90" width="28" height="28"/>
+                  <rect x="0" y="120" width="28" height="28"/><rect x="30" y="120" width="28" height="28"/><rect x="60" y="120" width="28" height="28"/><rect x="90" y="120" width="28" height="28"/><rect x="120" y="120" width="28" height="28"/>
+                </g>
+                <rect x="30" y="30" width="88" height="88" fill="none" stroke="#ffd887" stroke-width="4" rx="8"/>
+                <text x="72" y="172" fill="#cfe1ff" font-size="13" text-anchor="middle">3×3 filter scans only where it fits</text>
+              </g>
+              <g transform="translate(340,70)">
+                <text x="100" y="-10" fill="#7fe7ff" font-size="14" font-weight="700" text-anchor="middle">Padding = 1 (same-style)</text>
+                <g fill="#1a2346" stroke="#66749a" stroke-opacity=".38">
+                  <rect x="0" y="0" width="28" height="28"/><rect x="30" y="0" width="28" height="28"/><rect x="60" y="0" width="28" height="28"/><rect x="90" y="0" width="28" height="28"/><rect x="120" y="0" width="28" height="28"/><rect x="150" y="0" width="28" height="28"/><rect x="180" y="0" width="28" height="28"/>
+                  <rect x="0" y="30" width="28" height="28"/><rect x="180" y="30" width="28" height="28"/><rect x="0" y="60" width="28" height="28"/><rect x="180" y="60" width="28" height="28"/><rect x="0" y="90" width="28" height="28"/><rect x="180" y="90" width="28" height="28"/><rect x="0" y="120" width="28" height="28"/><rect x="180" y="120" width="28" height="28"/><rect x="0" y="150" width="28" height="28"/><rect x="30" y="150" width="28" height="28"/><rect x="60" y="150" width="28" height="28"/><rect x="90" y="150" width="28" height="28"/><rect x="120" y="150" width="28" height="28"/><rect x="150" y="150" width="28" height="28"/><rect x="180" y="150" width="28" height="28"/>
+                </g>
+                <g fill="#d3defd" stroke="#7f8cbc" stroke-opacity=".32" transform="translate(30,30)">
+                  <rect x="0" y="0" width="28" height="28"/><rect x="30" y="0" width="28" height="28"/><rect x="60" y="0" width="28" height="28"/><rect x="90" y="0" width="28" height="28"/><rect x="120" y="0" width="28" height="28"/>
+                  <rect x="0" y="30" width="28" height="28"/><rect x="30" y="30" width="28" height="28"/><rect x="60" y="30" width="28" height="28"/><rect x="90" y="30" width="28" height="28"/><rect x="120" y="30" width="28" height="28"/>
+                  <rect x="0" y="60" width="28" height="28"/><rect x="30" y="60" width="28" height="28"/><rect x="60" y="60" width="28" height="28" fill="#7fe7ff"/><rect x="90" y="60" width="28" height="28" fill="#5ad5c4"/><rect x="120" y="60" width="28" height="28"/>
+                  <rect x="0" y="90" width="28" height="28"/><rect x="30" y="90" width="28" height="28"/><rect x="60" y="90" width="28" height="28" fill="#ffd887"/><rect x="90" y="90" width="28" height="28" fill="#f38cd8"/><rect x="120" y="90" width="28" height="28"/>
+                  <rect x="0" y="120" width="28" height="28"/><rect x="30" y="120" width="28" height="28"/><rect x="60" y="120" width="28" height="28"/><rect x="90" y="120" width="28" height="28"/><rect x="120" y="120" width="28" height="28"/>
+                </g>
+                <rect x="60" y="60" width="88" height="88" fill="none" stroke="#7fe7ff" stroke-width="4" rx="8"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="lab">
+            <div class="controls">
+              <label>Input H<input id="inH" value="32"></label>
+              <label>Input W<input id="inW" value="32"></label>
+              <label>Input C<input id="inC" value="3"></label>
+              <label>Filter H<input id="fH" value="5"></label>
+              <label>Filter W<input id="fW" value="5"></label>
+              <label>Filters<input id="outC" value="6"></label>
+              <label>Padding<input id="pad" value="0"></label>
+              <label>Stride<input id="stride" value="1"></label>
+            </div>
+            <div class="controls"><button id="convCalc" class="labbtn">Calculate</button><button id="convPreset" class="labbtn">Use 100×100 source preset</button></div>
+            <div id="convOut" class="metric-grid"></div>
+          </div>
+          <div class="callout good" style="margin-top:14px"><strong>Source-type examples:</strong> 32×32×3 with 5×5 filter and no padding gives 28×28 per filter. With 6 filters, output = <b>28×28×6</b>. If you add padding 2, it stays <b>32×32×6</b>.</div>
+        </div>
+      </div>
+      <div class="grid2" style="margin-top:16px">
+        <div class="card"><span class="tag violet">Pooling</span><h4>Max pooling visual memory</h4><p>Think of a small window that keeps the strongest response from each neighborhood. Spatial size drops, channels stay the same, and parameters added = <b>0</b>.</p><pre class="tree">Input 4×4:
+3 1 1 3
 2 5 0 2
 1 4 2 1
-4 7 2 4</pre>
-  <p>With 2×2 max pooling, stride 2, the four neighborhoods produce:</p>
-  <pre class="tree">5 3
-7 4</pre>
-  <p>For multi-channel feature maps, pooling is applied spatially per channel; the source illustrates <b>8×8×3 → 4×4×3</b>.</p>
- </div></details>
-
- <div class="grid3">
-  <div class="card"><h3>Why pooling?</h3><p>Downsampling reduces compute and memory, shortens training, controls overfitting, and provides some invariance to small translations/scale changes.</p></div>
-  <div class="card"><h3>Pooling drawbacks</h3><p>The source lists information loss and reduced spatial resolution; it warns that architecture choices must balance compression against fine detail.</p></div>
-  <div class="card"><h3>Trainable params</h3><p>Max/average pooling have <b>0 trainable weights/biases</b>. They aggregate; they do not learn parameters.</p></div>
- </div>
-
- <div class="lab" style="margin-top:16px">
-  <h3>Pooling output calculator</h3>
-  <div class="controls"><label>H <input id="pH" value="102"></label><label>W <input id="pW" value="102"></label><label>C <input id="pC" value="10"></label><label>pool <input id="pF" value="2"></label><label>stride <input id="pS" value="2"></label><label>pad <input id="pP" value="0"></label><button id="poolCalc" class="labbtn">Calculate</button></div>
-  <div id="poolOut" class="metric-grid"></div>
- </div>
-
- <details open><summary>Non-linearity · functions named in the CNN slides</summary><div>
-  <table><tr><th>Function</th><th>Source-level idea</th></tr>
-   <tr><td><b>ReLU</b></td><td>Most common CNN non-linearity; output max(0,x).</td></tr>
-   <tr><td><b>Sigmoid</b></td><td>Output lies between 0 and 1; often associated with output prediction in the slides.</td></tr>
-   <tr><td><b>tanh</b></td><td>Output lies between −1 and 1; the slides associate it mainly with hidden layers / older CNN architectures.</td></tr>
-   <tr><td><b>Leaky ReLU</b></td><td>Allows a small negative response instead of killing all negative inputs.</td></tr>
-   <tr><td><b>ELU</b></td><td>Uses a negative exponential response for negative inputs; presented as another expressive ReLU-family choice.</td></tr>
-  </table>
-  <p>Without a non-linearity, stacked convolution operations remain linear and cannot represent the complex mappings the CNN needs.</p>
- </div></details>
-
- <details open><summary>Flatten → Fully Connected → Output</summary><div>
-  <p><b>Flatten:</b> reshapes H×W×C feature maps into a 1-D vector; it has <b>0 trainable parameters</b>.</p>
-  <p><b>Fully connected:</b> every input neuron connects to every output neuron; the last dense representation performs high-level reasoning/classification.</p>
-  <p><b>Output:</b> the current Module-3 slides mention SVM/hinge-loss or Softmax/cross-entropy classification. For a C-class softmax output, the final layer has C output units.</p>
- </div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m3-parameters" data-keywords="cnn parameters numerical 100x100 filters fully connected total 139820">
- <div class="section-head"><div class="section-no">M3#</div><div class="section-title"><h2>CNN parameter-count numerical · full source problem</h2><p>The current 179-page Module-3 PDF gives an explicit A→F network and calculates every output shape and trainable parameter count.</p></div><button class="done" data-topic="m3-parameters">Mark done</button></div>
-
- <div class="formula"><b>Conv params</b> = (Fh × Fw × input_channels + 1 bias) × number_of_filters</div>
- <div class="formula"><b>FC params</b> = input_neurons × output_neurons + output_neurons = output_neurons × (input_neurons + 1)</div>
- <div class="callout good"><strong>Zero-parameter layers in the source table</strong>ReLU, pooling, flatten and the softmax operation itself have no trainable weights in this counting scheme.</div>
-
- <p><b>Given:</b> input 100×100×3; convolution stride 1; pooling stride 2; output classes 10.</p>
- <table>
-  <tr><th>Layer</th><th>Operation</th><th>Output</th><th>Parameter work</th><th>Params</th></tr>
-  <tr><td><b>A · C1</b></td><td>3×3 conv, 10 filters, P=2</td><td>102×102×10</td><td>(3×3×3+1)×10</td><td><b>280</b></td></tr>
-  <tr><td><b>B · C2</b></td><td>5×5 conv, 10 filters, P=2</td><td>102×102×10</td><td>(5×5×10+1)×10</td><td><b>2,510</b></td></tr>
-  <tr><td><b>C · P1</b></td><td>2×2 max-pool, S=2</td><td>51×51×10</td><td>no weights</td><td><b>0</b></td></tr>
-  <tr><td><b>D · C3</b></td><td>3×3 conv, 20 filters, P=2</td><td>53×53×20</td><td>(3×3×10+1)×20</td><td><b>1,820</b></td></tr>
-  <tr><td><b>E · P2</b></td><td>2×2 max-pool, S=2</td><td>26×26×20</td><td>no weights</td><td><b>0</b></td></tr>
-  <tr><td><b>F · FC1</b></td><td>Flatten → 10 neurons</td><td>10</td><td>26×26×20=13,520 inputs; 13,520×10+10</td><td><b>135,210</b></td></tr>
- </table>
- <div class="formula">Total = 280 + 2,510 + 0 + 1,820 + 0 + 135,210 = <b>139,820 parameters</b></div>
-
- <details><summary>Why fully connected layers can dominate parameter count</summary><div><p>The source numerical makes this obvious: the convolution layers together use only thousands of parameters, while flattening 13,520 activations into a dense 10-unit layer alone creates 135,210 parameters. The architecture slides repeatedly point out that late FC layers can be parameter-heavy.</p></div></details>
-
- <details><summary>AlexNet micro-numerical in the current slides</summary><div>
-  <p>Input 227×227×3. CONV1 has 96 filters of size 11×11, stride 4, pad 0:</p>
-  <div class="formula">(227−11)/4+1 = <b>55</b> ⇒ output <b>55×55×96</b></div>
-  <p>The slides show about <b>35K weights</b> for this convolution using (11×11×3)×96; the detailed summary table lists 34,944 when biases are included.</p>
-  <p>POOL1 uses 3×3, stride 2:</p><div class="formula">(55−3)/2+1 = <b>27</b> ⇒ 27×27×96 · parameters = <b>0</b></div>
- </div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m3-architectures" data-keywords="lenet alexnet vgg googlenet inception resnet architectures comparison">
- <div class="section-head"><div class="section-no">M3A</div><div class="section-title"><h2>Major CNN architectures · understand the innovation chain</h2><p>Do not memorize five disconnected diagrams. Learn what problem each architecture changed.</p></div><button class="done" data-topic="m3-architectures">Mark done</button></div>
-
- <div class="arch-strip">
-  <div class="arch"><b>LeNet-5</b><span>classic conv→pool template</span></div>
-  <div class="arch"><b>AlexNet</b><span>deep CNN wins ImageNet</span></div>
-  <div class="arch"><b>VGG</b><span>small 3×3 filters, deeper</span></div>
-  <div class="arch"><b>GoogLeNet</b><span>parallel multi-scale Inception</span></div>
-  <div class="arch"><b>ResNet</b><span>skip connections enable depth</span></div>
- </div>
-
- <div class="controls"><button class="labbtn" data-arch="LeNet-5">LeNet-5</button><button class="labbtn" data-arch="AlexNet">AlexNet</button><button class="labbtn" data-arch="VGG">VGG</button><button class="labbtn" data-arch="GoogLeNet">GoogLeNet</button><button class="labbtn" data-arch="ResNet">ResNet</button></div>
- <div id="archOut"></div>
-
- <details open><summary>LeNet-5 · the exact source summary</summary><div>
-  <p>Introduced by Yann LeCun (1998), designed for handwritten digit recognition/MNIST. The source describes it as the early template: convolution + pooling repeated, then dense classification.</p>
-  <table><tr><th>Layer</th><th>Feature map / units</th><th>Activation</th><th>Source params</th></tr>
-   <tr><td>Input</td><td>32×32×1</td><td>—</td><td>0</td></tr>
-   <tr><td>C1</td><td>28×28×6 · 5×5</td><td>tanh</td><td>156</td></tr>
-   <tr><td>S2 avg-pool</td><td>14×14×6</td><td>tanh</td><td>12 in source table</td></tr>
-   <tr><td>C3</td><td>10×10×16 · 5×5</td><td>tanh</td><td>1,516</td></tr>
-   <tr><td>S4 avg-pool</td><td>5×5×16</td><td>tanh</td><td>32 in source table</td></tr>
-   <tr><td>C5</td><td>1×1×120 · 5×5</td><td>tanh</td><td>48,120</td></tr>
-   <tr><td>F6</td><td>84</td><td>tanh</td><td>10,164</td></tr>
-   <tr><td>Output</td><td>10</td><td>RBF/Softmax</td><td>850</td></tr>
-  </table>
-  <p>The “5” in LeNet-5 is explained in the current PDF as the number of trainable weight layers.</p>
- </div></details>
-
- <details open><summary>AlexNet · what changed</summary><div>
-  <p>2012 ImageNet winner; current slides use input 227×227×3 and the simplified chain:</p>
-  <div class="formula">CONV1 96@11×11,S4 → POOL → NORM → CONV2 256@5×5 → POOL/NORM → CONV3 384@3×3 → CONV4 384 → CONV5 256 → POOL → FC6 4096 → FC7 4096 → FC8 1000</div>
-  <p>Features emphasized across the ZIP: <b>ReLU</b>, overlapping max-pooling, local response normalization in the original architecture, heavy data augmentation, dropout/L2-type regularization in the older deck, SGD+momentum, and distributed two-GPU training.</p>
-  <div class="callout warn"><strong>Counting convention inside the ZIP</strong>The older WIN slide calls AlexNet “7 layers (5 Conv + 2 FC)” because it treats the final output separately; the current PDF lists 5 convolution + 3 fully connected (FC6, FC7, FC8). For an exam, describe the actual layer chain and you avoid the naming ambiguity.</div>
- </div></details>
-
- <details open><summary>VGG · why stacks of 3×3?</summary><div>
-  <p>VGG-16/VGG-19 use a simple sequential pattern: mostly <b>3×3 convolution, stride 1, pad 1</b>, with <b>2×2 max-pooling, stride 2</b>.</p>
-  <p>The source's key reasoning: three stacked 3×3 stride-1 convolutions have an effective receptive field of <b>7×7</b>, but give more non-linearities and fewer parameters than one 7×7 layer at the same channel width.</p>
-  <p>The PDF states VGG is parameter/memory heavy—about <b>138M parameters</b> for VGG-16, with early convolution activations dominating memory and late FC layers dominating parameter count.</p>
- </div></details>
-
- <details open><summary>GoogLeNet / Inception · parallel filters + bottlenecks</summary><div>
-  <p>An Inception module applies several operations <b>in parallel</b>—1×1, 3×3, 5×5 convolutions and pooling—then concatenates outputs depth-wise. This captures features at multiple scales.</p>
-  <p>Naively doing all branches is expensive. The source therefore inserts <b>1×1 bottleneck convolutions</b> before larger filters to reduce channel depth. A 1×1 conv preserves spatial H×W while projecting depth.</p>
-  <p>Current slides give an example reducing a naive Inception block from about <b>854M operations</b> to about <b>358M operations</b> after bottlenecks.</p>
-  <p>GoogLeNet also uses global average pooling instead of large FC stacks and auxiliary classifiers to inject gradients into lower layers. The slides quote roughly 5–6.8M parameters depending on the summary slide.</p>
- </div></details>
-
- <details open><summary>ResNet · residual learning</summary><div>
-  <div class="formula"><b>Residual block:</b> y = F(x) + x</div>
-  <p>As networks become very deep, the slides emphasize vanishing gradients and the <b>degradation problem</b>. Skip/identity connections create a direct path for information/gradients and make very deep networks easier to optimize.</p>
-  <p>Source architecture points: stack residual blocks; a basic block uses two 3×3 conv layers; periodically downsample with stride 2 while increasing filters; use global average pooling near the end; common depths include 18,34,50,101,152.</p>
- </div></details>
-
- <table>
-  <tr><th>Feature</th><th>VGG</th><th>GoogLeNet</th><th>ResNet</th></tr>
-  <tr><td>Main objective</td><td>Simple deeper CNN</td><td>Accuracy with less computation</td><td>Train very deep networks</td></tr>
-  <tr><td>Building block</td><td>3×3 conv stack</td><td>Inception module</td><td>Residual block</td></tr>
-  <tr><td>Topology</td><td>Sequential</td><td>Parallel branches</td><td>Sequential blocks + skips</td></tr>
-  <tr><td>Skip connection</td><td>No</td><td>No</td><td><b>Yes</b></td></tr>
-  <tr><td>Source complexity summary</td><td>Highest memory/ops</td><td>Most efficient</td><td>Moderate-to-high efficiency, strongest accuracy in comparison</td></tr>
- </table>
-</section>
-
-<section class="section searchable" id="m3-complete" data-keywords="module 3 complete applications stacking forward backprop cnn advantages disadvantages code">
- <div class="section-head"><div class="section-no">M3Σ</div><div class="section-title"><h2>Module 3 safety net · the rest of the ZIP</h2><p>Once the mechanics and five architectures above are solid, sweep these remaining source points.</p></div><button class="done" data-topic="m3-complete">Mark done</button></div>
- <details open><summary>Stacking convolutional layers</summary><div><p>Earlier layers learn primitive patterns such as edges; deeper layers combine them into shapes and object-level features. Benefits named in the WIN deck: more complex features, better accuracy and robustness. Challenges: more computation, higher overfitting risk and harder architecture/hyperparameter selection.</p></div></details>
- <details open><summary>Forward / back propagation in CNN</summary><div><p>The WIN deck's simple CNN is: image → convolution → ReLU → max-pool → flatten → dense output. It explicitly labels backpropagation through <b>convolution, max-pooling and flatten</b>, and notes that convolution/dense weights are the trainable parameters while ReLU/pooling/flatten have no learned weights.</p><p>A tiny source diagram counts <b>15 trainable parameters</b> for a 3×3 convolution (9 weights + bias) followed by a dense connection from a 4-element pooled/flattened vector to one neuron (4 weights + bias).</p></div></details>
- <details open><summary>CNN advantages / disadvantages</summary><div><p>Advantages emphasized: automatic feature extraction, local connectivity/weight sharing, fewer parameters than naive dense image models, hierarchical features and strong image/spatial performance. Disadvantages/risks include compute/memory cost, architecture tuning and information loss from aggressive downsampling.</p></div></details>
- <details><summary>Applications listed across Module 3</summary><div><p>Image classification, object/feature recognition, computer vision tasks, medical/image analysis, autonomous/industry use cases and other sectors. The slides also connect CNN feature extractors with transfer learning.</p></div></details>
- <details><summary>Keras code patterns in the older Module-3 decks</summary><div>
-  <div class="codebox"><button class="copy">Copy</button><pre>model = Sequential()
-model.add(Conv2D(32, (3,3), padding='valid',
-                 activation='relu', input_shape=(28,28,1)))
-model.add(MaxPooling2D(pool_size=(2,2), strides=2))
-model.add(Conv2D(32, (3,3), activation='relu'))
-model.add(MaxPooling2D(pool_size=(2,2), strides=2))
-model.add(Flatten())
-model.add(Dense(128, activation='relu'))
-model.add(Dense(10, activation='softmax'))</pre></div>
-  <p>The code is useful mainly as a memory aid for layer order, padding/stride effects and which layers have parameters.</p>
- </div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m4-rnn" data-keywords="module 4 rnn recurrent neural network hidden state types one many many one many to many equation">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>RNN fundamentals · the network carries state through time</h2><p>Module 4 shifts from spatial structure to sequence structure. The defining idea is the hidden state/memory passed from one time step to the next.</p></div><button class="done" data-topic="m4-rnn">Mark done</button></div>
-
- <div class="grid3">
-  <div class="card"><h3>Why RNN?</h3><p>Feed-forward networks do not naturally carry previous sequence context. RNNs are designed for sequential data such as text, speech, video and time series.</p></div>
-  <div class="card"><h3>Hidden state</h3><p>The current hidden state combines the current input and previous hidden state using shared weights. The same recurrent computation repeats at every time step.</p></div>
-  <div class="card"><h3>Parameter sharing</h3><p>The same input/recurrent/output weight matrices are reused across time, reducing parameter growth relative to giving every time step independent weights.</p></div>
- </div>
-
- <div class="formula">hₜ = tanh(Wₕₕ hₜ₋₁ + Wₓₕ xₜ) &nbsp;&nbsp; (bias may be included)</div>
- <div class="formula">yₜ = Wₕᵧ hₜ &nbsp;&nbsp; (then apply the task's output activation if required)</div>
-
- <div class="branch">
-  <div><b>One → One</b><br>single input, single output; source example: ordinary image classification.</div>
-  <div><b>One → Many</b><br>single input generates a sequence; image captioning / music generation.</div>
-  <div><b>Many → One</b><br>sequence → one decision; sentiment/language/emotion/spam classification.</div>
-  <div><b>Many → Many</b><br>sequence → sequence; equal length for sequence tagging/NER; unequal length for translation.</div>
- </div>
-
- <details><summary>RNN vs CNN in the source</summary><div><p>The Module-4 deck frames RNNs as better suited to temporal/sequential data and CNNs as spatial image models. RNN results feed back into future recurrent computation; CNNs are feed-forward feature extractors with filters/pooling.</p></div></details>
-
- <details><summary>Applications + limitations</summary><div><p>Applications named include stock/time-series analysis, forecasting, translation, NLP, speech recognition, image captioning and sequence classification. Limitations listed: sequential computation is slow, long sequences are difficult for vanilla tanh/ReLU RNNs, future context is unavailable in a one-directional RNN, training is complicated, and gradients can vanish or explode.</p></div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m4-rnn-numerical" data-keywords="rnn numerical sigmoid x1 x2 x3 1.8 0.5 1.1 argmax validation 70000">
- <div class="section-head"><div class="section-no">M4#1</div><div class="section-title"><h2>RNN forward numerical · exact 3-time-step source problem</h2><p>This is a direct calculation problem from the current Fall-2026 Module-4 slides.</p></div><button class="done" data-topic="m4-rnn-numerical">Mark done</button></div>
-
- <div class="callout good"><strong>Given</strong>x₁=1, x₂=0.5, x₃=0.5; input weight Wₓ=1.8; recurrent weight Wₕ=0.5; output weight Wᵧ=1.1; bias b=0; h₀=0. The problem uses sigmoid hidden activation.</div>
- <div class="formula">σ(z)=1/(1+e⁻ᶻ)<br>hₜ=σ(Wₓxₜ + Wₕhₜ₋₁ + b)<br>yₜ=Wᵧhₜ</div>
-
- <table>
-  <tr><th>t</th><th>Hidden pre-activation</th><th>hₜ</th><th>Output</th></tr>
-  <tr><td>1</td><td>1.8(1)+0.5(0)=1.8</td><td>σ(1.8)=<b>0.858</b></td><td>1.1×0.858≈<b>0.944</b></td></tr>
-  <tr><td>2</td><td>1.8(0.5)+0.5(0.858)=1.329</td><td>σ(1.329)=<b>0.791</b></td><td>1.1×0.791≈<b>0.870</b></td></tr>
-  <tr><td>3</td><td>1.8(0.5)+0.5(0.791)=1.2955</td><td>σ(1.2955)=<b>0.785</b></td><td>1.1×0.785≈<b>0.864</b></td></tr>
- </table>
-
- <p>The next slide frames a 2-class argmax with outputs +Wᵧh₃ and −Wᵧh₃. Since +0.8636 is greater than −0.8636, the prediction is <b>Class A</b>.</p>
-
- <div class="lab">
-  <h3>RNN numerical stepper</h3><div class="controls"><button id="rnnPrev" class="labbtn">← previous</button><b id="rnnStepTitle"></b><button id="rnnNext" class="labbtn">next →</button></div><pre id="rnnStepText" class="tree" style="white-space:pre-wrap"></pre>
- </div>
-
- <details><summary>Surprise arithmetic slide · train/validation/test sizes</summary><div>
-  <p>Another current RNN slide gives 50,000 training, 10,000 validation and 10,000 testing reviews.</p>
-  <div class="formula">Total = 50,000+10,000+10,000 = <b>70,000</b><br>Validation % = 10,000/70,000×100 ≈ <b>14.29%</b><br>Training : Validation = 50,000 : 10,000 = <b>5 : 1</b></div>
- </div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m4-bptt" data-keywords="BPTT backpropagation through time numerical gradient weight update tanh mse">
- <div class="section-head"><div class="section-no">M4#2</div><div class="section-title"><h2>BPTT · complete two-step gradient numerical</h2><p>The current Module-4_2 PDF gives the forward pass, loss, backward error signals, three gradients and updated weights. Learn the order more than the arithmetic.</p></div><button class="done" data-topic="m4-bptt">Mark done</button></div>
-
- <ol class="algo">
-  <li><b>Forward pass:</b> run the whole sequence and store hidden states/outputs.</li>
-  <li><b>Loss:</b> compute loss at every time step and sum it.</li>
-  <li><b>Backward pass:</b> start from the last time step and propagate errors backward through time; shared weights receive contributions from multiple steps.</li>
-  <li><b>Weight update:</b> W_new = W − η·gradient.</li>
- </ol>
-
- <div class="callout good"><strong>Given in source</strong>x₁=1.0, x₂=0.5; h₀=0; Wₓ=0.8; Wₕ=0.5; Wₒ=1.0; targets y₁*=0.5, y₂*=1.0; tanh hidden activation; linear output; Lₜ=½(yₜ−yₜ*)²; learning rate η=0.1.</div>
-
- <details open><summary>Step 1 · forward pass</summary><div>
-  <div class="formula">h₁=tanh(0.8·1 + 0.5·0)=tanh(0.8)≈<b>0.6640</b><br>y₁=1.0·0.6640=<b>0.6640</b><br>L₁=½(0.6640−0.5)²≈<b>0.0134</b></div>
-  <div class="formula">h₂=tanh(0.8·0.5 + 0.5·0.6640)=tanh(0.7320)≈<b>0.6253</b><br>y₂=<b>0.6253</b><br>L₂=½(0.6253−1.0)²≈<b>0.0702</b></div>
-  <div class="formula">L_total≈0.0134+0.0702=<b>0.0836</b></div>
- </div></details>
-
- <details open><summary>Step 2 · gradient of output weight Wₒ</summary><div>
-  <div class="formula">∂L/∂Wₒ = Σₜ (yₜ−yₜ*)hₜ</div>
-  <div class="formula">=(0.6640−0.5)(0.6640)+(0.6253−1.0)(0.6253)<br>≈0.1089−0.2343=<b>−0.1254</b></div>
- </div></details>
-
- <details open><summary>Step 3 · backpropagated error signals</summary><div>
-  <p>For tanh, the source uses the derivative factor (1−h²).</p>
-  <div class="formula">δ₂=(y₂−y₂*)Wₒ(1−h₂²)<br>=(-0.3747)(1)(1−0.6253²)≈<b>−0.2282</b></div>
-  <div class="formula">δ₁=[(y₁−y₁*)Wₒ + δ₂Wₕ](1−h₁²)<br>≈[0.1640 + (-0.2282)(0.5)](1−0.6640²)≈<b>0.0279</b></div>
- </div></details>
-
- <details open><summary>Step 4 · recurrent/input gradients and update</summary><div>
-  <div class="formula">∂L/∂Wₕ = δ₂h₁ + δ₁h₀ = (-0.2282)(0.6640)+0 = <b>−0.1517</b></div>
-  <div class="formula">∂L/∂Wₓ = δ₂x₂ + δ₁x₁ = (-0.2282)(0.5)+(0.0279)(1)=<b>−0.0862</b></div>
-  <div class="formula">Wₓ,new = 0.8−0.1(−0.0862)=<b>0.80862</b><br>Wₕ,new = 0.5−0.1(−0.1517)=<b>0.51517</b><br>Wₒ,new = 1.0−0.1(−0.1254)=<b>1.01254</b></div>
- </div></details>
-
- <div class="callout warn"><strong>Why BPTT becomes difficult on long sequences</strong>The same recurrent weights are multiplied through many time steps. The Module-4/5 slides connect this with <b>vanishing gradients</b> (updates become too small to carry old context) and <b>exploding gradients</b> (updates become unstable/huge).</div>
-</section>
-
-<section class="section searchable" id="m4-brnn" data-keywords="bidirectional rnn brnn ner forward backward applications advantages disadvantages">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Bidirectional RNN · past + future context</h2><p>A BRNN runs one recurrent chain forward and another backward over the same sequence, then combines their contextual information.</p></div><button class="done" data-topic="m4-brnn">Mark done</button></div>
- <div class="neuron-flow"><div class="neuron">Forward RNN<br>past → current</div><div class="neuron">Input sequence</div><div class="neuron">Backward RNN<br>future → current</div><div class="arrow">→</div><div class="neuron mem">Combined context<br>prediction</div></div>
- <p>The slides use the sentence <b>“Dhaval loves Apple”</b> to show why knowing both previous and following words can disambiguate meaning/entity type. They explicitly connect BRNNs with Named Entity Recognition.</p>
- <div class="grid2">
-  <div class="card"><h3>Applications named</h3><p>Sentiment analysis, NER, part-of-speech tagging, machine translation and speech recognition.</p></div>
-  <div class="card"><h3>Trade-off named</h3><p>Better past+future context, but more compute, longer training, harder parallelization, overfitting risk and lower interpretability are listed disadvantages.</p></div>
- </div>
-</section>
-
-<section class="section searchable" id="m4-autoencoder" data-keywords="autoencoder encoder decoder bottleneck latent denoising convolutional variational deep autoencoder">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Autoencoders · compress, represent, reconstruct</h2><p>The current Module-4_2 PDF treats autoencoders as unsupervised representation-learning networks with an encoder, bottleneck/latent code and decoder.</p></div><button class="done" data-topic="m4-autoencoder">Mark done</button></div>
-
- <div class="neuron-flow"><div class="neuron">Input x</div><div class="arrow">→</div><div class="neuron">Encoder</div><div class="arrow">→</div><div class="neuron mem">Latent z<br>bottleneck</div><div class="arrow">→</div><div class="neuron">Decoder</div><div class="arrow">→</div><div class="neuron">Reconstruction x̂</div></div>
- <p><b>Encoder:</b> reduces dimensionality and captures important features. <b>Bottleneck:</b> compressed knowledge representation. <b>Decoder:</b> expands from the code and tries to reconstruct the original input as closely as possible.</p>
- <p>The source says the training loss is typically a reconstruction loss such as <b>MSE for continuous data</b> or <b>binary cross-entropy for binary data</b>.</p>
-
- <div class="grid4">
-  <div class="card"><h3>Convolutional AE</h3><p>Encoder uses conv layers; decoder uses deconvolution/upsampling/transposed-convolution style layers. Useful for image compression, denoising and feature extraction.</p></div>
-  <div class="card"><h3>Variational AE</h3><p>Learns a probability distribution in latent space rather than a single fixed code; source mentions Gaussian latent variables and KL divergence as an extra loss term.</p></div>
-  <div class="card"><h3>Denoising AE</h3><p>Add noise to the input during training and reconstruct the original clean input. This prevents trivial copying and forces useful features.</p></div>
-  <div class="card"><h3>Deep AE</h3><p>Multiple encoder/decoder layers learn more complex, abstract representations than a shallow bottleneck.</p></div>
- </div>
-
- <details open><summary>Applications in source</summary><div><p>Dimensionality reduction, image compression, anomaly detection, image denoising, feature extraction and generative/data-generation settings (especially VAE).</p></div></details>
-</section>
-
-<section class="section searchable" id="m4-seq2seq" data-keywords="sequence to sequence seq2seq encoder decoder context vector machine translation summarization speech">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Sequence-to-Sequence · encoder → context → decoder</h2><p>Seq2Seq maps an input sequence of variable length to an output sequence that can also have a different length.</p></div><button class="done" data-topic="m4-seq2seq">Mark done</button></div>
-
- <div class="neuron-flow"><div class="neuron">Input sequence<br>x₁…xₙ</div><div class="arrow">→</div><div class="neuron">Encoder<br>step-by-step</div><div class="arrow">→</div><div class="neuron mem">Context vector<br>“thought”</div><div class="arrow">→</div><div class="neuron">Decoder<br>step-by-step</div><div class="arrow">→</div><div class="neuron">Output sequence<br>y₁…yₘ</div></div>
-
- <div class="grid2">
-  <div class="card"><h3>Encoder</h3><p>Embeds the input, processes it through recurrent layers (or transformers in modern variants), and accumulates essential information into a fixed-size context vector in the source's classic explanation.</p></div>
-  <div class="card"><h3>Decoder</h3><p>Uses the context vector and previous generated output to produce the target sequence one step at a time. A softmax output can generate token probabilities.</p></div>
- </div>
-
- <details open><summary>Source build workflow</summary><div>
-  <ol class="algo"><li>Prepare paired source/target sequence data and preprocess/tokenize.</li><li>Define encoder, decoder, embeddings; optional attention; choose loss/optimizer.</li><li>Train, validate and test; tune hyperparameters / early stop as needed.</li><li>Inference pipeline: preprocess input → encoder → decoder output; beam search is named as an optional generation improvement.</li><li>Fine-tune/iterate; deploy if required.</li></ol>
- </div></details>
-
- <p><b>Applications named:</b> machine translation, text summarization and speech recognition, plus other sequence-generation/mapping tasks.</p>
-</section>
-
-<section class="section searchable" id="m4-deeprnn" data-keywords="deep recurrent neural network stacked rnn mathematical notation sentiment speech">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Deep RNN · depth in time + depth in layers</h2><p>A simple RNN is already deep over time. A Deep RNN additionally stacks recurrent hidden layers at each time step to learn hierarchical temporal features.</p></div><button class="done" data-topic="m4-deeprnn">Mark done</button></div>
-
- <div class="timeline-rnn"><div class="tcell"><strong>xₜ</strong>input</div><div class="arrow">→</div><div class="tcell"><strong>hₜ¹</strong>recurrent layer 1</div><div class="arrow">→</div><div class="tcell"><strong>hₜ²</strong>recurrent layer 2</div><div class="arrow">→</div><div class="tcell"><strong>yₜ</strong>output</div></div>
- <div class="formula">Source notation: Hₜˡ = φ(Hₜ₋₁ˡ·Wₕₕˡ + Hₜˡ⁻¹·Wₓₕˡ + bₕˡ)<br>Oₜ = Hₜˡ·Wₕᵧ + bᵧ</div>
- <p>Training is still BPTT, now through additional recurrent layers. The source motivates Deep RNNs from speech recognition and names speech systems, translation, music generation, image captioning and autonomous driving as applications.</p>
- <details><summary>Deep-RNN sentiment-analysis development steps</summary><div><ol class="algo"><li>Collect/clean/tokenize labeled text and convert it into numerical form.</li><li>Design number of recurrent layers, hidden units, activation (ReLU/LSTM/GRU in the slide), padding/truncation.</li><li>Train with an optimizer; choose learning rate/batch size.</li><li>Evaluate with accuracy, precision, recall and F1.</li><li>Deploy for real-time sentiment classification if required.</li></ol></div></details>
-</section>
-
-<section class="section searchable exam-hot" id="m4-bert" data-keywords="bert transformer encoder mlm masked language modeling nsp next sentence prediction embeddings base large 80 10 10">
- <div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>BERT · bidirectional Transformer encoder, MLM + NSP</h2><p>The end of Module 4 gives BERT substantial coverage. Learn the architecture blocks, input representation and the two pre-training tasks exactly as presented.</p></div><button class="done" data-topic="m4-bert">Mark done</button></div>
-
- <div class="callout good"><strong>BERT in one line</strong>Bidirectional Encoder Representations from Transformers: a Google pre-trained language model (2018) using the Transformer <b>encoder</b> so each token can use context from both directions.</div>
-
- <div class="grid3">
-  <div class="card"><h3>Why BERT?</h3><p>Large unlabeled text pre-training reduces reliance on scarce task-specific labeled data and avoids a purely one-directional context representation.</p></div>
-  <div class="card"><h3>Two stages</h3><p><b>Pre-training</b> on unlabeled corpora with MLM + NSP, then <b>fine-tuning</b> on a specific downstream task.</p></div>
-  <div class="card"><h3>Uses named</h3><p>NER, question answering and sentiment analysis; the slides also discuss context-dependent word meaning.</p></div>
- </div>
-
- <details open><summary>BERT input representation</summary><div>
-  <div class="formula">Input embedding = <b>Token embedding + Positional embedding + Segment embedding</b></div>
-  <p><b>[CLS]</b> is the first token and serves as an aggregate representation for classification. <b>[SEP]</b> separates sentence segments. Segment embeddings distinguish sentence A from sentence B; position embeddings encode order.</p>
- </div></details>
-
- <details open><summary>Transformer encoder inside BERT</summary><div>
-  <ol class="algo"><li>Multi-head self-attention learns relationships between all tokens.</li><li>Feed-forward network adds non-linear token transformations.</li><li>Add & Norm uses residual connections + layer normalization.</li><li>Stacked encoder layers refine contextual token representations.</li></ol>
-  <table><tr><th>Model</th><th>Encoder layers</th><th>Attention heads</th><th>Parameters</th><th>Hidden size</th></tr><tr><td>BERT Base</td><td>12</td><td>12</td><td>110M</td><td>768</td></tr><tr><td>BERT Large</td><td>24</td><td>16</td><td>340M</td><td>1024</td></tr></table>
- </div></details>
-
- <details open><summary>MLM · Masked Language Modeling</summary><div>
-  <p>Select about <b>15%</b> of tokens for prediction. For those selected tokens, the source gives the classic policy:</p>
-  <div class="formula"><b>80%</b> → replace with [MASK]<br><b>10%</b> → replace with a random word<br><b>10%</b> → keep unchanged</div>
-  <p>The encoder processes the whole context and the MLM head uses a feed-forward layer + softmax to assign probabilities to candidate vocabulary tokens.</p>
-  <div class="lab"><h3>80/10/10 masking simulator</h3><div class="controls"><button id="maskNext" class="labbtn">Next masking case</button><b id="maskMode"></b></div><pre id="maskText" class="tree"></pre></div>
- </div></details>
-
- <details open><summary>NSP · Next Sentence Prediction</summary><div>
-  <p>BERT receives sentence A and B with [CLS]/[SEP] framing and performs binary classification:</p>
-  <div class="formula"><b>IsNext</b> · B genuinely follows A<br><b>NotNext</b> · B is an unrelated random sentence</div>
-  <p>The slides say pre-training uses 50% actual-next pairs and 50% random pairs. The [CLS] representation is passed to a classifier/softmax. The source example contrasts “They revised all the topics before the test” with “The sun sets in the west” after “The students prepared well for the exam.”</p>
- </div></details>
-</section>
-
-<section class="section searchable" id="m5-recursive" data-keywords="recursive neural network recnn tree structured hierarchical">
- <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Recursive Neural Networks · tree structure, not time sequence</h2><p>Module 5 begins with a distinction that is easy to mix up.</p></div><button class="done" data-topic="m5-recursive">Mark done</button></div>
- <div class="grid2">
-  <div class="card"><h3>RecNN</h3><p>Designed for hierarchical/tree-structured data. Smaller child representations are recursively combined bottom-up into parent representations.</p><p>Source use cases: NLP sentence parsing/sentiment and computer-vision scene/object-part composition.</p></div>
-  <div class="card"><h3>RNN</h3><p>Designed for sequential/time-ordered data. The same recurrent computation carries state through the sequence.</p></div>
- </div>
-</section>
-
-<section class="section searchable exam-hot" id="m5-longterm" data-keywords="long term dependency vanishing exploding gradient gated attention self attention">
- <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Long-term dependencies · the problem LSTM/GRU are solving</h2><p>Vanilla RNNs may fail when relevant information is many time steps away.</p></div><button class="done" data-topic="m5-longterm">Mark done</button></div>
- <div class="grid2">
-  <div class="card"><h3>Vanishing gradient</h3><p>Gradients become extremely small during BPTT, so distant earlier information has almost no effect on weight updates. The source's language example: remembering “France” far back to predict “French.”</p></div>
-  <div class="card"><h3>Exploding gradient</h3><p>Gradients grow too large, causing unstable parameter updates/training. Module 5 later gives gradient clipping as a direct remedy.</p></div>
- </div>
- <p>The slides give two high-level solution families:</p>
- <div class="neuron-flow"><div class="neuron gate">Gated units<br><b>LSTM / GRU</b></div><div class="arrow">or</div><div class="neuron mem">Attention<br><b>self-attention</b></div></div>
- <p>Gates decide what to remember/forget; self-attention lets the model directly focus on relevant sequence positions regardless of distance.</p>
-</section>
-
-<section class="section searchable" id="m5-esn" data-keywords="echo state network esn reservoir computing win wres wout fixed train output">
- <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>Echo State Networks · fixed reservoir, trained output</h2><p>ESN is presented as a reservoir-computing RNN designed for efficient sequential modelling.</p></div><button class="done" data-topic="m5-esn">Mark done</button></div>
- <div class="neuron-flow"><div class="neuron">Input U(t)<br>via W<sub>in</sub></div><div class="arrow">→</div><div class="neuron mem">Reservoir<br>random recurrent W<sub>res</sub></div><div class="arrow">→</div><div class="neuron">Output Y(t)<br>via W<sub>out</sub></div></div>
- <div class="callout good"><strong>The exam sentence to remember</strong>The reservoir has fixed random recurrent connections that transform input into rich dynamic patterns and retain a short “echo” of past inputs; <b>only Wout is trained</b>.</div>
- <p>The source mentions time-series forecasting and signal processing as especially natural ESN applications.</p>
-</section>
-
-<section class="section searchable exam-hot" id="m5-lstm" data-keywords="lstm long short term memory forget input output gate cell state hidden candidate formula">
- <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>LSTM · three gates + a dedicated cell-state memory path</h2><p>If you understand the role of Cₜ and can reproduce the six equations, you understand LSTM at the depth of these slides.</p></div><button class="done" data-topic="m5-lstm">Mark done</button></div>
-
- <div class="callout good"><strong>Inputs to one LSTM unit</strong>xₜ = current input · hₜ₋₁ = previous hidden/output state · Cₜ₋₁ = previous cell memory. Outputs: hₜ and Cₜ.</div>
-
- <div class="gate-row"><div class="gname">Forget gate</div><p>Decides what fraction of old cell memory Cₜ₋₁ should survive.</p></div>
- <div class="gate-row"><div class="gname">Input gate</div><p>Decides how much new candidate content should be written.</p></div>
- <div class="gate-row"><div class="gname">Output gate</div><p>Decides how much of the updated cell state should be exposed as hₜ.</p></div>
-
- <div class="controls"><button class="labbtn" data-lstm="forget">1 · Forget</button><button class="labbtn" data-lstm="input">2–3 · Input + candidate</button><button class="labbtn" data-lstm="cell">4 · Cell update</button><button class="labbtn" data-lstm="output">5–6 · Output</button></div>
- <div id="lstmGate" class="card"></div>
-
- <details open><summary>All LSTM equations from the source</summary><div>
-  <div class="formula">fₜ = σ(Wf xₜ + Uf hₜ₋₁ + b_f)</div>
-  <div class="formula">iₜ = σ(Wi xₜ + Ui hₜ₋₁ + b_i)</div>
-  <div class="formula">C̃ₜ = tanh(Wc xₜ + Uc hₜ₋₁ + b_c)</div>
-  <div class="formula">Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ</div>
-  <div class="formula">oₜ = σ(Wo xₜ + Uo hₜ₋₁ + b_o)</div>
-  <div class="formula">hₜ = oₜ ⊙ tanh(Cₜ)</div>
-  <p>The source then shows a final dense/sigmoid classification step based on the last hidden state.</p>
- </div></details>
-
- <details open><summary>How to explain the gates in words</summary><div>
-  <ol class="algo"><li><b>Forget:</b> scale old memory by fₜ.</li><li><b>Propose new content:</b> C̃ₜ creates candidate information.</li><li><b>Write:</b> input gate iₜ scales how much candidate enters.</li><li><b>Update memory:</b> add retained old memory + selected new memory.</li><li><b>Expose:</b> output gate oₜ decides how much of tanh(Cₜ) becomes hₜ.</li></ol>
- </div></details>
-
- <div class="grid2">
-  <div class="card"><h3>Advantages in source</h3><p>Learns long-term dependencies, preserves information over long sequences, avoids/mitigates vanishing/exploding-gradient behavior relative to simple RNNs, and handles complex sequential patterns.</p></div>
-  <div class="card"><h3>Disadvantages in source</h3><p>More computationally expensive, more memory/time, more parameters/operations, can overfit, and is harder to interpret than a simple RNN.</p></div>
- </div>
- <p><b>Applications named:</b> language generation/modeling, voice recognition, sentiment analysis, handwriting recognition, video analysis and time-series prediction.</p>
-</section>
-
-<section class="section searchable exam-hot" id="m5-gru" data-keywords="gru gated recurrent unit update reset candidate hidden state formula comparison lstm">
- <div class="section-head"><div class="section-no">M5</div><div class="section-title"><h2>GRU · simpler gated memory with no separate cell state</h2><p>GRU keeps only hₜ and uses two gates: reset and update. The current Module-5 deck gives all four equations.</p></div><button class="done" data-topic="m5-gru">Mark done</button></div>
-
- <div class="callout good"><strong>Source distinction</strong>LSTM has separate Cₜ + hₜ and three gates; GRU has no separate cell state and uses hidden state hₜ with reset + update gates. The slides therefore describe GRU as simpler/faster to train.</div>
-
- <div class="controls"><button class="labbtn" data-gru="update">1 · Update gate</button><button class="labbtn" data-gru="reset">2 · Reset gate</button><button class="labbtn" data-gru="candidate">3 · Candidate</button><button class="labbtn" data-gru="final">4 · Final hidden</button></div>
- <div id="gruGate" class="card"></div>
-
- <details open><summary>All GRU equations from the source</summary><div>
-  <div class="formula">zₜ = σ(Wz xₜ + Uz hₜ₋₁ + b_z)</div>
-  <div class="formula">rₜ = σ(Wr xₜ + Ur hₜ₋₁ + b_r)</div>
-  <div class="formula">h̃ₜ = tanh(Wh xₜ + Uh(rₜ ⊙ hₜ₋₁) + b_h)</div>
-  <div class="formula">hₜ = (1−zₜ)⊙hₜ₋₁ + zₜ⊙h̃ₜ</div>
- </div></details>
-
- <details open><summary>Pasta / cheese analogy from the slides</summary><div>
-  <p>The source sentence contrasts “Samosa” context with later “Pasta” and “Cheese.” <b>Reset gate</b> suppresses irrelevant old memory (“Samosa”) while forming the new candidate; <b>update gate</b> decides how much of the new “Pasta/Cheese” candidate replaces the old hidden state. The final hₜ therefore reflects the newer Italian-food context.</p>
- </div></details>
-
- <table><tr><th>Feature</th><th>GRU</th><th>LSTM</th></tr><tr><td>Gates</td><td>Update + Reset</td><td>Input + Forget + Output</td></tr><tr><td>Separate cell state</td><td>No</td><td>Yes</td></tr><tr><td>Parameters</td><td>Fewer in source comparison</td><td>More</td></tr><tr><td>Training</td><td>Usually faster/simpler</td><td>More compute/memory</td></tr><tr><td>Performance statement in slides</td><td>Often similar; can work better on some tasks</td><td>Often strong when longer/more complex dependencies matter</td></tr></table>
-</section>
-
-<section class="section searchable" id="m5-optimization" data-keywords="optimization long term dependencies attention positional encoding hierarchical dilated memory augmented regularization feature engineering augmentation gradient clipping explicit memory">
- <div class="section-head"><div class="section-no">M5Σ</div><div class="section-title"><h2>Optimization for long-term dependencies + explicit memory</h2><p>The final Module-5 slides list a wide set of strategies. Know the role of each; only gradient clipping and explicit memory are developed in detail.</p></div><button class="done" data-topic="m5-optimization">Mark done</button></div>
-
- <div class="grid3">
-  <div class="card"><h3>RNN / LSTM / GRU</h3><p>Use recurrent memory and gated units to preserve useful information over time.</p></div>
-  <div class="card"><h3>Attention</h3><p>Self-attention and multi-head attention let the model directly focus on relevant sequence positions.</p></div>
-  <div class="card"><h3>Positional encoding</h3><p>Maintains sequence position/order information in Transformer-style models.</p></div>
-  <div class="card"><h3>Hierarchical models</h3><p>Process sequence information at multiple granularities to capture local and global dependencies.</p></div>
-  <div class="card"><h3>Dilated convolutions</h3><p>Capture wider context without proportionally increasing parameter count.</p></div>
-  <div class="card"><h3>Memory-augmented networks</h3><p>Use an external memory component; source names Neural Turing Machines and Differentiable Neural Computers.</p></div>
-  <div class="card"><h3>Regularization</h3><p>Reduce overfitting that can make models less reliable on long-term dependencies.</p></div>
-  <div class="card"><h3>Feature engineering / augmentation</h3><p>Create long-trend features or expand training examples to expose models to varied long dependencies.</p></div>
-  <div class="card"><h3>Normalization / curriculum / advanced arch</h3><p>Batch/layer normalization, training from simpler to harder sequences, and architectures such as Transformers/memory networks are named.</p></div>
- </div>
-
- <details open><summary>Gradient clipping</summary><div>
-  <p>When gradients become extremely large, gradient clipping imposes a threshold / rescales values into a manageable range. The slide emphasizes that the goal is to control <b>magnitude</b>, not alter the intended descent direction. This stabilizes learning and prevents extreme parameter updates/divergence.</p>
- </div></details>
-
- <details open><summary>Explicit memory</summary><div>
-  <p>Standard RNN/LSTM memory is implicit inside hidden/cell state and has finite context. <b>Explicit memory</b> adds a separate component the model can read from and write to—similar to external computer memory—so information can be stored and retrieved over longer periods.</p>
-  <p>The source motivates it for story understanding, dialogue systems and reasoning, and mentions Transformer attention as a memory-retrieval mechanism. Applications named include QA, chatbots, reasoning/planning, long-text understanding and robotics/control.</p>
- </div></details>
-</section>
-
-<section class="section searchable exam-hot" id="numericals" data-keywords="numerical master formulas output parameter bptt rnn cnn exam calculations">
- <div class="section-head"><div class="section-no">NUM</div><div class="section-title"><h2>Numerical master desk · what you should be able to calculate cold</h2><p>These are the calculation families actually present in the ZIP.</p></div><button class="done" data-topic="numericals">Mark done</button></div>
- <div class="grid2">
-  <div class="card"><h3>1 · Convolution output</h3><div class="formula">O=((N+2P−F)/S)+1</div><p>Example: 32, F=5, P=0, S=1 ⇒ 28. With 6 filters ⇒ 28×28×6.</p></div>
-  <div class="card"><h3>2 · Pooling output</h3><div class="formula">O=((N+2P−F)/S)+1</div><p>Pooling has 0 trainable parameters. 102 with 2×2,S2 ⇒ 51.</p></div>
-  <div class="card"><h3>3 · Conv params</h3><div class="formula">(Fh·Fw·Cin + 1)·Cout</div><p>Source C1: (3·3·3+1)·10=<b>280</b>.</p></div>
-  <div class="card"><h3>4 · Fully connected params</h3><div class="formula">Nin·Nout + Nout</div><p>Source FC1: 13,520·10+10=<b>135,210</b>.</p></div>
-  <div class="card"><h3>5 · RNN forward state</h3><div class="formula">hₜ=activation(Wₓxₜ+Wₕhₜ₋₁+b)</div><p>Source sigmoid sequence ends h₃≈0.785.</p></div>
-  <div class="card"><h3>6 · RNN output</h3><div class="formula">yₜ=Wᵧhₜ</div><p>Source y₃≈0.864; argmax selects Class A in its two-score illustration.</p></div>
-  <div class="card"><h3>7 · BPTT loss</h3><div class="formula">Lₜ=½(yₜ−yₜ*)²</div><p>Source two-step total ≈<b>0.0836</b>.</p></div>
-  <div class="card"><h3>8 · BPTT update</h3><div class="formula">W_new=W−η∂L/∂W</div><p>Source final: Wₓ=.80862, Wₕ=.51517, Wₒ=1.01254.</p></div>
-  <div class="card"><h3>9 · LSTM</h3><p>You are more likely to be asked to reproduce/interpret the gate equations than do a full numeric, because the ZIP provides formulas but no numeric substitution problem.</p></div>
-  <div class="card"><h3>10 · GRU</h3><p>Same: know zₜ, rₜ, h̃ₜ, hₜ equations and the role of each gate; no full numeric substitution problem is provided.</p></div>
- </div>
-</section>
-
-<section class="section searchable" id="comparisons" data-keywords="compare cnn rnn lstm gru vgg googlenet resnet autoencoder seq2seq">
- <div class="section-head"><div class="section-no">CMP</div><div class="section-title"><h2>Comparison tables · fast theory marks</h2><p>Use these to avoid mixing similarly named architectures.</p></div><button class="done" data-topic="comparisons">Mark done</button></div>
-
- <details open><summary>CNN vs RNN vs RecNN</summary><div>
-  <table><tr><th>Model</th><th>Best mental model</th><th>Structure</th><th>Typical source use</th></tr><tr><td>CNN</td><td>scan local spatial patterns</td><td>filters over grids</td><td>images/spatial data</td></tr><tr><td>RNN</td><td>carry state through time</td><td>sequence recurrence</td><td>text/speech/time series</td></tr><tr><td>RecNN</td><td>combine children into parents</td><td>tree/hierarchy</td><td>parsing/hierarchical composition</td></tr></table>
- </div></details>
-
- <details open><summary>Vanilla RNN vs LSTM vs GRU</summary><div>
-  <table><tr><th>Feature</th><th>RNN</th><th>LSTM</th><th>GRU</th></tr><tr><td>Memory</td><td>hidden hₜ</td><td>hidden hₜ + cell Cₜ</td><td>hidden hₜ</td></tr><tr><td>Gates</td><td>none</td><td>forget/input/output</td><td>reset/update</td></tr><tr><td>Long dependencies</td><td>struggles</td><td>designed for them</td><td>designed for them</td></tr><tr><td>Complexity</td><td>lowest</td><td>highest of three</td><td>between/simple gated</td></tr></table>
- </div></details>
-
- <details open><summary>Autoencoder vs Seq2Seq</summary><div>
-  <table><tr><th></th><th>Autoencoder</th><th>Seq2Seq</th></tr><tr><td>Main goal</td><td>learn compressed representation and reconstruct input</td><td>map one sequence to another</td></tr><tr><td>Middle representation</td><td>latent code / bottleneck</td><td>context vector in classic encoder-decoder</td></tr><tr><td>Target</td><td>original clean/input representation</td><td>separate target sequence</td></tr><tr><td>Examples</td><td>compression, denoising, anomaly detection</td><td>translation, summarization, speech mapping</td></tr></table>
- </div></details>
-</section>
-
-<section class="section searchable" id="drill" data-keywords="quiz rapid drill revision">
- <div class="section-head"><div class="section-no">Q</div><div class="section-title"><h2>Rapid drill · no notes until you answer</h2><p>These questions are deliberately concentrated on the most examinable mechanics in the ZIP.</p></div><button class="done" data-topic="drill">Mark done</button></div>
-
- <div class="quiz"><div class="q">1. 32×32×3 input, 5×5 filters, stride 1, no padding, 6 filters. Output?</div><button class="reveal">Reveal</button><div class="answer">28×28×6.</div></div>
- <div class="quiz"><div class="q">2. Why does padding matter beyond “same size”?</div><button class="reveal">Reveal</button><div class="answer">Without padding, repeated convolution shrinks maps and border pixels participate in fewer windows; padding preserves border information/participation.</div></div>
- <div class="quiz"><div class="q">3. Conv params for 3×3, Cin=3, Cout=10 with one bias/filter?</div><button class="reveal">Reveal</button><div class="answer">(3×3×3+1)×10=280.</div></div>
- <div class="quiz"><div class="q">4. Which Module-3 layers have zero trainable parameters?</div><button class="reveal">Reveal</button><div class="answer">ReLU/activation, max/average pooling and flatten. The source also treats softmax itself as no trainable weights; the preceding dense output weights are trainable.</div></div>
- <div class="quiz"><div class="q">5. Inception's 1×1 convolution solves what?</div><button class="reveal">Reveal</button><div class="answer">It projects/reduces channel depth before expensive 3×3/5×5 branches, cutting parameters and computation while preserving spatial dimensions.</div></div>
- <div class="quiz"><div class="q">6. ResNet's defining equation?</div><button class="reveal">Reveal</button><div class="answer">y=F(x)+x.</div></div>
- <div class="quiz"><div class="q">7. RNN hidden-state equation in the slides?</div><button class="reveal">Reveal</button><div class="answer">hₜ=tanh(Wₕₕhₜ₋₁+Wₓₕxₜ) in the conceptual slide; another numerical uses sigmoid with bias.</div></div>
- <div class="quiz"><div class="q">8. Source 3-step RNN h₃ and y₃ approximately?</div><button class="reveal">Reveal</button><div class="answer">h₃≈0.785; y₃≈0.864.</div></div>
- <div class="quiz"><div class="q">9. Four BPTT stages?</div><button class="reveal">Reveal</button><div class="answer">Forward pass → total loss → backward through time → weight update.</div></div>
- <div class="quiz"><div class="q">10. BPTT source updated weights after one step?</div><button class="reveal">Reveal</button><div class="answer">Wₓ=.80862, Wₕ=.51517, Wₒ=1.01254.</div></div>
- <div class="quiz"><div class="q">11. What makes BRNN different?</div><button class="reveal">Reveal</button><div class="answer">It processes the same sequence in forward and backward directions, using past and future context.</div></div>
- <div class="quiz"><div class="q">12. Autoencoder's three conceptual parts?</div><button class="reveal">Reveal</button><div class="answer">Encoder → latent/bottleneck code → decoder.</div></div>
- <div class="quiz"><div class="q">13. Seq2Seq decoder uses what to generate each output?</div><button class="reveal">Reveal</button><div class="answer">The encoder context vector plus previous generated output / decoder state, one step at a time.</div></div>
- <div class="quiz"><div class="q">14. BERT input embedding is the sum of what three embeddings?</div><button class="reveal">Reveal</button><div class="answer">Token + positional + segment embeddings.</div></div>
- <div class="quiz"><div class="q">15. BERT MLM 80/10/10 rule?</div><button class="reveal">Reveal</button><div class="answer">Of selected (~15%) tokens: 80% [MASK], 10% random word, 10% unchanged.</div></div>
- <div class="quiz"><div class="q">16. LSTM cell update?</div><button class="reveal">Reveal</button><div class="answer">Cₜ=fₜ⊙Cₜ₋₁+iₜ⊙C̃ₜ.</div></div>
- <div class="quiz"><div class="q">17. GRU has which gates and what state is absent?</div><button class="reveal">Reveal</button><div class="answer">Update and reset gates; there is no separate cell state Cₜ.</div></div>
- <div class="quiz"><div class="q">18. Echo State Network: which weights are trained?</div><button class="reveal">Reveal</button><div class="answer">Only output weights Wout; the reservoir recurrent connections stay fixed/random in the source model.</div></div>
- <div class="quiz"><div class="q">19. What does gradient clipping actually control?</div><button class="reveal">Reveal</button><div class="answer">Excessive gradient magnitude, to prevent unstable/exploding parameter updates while preserving the intended gradient direction.</div></div>
- <div class="quiz"><div class="q">20. RecNN vs RNN?</div><button class="reveal">Reveal</button><div class="answer">RecNN models tree/hierarchical structure; RNN models sequential/time-ordered structure.</div></div>
-</section>
-
-<section class="section searchable" id="cheatsheet" data-keywords="cheat sheet final revision formulas">
- <div class="section-head print-hide"><div class="section-no">✎</div><div class="section-title"><h2>Final handwritten clue sheet</h2><p>Use this only after learning the detailed sections above.</p></div><button class="done" data-topic="cheatsheet">Mark done</button></div>
- <div class="print-hide" style="margin-bottom:11px"><button class="btn primary" onclick="printCheat()">Print only this sheet</button></div>
- <div class="cheat">
-  <h3>BCSE332L · Deep Learning CAT 2 · Modules 3–5</h3>
-  <div class="cheatcols">
-   <div class="cheatblock"><h4>M3 · CNN dimensions</h4><p>O=((N+2P−F)/S)+1. K filters ⇒ K output channels. SAME keeps size (S=1); VALID=no padding. Conv params=(FhFwCin+1)Cout. FC=NinNout+Nout. Pool/flatten=0 params.</p></div>
-   <div class="cheatblock"><h4>M3 · source parameter numerical</h4><p>A C1=280; B C2=2510; C P1=0; D C3=1820; E P2=0; F FC1=135210 ⇒ total=<b>139820</b>.</p></div>
-   <div class="cheatblock"><h4>M3 · architecture memory</h4><p>LeNet: 5×5 conv + avg pool + tanh. AlexNet: ReLU, big early kernels, max-pool, augmentation, FC-heavy. VGG: stacked 3×3. GoogLeNet: parallel Inception + 1×1 bottleneck + GAP. ResNet: y=F(x)+x skip.</p></div>
-   <div class="cheatblock"><h4>M4 · RNN</h4><p>hₜ=activation(Wₓxₜ+Wₕhₜ₋₁+b); yₜ=Wᵧhₜ. Types: 1→1,1→many,many→1,many→many.</p><p>Source numerical: h1=.858,h2=.791,h3=.785; y3≈.864.</p></div>
-   <div class="cheatblock"><h4>M4 · BPTT</h4><p>Forward → losses → backprop last→first → update. Source: total L=.0836; dWo=-.1254, dWh=-.1517, dWx=-.0862; new Wx=.80862, Wh=.51517, Wo=1.01254.</p></div>
-   <div class="cheatblock"><h4>M4 · BRNN / AE / Seq2Seq</h4><p>BRNN=past+future chains. AE=encoder→latent→decoder; CAE/VAE/DAE/deep AE. Seq2Seq=input sequence→encoder→context→decoder→output sequence.</p></div>
-   <div class="cheatblock"><h4>M4 · BERT</h4><p>Encoder-only Transformer, bidirectional. Input=Token+Position+Segment. [CLS] aggregate, [SEP] separator. Base 12L/12H/768/110M; Large 24L/16H/1024/340M. Pretrain MLM+NSP. MLM select 15%; 80 MASK/10 random/10 unchanged. NSP IsNext vs NotNext.</p></div>
-   <div class="cheatblock"><h4>M5 · long dependency</h4><p>Vanishing=gradient→tiny, old context forgotten. Exploding=gradient→huge/unstable. Gated units and attention are source solution families.</p></div>
-   <div class="cheatblock"><h4>M5 · ESN</h4><p>Input via Win → fixed random reservoir Wres → output via Wout. <b>Only Wout trained.</b></p></div>
-   <div class="cheatblock"><h4>M5 · LSTM</h4><p>f=σ(Wfx+Ufh+b); i=σ(Wix+Uih+b); C~=tanh(Wcx+Uch+b); C=f⊙Cold+i⊙C~; o=σ(Wox+Uoh+b); h=o⊙tanh(C).</p></div>
-   <div class="cheatblock"><h4>M5 · GRU</h4><p>z=σ(Wzx+Uzh+b); r=σ(Wrx+Urh+b); h~=tanh(Whx+Uh(r⊙hprev)+b); h=(1−z)⊙hprev+z⊙h~. No separate C state.</p></div>
-   <div class="cheatblock"><h4>M5 · optimization</h4><p>RNN/LSTM/GRU, attention/multi-head, positional encoding, hierarchy, dilated conv, memory-augmented networks, regularization, features/augmentation, gradient clipping, batch/layer norm, curriculum, advanced architectures. Explicit memory=separate read/write store.</p></div>
-  </div>
- </div>
-</section>
-
-<section class="section searchable" id="audit" data-keywords="source audit 14 files zip complete">
- <div class="section-head"><div class="section-no">AUD</div><div class="section-title"><h2>14-file ZIP coverage audit</h2><p>The final page was checked against every file in the uploaded ZIP. Repeated semester versions were used as corroborating/detail sources, not treated as separate modules.</p></div><button class="done" data-topic="audit">Mark done</button></div>
- <table>
-  <tr><th>ZIP file / group</th><th>What is covered here</th></tr>
-  <tr><td>FALL Module-3.pdf · 179 pages</td><td>CNN foundations, image representation, local connectivity/weight sharing, layer operations, padding/stride, trainable parameters, full A–F parameter numerical, LeNet/AlexNet/VGG/GoogLeNet/ResNet and architecture comparison.</td></tr>
-  <tr><td>FALL Module-3.pptx · 114 slides + SUM module-3.pdf</td><td>CNN intuition, convolution, pooling/flatten/dense, VGG/ResNet/GoogLeNet applications and current-semester architecture explanations.</td></tr>
-  <tr><td>WIN Module3_1…Module3_6 · six PPTX files</td><td>CNN intro; convolution/image/channel/kernel details; padding/stride Keras effects; pooling variants/examples; non-linearities, stacking, flatten, forward/backprop; LeNet/AlexNet architecture details and popular architecture list.</td></tr>
-  <tr><td>FALL Module-4_1.pdf · 38 pages</td><td>RNN motivation/definition/architecture/types, hidden-state/output equations, 3-step sigmoid numerical, data-split arithmetic and BPTT concept.</td></tr>
-  <tr><td>FALL Module-4_2.pdf · 108 pages</td><td>Full BPTT gradient numerical, RNN applications/limitations, BRNN, autoencoders/types, Seq2Seq, Deep RNN, BERT architecture, MLM and NSP.</td></tr>
-  <tr><td>SUM Module-4.pdf · 108 pages</td><td>Visual duplicate/semester variant of the same Module-4 sequence material; checked for alignment with the current content.</td></tr>
-  <tr><td>FALL Module-5.pptx · 51 slides + SUM Module-5.pdf</td><td>Recursive NN, long-term dependency problem, gated/attention solution idea, ESN, LSTM gates/formulas, GRU gates/formulas, LSTM-vs-GRU, long-term optimization list, gradient clipping and explicit memory.</td></tr>
- </table>
- <div class="callout good"><strong>Scope result</strong>All unique taught topic families in the 14-file ZIP are represented in this site. The deepest source numericals—CNN output/parameter counts, RNN forward computation and BPTT weight updates—are reproduced step-by-step rather than reduced to formulas.</div>
-</section>
-
+4 7 2 4
+
+2×2 max pool, stride 2 →
+5 3
+7 4</pre></div>
+        <div class="card"><span class="tag">Activation</span><h4>Why activation matters</h4><p>Without activation, several convolutions in a row collapse into a linear transformation. ReLU is the default modern intuition; tanh/sigmoid still appear in source explanations and older architectures.</p></div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="cnn-params" data-keywords="cnn parameter count numerical 139820 100x100">
+      <div class="head"><div><h3>Parameter counting · full source numerical</h3><p>This is one of the highest-value calculation patterns in the material.</p></div><button class="done" data-topic="cnn-params">Mark done</button></div>
+      <div class="formula">Convolution parameters = (Fh × Fw × Cin + 1 bias) × number of filters</div>
+      <div class="formula" style="margin-top:12px">Fully connected parameters = Nin × Nout + Nout</div>
+      <div class="viz" style="margin-top:16px">
+        <svg viewBox="0 0 1180 300" width="100%" role="img" aria-label="Parameter counting flow">
+          <g font-size="13" font-weight="700">
+            <g transform="translate(18,70)"><rect width="130" height="120" rx="18" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="65" y="35" fill="#7fe7ff" text-anchor="middle">Input</text><text x="65" y="68" fill="#fff" text-anchor="middle" font-size="26">100×100×3</text></g>
+            <g transform="translate(176,50)"><rect width="150" height="160" rx="18" fill="#172247" stroke="#ffd887" stroke-opacity=".35"/><text x="75" y="32" fill="#ffd887" text-anchor="middle">A · Conv 3×3, 10</text><text x="75" y="68" fill="#fff" text-anchor="middle" font-size="22">102×102×10</text><text x="75" y="104" fill="#d7e3ff" text-anchor="middle">(3×3×3+1)×10</text><text x="75" y="130" fill="#7fe7ff" text-anchor="middle" font-size="24">280</text></g>
+            <g transform="translate(354,50)"><rect width="150" height="160" rx="18" fill="#172247" stroke="#ffd887" stroke-opacity=".35"/><text x="75" y="32" fill="#ffd887" text-anchor="middle">B · Conv 5×5, 10</text><text x="75" y="68" fill="#fff" text-anchor="middle" font-size="22">102×102×10</text><text x="75" y="104" fill="#d7e3ff" text-anchor="middle">(5×5×10+1)×10</text><text x="75" y="130" fill="#7fe7ff" text-anchor="middle" font-size="24">2510</text></g>
+            <g transform="translate(532,50)"><rect width="130" height="160" rx="18" fill="#172247" stroke="#5ad5c4" stroke-opacity=".35"/><text x="65" y="32" fill="#5ad5c4" text-anchor="middle">C · Pool 2×2</text><text x="65" y="68" fill="#fff" text-anchor="middle" font-size="22">51×51×10</text><text x="65" y="126" fill="#7fe7ff" text-anchor="middle" font-size="24">0 params</text></g>
+            <g transform="translate(690,50)"><rect width="150" height="160" rx="18" fill="#172247" stroke="#ffd887" stroke-opacity=".35"/><text x="75" y="32" fill="#ffd887" text-anchor="middle">D · Conv 3×3, 20</text><text x="75" y="68" fill="#fff" text-anchor="middle" font-size="22">53×53×20</text><text x="75" y="104" fill="#d7e3ff" text-anchor="middle">(3×3×10+1)×20</text><text x="75" y="130" fill="#7fe7ff" text-anchor="middle" font-size="24">1820</text></g>
+            <g transform="translate(868,50)"><rect width="130" height="160" rx="18" fill="#172247" stroke="#5ad5c4" stroke-opacity=".35"/><text x="65" y="32" fill="#5ad5c4" text-anchor="middle">E · Pool 2×2</text><text x="65" y="68" fill="#fff" text-anchor="middle" font-size="22">26×26×20</text><text x="65" y="126" fill="#7fe7ff" text-anchor="middle" font-size="24">0 params</text></g>
+            <g transform="translate(1026,36)"><rect width="136" height="188" rx="18" fill="#241844" stroke="#f38cd8" stroke-opacity=".42"/><text x="68" y="28" fill="#f38cd8" text-anchor="middle">F · FC → 10</text><text x="68" y="64" fill="#fff" text-anchor="middle" font-size="18">26×26×20</text><text x="68" y="88" fill="#fff" text-anchor="middle" font-size="18">= 13,520</text><text x="68" y="118" fill="#d7e3ff" text-anchor="middle">13,520×10+10</text><text x="68" y="148" fill="#7fe7ff" text-anchor="middle" font-size="24">135,210</text><text x="68" y="176" fill="#ffd887" text-anchor="middle" font-size="22">Total 139,820</text></g>
+            <g stroke="#91a7ff" stroke-width="3"><line x1="148" y1="130" x2="167" y2="130"/><line x1="326" y1="130" x2="345" y2="130"/><line x1="504" y1="130" x2="523" y2="130"/><line x1="662" y1="130" x2="681" y2="130"/><line x1="840" y1="130" x2="859" y2="130"/><line x1="998" y1="130" x2="1017" y2="130"/></g>
+          </g>
+        </svg>
+      </div>
+      <div class="callout good" style="margin-top:16px"><strong>Easy exam insight:</strong> convolution layers often look scary, but fully connected layers can dominate the parameter count. In this source problem, FC alone contributes <b>135,210</b> parameters.</div>
+    </section>
+
+    <section class="section searchable" id="architectures" data-keywords="lenet alexnet vgg googlenet resnet comparison">
+      <div class="head"><div><h3>Architecture evolution · one innovation per generation</h3><p>Don't memorize five separate diagrams. Memorize what each architecture changed.</p></div><button class="done" data-topic="architectures">Mark done</button></div>
+      <div class="viz">
+        <svg viewBox="0 0 1180 320" width="100%" role="img" aria-label="CNN architecture timeline">
+          <g stroke="#596896" stroke-width="5" fill="none"><path d="M80 160 H1100"/></g>
+          <g>
+            <circle cx="110" cy="160" r="18" fill="#7fe7ff"/><text x="110" y="122" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">LeNet-5</text><text x="110" y="205" fill="#cdd8fe" font-size="14" text-anchor="middle">1998</text><text x="110" y="226" fill="#cdd8fe" font-size="13" text-anchor="middle">Classic conv + avg-pool template</text>
+            <circle cx="322" cy="160" r="18" fill="#ffd887"/><text x="322" y="122" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">AlexNet</text><text x="322" y="205" fill="#cdd8fe" font-size="14" text-anchor="middle">2012</text><text x="322" y="226" fill="#cdd8fe" font-size="13" text-anchor="middle">ReLU + deep CNN + ImageNet breakthrough</text>
+            <circle cx="534" cy="160" r="18" fill="#9f89ff"/><text x="534" y="122" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">VGG</text><text x="534" y="205" fill="#cdd8fe" font-size="14" text-anchor="middle">2014</text><text x="534" y="226" fill="#cdd8fe" font-size="13" text-anchor="middle">Simple deeper stacks of 3×3 conv</text>
+            <circle cx="746" cy="160" r="18" fill="#5ad5c4"/><text x="746" y="122" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">GoogLeNet</text><text x="746" y="205" fill="#cdd8fe" font-size="14" text-anchor="middle">2014</text><text x="746" y="226" fill="#cdd8fe" font-size="13" text-anchor="middle">Inception: multi-scale parallel branches</text>
+            <circle cx="958" cy="160" r="18" fill="#f38cd8"/><text x="958" y="122" fill="#fff" font-size="22" font-weight="700" text-anchor="middle">ResNet</text><text x="958" y="205" fill="#cdd8fe" font-size="14" text-anchor="middle">2015</text><text x="958" y="226" fill="#cdd8fe" font-size="13" text-anchor="middle">Skip connections solve degradation</text>
+          </g>
+        </svg>
+      </div>
+      <div class="grid2" style="margin-top:16px">
+        <div class="card"><span class="tag">Exam memory</span><h4>One-liner memory hooks</h4><p><b>LeNet:</b> early handwritten-digit CNN. <b>AlexNet:</b> ImageNet breakthrough with ReLU. <b>VGG:</b> many small 3×3 filters. <b>GoogLeNet:</b> Inception + 1×1 bottlenecks. <b>ResNet:</b> residual block y = F(x) + x.</p></div>
+        <div class="card"><span class="tag gold">High-yield comparison</span><h4>What problem was solved?</h4><p><b>VGG</b> pursued simplicity via deeper stacks. <b>GoogLeNet</b> reduced computation while keeping power. <b>ResNet</b> targeted very deep training via skip connections.</p></div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="rnn-core" data-keywords="rnn basics hidden state sequence">
+      <div class="head"><div><h3>Module 4 · RNN basics</h3><p>An RNN is a network that carries state forward through time.</p></div><button class="done" data-topic="rnn-core">Mark done</button></div>
+      <div class="grid2">
+        <div>
+          <div class="formula">hₜ = activation(Wₓxₜ + Wₕhₜ₋₁ + b)</div>
+          <div class="formula" style="margin-top:12px">yₜ = Wᵧhₜ</div>
+          <div class="callout good" style="margin-top:12px"><strong>Shared-weights intuition:</strong> the same Wₓ, Wₕ and Wᵧ are reused at each time step.</div>
+        </div>
+        <div class="viz">
+          <svg viewBox="0 0 640 270" width="100%" role="img" aria-label="Unrolled RNN">
+            <text x="20" y="26" fill="#7fe7ff" font-size="16" font-weight="700">Unrolled RNN through time</text>
+            <g transform="translate(50,90)">
+              <rect x="0" y="10" width="100" height="70" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".35"/><text x="50" y="49" fill="#fff" font-size="24" text-anchor="middle">h₁</text><text x="50" y="98" fill="#cfd9ff" text-anchor="middle">uses x₁, h₀</text>
+              <rect x="180" y="10" width="100" height="70" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".35"/><text x="230" y="49" fill="#fff" font-size="24" text-anchor="middle">h₂</text><text x="230" y="98" fill="#cfd9ff" text-anchor="middle">uses x₂, h₁</text>
+              <rect x="360" y="10" width="100" height="70" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".35"/><text x="410" y="49" fill="#fff" font-size="24" text-anchor="middle">h₃</text><text x="410" y="98" fill="#cfd9ff" text-anchor="middle">uses x₃, h₂</text>
+              <line x1="100" y1="45" x2="180" y2="45" stroke="#91a7ff" stroke-width="4"/><line x1="280" y1="45" x2="360" y2="45" stroke="#91a7ff" stroke-width="4"/>
+              <line x1="50" y1="10" x2="50" y2="-24" stroke="#5ad5c4" stroke-width="4"/><line x1="230" y1="10" x2="230" y2="-24" stroke="#5ad5c4" stroke-width="4"/><line x1="410" y1="10" x2="410" y2="-24" stroke="#5ad5c4" stroke-width="4"/>
+              <line x1="50" y1="80" x2="50" y2="122" stroke="#f38cd8" stroke-width="4"/><line x1="230" y1="80" x2="230" y2="122" stroke="#f38cd8" stroke-width="4"/><line x1="410" y1="80" x2="410" y2="122" stroke="#f38cd8" stroke-width="4"/>
+              <text x="50" y="-34" fill="#5ad5c4" text-anchor="middle">x₁</text><text x="230" y="-34" fill="#5ad5c4" text-anchor="middle">x₂</text><text x="410" y="-34" fill="#5ad5c4" text-anchor="middle">x₃</text>
+              <text x="50" y="148" fill="#f38cd8" text-anchor="middle">y₁</text><text x="230" y="148" fill="#f38cd8" text-anchor="middle">y₂</text><text x="410" y="148" fill="#f38cd8" text-anchor="middle">y₃</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="grid4" style="margin-top:16px">
+        <div class="card"><h4>One → One</h4><p>single input, single output</p></div>
+        <div class="card"><h4>One → Many</h4><p>e.g. image captioning</p></div>
+        <div class="card"><h4>Many → One</h4><p>e.g. sentiment classification</p></div>
+        <div class="card"><h4>Many → Many</h4><p>e.g. sequence tagging / translation</p></div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="rnn-num" data-keywords="rnn numerical h1 h2 h3 0.858 0.791 0.785">
+      <div class="head"><div><h3>RNN numerical · the 3-step source problem</h3><p>Don't just memorize the answers—memorize the calculation order.</p></div><button class="done" data-topic="rnn-num">Mark done</button></div>
+      <div class="callout good"><strong>Given:</strong> x₁=1, x₂=0.5, x₃=0.5, Wₓ=1.8, Wₕ=0.5, Wᵧ=1.1, h₀=0, b=0, activation = sigmoid.</div>
+      <div class="grid2" style="margin-top:14px">
+        <div>
+          <table>
+            <tr><th>Step</th><th>Hidden computation</th><th>hₜ</th><th>yₜ</th></tr>
+            <tr><td>t=1</td><td>σ(1.8×1 + 0.5×0)</td><td>0.858</td><td>0.944</td></tr>
+            <tr><td>t=2</td><td>σ(1.8×0.5 + 0.5×0.858)</td><td>0.791</td><td>0.870</td></tr>
+            <tr><td>t=3</td><td>σ(1.8×0.5 + 0.5×0.791)</td><td>0.785</td><td>0.864</td></tr>
+          </table>
+          <div class="callout warn" style="margin-top:12px"><strong>Argmax idea:</strong> the slide's two-class framing compares +Wᵧh₃ versus −Wᵧh₃, so the positive score wins → Class A.</div>
+        </div>
+        <div class="viz">
+          <svg viewBox="0 0 560 260" width="100%" role="img" aria-label="RNN forward numerical visualization">
+            <g transform="translate(40,70)">
+              <rect x="0" y="20" width="110" height="90" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><text x="55" y="48" fill="#5ad5c4" font-size="14" font-weight="700" text-anchor="middle">t=1</text><text x="55" y="74" fill="#fff" font-size="21" text-anchor="middle">h₁=0.858</text><text x="55" y="97" fill="#ffd887" font-size="16" text-anchor="middle">y₁=0.944</text>
+              <rect x="170" y="20" width="110" height="90" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><text x="225" y="48" fill="#5ad5c4" font-size="14" font-weight="700" text-anchor="middle">t=2</text><text x="225" y="74" fill="#fff" font-size="21" text-anchor="middle">h₂=0.791</text><text x="225" y="97" fill="#ffd887" font-size="16" text-anchor="middle">y₂=0.870</text>
+              <rect x="340" y="20" width="110" height="90" rx="18" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><text x="395" y="48" fill="#5ad5c4" font-size="14" font-weight="700" text-anchor="middle">t=3</text><text x="395" y="74" fill="#fff" font-size="21" text-anchor="middle">h₃=0.785</text><text x="395" y="97" fill="#ffd887" font-size="16" text-anchor="middle">y₃=0.864</text>
+              <line x1="110" y1="65" x2="170" y2="65" stroke="#9f89ff" stroke-width="4"/><line x1="280" y1="65" x2="340" y2="65" stroke="#9f89ff" stroke-width="4"/>
+              <text x="55" y="0" fill="#cfd9ff" text-anchor="middle">x₁=1</text><text x="225" y="0" fill="#cfd9ff" text-anchor="middle">x₂=0.5</text><text x="395" y="0" fill="#cfd9ff" text-anchor="middle">x₃=0.5</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="bptt" data-keywords="bptt backpropagation through time numerical gradients">
+      <div class="head"><div><h3>BPTT visual pipeline</h3><p>Think of BPTT as one forward movie, then one backward movie through time.</p></div><button class="done" data-topic="bptt">Mark done</button></div>
+      <div class="viz">
+        <svg viewBox="0 0 1180 360" width="100%" role="img" aria-label="BPTT pipeline">
+          <defs><linearGradient id="bp1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1b284c"/><stop offset="1" stop-color="#131d39"/></linearGradient></defs>
+          <g font-family="Inter" font-weight="700">
+            <rect x="22" y="40" width="250" height="110" rx="22" fill="url(#bp1)" stroke="#7fe7ff" stroke-opacity=".3"/><text x="50" y="74" fill="#7fe7ff" font-size="14">1 · FORWARD PASS</text><text x="50" y="104" fill="#fff" font-size="26">Compute h₁, y₁, h₂, y₂</text><text x="50" y="131" fill="#d5e3ff" font-size="15">Store every hidden state and output</text>
+            <rect x="308" y="40" width="250" height="110" rx="22" fill="url(#bp1)" stroke="#ffd887" stroke-opacity=".35"/><text x="336" y="74" fill="#ffd887" font-size="14">2 · LOSS</text><text x="336" y="104" fill="#fff" font-size="26">L₁ + L₂</text><text x="336" y="131" fill="#d5e3ff" font-size="15">Total source loss ≈ 0.0836</text>
+            <rect x="594" y="40" width="250" height="110" rx="22" fill="url(#bp1)" stroke="#f38cd8" stroke-opacity=".35"/><text x="622" y="74" fill="#f38cd8" font-size="14">3 · BACKWARD THROUGH TIME</text><text x="622" y="104" fill="#fff" font-size="26">δ₂ then δ₁</text><text x="622" y="131" fill="#d5e3ff" font-size="15">Last step first, then earlier step</text>
+            <rect x="880" y="40" width="270" height="110" rx="22" fill="url(#bp1)" stroke="#5ad5c4" stroke-opacity=".35"/><text x="908" y="74" fill="#5ad5c4" font-size="14">4 · UPDATE</text><text x="908" y="104" fill="#fff" font-size="26">Wnew = W − η ∂L/∂W</text><text x="908" y="131" fill="#d5e3ff" font-size="15">Wx=.80862, Wh=.51517, Wo=1.01254</text>
+            <line x1="273" y1="95" x2="303" y2="95" stroke="#8ea4ff" stroke-width="4"/><line x1="559" y1="95" x2="589" y2="95" stroke="#8ea4ff" stroke-width="4"/><line x1="845" y1="95" x2="875" y2="95" stroke="#8ea4ff" stroke-width="4"/>
+          </g>
+          <g>
+            <rect x="54" y="208" width="1072" height="112" rx="20" fill="#0d132d" stroke="#ffffff" stroke-opacity=".08"/>
+            <text x="82" y="238" fill="#fff" font-size="17" font-weight="700">Source numerical summary</text>
+            <text x="82" y="264" fill="#d8e4ff" font-size="15">h₁ = tanh(0.8) ≈ 0.6640, y₁ = 0.6640, L₁ ≈ 0.0134</text>
+            <text x="82" y="288" fill="#d8e4ff" font-size="15">h₂ = tanh(0.7320) ≈ 0.6253, y₂ = 0.6253, L₂ ≈ 0.0702</text>
+            <text x="540" y="264" fill="#d8e4ff" font-size="15">δ₂ ≈ -0.2282, δ₁ ≈ 0.0279</text>
+            <text x="540" y="288" fill="#d8e4ff" font-size="15">∂L/∂Wo ≈ -0.1254, ∂L/∂Wh ≈ -0.1517, ∂L/∂Wx ≈ -0.0862</text>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section searchable" id="seq-models" data-keywords="brnn autoencoder seq2seq deep rnn">
+      <div class="head"><div><h3>Other Module 4 structures · visual memory pack</h3><p>These are easier to retain when you see their shapes.</p></div><button class="done" data-topic="seq-models">Mark done</button></div>
+      <div class="grid2">
+        <div class="card"><span class="tag">Bidirectional RNN</span><h4>Past + future context</h4>
+          <div class="viz"><svg viewBox="0 0 520 180" width="100%"><g><rect x="26" y="60" width="86" height="42" rx="12" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><rect x="150" y="60" width="86" height="42" rx="12" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><rect x="274" y="60" width="86" height="42" rx="12" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><rect x="398" y="60" width="86" height="42" rx="12" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><text x="69" y="86" fill="#fff" text-anchor="middle">w₁</text><text x="193" y="86" fill="#fff" text-anchor="middle">w₂</text><text x="317" y="86" fill="#fff" text-anchor="middle">w₃</text><text x="441" y="86" fill="#fff" text-anchor="middle">w₄</text><path d="M36 35 C100 5, 206 5, 470 35" fill="none" stroke="#5ad5c4" stroke-width="4"/><path d="M470 130 C390 160, 140 160, 40 130" fill="none" stroke="#f38cd8" stroke-width="4"/><text x="258" y="24" fill="#5ad5c4" text-anchor="middle">forward RNN</text><text x="258" y="154" fill="#f38cd8" text-anchor="middle">backward RNN</text></g></svg></div>
+          <p>Use when the decision at a position benefits from both left and right context.</p></div>
+        <div class="card"><span class="tag">Autoencoder</span><h4>Compress then reconstruct</h4>
+          <div class="viz"><svg viewBox="0 0 520 180" width="100%"><g><circle cx="84" cy="92" r="10" fill="#7fe7ff"/><circle cx="84" cy="58" r="10" fill="#7fe7ff"/><circle cx="84" cy="126" r="10" fill="#7fe7ff"/><circle cx="180" cy="78" r="10" fill="#9f89ff"/><circle cx="180" cy="106" r="10" fill="#9f89ff"/><circle cx="260" cy="92" r="12" fill="#ffd887"/><circle cx="340" cy="78" r="10" fill="#9f89ff"/><circle cx="340" cy="106" r="10" fill="#9f89ff"/><circle cx="436" cy="58" r="10" fill="#5ad5c4"/><circle cx="436" cy="92" r="10" fill="#5ad5c4"/><circle cx="436" cy="126" r="10" fill="#5ad5c4"/><g stroke="#b5cfff" stroke-opacity=".35"><line x1="94" y1="58" x2="170" y2="78"/><line x1="94" y1="58" x2="170" y2="106"/><line x1="94" y1="92" x2="170" y2="78"/><line x1="94" y1="92" x2="170" y2="106"/><line x1="94" y1="126" x2="170" y2="78"/><line x1="94" y1="126" x2="170" y2="106"/><line x1="190" y1="78" x2="248" y2="92"/><line x1="190" y1="106" x2="248" y2="92"/><line x1="272" y1="92" x2="330" y2="78"/><line x1="272" y1="92" x2="330" y2="106"/><line x1="350" y1="78" x2="426" y2="58"/><line x1="350" y1="78" x2="426" y2="92"/><line x1="350" y1="78" x2="426" y2="126"/><line x1="350" y1="106" x2="426" y2="58"/><line x1="350" y1="106" x2="426" y2="92"/><line x1="350" y1="106" x2="426" y2="126"/></g><text x="84" y="22" fill="#7fe7ff" text-anchor="middle">input</text><text x="180" y="22" fill="#9f89ff" text-anchor="middle">encoder</text><text x="260" y="22" fill="#ffd887" text-anchor="middle">bottleneck z</text><text x="340" y="22" fill="#9f89ff" text-anchor="middle">decoder</text><text x="436" y="22" fill="#5ad5c4" text-anchor="middle">reconstruction</text></g></svg></div>
+          <p>Know the family names: convolutional, variational, denoising and deep autoencoders.</p></div>
+        <div class="card"><span class="tag gold">Seq2Seq</span><h4>Encoder → context → decoder</h4><div class="viz"><svg viewBox="0 0 520 170" width="100%"><rect x="20" y="58" width="110" height="52" rx="16" fill="#18244c" stroke="#7fe7ff" stroke-opacity=".3"/><rect x="184" y="58" width="110" height="52" rx="16" fill="#18244c" stroke="#9f89ff" stroke-opacity=".3"/><rect x="348" y="58" width="150" height="52" rx="16" fill="#18244c" stroke="#5ad5c4" stroke-opacity=".3"/><text x="75" y="90" fill="#fff" text-anchor="middle">input sequence</text><text x="239" y="90" fill="#fff" text-anchor="middle">context vector</text><text x="423" y="90" fill="#fff" text-anchor="middle">output sequence</text><line x1="130" y1="84" x2="178" y2="84" stroke="#c0d7ff" stroke-width="4"/><line x1="294" y1="84" x2="342" y2="84" stroke="#c0d7ff" stroke-width="4"/></svg></div><p>Classic use cases in the material: machine translation, summarization and speech mapping.</p></div>
+        <div class="card"><span class="tag green">Deep RNN</span><h4>Depth across time and layers</h4><div class="viz"><svg viewBox="0 0 520 170" width="100%"><g><rect x="42" y="42" width="76" height="32" rx="12" fill="#18244c"/><rect x="42" y="96" width="76" height="32" rx="12" fill="#18244c"/><rect x="176" y="42" width="76" height="32" rx="12" fill="#18244c"/><rect x="176" y="96" width="76" height="32" rx="12" fill="#18244c"/><rect x="310" y="42" width="76" height="32" rx="12" fill="#18244c"/><rect x="310" y="96" width="76" height="32" rx="12" fill="#18244c"/><line x1="118" y1="58" x2="176" y2="58" stroke="#7fe7ff" stroke-width="4"/><line x1="252" y1="58" x2="310" y2="58" stroke="#7fe7ff" stroke-width="4"/><line x1="118" y1="112" x2="176" y2="112" stroke="#9f89ff" stroke-width="4"/><line x1="252" y1="112" x2="310" y2="112" stroke="#9f89ff" stroke-width="4"/><line x1="80" y1="74" x2="80" y2="96" stroke="#5ad5c4" stroke-width="4"/><line x1="214" y1="74" x2="214" y2="96" stroke="#5ad5c4" stroke-width="4"/><line x1="348" y1="74" x2="348" y2="96" stroke="#5ad5c4" stroke-width="4"/><text x="80" y="30" fill="#fff" text-anchor="middle">hₜ¹</text><text x="214" y="30" fill="#fff" text-anchor="middle">hₜ+1¹</text><text x="348" y="30" fill="#fff" text-anchor="middle">hₜ+2¹</text><text x="80" y="148" fill="#fff" text-anchor="middle">hₜ²</text><text x="214" y="148" fill="#fff" text-anchor="middle">hₜ+1²</text><text x="348" y="148" fill="#fff" text-anchor="middle">hₜ+2²</text></g></svg></div><p>Same time structure, but multiple recurrent layers stacked for richer hierarchical temporal features.</p></div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="bert" data-keywords="bert mlm nsp token positional segment embedding 80 10 10">
+      <div class="head"><div><h3>BERT · bidirectional Transformer encoder</h3><p>Learn the input representation and the two pretraining tasks extremely clearly.</p></div><button class="done" data-topic="bert">Mark done</button></div>
+      <div class="grid2">
+        <div>
+          <div class="card"><span class="tag">Input representation</span><h4>Three embeddings are added</h4>
+            <div class="viz"><svg viewBox="0 0 560 250" width="100%"><g>
+              <text x="32" y="28" fill="#7fe7ff" font-size="16" font-weight="700">BERT input = token + position + segment</text>
+              <g transform="translate(24,58)">
+                <g><rect x="0" y="0" width="86" height="38" rx="12" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="43" y="24" fill="#fff" text-anchor="middle">[CLS]</text><rect x="96" y="0" width="80" height="38" rx="12" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="136" y="24" fill="#fff" text-anchor="middle">I</text><rect x="186" y="0" width="80" height="38" rx="12" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="226" y="24" fill="#fff" text-anchor="middle">love</text><rect x="276" y="0" width="80" height="38" rx="12" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="316" y="24" fill="#fff" text-anchor="middle">NLP</text><rect x="366" y="0" width="86" height="38" rx="12" fill="#172247" stroke="#7fe7ff" stroke-opacity=".35"/><text x="409" y="24" fill="#fff" text-anchor="middle">[SEP]</text></g>
+                <g transform="translate(0,64)"><rect x="0" y="0" width="452" height="28" rx="12" fill="#10264a"/><text x="226" y="19" fill="#cfe1ff" text-anchor="middle">Token embedding</text></g>
+                <g transform="translate(0,102)"><rect x="0" y="0" width="452" height="28" rx="12" fill="#2b1f4a"/><text x="226" y="19" fill="#edd4ff" text-anchor="middle">Positional embedding</text></g>
+                <g transform="translate(0,140)"><rect x="0" y="0" width="452" height="28" rx="12" fill="#123d48"/><text x="226" y="19" fill="#d4fffb" text-anchor="middle">Segment embedding (sentence A/B)</text></g>
+                <text x="226" y="198" fill="#ffd887" text-anchor="middle" font-size="18" font-weight="700">added elementwise → contextual encoder input</text>
+              </g>
+            </g></svg></div>
+          </div>
+        </div>
+        <div>
+          <div class="card"><span class="tag gold">Pretraining tasks</span><h4>MLM + NSP</h4>
+            <div class="callout good"><strong>MLM:</strong> select about 15% of tokens. For those selected tokens: <b>80%</b> become [MASK], <b>10%</b> become random words, <b>10%</b> stay unchanged.</div>
+            <div class="callout" style="margin-top:12px"><strong>NSP:</strong> classify whether sentence B truly follows sentence A (<b>IsNext</b>) or is an unrelated sentence (<b>NotNext</b>).</div>
+            <div class="viz" style="margin-top:12px"><svg viewBox="0 0 560 220" width="100%"><text x="22" y="26" fill="#7fe7ff" font-size="16" font-weight="700">MLM 80/10/10 memory chart</text><g transform="translate(58,55)"><circle cx="100" cy="70" r="68" fill="none" stroke="#7fe7ff" stroke-width="34" stroke-dasharray="342 85" stroke-linecap="round" transform="rotate(-90 100 70)"/><circle cx="100" cy="70" r="68" fill="none" stroke="#ffd887" stroke-width="34" stroke-dasharray="43 384" stroke-dashoffset="-352" stroke-linecap="round" transform="rotate(-90 100 70)"/><circle cx="100" cy="70" r="68" fill="none" stroke="#f38cd8" stroke-width="34" stroke-dasharray="43 384" stroke-dashoffset="-395" stroke-linecap="round" transform="rotate(-90 100 70)"/><text x="100" y="76" fill="#fff" font-size="24" font-weight="700" text-anchor="middle">15%</text><text x="100" y="98" fill="#d8e3ff" font-size="12" text-anchor="middle">selected tokens</text></g><g font-size="15"><text x="270" y="84" fill="#7fe7ff">80% → [MASK]</text><text x="270" y="112" fill="#ffd887">10% → random word</text><text x="270" y="140" fill="#f38cd8">10% → unchanged</text><text x="270" y="182" fill="#d8e3ff">BERT Base: 12 layers, 12 heads, 110M params</text><text x="270" y="204" fill="#d8e3ff">BERT Large: 24 layers, 16 heads, 340M params</text></g></svg></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="longdep" data-keywords="long term dependencies vanishing exploding gradients">
+      <div class="head"><div><h3>Module 5 · long-term dependency problem</h3><p>This is the reason LSTM/GRU exist.</p></div><button class="done" data-topic="longdep">Mark done</button></div>
+      <div class="grid2">
+        <div class="card"><span class="tag gold">Vanishing gradient</span><h4>Signal fades away</h4><p>As gradients are repeatedly multiplied through long sequences, they can shrink so much that older information barely affects learning.</p>
+          <div class="viz"><svg viewBox="0 0 520 150" width="100%"><path d="M26 94 C90 40, 170 38, 246 85 S398 128, 494 129" fill="none" stroke="#7fe7ff" stroke-width="5"/><g fill="#7fe7ff"><circle cx="26" cy="94" r="6"/><circle cx="110" cy="58" r="6"/><circle cx="194" cy="61" r="6"/><circle cx="278" cy="95" r="6"/><circle cx="362" cy="117" r="4" opacity=".72"/><circle cx="446" cy="126" r="3" opacity=".48"/></g><text x="22" y="26" fill="#fff">Important early context</text><text x="334" y="29" fill="#d8e3ff">influence keeps shrinking…</text></svg></div>
+        </div>
+        <div class="card"><span class="tag" style="background:rgba(255,144,134,.12);color:#ff9086">Exploding gradient</span><h4>Signal blows up</h4><p>Gradients can also become excessively large, causing unstable learning and wild updates.</p>
+          <div class="viz"><svg viewBox="0 0 520 150" width="100%"><path d="M24 126 C100 122, 146 115, 210 94 S318 58, 390 24 S472 18, 498 14" fill="none" stroke="#ff9086" stroke-width="5"/><g fill="#ff9086"><circle cx="24" cy="126" r="4"/><circle cx="110" cy="120" r="5"/><circle cx="196" cy="100" r="6"/><circle cx="282" cy="69" r="8"/><circle cx="368" cy="31" r="11"/><circle cx="454" cy="18" r="15"/></g><text x="24" y="30" fill="#fff">Magnitude grows too much → unstable</text></svg></div>
+        </div>
+      </div>
+      <div class="callout good" style="margin-top:16px"><strong>Main fixes named in the material:</strong> gated units (LSTM / GRU), attention/self-attention, gradient clipping, explicit/external memory and other architecture/training improvements.</div>
+    </section>
+
+    <section class="section searchable" id="lstm" data-keywords="lstm gates cell state forget gate input gate output gate equations">
+      <div class="head"><div><h3>LSTM visual mechanics</h3><p>See the cell state as a long memory conveyor belt with gates deciding what passes.</p></div><button class="done" data-topic="lstm">Mark done</button></div>
+      <div class="grid2">
+        <div>
+          <div class="viz">
+            <svg viewBox="0 0 640 330" width="100%" role="img" aria-label="LSTM gate flow">
+              <text x="22" y="26" fill="#7fe7ff" font-size="16" font-weight="700">LSTM cell: gate flow</text>
+              <path d="M52 84 H590" stroke="#ffd887" stroke-width="10" stroke-linecap="round"/>
+              <text x="72" y="69" fill="#ffd887">Cₜ₋₁</text><text x="560" y="69" fill="#ffd887">Cₜ</text>
+              <rect x="94" y="110" width="104" height="56" rx="16" fill="#192549" stroke="#7fe7ff" stroke-opacity=".35"/><text x="146" y="145" fill="#fff" text-anchor="middle">forget gate</text>
+              <rect x="254" y="110" width="104" height="56" rx="16" fill="#192549" stroke="#5ad5c4" stroke-opacity=".35"/><text x="306" y="145" fill="#fff" text-anchor="middle">input gate</text>
+              <rect x="414" y="110" width="104" height="56" rx="16" fill="#192549" stroke="#f38cd8" stroke-opacity=".35"/><text x="466" y="145" fill="#fff" text-anchor="middle">output gate</text>
+              <circle cx="228" cy="138" r="18" fill="#13203e" stroke="#ffd887" stroke-opacity=".35"/><text x="228" y="144" fill="#fff" font-size="18" text-anchor="middle">×</text>
+              <circle cx="388" cy="138" r="18" fill="#13203e" stroke="#ffd887" stroke-opacity=".35"/><text x="388" y="144" fill="#fff" font-size="18" text-anchor="middle">+</text>
+              <line x1="146" y1="110" x2="146" y2="84" stroke="#7fe7ff" stroke-width="4"/><line x1="306" y1="110" x2="306" y2="84" stroke="#5ad5c4" stroke-width="4"/><line x1="466" y1="110" x2="466" y2="84" stroke="#f38cd8" stroke-width="4"/>
+              <line x1="198" y1="138" x2="210" y2="138" stroke="#ffd887" stroke-width="4"/><line x1="246" y1="138" x2="254" y2="138" stroke="#ffd887" stroke-width="4"/><line x1="358" y1="138" x2="370" y2="138" stroke="#ffd887" stroke-width="4"/><line x1="406" y1="138" x2="414" y2="138" stroke="#ffd887" stroke-width="4"/>
+              <path d="M306 196 V232 H388 V156" stroke="#5ad5c4" stroke-width="4" fill="none"/>
+              <text x="306" y="214" fill="#5ad5c4" text-anchor="middle">candidate C̃ₜ</text>
+              <path d="M466 166 V242" stroke="#f38cd8" stroke-width="4" fill="none"/><path d="M388 138 H560" stroke="#ffd887" stroke-width="10" stroke-linecap="round"/>
+              <path d="M466 242 C466 276, 520 276, 520 242" stroke="#f38cd8" stroke-width="4" fill="none"/><text x="520" y="296" fill="#f38cd8">hₜ = oₜ ⊙ tanh(Cₜ)</text>
+              <text x="58" y="314" fill="#d4defd">Read it as: keep some old memory → add selected new memory → expose selected output.</text>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="formula">fₜ = σ(Wf xₜ + Uf hₜ₋₁ + b_f)</div>
+          <div class="formula" style="margin-top:10px">iₜ = σ(Wi xₜ + Ui hₜ₋₁ + b_i)</div>
+          <div class="formula" style="margin-top:10px">C̃ₜ = tanh(Wc xₜ + Uc hₜ₋₁ + b_c)</div>
+          <div class="formula" style="margin-top:10px">Cₜ = fₜ ⊙ Cₜ₋₁ + iₜ ⊙ C̃ₜ</div>
+          <div class="formula" style="margin-top:10px">oₜ = σ(Wo xₜ + Uo hₜ₋₁ + b_o)</div>
+          <div class="formula" style="margin-top:10px">hₜ = oₜ ⊙ tanh(Cₜ)</div>
+          <div class="callout good" style="margin-top:14px"><strong>Plain-English translation:</strong> forget gate keeps/discards old memory, input gate decides how much new information to write, output gate decides what part of updated memory becomes visible as hₜ.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="gru" data-keywords="gru update reset gate formulas no cell state">
+      <div class="head"><div><h3>GRU visual mechanics</h3><p>GRU simplifies LSTM: fewer gates, no separate cell state.</p></div><button class="done" data-topic="gru">Mark done</button></div>
+      <div class="grid2">
+        <div class="viz">
+          <svg viewBox="0 0 640 280" width="100%" role="img" aria-label="GRU overview">
+            <text x="22" y="26" fill="#7fe7ff" font-size="16" font-weight="700">GRU: two-gate memory update</text>
+            <rect x="56" y="68" width="138" height="60" rx="18" fill="#192549" stroke="#7fe7ff" stroke-opacity=".3"/><text x="125" y="103" fill="#fff" text-anchor="middle">update gate zₜ</text>
+            <rect x="250" y="68" width="138" height="60" rx="18" fill="#192549" stroke="#ffd887" stroke-opacity=".3"/><text x="319" y="103" fill="#fff" text-anchor="middle">reset gate rₜ</text>
+            <rect x="444" y="68" width="140" height="60" rx="18" fill="#192549" stroke="#5ad5c4" stroke-opacity=".3"/><text x="514" y="103" fill="#fff" text-anchor="middle">candidate h̃ₜ</text>
+            <path d="M92 182 H546" stroke="#9f89ff" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="232" cy="182" r="18" fill="#13203e" stroke="#9f89ff" stroke-opacity=".35"/><text x="232" y="188" fill="#fff" font-size="18" text-anchor="middle">mix</text>
+            <text x="95" y="170" fill="#d8e4ff">old hₜ₋₁</text><text x="510" y="170" fill="#d8e4ff">new hₜ</text>
+            <line x1="125" y1="128" x2="125" y2="182" stroke="#7fe7ff" stroke-width="4"/><line x1="319" y1="128" x2="319" y2="182" stroke="#ffd887" stroke-width="4"/><line x1="514" y1="128" x2="514" y2="182" stroke="#5ad5c4" stroke-width="4"/>
+            <text x="58" y="240" fill="#cfe1ff">Reset gate decides how much old state to forget when building candidate.</text>
+            <text x="58" y="260" fill="#cfe1ff">Update gate decides how much of candidate replaces old hidden state.</text>
+          </svg>
+        </div>
+        <div>
+          <div class="formula">zₜ = σ(Wz xₜ + Uz hₜ₋₁ + b_z)</div>
+          <div class="formula" style="margin-top:10px">rₜ = σ(Wr xₜ + Ur hₜ₋₁ + b_r)</div>
+          <div class="formula" style="margin-top:10px">h̃ₜ = tanh(Wh xₜ + Uh(rₜ ⊙ hₜ₋₁) + b_h)</div>
+          <div class="formula" style="margin-top:10px">hₜ = (1−zₜ) ⊙ hₜ₋₁ + zₜ ⊙ h̃ₜ</div>
+          <div class="callout warn" style="margin-top:14px"><strong>Fast comparison:</strong> LSTM has 3 gates + cell state Cₜ. GRU has 2 gates and no separate cell state, so it is usually presented as simpler/faster.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section searchable" id="memory" data-keywords="gradient clipping explicit memory esn attention optimization">
+      <div class="head"><div><h3>Optimization, ESN and explicit memory</h3><p>The remaining Module 5 topics are easier once you see their purpose.</p></div><button class="done" data-topic="memory">Mark done</button></div>
+      <div class="grid3">
+        <div class="card"><span class="tag">ESN</span><h4>Echo State Network</h4><p>Input enters a fixed random reservoir, which produces rich dynamics. Only the output weights are trained.</p><div class="viz"><svg viewBox="0 0 300 120" width="100%"><rect x="10" y="36" width="70" height="42" rx="12" fill="#18244c"/><rect x="112" y="18" width="78" height="78" rx="18" fill="#14263c" stroke="#7fe7ff" stroke-opacity=".28"/><rect x="220" y="36" width="70" height="42" rx="12" fill="#18244c"/><text x="45" y="62" fill="#fff" text-anchor="middle">input</text><text x="151" y="62" fill="#fff" text-anchor="middle">reservoir</text><text x="255" y="62" fill="#fff" text-anchor="middle">output</text><line x1="80" y1="57" x2="108" y2="57" stroke="#7fe7ff" stroke-width="4"/><line x1="190" y1="57" x2="218" y2="57" stroke="#7fe7ff" stroke-width="4"/></svg></div></div>
+        <div class="card"><span class="tag gold">Gradient clipping</span><h4>Control exploding gradients</h4><p>Instead of letting gradient magnitude blow up, clip/rescale it to a manageable threshold so training stays stable.</p><div class="viz"><svg viewBox="0 0 300 120" width="100%"><line x1="28" y1="88" x2="272" y2="88" stroke="#7a87b1"/><line x1="48" y1="28" x2="48" y2="96" stroke="#7a87b1"/><path d="M50 84 L90 76 L130 58 L170 36 L210 20 L250 12" fill="none" stroke="#ff9086" stroke-width="4"/><path d="M50 84 L90 76 L130 58 L170 36 L210 26 L250 26" fill="none" stroke="#7fe7ff" stroke-width="4" stroke-dasharray="6 6"/><text x="204" y="102" fill="#d8e4ff">clipped ceiling</text></svg></div></div>
+        <div class="card"><span class="tag green">Explicit memory</span><h4>Separate memory store</h4><p>Beyond hidden/cell state, the model can read from and write to an external memory-like structure for longer-context reasoning.</p><div class="chips" style="margin-top:12px"><div class="chip">QA</div><div class="chip">dialogue</div><div class="chip">reasoning</div><div class="chip">long text</div><div class="chip">planning</div></div></div>
+      </div>
+    </section>
+
+    <section class="section searchable print-hide" id="revision" data-keywords="rapid drill quiz">
+      <div class="head"><div><h3>Rapid drill</h3><p>Answer first, reveal second.</p></div><button class="done" data-topic="revision">Mark done</button></div>
+      <div class="quiz"><div class="q">1. Formula for convolution output size?</div><button class="labbtn reveal">Reveal</button><div class="a">O = ((N + 2P − F) / S) + 1, applied separately to height and width.</div></div>
+      <div class="quiz"><div class="q">2. 32×32×3 input, 5×5, stride 1, no padding, 6 filters → output?</div><button class="labbtn reveal">Reveal</button><div class="a">28×28×6.</div></div>
+      <div class="quiz"><div class="q">3. Parameter count formula for a convolution layer?</div><button class="labbtn reveal">Reveal</button><div class="a">(Fh × Fw × Cin + 1 bias) × Cout.</div></div>
+      <div class="quiz"><div class="q">4. What is the key equation of ResNet?</div><button class="labbtn reveal">Reveal</button><div class="a">y = F(x) + x.</div></div>
+      <div class="quiz"><div class="q">5. What are the two BERT pretraining tasks?</div><button class="labbtn reveal">Reveal</button><div class="a">Masked Language Modeling (MLM) and Next Sentence Prediction (NSP).</div></div>
+      <div class="quiz"><div class="q">6. Which gate in LSTM decides how much old memory survives?</div><button class="labbtn reveal">Reveal</button><div class="a">Forget gate, fₜ.</div></div>
+      <div class="quiz"><div class="q">7. Which state does GRU not have that LSTM does?</div><button class="labbtn reveal">Reveal</button><div class="a">A separate cell state Cₜ.</div></div>
+      <div class="quiz"><div class="q">8. What is trained in an Echo State Network?</div><button class="labbtn reveal">Reveal</button><div class="a">Only the output weights (Wout in the simple description).</div></div>
+    </section>
+
+    <section class="section" id="printsheet">
+      <div class="head print-hide"><div><h3>Printable clue sheet</h3><p>Compact final-pass memory sheet.</p></div><button class="done" data-topic="printsheet">Mark done</button></div>
+      <div class="cheat">
+        <h2 style="margin:0 0 16px;font-family:Georgia,serif">Deep Learning CAT 2 · Visual Clue Sheet</h2>
+        <div class="cheatcols">
+          <div class="cheatblock"><h4>CNN output size</h4><p>O = ((N + 2P − F) / S) + 1. Depth = number of filters. SAME tends to preserve size; VALID means no padding.</p></div>
+          <div class="cheatblock"><h4>CNN parameters</h4><p>Conv params = (Fh×Fw×Cin + 1)×Cout. FC params = Nin×Nout + Nout. Pooling/flatten add 0 trainable params.</p></div>
+          <div class="cheatblock"><h4>Source big numerical</h4><p>100×100×3 source network total = <b>139,820</b> params. Biggest contribution = FC layer: 135,210.</p></div>
+          <div class="cheatblock"><h4>Architecture hooks</h4><p>LeNet = early template. AlexNet = ReLU/ImageNet breakthrough. VGG = stacked 3×3. GoogLeNet = Inception + 1×1 bottleneck. ResNet = y=F(x)+x.</p></div>
+          <div class="cheatblock"><h4>RNN equations</h4><p>hₜ = activation(Wₓxₜ + Wₕhₜ₋₁ + b), yₜ = Wᵧhₜ. Source numerical: h₁=.858, h₂=.791, h₃=.785; y₃≈.864.</p></div>
+          <div class="cheatblock"><h4>BPTT</h4><p>Forward → loss → backward through time → update. Source final: Wx=.80862, Wh=.51517, Wo=1.01254.</p></div>
+          <div class="cheatblock"><h4>Autoencoder / Seq2Seq</h4><p>AE = encoder → bottleneck → decoder. Seq2Seq = input sequence → encoder → context → decoder → output sequence.</p></div>
+          <div class="cheatblock"><h4>BERT</h4><p>Input = token + position + segment embeddings. [CLS] for classification, [SEP] separator. MLM + NSP. Selected MLM tokens: 80% MASK, 10% random, 10% unchanged.</p></div>
+          <div class="cheatblock"><h4>Long dependencies</h4><p>Vanishing = gradients get too small. Exploding = gradients get too large. Solutions include LSTM/GRU, attention, clipping and memory mechanisms.</p></div>
+          <div class="cheatblock"><h4>LSTM equations</h4><p>fₜ, iₜ, C̃ₜ, Cₜ, oₜ, hₜ. Think: keep old memory → add selected new memory → expose selected output.</p></div>
+          <div class="cheatblock"><h4>GRU equations</h4><p>zₜ, rₜ, h̃ₜ, hₜ. No separate cell state. Reset gate filters old info; update gate blends old and candidate state.</p></div>
+          <div class="cheatblock"><h4>ESN / clipping / memory</h4><p>ESN: only output weights trained. Gradient clipping controls exploding magnitude. Explicit memory = separate readable/writable memory store.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer print-hide">Deep Learning CAT 2 Visual Command Center · richer visualizations, same source boundary.</div>
+  </main>
 </div>
-<footer class="footer">Deep Learning CAT 2 · ZIP-only final study site · Modules 3–5 · progress is stored locally in your browser.</footer>
-</main>
-</div>
-<script src="cat2.js"></script>
-<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("../../../sw.js").catch(function(){})</script>
+
+<script>
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
+const doneKey='dl-cat2-visual-progress'; let done=new Set(JSON.parse(localStorage.getItem(doneKey)||'[]'));
+function refresh(){const bs=$$('.done[data-topic]'); bs.forEach(b=>{const on=done.has(b.dataset.topic); b.classList.toggle('on',on); b.textContent=on?'✓ Done':'Mark done'}); $('#ptext').textContent=`${done.size} / ${bs.length}`; $('#pfill').style.width=(bs.length?done.size/bs.length*100:0)+'%';}
+addEventListener('click',e=>{
+  if(e.target.matches('.done[data-topic]')){const k=e.target.dataset.topic; done.has(k)?done.delete(k):done.add(k); localStorage.setItem(doneKey,JSON.stringify([...done])); refresh();}
+  if(e.target.matches('.reveal')) e.target.closest('.quiz').classList.toggle('show');
+});
+$('#search').addEventListener('input',e=>{const v=e.target.value.toLowerCase().trim(); $$('.searchable').forEach(sec=>{const hay=(sec.innerText+' '+(sec.dataset.keywords||'')).toLowerCase(); sec.classList.toggle('hidden', !!v && !hay.includes(v));});});
+const navLinks=$$('.nav a'); const secs=navLinks.map(a=>$(a.getAttribute('href'))).filter(Boolean);
+addEventListener('scroll',()=>{let cur=secs[0]; secs.forEach(s=>{if(s.getBoundingClientRect().top<130) cur=s}); navLinks.forEach(a=>a.classList.toggle('active', cur && a.getAttribute('href')==='#'+cur.id));},{passive:true});
+function metric(label,val){return `<div class="metric"><span>${label}</span><b>${val}</b></div>`}
+function conv(){const H=+$('#inH').value,W=+$('#inW').value,Cin=+$('#inC').value,Fh=+$('#fH').value,Fw=+$('#fW').value,Cout=+$('#outC').value,P=+$('#pad').value,S=+$('#stride').value; const oh=Math.floor((H+2*P-Fh)/S)+1, ow=Math.floor((W+2*P-Fw)/S)+1; const params=(Fh*Fw*Cin+1)*Cout; const flat=Math.max(0,oh)*Math.max(0,ow)*Cout; $('#convOut').innerHTML = metric('Output size',`${oh} × ${ow} × ${Cout}`)+metric('Trainable params',params.toLocaleString())+metric('Flattened size',flat.toLocaleString())+metric('Per filter',`${Fh*Fw*Cin} weights + 1 bias`);} 
+$('#convCalc').onclick=conv; $('#convPreset').onclick=()=>{$('#inH').value=100;$('#inW').value=100;$('#inC').value=3;$('#fH').value=3;$('#fW').value=3;$('#outC').value=10;$('#pad').value=2;$('#stride').value=1;conv();}; conv(); refresh();
+</script>
+<script>if("serviceWorker" in navigator)navigator.serviceWorker.register("../../../sw.js").catch(()=>{});</script>
 </body>
 </html>
