@@ -24,4 +24,5 @@ function backpatch(){if(!$('#bpCode'))return;const draw=()=>{const x=bp[bs];$('#
 function blocks(){const b=$('#blockCalc');if(!b)return;b.onclick=()=>{const raw=$('#blockCode').value.split(/\n/).map(x=>x.trim()).filter(Boolean);const labels=new Map();raw.forEach((l,i)=>{const m=l.match(/^([A-Za-z_]\w*):/);if(m)labels.set(m[1],i)});const leaders=new Set([0]);raw.forEach((l,i)=>{let m=l.match(/\bgoto\s+([A-Za-z_]\w*)/i);if(m&&labels.has(m[1]))leaders.add(labels.get(m[1]));if(/\bgoto\b/i.test(l)&&i+1<raw.length)leaders.add(i+1)});const arr=[...leaders].sort((a,b)=>a-b);const out=[];arr.forEach((st,k)=>{const en=(k+1<arr.length?arr[k+1]:raw.length);out.push('B'+(k+1)+':\n'+raw.slice(st,en).map((x,j)=>(st+j+1)+'. '+x).join('\n'))});$('#blockOut').textContent=out.join('\n\n')};b.click()}
 function peephole(){const b=$('#peepholeBtn');if(!b)return;b.onclick=()=>{$('#peepholeAfter').textContent='MOV R0, x\ngoto L2\nx = x * x\nINCR i';};}
 function printCheat(){window.print()}
-document.addEventListener('DOMContentLoaded',()=>{refresh();search();spy();clr();lalr();backpatch();blocks();peephole()});
+function init(){refresh();search();spy();clr();lalr();backpatch();blocks();peephole()}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
