@@ -1,0 +1,67 @@
+<section class="section searchable" data-keywords="assignment translation newtemp lookup reuse temporaries type conversion int real" id="m4-assignment">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Assignment translation · newtemp, lookup and type conversion</h2><p>The source gives syntax-directed rules that build TAC as expressions are reduced.</p></div><button class="done" data-topic="m4-assignment">Mark done</button></div>
+<div class="codebox"><pre>E → E1 + E2 {
+  E.place = newtemp;
+  emit(E.place = E1.place + E2.place);
+}
+E → -E1 {
+  E.place = newtemp;
+  emit(E.place = uminus E1.place);
+}
+S → id := E {
+  p = lookup(id.name);
+  if p ≠ nil emit(p := E.place); else error;
+}</pre></div>
+<details open=""><summary>Type conversion in assignments · source example</summary><div><p>For <b>x := y + i*j</b>, assume x,y are real and i,j are integer:</p><div class="codebox"><pre>t1 = i int* j
+t3 = inttoreal(t1)
+t2 = y real+ t3
+x  = t2</pre></div><p>The semantic rule chooses integer or real operators based on operand types and inserts <b>inttoreal</b> when one side is integer and the other is real.</p></div></details>
+<details><summary>Reusing temporary names</summary><div><p>Temporaries consume storage. The source notes that temporary lifetimes in expression evaluation are nested, so <b>newtemp</b> can be implemented to reuse temporaries whose values are no longer needed rather than allocating an unlimited stream of new names.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="boolean numerical flow control short circuit if then else while or and not translation" id="m4-boolean">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Boolean expressions and control flow · value code vs jumping code</h2><p>The source teaches two completely different representations of “true/false”. Know both.</p></div><button class="done" data-topic="m4-boolean">Mark done</button></div>
+<div class="grid2"><div class="card"><h3>Numerical representation</h3><p>Compute Boolean values like arithmetic: commonly 1=true and 0=false.</p><div class="formula">a or b and not c<br/>t1 = not c<br/>t2 = b and t1<br/>t3 = a or t2</div></div><div class="card"><h3>Flow-of-control / short-circuit</h3><p>Do not necessarily compute a Boolean temporary. Jump directly to E.true or E.false.</p><div class="formula">if A&lt;B goto E.true<br/>goto E.false</div></div></div>
+<div class="callout good"><strong>Short-circuit logic</strong>For <b>a or b</b>, once a is true there is no need to evaluate b. For <b>a and b</b>, once a is false there is no need to evaluate b.</div>
+<details open=""><summary>Source Boolean expression · a&lt;b or c&lt;d and e&lt;f</summary><div><div class="codebox"><pre>if a &lt; b goto Ltrue
+goto L1
+L1: if c &lt; d goto L2
+goto Lfalse
+L2: if e &lt; f goto Ltrue
+goto Lfalse</pre></div><p>The precedence in the source is <b>not</b> highest, then <b>and</b>, then <b>or</b>.</p></div></details>
+<details open=""><summary>Flow-of-control statement shapes</summary><div><div class="grid3"><div class="card"><h3>if E then S1</h3><p>E.true jumps into S1; E.false continues to S.next.</p></div><div class="card"><h3>if E then S1 else S2</h3><p>E.true enters S1, E.false enters S2, and both branches must continue to the code after the whole statement.</p></div><div class="card"><h3>while E do S1</h3><p>Evaluate E, enter body on true, jump back to the test after the body, exit on false.</p></div></div></div></details>
+</section>
+
+<section class="section searchable" data-keywords="procedure calls param call return case switch translation" id="m4-procedures">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Procedures and switch/case</h2><p>These are explicit Module-4 code-generation forms, not separate topics to ignore.</p></div><button class="done" data-topic="m4-procedures">Mark done</button></div>
+<details open=""><summary>Procedure call TAC</summary><div><div class="formula">P(x1,x2,…,xn)<br/>param x1<br/>param x2<br/>…<br/>param xn<br/>call P,n</div><p>If the function returns a value, the supplemental TAC source uses <b>t = call P,n</b>; the callee uses <b>return value</b>.</p><div class="codebox"><pre>param 5
+param 10
+t2 = call add, 2
+result = t2</pre></div></div></details>
+<details open=""><summary>Switch-case TAC</summary><div><p>The supplied TAC PDF lowers a switch into equality tests and jumps:</p><div class="codebox"><pre>if x == 1 goto L1
+if x == 2 goto L2
+goto Ldefault
+L1: y = 10
+goto Lnext
+L2: y = 20
+goto Lnext
+Ldefault: y = 0
+Lnext: ...</pre></div></div></details>
+</section>
+
+<section class="section searchable" data-keywords="backpatching makelist merge backpatch nextquad truelist falselist nextlist markers M N" id="m4-backpatch">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Backpatching · generate the jump now, fill the target later</h2><p>This solves forward-jump targets that are unknown when the jump instruction is first emitted.</p></div><button class="done" data-topic="m4-backpatch">Mark done</button></div>
+<div class="grid4"><div class="card"><h3>makelist(i)</h3><p>Create a list containing the index of one unresolved jump instruction.</p></div><div class="card"><h3>merge(p1,p2)</h3><p>Concatenate two lists of unresolved jumps.</p></div><div class="card"><h3>backpatch(p,i)</h3><p>Fill every blank target in list p with target instruction i.</p></div><div class="card"><h3>nextinstr / nextquad</h3><p>Index of the next instruction that would be emitted.</p></div></div>
+<div class="grid3" style="margin-top:14px"><div class="card"><h3>truelist</h3><p>Jumps that must eventually point to the code for the true outcome.</p></div><div class="card"><h3>falselist</h3><p>Jumps that must eventually point to the false outcome.</p></div><div class="card"><h3>nextlist</h3><p>Jumps that should continue at the instruction after a completed statement.</p></div></div>
+<details open=""><summary>Boolean backpatching rules · learn the logic, not just the syntax</summary><div><table><tr><th>Production</th><th>Main idea</th></tr><tr><td>B → B1 or M B2</td><td>Backpatch B1.falselist to M; true = merge(B1.true,B2.true); false = B2.false.</td></tr><tr><td>B → B1 and M B2</td><td>Backpatch B1.truelist to M; true = B2.true; false = merge(B1.false,B2.false).</td></tr><tr><td>B → not B1</td><td>Swap truelist and falselist.</td></tr><tr><td>B → E1 relop E2</td><td>Emit conditional goto _ and goto _; create true/false lists from their instruction indices.</td></tr><tr><td>M → ε</td><td>M.instr = nextinstr.</td></tr></table></div></details>
+<details open=""><summary>Worked source trace · x&lt;100 || y&gt;200 &amp;&amp; x!=y</summary><div><div class="codebox"><pre>100: if x &lt; 100 goto 106
+101: goto 102
+102: if y &gt; 200 goto 104
+103: goto 107
+104: if x != y goto 106
+105: goto 107
+106: true
+107: false</pre></div><p>Final combined lists before the last patch are <b>truelist={100,104}</b> and <b>falselist={103,105}</b>.</p></div></details>
+<div class="lab"><h3>Backpatching stepper</h3><div class="controls"><button class="labbtn" id="bpPrev">← previous</button><b id="bpLabel"></b><button class="labbtn" id="bpNext">next →</button></div><h4 id="bpTitle" style="color:white;margin:7px 0"></h4><pre class="tree" id="bpCode"></pre><p id="bpExplain"></p></div>
+<details><summary>Backpatching control-flow statements</summary><div><p>The supplied guide extends the same lists to <b>if</b>, <b>if-else</b>, <b>while</b> and statement lists. Marker M captures where a branch/body begins; marker N may emit an unresolved goto used to jump past an else branch. The algorithm is always the same: create unresolved jump lists early, then patch them as soon as the correct target becomes known.</p></div></details>
+</section>
