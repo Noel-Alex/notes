@@ -1,0 +1,19 @@
+<section class="section searchable" data-keywords="scope exact portion clr module 3 4 5 peephole excluded" id="scope">
+<div class="section-head"><div class="section-no">00</div><div class="section-title"><h2>Exact exam boundary · no syllabus creep</h2><p>I treated “deep hole optimization” as <b>Peephole Optimization</b>, which is the exact term used in your Module-5 source.</p></div><button class="done" data-topic="scope">Mark done</button></div>
+<div class="scope-box">
+<div class="scope-in"><h3>✓ Included</h3><ul><li><b>Module 2:</b> CLR / Canonical LR(1), LALR, LR(1) lookahead and conflict observations from that point onward.</li><li><b>Module 3:</b> complete semantic-analysis / syntax-directed translation portion.</li><li><b>Module 4:</b> complete intermediate-code generation portion, including TAC, declarations, arrays, control flow and backpatching.</li><li><b>Module 5:</b> everything taught before and including Peephole Optimization: optimization basics, principal sources, global data-flow analysis, basic blocks/flow graphs, basic-block transformations and peephole techniques.</li></ul></div>
+<div class="scope-out"><h3>✗ Deliberately excluded</h3><ul><li>Earlier Module-2 material such as LL(1), shift-reduce/SLR construction and operator-precedence parsing.</li><li>Module-5 material after Peephole Optimization, including the later DAG-of-basic-blocks / loops-in-flow-graphs and later optimization/code-generation material.</li><li>Anything from other subjects or outside sources.</li></ul></div>
+</div>
+<div class="callout warn"><strong>One tiny prerequisite exception</strong>CLR cannot be understood without the LR item/dot, closure/goto and FIRST-based lookahead idea. The page gives only those prerequisite mechanics because they are explicitly used in the supplied CLR slides; it does <b>not</b> reteach the excluded SLR portion.</div>
+</section>
+
+<section class="section searchable" data-keywords="study route survival intuitive plan" id="survival">
+<div class="section-head"><div class="section-no">01</div><div class="section-title"><h2>Compiler-design survival map</h2><p>For this subject, memorizing slides without seeing the transformations is a trap. Learn it as four mechanical systems.</p></div><button class="done" data-topic="survival">Mark done</button></div>
+<div class="grid4">
+<div class="card"><div class="big">A</div><h3>Parsing states</h3><p>CLR/LALR = grammar items moving through a state machine. Every table entry comes from an item and its lookahead.</p></div>
+<div class="card"><div class="big">B</div><h3>Attribute flow</h3><p>Module 3 = values/types flowing up, down or left across a parse tree according to semantic rules.</p></div>
+<div class="card"><div class="big">C</div><h3>Lower the code</h3><p>Module 4 = break high-level constructs into small machine-independent steps: TAC, labels, temporaries and lists.</p></div>
+<div class="card"><div class="big">D</div><h3>Improve the code</h3><p>Module 5 = detect repeated/useless/expensive work and transform it without changing meaning.</p></div>
+</div>
+<div class="callout good"><strong>When stuck in a numerical</strong>Do not stare at the final table/tree. Write the algorithm first and execute one deterministic step at a time. Compiler questions become much less mystical when every dot move, list merge, leader, GEN/KILL set or temporary is written explicitly.</div>
+</section>
