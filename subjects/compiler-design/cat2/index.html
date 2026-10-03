@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#26333b">
+<title>Compiler Design CAT 2 · CLR → Semantic Analysis → Intermediate Code → Peephole</title>
+<link rel="stylesheet" href="../../../assets/site.css">
+<link rel="stylesheet" href="cat2.css">
+</head>
+<body>
+<div class="mobilebar"><b>Compiler Design CAT 2</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="eyebrow">BCSE307L · CAT 2 · PORTION-LOCKED</div><h2>Compiler Design<br>Exam Command Center</h2><p>CLR onward · M3 · M4 · M5 through Peephole</p></div>
+  <input id="search" class="search" placeholder="Search: CLR, backpatching, live variable…">
+  <div class="progress"><div class="progress-row"><span>Study coverage</span><b id="ptext">0 / 0</b></div><div class="track"><div class="fill" id="pfill"></div></div></div>
+  <div class="nav-group">Start here</div>
+  <a class="nav-link" href="#scope"><i class="dot"></i>Exact exam boundary</a>
+  <a class="nav-link" href="#survival"><i class="dot"></i>Compiler survival map</a>
+  <div class="nav-group">Module 2 · from CLR</div>
+  <a class="nav-link" href="#m2-prereq"><i class="dot"></i>LR(1) prerequisite only</a>
+  <a class="nav-link" href="#m2-clr"><i class="dot"></i>CLR · full construction</a>
+  <a class="nav-link" href="#m2-lalr"><i class="dot"></i>LALR · merge + parse</a>
+  <a class="nav-link" href="#m2-conflicts"><i class="dot"></i>Conflict rules</a>
+  <div class="nav-group">Module 3 · full</div>
+  <a class="nav-link" href="#m3-sdd"><i class="dot"></i>SDD + attributes</a>
+  <a class="nav-link" href="#m3-annotated"><i class="dot"></i>Annotated parse trees</a>
+  <a class="nav-link" href="#m3-dependency"><i class="dot"></i>Dependency graph</a>
+  <a class="nav-link" href="#m3-lattr"><i class="dot"></i>L-attributed SDD</a>
+  <a class="nav-link" href="#m3-sdt"><i class="dot"></i>SDT + translation</a>
+  <a class="nav-link" href="#m3-applications"><i class="dot"></i>Syntax trees + conversions</a>
+  <div class="nav-group">Module 4 · full</div>
+  <a class="nav-link" href="#m4-ir"><i class="dot"></i>Intermediate forms</a>
+  <a class="nav-link" href="#m4-tac"><i class="dot"></i>TAC + representations</a>
+  <a class="nav-link" href="#m4-types"><i class="dot"></i>All TAC statement types</a>
+  <a class="nav-link" href="#m4-declarations"><i class="dot"></i>Declarations + arrays</a>
+  <a class="nav-link" href="#m4-assignment"><i class="dot"></i>Assignments + type conversion</a>
+  <a class="nav-link" href="#m4-boolean"><i class="dot"></i>Boolean + control flow</a>
+  <a class="nav-link" href="#m4-procedures"><i class="dot"></i>Procedures + switch</a>
+  <a class="nav-link" href="#m4-backpatch"><i class="dot"></i>Backpatching</a>
+  <div class="nav-group">Module 5 · through peephole</div>
+  <a class="nav-link" href="#m5-intro"><i class="dot"></i>Optimization basics</a>
+  <a class="nav-link" href="#m5-sources"><i class="dot"></i>Principal sources</a>
+  <a class="nav-link" href="#m5-dataflow"><i class="dot"></i>Data-flow analysis</a>
+  <a class="nav-link" href="#m5-blocks"><i class="dot"></i>Basic blocks + flow graph</a>
+  <a class="nav-link" href="#m5-transform"><i class="dot"></i>Basic-block transforms</a>
+  <a class="nav-link" href="#m5-peephole"><i class="dot"></i>Peephole optimization</a>
+  <div class="nav-group">Final pass</div>
+  <a class="nav-link" href="#templates"><i class="dot"></i>How to write answers</a>
+  <a class="nav-link" href="#drill"><i class="dot"></i>Rapid drill</a>
+  <a class="nav-link" href="#cheatsheet"><i class="dot"></i>Printable clue sheet</a>
+  <a class="nav-link" href="#audit"><i class="dot"></i>Source audit</a>
+  <div class="side-actions"><button onclick="document.querySelector('#scope').scrollIntoView()">Top</button><button onclick="printCheat()">Print sheet</button></div>
+</aside>
+
+<main class="main">
+<div class="portalbar"><div class="crumb"><a href="../../../">NOTES</a><span>›</span><a href="../">Compiler Design</a><span>›</span><b>CAT 2</b></div><a href="../">Subject home →</a></div>
+
+<header class="hero">
+  <div class="eyebrow">COMPILER DESIGN · CAT 2 · EXACT PORTION ONLY</div>
+  <h1>Make the states visible.<br>Make the translation mechanical.<br>Make compiler design survivable.</h1>
+  <p class="dek"><b>This page assumes your preparation is weak and rebuilds the portion from the ground up.</b> It uses only the uploaded Compiler Design ZIP. The included boundary is: <b>Module 2 from CLR onward, Module 3 full, Module 4 full, and Module 5 through Peephole Optimization.</b> Material outside that boundary is deliberately excluded.</p>
+  <div class="mark-grid"><div class="mark"><b>M2</b><span>CLR · LALR · LR(1) lookahead/conflict mechanics</span></div><div class="mark"><b>M3–4</b><span>Semantic analysis · SDD/SDT · Intermediate code · Backpatching</span></div><div class="mark"><b>M5</b><span>Optimization · data flow · basic blocks · transformations · peephole</span></div></div>
+  <div class="hero-actions"><button class="btn primary" onclick="document.querySelector('#scope').scrollIntoView()">Start from zero</button><button class="btn ghost" onclick="document.querySelector('#m2-clr').scrollIntoView()">Start CLR</button><button class="btn ghost" onclick="document.querySelector('#cheatsheet').scrollIntoView()">Final sheet</button></div>
+</header>
+
+<div class="content" id="dynamic-content"></div>
+<footer class="footer">Compiler Design CAT 2 · source-bound exact-portion study site · progress is stored locally in your browser.</footer>
+</main></div>
+<script>
+(async()=>{
+ const files=['sections/start.html','sections/m2.html','sections/m3.html','sections/m4a.html','sections/m4b.html','sections/m5a.html','sections/m5b.html','sections/finish.html'];
+ const parts=await Promise.all(files.map(f=>fetch(f).then(r=>{if(!r.ok) throw new Error(f); return r.text()})));
+ document.getElementById('dynamic-content').innerHTML=parts.join('\n');
+ const s=document.createElement('script');s.src='cat2.js';document.body.appendChild(s);
+})().catch(err=>{document.getElementById('dynamic-content').innerHTML='<section class="section"><div class="callout warn"><strong>Study content failed to load.</strong>Refresh the page once. '+err+'</div></section>';});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('../../../sw.js').catch(()=>{});
+</script>
+</body></html>
