@@ -1,0 +1,17 @@
+/* Theory-scan layer for Compiler Design CAT 2. Keeps the existing editorial design intact. */
+.study-kind{display:inline-flex;align-items:center;gap:6px;margin:0 0 7px;padding:5px 8px;border-radius:999px;font:800 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);background:#f5eee4;color:#667177}
+.study-kind.theory{background:#dfeee9;color:#285d4b;border-color:#afd1c4}.study-kind.mixed{background:#ece6f5;color:#5c4d89;border-color:#cfc1e1}.study-kind.procedure{background:#f8e7c8;color:#7b5218;border-color:#e1c28d}
+.theory-mark{position:relative;border-color:#9ec9bb!important;box-shadow:0 0 0 2px rgba(102,183,170,.08)}
+.theory-badge{display:inline-flex;vertical-align:middle;margin:0 7px 5px 0;padding:4px 7px;border-radius:999px;background:#dfeee9;color:#285d4b;border:1px solid #afd1c4;font:900 8px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase}
+.theory-mark.card>.theory-badge,.theory-mark.callout>.theory-badge,.theory-mark.formula>.theory-badge,.theory-mark.ribbon>.theory-badge{display:flex;width:max-content;margin-bottom:8px}
+.theory-mark details,.theory-mark summary{border-color:#9ec9bb}
+.theory-guide{border:1px solid #b7cec5;background:linear-gradient(135deg,#eef7f3,#fffaf2);border-radius:22px;padding:22px;margin:0 0 54px;box-shadow:0 12px 34px rgba(21,36,43,.06)}
+.theory-guide-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:15px}.theory-guide h2{margin:0 0 5px;font-size:28px}.theory-guide p{margin:0;color:var(--muted);font-size:12px}.theory-guide .legend{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.theory-index{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.theory-index .card{padding:15px}.theory-index h3{font-size:17px}.theory-index ul{margin:7px 0 0;padding-left:17px}.theory-index li{font-size:10.5px;color:#46535a;margin:4px 0}.theory-index a{text-decoration:underline;text-decoration-color:#a9c9bd;text-underline-offset:2px}
+.theory-toolbar{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.theory-toolbar button{border:1px solid #acc7bc;background:#fffaf2;color:#35584c;border-radius:999px;padding:7px 10px;font-size:9px;font-weight:900}.theory-toolbar button.active{background:#315d4b;color:#fff;border-color:#315d4b}
+body.theory-scan .section:not(.study-theory):not(.study-mixed){opacity:.48;filter:saturate(.7);transition:.18s}body.theory-scan .section.study-theory,body.theory-scan .section.study-mixed{opacity:1}body.theory-scan .theory-mark{box-shadow:0 0 0 3px rgba(102,183,170,.22),0 10px 28px rgba(58,105,88,.08)!important}body.theory-scan .lab,body.theory-scan .algo,body.theory-scan .codebox{opacity:.58}
+body.theory-only .section.study-procedure{display:none}body.theory-only .section.study-mixed .lab,body.theory-only .section.study-mixed .algo,body.theory-only .section.study-mixed .codebox{opacity:.28}body.theory-only .section.study-mixed .theory-mark{opacity:1}
+.theory-note{font-size:10px;color:#55736a;margin:7px 0 0}.video-note{font-size:10px;color:#83571e;margin:7px 0 0}
+@media(max-width:1000px){.theory-index{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.theory-guide-head{display:block}.theory-guide .legend{justify-content:flex-start;margin-top:10px}.theory-index{grid-template-columns:1fr}}
+@media print{.theory-guide,.study-kind,.theory-badge,.theory-toolbar{display:none!important}}
