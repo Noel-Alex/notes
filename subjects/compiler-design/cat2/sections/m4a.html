@@ -1,0 +1,45 @@
+<section class="section searchable" data-keywords="module 4 intermediate code syntax tree dag postfix benefits forms" id="m4-ir">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Intermediate Code Generation · lower high-level syntax into a portable form</h2><p>The source motivates an intermediate language as a machine-independent layer between semantic analysis and target-code generation.</p></div><button class="done" data-topic="m4-ir">Mark done</button></div>
+<div class="ir-strip"><div class="ir-card"><b>Syntax tree</b><span>Natural hierarchical structure of the source expression.</span></div><div class="ir-card"><b>DAG</b><span>Like a syntax tree, but shared common subexpressions can point to one node.</span></div><div class="ir-card"><b>Postfix</b><span>Linearized tree: operands first, operator after operands.</span></div><div class="ir-card"><b>Three-address code</b><span>Sequence of small statements with at most three addresses.</span></div></div>
+<div class="callout good"><strong>Benefits in the source</strong>Different machine backends can reuse the same front end, and machine-independent optimization can operate on the intermediate representation before final target-code generation.</div>
+<details open=""><summary>Syntax tree vs DAG</summary><div><p>A syntax tree duplicates repeated subexpressions. A DAG identifies common subexpressions and reuses the same node.</p><p>Source expression: <b>a + a*(b-c) + (b-c)*d</b>. The subexpression <b>(b-c)</b> appears twice; a DAG can represent it once and let both parents point to the same node.</p></div></details>
+<details><summary>Postfix notation</summary><div><table><tr><th>Infix</th><th>Postfix</th></tr><tr><td>(A+B)*(C+D)</td><td>A B + C D + *</td></tr><tr><td>(A+B)*C</td><td>A B + C *</td></tr><tr><td>(A*B)+(C*D)</td><td>A B * C D * +</td></tr></table></div></details>
+</section>
+
+<section class="section searchable" data-keywords="three address code quadruple triple indirect triple x -a b representations" id="m4-tac">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Three-Address Code · make every operation explicit</h2><p>A typical statement is <b>x = y op z</b>. Complex source expressions are decomposed using compiler-generated temporaries.</p></div><button class="done" data-topic="m4-tac">Mark done</button></div>
+<div class="formula">a = b + c + d<br/>t1 = b + c<br/>t2 = t1 + d<br/>a = t2</div>
+<details open=""><summary>Three representations · quadruple, triple, indirect triple</summary><div><p>Source expression: <b>x = -a*b + -a*b</b></p><div class="codebox"><pre>t1 = -a
+t2 = t1 * b
+t3 = -a
+t4 = t3 * b
+t5 = t2 + t4
+x  = t5</pre></div>
+<div class="grid3"><div class="card"><h3>Quadruple</h3><p>Fields: <b>(op, arg1, arg2, result)</b>. Temporaries appear explicitly as results.</p></div><div class="card"><h3>Triple</h3><p>Fields: <b>(op, arg1, arg2)</b>. A temporary result is referred to by the position/number of the statement that computed it.</p></div><div class="card"><h3>Indirect triple</h3><p>Keep the triple table but add a separate list of pointers to triples. Reordering can be done by rearranging pointers rather than moving triple records.</p></div></div>
+</div></details>
+<details><summary>Worked source request · a + -(b+c)</summary><div><p>The notes explicitly ask for all four forms: syntax tree, quadruples, triples and indirect triples. The systematic process is: build tree → emit TAC bottom-up → write each emitted operation into the chosen record representation.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="tac statement types binary unary copy goto conditional procedure indexed pointer address" id="m4-types">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Every TAC statement type in the source</h2><p>These patterns are worth memorizing because code-generation questions are mostly combinations of them.</p></div><button class="done" data-topic="m4-types">Mark done</button></div>
+<table><tr><th>Type</th><th>General form</th><th>Source-style example</th></tr><tr><td>Binary assignment</td><td>x = y op z</td><td>t1=c*d; t2=b+t1</td></tr><tr><td>Unary assignment</td><td>x = op y</td><td>t1=-c</td></tr><tr><td>Copy</td><td>x = y</td><td>a=t2</td></tr><tr><td>Unconditional jump</td><td>goto L</td><td>goto L1</td></tr><tr><td>Conditional jump</td><td>if x relop y goto L</td><td>if x&gt;y goto L</td></tr><tr><td>Procedure call</td><td>param xi; call P,n; return y</td><td>param a; param b; call add,2</td></tr><tr><td>Indexed assignment</td><td>x=y[i] or y[i]=x</td><td>t=b[i]; a[i]=t</td></tr><tr><td>Address / pointer</td><td>x=&amp;y x=*y; *x=y</td><td>t=*y; *x=t</td></tr></table>
+<details open=""><summary>Pointer worked example from the supplied TAC PDF</summary><div><div class="codebox"><pre>int a = 10;
+int *p;
+p = &amp;a
+*p = 20;
+int b = *p + 5;</pre></div><div class="formula">a = 10<br/>p = &amp;a<br/>*p = 20<br/>t1 = *p<br/>t2 = t1 + 5<br/>b = t2</div></div></details>
+</section>
+
+<section class="section searchable" data-keywords="declarations offset symbol table arrays row major 2d width mktable enter addwidth" id="m4-declarations">
+<div class="section-head"><div class="section-no">M4</div><div class="section-title"><h2>Declarations, storage layout and arrays</h2><p>Declarations update the symbol table with type and relative address information; an <b>offset</b> tracks the next available storage location.</p></div><button class="done" data-topic="m4-declarations">Mark done</button></div>
+<div class="grid3"><div class="card"><h3>mktable(previous)</h3><p>Create a new symbol table and link it to an enclosing table.</p></div><div class="card"><h3>enter(table,name,type,offset)</h3><p>Create an entry containing the identifier's type and relative address.</p></div><div class="card"><h3>addwidth(table,width)</h3><p>Store the total width of declarations associated with the table.</p></div></div>
+<details open=""><summary>2D array declaration semantic information</summary><div><div class="formula">D → T id [N1][N2]<br/>D.type = array(N1.val, array(N2.val, T.type))<br/>D.rows=N1.val; D.cols=N2.val<br/>D.elements=N1.val×N2.val<br/>D.width=D.elements×T.width</div><p>Source widths include int=2, float=4, char=1 in the shown grammar.</p></div></details>
+<details open=""><summary>Array addressing formulas</summary><div><p><b>1D with lower bound low:</b></p><div class="formula">Address(A[i]) = base + (i-low)×w</div><p>The source rewrites this as <b>i×w + (base-low×w)</b> so the constant part can be precomputed.</p><p><b>2D row-major:</b></p><div class="formula">base + ((i1-low1)×n2 + (i2-low2))×w</div><p>If indices are zero-based, this simplifies to:</p><div class="formula">base + (i×number_of_columns + j)×w</div></div></details>
+<details><summary>2D array TAC example</summary><div><p>For A[10][20], int width=4 and A[i][j]=A[i][j]+1, the supplemental source breaks the address calculation into multiplies/additions before load/store:</p><div class="codebox"><pre>t1 = i * 20
+t2 = t1 + j
+t3 = t2 * 4
+t4 = A[t3]
+t5 = t4 + 1
+...compute same offset for store...
+A[tOffset] = t5</pre></div></div></details>
+</section>
