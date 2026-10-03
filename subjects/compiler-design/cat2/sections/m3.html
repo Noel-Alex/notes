@@ -1,0 +1,58 @@
+<section class="section searchable" data-keywords="module 3 sdd sdt semantic analysis synthesized inherited attributes" id="m3-sdd">
+<div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Syntax-Directed Definition · attach meaning to grammar</h2><p>Module 3 is much easier if you stop thinking “new grammar” and think “same parse tree, but values/types/code now flow through it.”</p></div><button class="done" data-topic="m3-sdd">Mark done</button></div>
+<div class="grid3"><div class="card"><h3>SDD</h3><div class="formula">SDD = CFG + attributes + semantic rules</div><p>Attributes belong to grammar symbols; semantic rules belong to productions.</p></div><div class="card"><h3>Synthesized attribute</h3><p>A node computes its value from its children (and the node itself). Information flows mainly <b>up</b> the parse tree.</p></div><div class="card"><h3>Inherited attribute</h3><p>A node gets information from its parent and/or siblings. In the L-attributed restriction used later, inherited information comes only from the parent and left siblings.</p></div></div>
+<details open=""><summary>Source desk-calculator SDD</summary><div><table><tr><th>Production</th><th>Semantic rule</th></tr><tr><td>L → E n</td><td>print(E.val)</td></tr><tr><td>E → E₁ + T</td><td>E.val = E₁.val + T.val</td></tr><tr><td>E → T</td><td>E.val = T.val</td></tr><tr><td>T → T₁ * F</td><td>T.val = T₁.val * F.val</td></tr><tr><td>T → F</td><td>T.val = F.val</td></tr><tr><td>F → (E)</td><td>F.val = E.val</td></tr><tr><td>F → digit</td><td>F.val = digit.lexval</td></tr></table><p>The lexical analyzer supplies <b>digit.lexval</b>. All nonterminal values above are synthesized upward.</p></div></details>
+<div class="callout good"><strong>SDD vs SDT</strong>SDD says <i>what semantic relationships hold</i> and may hide evaluation order. An SDT puts executable semantic actions directly into production bodies; action position determines when the action runs.</div>
+</section>
+
+<section class="section searchable" data-keywords="annotated parse tree synthesized 3 5 4 19" id="m3-annotated">
+<div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Annotated parse trees · every node shows its attribute value</h2><p>A parse tree plus evaluated attributes is an annotated parse tree.</p></div><button class="done" data-topic="m3-annotated">Mark done</button></div>
+<div class="grid2"><div><p>For the source expression <b>3 * 5 + 4</b>:</p><ol class="algo"><li>digit 3 gives F.val=3.</li><li>digit 5 gives F.val=5.</li><li>T→T₁*F computes 3×5=15.</li><li>E→T carries 15 upward.</li><li>digit 4 gives T.val=4.</li><li>E→E₁+T computes 15+4=<b>19</b>.</li></ol></div><pre class="syntax-tree">             E.val = 19
+            /    |     \
+      E.val=15   +    T.val=4
+          |               |
+      T.val=15          F.val=4
+       / |  \
+ T.val=3 * F.val=5
+    |          |
+ digit=3     digit=5</pre></div>
+<details><summary>Why evaluation is bottom-up here</summary><div><p>Every parent attribute depends on child attributes. Therefore children must be known before their parent can be evaluated. This is exactly why S-attributed definitions fit bottom-up parsing naturally.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="dependency graph topological sort evaluation order semantic rules" id="m3-dependency">
+<div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Dependency graph · turn semantic dependencies into an ordering problem</h2><p>The graph answers: “Which attribute must be known before which other attribute?”</p></div><button class="done" data-topic="m3-dependency">Mark done</button></div>
+<ol class="algo"><li>Create one dependency-graph node for every attribute instance on the parse tree.</li><li>For each semantic rule <b>b = f(c₁,…,cₖ)</b>, draw directed edges <b>cᵢ → b</b>.</li><li>Any valid <b>topological order</b> of the resulting acyclic graph is a valid attribute-evaluation order.</li></ol>
+<div class="mini-graph"><div class="g-node">E₁.val</div><div class="g-edge">↘</div><div class="g-node">E.val</div><div class="g-edge">↗</div><div class="g-node">T.val</div></div>
+<div class="formula">For E → E₁ + T with E.val = E₁.val + T.val:<br/>E₁.val → E.val    and    T.val → E.val</div>
+<details open=""><summary>Source definition of topological sort</summary><div><p>A topological sort orders graph nodes so that whenever there is an edge mᵢ→mⱼ, mᵢ appears before mⱼ. That ordering is precisely what you need to evaluate attributes without using a value before it exists.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="l attributed definition inherited left siblings real id1 id2 id3 type" id="m3-lattr">
+<div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>L-attributed definitions · inherited data may come only from the left</h2><p>The source restriction is what makes left-to-right evaluation practical.</p></div><button class="done" data-topic="m3-lattr">Mark done</button></div>
+<div class="formula">For A → X₁ X₂ … Xₙ, an inherited attribute of Xⱼ may depend only on:<br/>1) inherited attributes of A, and 2) attributes of X₁ … Xⱼ₋₁ to the left.</div>
+<details open=""><summary>Source declaration example · real id1,id2,id3</summary><div><table><tr><th>Production</th><th>Semantic rule</th></tr><tr><td>D → T L</td><td>L.in = T.type</td></tr><tr><td>T → int</td><td>T.type = integer</td></tr><tr><td>T → real</td><td>T.type = real</td></tr><tr><td>L → L₁ , id</td><td>L₁.in = L.in; addtype(id.entry, L.in)</td></tr><tr><td>L → id</td><td>addtype(id.entry, L.in)</td></tr></table><p>For <b>real id1,id2,id3</b>, T.type becomes real and that type is passed through L.in so every identifier gets type real in the symbol table.</p></div></details>
+<div class="grid2"><div class="card"><h3>S-attributed</h3><p>Only synthesized attributes. Natural for bottom-up evaluation. Semantic actions can be placed at the right end of productions.</p></div><div class="card"><h3>L-attributed</h3><p>Allows synthesized + inherited attributes under the left-dependency restriction. Supports left-to-right evaluation.</p></div></div>
+</section>
+
+<section class="section searchable" data-keywords="syntax directed translation scheme actions top down bottom up infix postfix" id="m3-sdt">
+<div class="section-head"><div class="section-no">M3</div><div class="section-title"><h2>Syntax-Directed Translation Scheme · actions are embedded in productions</h2><p>Action position is now operational: when the parser reaches the action, it executes it.</p></div><button class="done" data-topic="m3-sdt">Mark done</button></div>
+<div class="grid2"><div class="card"><h3>SDD</h3><p>High-level semantic specification. Rules are associated with productions but evaluation order may be hidden.</p></div><div class="card"><h3>SDT</h3><p>Semantic actions <b>{…}</b> appear inside production bodies. Their position determines execution order.</p></div></div>
+<details open=""><summary>Infix → postfix SDT from the source</summary><div><div class="formula">E → E + T { print('+') }<br/>E → T<br/>T → T * F { print('*') }<br/>T → F<br/>F → num { print(num.lexval) }</div><p>For <b>2+3*4</b>, leaves print operands when reduced/visited, and operator actions run after their operands, producing postfix order <b>234*+</b>.</p></div></details>
+<details><summary>Top-down vs bottom-up execution of SDT</summary><div><p>The supplied part-2 semantic-analysis slides use the same postfix SDT to show both parser directions. A top-down parser encounters actions during a left-to-right parse-tree traversal; a bottom-up parser typically executes the semantic action associated with a production when that production is reduced. The intended output is the same.</p></div></details>
+<details><summary>Bottom-up evaluation of S-attributed definitions</summary><div><p>The source shows synthesized values stored alongside parser-stack symbols. When a reduction A→XYZ occurs, the semantic action computes A's value from the attributes of X/Y/Z already on the stack. This is why synthesized attributes are especially convenient for LR parsing.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="applications sdt syntax tree mknode mkleaf prefix postfix binary decimal reductions" id="m3-applications">
+<div class="section-head"><div class="section-no">M3Σ</div><div class="section-title"><h2>Applications of SDT · every application named in the source</h2><p>Module 3 does not stop at evaluating arithmetic expressions.</p></div><button class="done" data-topic="m3-applications">Mark done</button></div>
+<div class="ribbon"><span class="pill">Executing arithmetic expressions</span><span class="pill">Infix → postfix</span><span class="pill">Infix → prefix</span><span class="pill">Binary → decimal</span><span class="pill">Counting reductions</span><span class="pill">Creating syntax trees</span><span class="pill">Generating intermediate code</span><span class="pill">Type checking</span><span class="pill">Store types in symbol table</span></div>
+<details open=""><summary>Syntax-tree construction functions</summary><div><div class="formula">mknode(op,left,right) → operator node<br/>mkleaf(id,entry) → identifier leaf + symbol-table pointer<br/>mkleaf(num,val) → numeric leaf</div><p>Source example <b>a - 4 + c</b>:</p><div class="codebox"><pre>P1 = mkleaf(id, entry(a))
+P2 = mkleaf(num, 4)
+P3 = mknode('-', P1, P2)
+P4 = mkleaf(id, entry(c))
+P5 = mknode('+', P3, P4)</pre></div><pre class="syntax-tree">       +
+      / \
+     -   c
+    / \
+   a   4</pre></div></details>
+<details><summary>Conversion exercises developed in the source</summary><div><p>The notes include SDD/SDT examples for arithmetic evaluation, infix→postfix, infix→prefix, binary→decimal and counting the number of reductions. For these, the essential exam skill is to write the grammar production and place/define the semantic action so the desired output/value is accumulated in the correct traversal order.</p></div></details>
+</section>
