@@ -7,6 +7,7 @@
 <title>Compiler Design CAT 2 · CLR → Semantic Analysis → Intermediate Code → Peephole</title>
 <link rel="stylesheet" href="../../../assets/site.css">
 <link rel="stylesheet" href="cat2.css">
+<link rel="stylesheet" href="theory.css">
 </head>
 <body>
 <div class="mobilebar"><b>Compiler Design CAT 2</b><button onclick="document.querySelector('#cheatsheet').scrollIntoView()">Cheat sheet</button></div>
@@ -73,7 +74,7 @@
  const files=['sections/start.html','sections/m2.html','sections/m3.html','sections/m4a.html','sections/m4b.html','sections/m5a.html','sections/m5b.html','sections/finish.html'];
  const parts=await Promise.all(files.map(f=>fetch(f).then(r=>{if(!r.ok) throw new Error(f); return r.text()})));
  document.getElementById('dynamic-content').innerHTML=parts.join('\n');
- const s=document.createElement('script');s.src='cat2.js';document.body.appendChild(s);
+ const s=document.createElement('script');s.src='cat2.js';s.onload=()=>{const t=document.createElement('script');t.src='theory.js';document.body.appendChild(t)};document.body.appendChild(s);
 })().catch(err=>{document.getElementById('dynamic-content').innerHTML='<section class="section"><div class="callout warn"><strong>Study content failed to load.</strong>Refresh the page once. '+err+'</div></section>';});
 if('serviceWorker' in navigator)navigator.serviceWorker.register('../../../sw.js').catch(()=>{});
 </script>
