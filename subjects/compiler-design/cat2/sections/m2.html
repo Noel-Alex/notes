@@ -1,0 +1,55 @@
+<section class="section searchable" data-keywords="module 2 clr lr1 item lookahead closure goto first beta a" id="m2-prereq">
+<div class="section-head"><div class="section-no">M2</div><div class="section-title"><h2>CLR prerequisite · only what you need to start LR(1)</h2><p>CLR = Canonical LR using LR(1) items. An LR(1) item adds a lookahead to the familiar dotted production.</p></div><button class="done" data-topic="m2-prereq">Mark done</button></div>
+<div class="grid3">
+<div class="card"><h3>LR(1) item</h3><div class="formula">[A → α · β, a]</div><p>The dot shows parsing progress. <b>a</b> is the lookahead terminal on which a completed item may reduce.</p></div>
+<div class="card"><h3>GOTO</h3><div class="formula">GOTO(I,X): move · across X, then take closure</div><p>If an item contains <b>A→α·Xβ</b>, moving over X gives <b>A→αX·β</b>.</p></div>
+<div class="card"><h3>CLR closure lookahead</h3><div class="formula">[A→α·Bβ, a] ⇒ B-items get lookahead FIRST(βa)</div><p>This is the critical difference in the source's CLR construction: lookahead is propagated precisely, not by attaching a whole FOLLOW set.</p></div>
+</div>
+<details open><summary>Source lookahead example · S → CC, C → cC | d</summary><div><p>Start with <span class="lr-item">[S′→·S, <span class="look">$</span>]</span>. Closure adds <span class="lr-item">[S→·CC, <span class="look">$</span>]</span>. For the first C, β is the second C, so the new C-items receive:</p><div class="formula">FIRST(C$) = FIRST(C) = { c, d }</div><p>Therefore closure contains <span class="lr-item">[C→·cC, c|d]</span> and <span class="lr-item">[C→·d, c|d]</span>. Later, when β is empty, the lookahead is inherited directly from the parent item.</p></div></details>
+</section>
+
+<section class="section searchable" data-keywords="clr canonical lr1 full example S AA A aA b table states parsing" id="m2-clr">
+<div class="section-head"><div class="section-no">CLR</div><div class="section-title"><h2>Canonical LR(1) · build the states, then the table</h2><p>Source grammar: <b>S → AA</b>, <b>A → aA | b</b>. This is the cleanest way to see why CLR can separate contexts that LR(0)-core-only methods cannot.</p></div><button class="done" data-topic="m2-clr">Mark done</button></div>
+<ol class="algo"><li><b>Augment:</b> add S′→S.</li><li><b>I0:</b> begin with [S′→·S,$] and compute LR(1) closure using FIRST(βa).</li><li><b>Build GOTO graph:</b> for every grammar symbol reachable after a dot, move the dot and close again.</li><li><b>Table:</b> terminal transitions become <b>shift</b>; completed A→α· items reduce <b>only on their LR(1) lookaheads</b>; [S′→S·,$] gives accept; nonterminal transitions fill GOTO.</li><li><b>Parse:</b> use the ACTION/GOTO table exactly like an LR stack machine.</li></ol>
+<details open><summary>Canonical state collection · source example</summary><div>
+<div class="state-grid">
+<div class="state"><h4>I0</h4><pre>S′ → ·S, $
+S  → ·AA, $
+A  → ·aA, a|b
+A  → ·b,  a|b</pre></div>
+<div class="state"><h4>I1 = GOTO(I0,S)</h4><pre>S′ → S·, $</pre></div>
+<div class="state"><h4>I2 = GOTO(I0,A)</h4><pre>S → A·A, $
+A → ·aA, $
+A → ·b,  $</pre></div>
+<div class="state"><h4>I3 = GOTO(I0,a)</h4><pre>A → a·A, a|b
+A → ·aA, a|b
+A → ·b,  a|b</pre></div>
+<div class="state"><h4>I4 = GOTO(I0,b)</h4><pre>A → b·, a|b</pre></div>
+<div class="state"><h4>I5 = GOTO(I2,A)</h4><pre>S → AA·, $</pre></div>
+<div class="state"><h4>I6 = GOTO(I2,a)</h4><pre>A → a·A, $
+A → ·aA, $
+A → ·b,  $</pre></div>
+<div class="state"><h4>I7 = GOTO(I2,b)</h4><pre>A → b·, $</pre></div>
+<div class="state"><h4>I8 = GOTO(I3,A)</h4><pre>A → aA·, a|b</pre></div>
+<div class="state"><h4>I9 = GOTO(I6,A)</h4><pre>A → aA·, $</pre></div>
+</div>
+</div></details>
+<details open><summary>CLR ACTION/GOTO table</summary><div><table class="matrix"><tr><th>State</th><th>a</th><th>b</th><th>$</th><th>S</th><th>A</th></tr><tr><td>0</td><td>S3</td><td>S4</td><td>—</td><td>1</td><td>2</td></tr><tr><td>1</td><td>—</td><td>—</td><td>Accept</td><td>—</td><td>—</td></tr><tr><td>2</td><td>S6</td><td>S7</td><td>—</td><td>—</td><td>5</td></tr><tr><td>3</td><td>S3</td><td>S4</td><td>—</td><td>—</td><td>8</td></tr><tr><td>4</td><td>R3</td><td>R3</td><td>—</td><td>—</td><td>—</td></tr><tr><td>5</td><td>—</td><td>—</td><td>R1</td><td>—</td><td>—</td></tr><tr><td>6</td><td>S6</td><td>S7</td><td>—</td><td>—</td><td>9</td></tr><tr><td>7</td><td>—</td><td>—</td><td>R3</td><td>—</td><td>—</td></tr><tr><td>8</td><td>R2</td><td>R2</td><td>—</td><td>—</td><td>—</td></tr><tr><td>9</td><td>—</td><td>—</td><td>R2</td><td>—</td><td>—</td></tr></table><p class="tiny">R1: S→AA · R2: A→aA · R3: A→b</p></div></details>
+<div class="lab"><h3>CLR state stepper</h3><p>Walk through the exact I0–I9 collection and focus on how the same LR(0) core can carry different lookaheads.</p><div class="controls"><button class="labbtn" id="clrPrev">← previous</button><b id="clrLabel"></b><button class="labbtn" id="clrNext">next →</button></div><div class="grid2"><pre class="tree" id="clrState"></pre><div id="clrExplain" style="font-size:11px;color:#c9dbd6"></div></div></div>
+<div class="callout good"><strong>The conceptual key</strong>I3 and I6 have the same LR(0) core, but their lookaheads differ. CLR deliberately keeps them separate. LALR will merge such same-core states.</div>
+</section>
+
+<section class="section searchable" data-keywords="lalr merge same lr0 core union lookahead bdc parsing table" id="m2-lalr">
+<div class="section-head"><div class="section-no">LALR</div><div class="section-title"><h2>LALR(1) · CLR power compressed by merging same-core states</h2><p>Build CLR first. Then find states whose LR(0) items are identical when you ignore lookaheads, merge them, and union their lookaheads.</p></div><button class="done" data-topic="m2-lalr">Mark done</button></div>
+<div class="flow"><div class="step">Construct full CLR(1) collection</div><div class="arrow">→</div><div class="step">Ignore lookaheads and compare LR(0) cores</div><div class="arrow">→</div><div class="step">Merge equal-core states</div><div class="arrow">→</div><div class="step">Union lookahead sets</div><div class="arrow">→</div><div class="step">Build LALR table</div></div>
+<details open><summary>Source merge example · S→AA, A→aA|b</summary><div><p>From the CLR states above:</p><div class="formula">I3 and I6 have the same core → merge as I36<br/>I4 and I7 have the same core → merge as I47<br/>I8 and I9 have the same core → merge as I89</div><p>Example: the completed item A→b· has lookahead {a,b} in I4 and {$} in I7, so the merged state gets lookahead <b>{a,b,$}</b>.</p></div></details>
+<details open><summary>Second source LALR problem · parse “bdc”</summary><div><p>Grammar from the source:</p><div class="formula">S → Aa | bAc | dc | bda<br/>A → d</div><p>The supplied parsing trace is:</p><table><tr><th>Stack</th><th>Input</th><th>Action</th></tr><tr><td>0</td><td>bdc$</td><td>Shift b → 3</td></tr><tr><td>0 b 3</td><td>dc$</td><td>Shift d → 7</td></tr><tr><td>0 b 3 d 7</td><td>c$</td><td>Reduce A→d; GOTO(3,A)=6</td></tr><tr><td>0 b 3 A 6</td><td>c$</td><td>Shift c → 9</td></tr><tr><td>0 b 3 A 6 c 9</td><td>$</td><td>Reduce S→bAc</td></tr><tr><td>0 S 1</td><td>$</td><td>Accept</td></tr></table></div></details>
+<div class="lab"><h3>LALR “bdc” parse stepper</h3><div class="controls"><button class="labbtn" id="lalrPrev">← previous</button><b id="lalrLabel"></b><button class="labbtn" id="lalrNext">next →</button></div><div class="metric-grid"><div class="metric"><span>Stack</span><b id="lalrStack"></b></div><div class="metric"><span>Input</span><b id="lalrInput"></b></div><div class="metric" style="grid-column:span 2"><span>Action</span><b id="lalrAction"></b></div></div></div>
+</section>
+
+<section class="section searchable" data-keywords="clr lalr conflicts shift reduce reduce reduce same lookahead merge" id="m2-conflicts">
+<div class="section-head"><div class="section-no">M2+</div><div class="section-title"><h2>Conflict rules · what makes an LR table invalid</h2><p>The source ends the CLR/LALR material with practical conflict observations.</p></div><button class="done" data-topic="m2-conflicts">Mark done</button></div>
+<div class="grid2"><div class="card"><h3>Reduce/Reduce conflict</h3><p>If one state has two completed productions and the same terminal is a valid reduction lookahead for both, the ACTION cell gets two reductions.</p></div><div class="card"><h3>Shift/Reduce conflict</h3><p>If a state can shift on terminal a and also contains a completed production whose reduction lookahead is a, the same ACTION cell asks for both shift and reduce.</p></div></div>
+<div class="callout warn"><strong>LALR warning from the source</strong>Merging CLR states unions lookaheads. Even if the CLR collection itself separates contexts, the union created by an LALR merge can produce a reduce/reduce conflict.</div>
+<details><summary>What not to do in the exam</summary><div><ul><li>Do not attach every FOLLOW symbol to every CLR reduction. CLR uses the item's actual lookahead.</li><li>Do not merge CLR states just because their lookaheads differ; merge only when their LR(0) <b>cores</b> are identical.</li><li>Do not forget to union lookaheads after merging.</li><li>Do not reduce a completed LR(1) item on terminals not in its lookahead set.</li></ul></div></details>
+</section>
