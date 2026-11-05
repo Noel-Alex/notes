@@ -20,3 +20,8 @@
 .page-rail .toc-link{width:100%;text-align:left;border:0;border-left:2px solid #d8ddd2;background:none;font:500 11px/1.5 'DM Sans';color:#60756b;padding:9px 10px;margin:2px 0;cursor:pointer}
 .figure-lab .lab-foot{font:11px/1.6 'DM Sans';color:#b8d4c2;margin-bottom:0}
 .figure-lab .labcontrols{max-width:700px}
+
+/* Textbook reliability and search affordances (v14). */
+.search-status{min-height:17px;margin:5px 2px 0;font:500 10px/1.45 'DM Mono',monospace;color:#446b58}
+.chapter-link.current{outline-offset:-2px}
+@media(max-width:800px){.sidebar:has(.lesson-nav.mobile-open){max-height:65vh}.sidebar .side-switch button{min-height:44px}.sidebar .side-search{min-height:42px}.sidebar .lesson-nav.mobile-open{padding-bottom:20px}}
