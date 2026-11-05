@@ -1,7 +1,7 @@
 /* Notes progressive offline cache.
    Network-first for HTML and EDA textbook assets; an older installation must never
    silently pin the course to an obsolete set of JavaScript files. */
-const VERSION='notes-v14-eda-reliability';
+const VERSION='notes-v15-eda-teaching-qa';
 const CACHE=VERSION;
 const PRECACHE=[
 './','./index.html','./fat/','./fat/index.html',
@@ -19,6 +19,20 @@ const PRECACHE=[
 './subjects/eda/fat/workbook/',
 './subjects/eda/fat/workbook/index.html',
 './subjects/eda/fat/workbook/problems.js',
+'./subjects/eda/fat/textbook/deep/m01.js',
+'./subjects/eda/fat/textbook/deep/m02.js',
+'./subjects/eda/fat/textbook/deep/m03.js',
+'./subjects/eda/fat/textbook/deep/m04.js',
+'./subjects/eda/fat/textbook/deep/m05.js',
+'./subjects/eda/fat/textbook/deep/m06.js',
+'./subjects/eda/fat/textbook/deep/m07.js',
+'./subjects/eda/fat/textbook/deep/apply.js',
+'./subjects/eda/fat/textbook/deep/extra.css',
+'./subjects/eda/fat/quiz/',
+'./subjects/eda/fat/quiz/index.html',
+'./subjects/eda/fat/quiz/questions.js',
+'./subjects/eda/fat/coverage/',
+'./subjects/eda/fat/coverage/index.html',
 './fat/past-papers/',
 './fat/past-papers/index.html'
 ];
