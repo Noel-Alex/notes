@@ -1,0 +1,36 @@
+name: EDA Textbook Browser QA
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'subjects/eda/fat/**'
+      - 'tests/eda-browser.mjs'
+      - '.github/workflows/eda-validation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright test browser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local site and run desktop/mobile functional tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/eda-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for try in {1..30}; do
+            if curl -fsS http://127.0.0.1:8765/subjects/eda/fat/ >/dev/null; then break; fi
+            sleep 1
+          done
+          node tests/eda-browser.mjs
