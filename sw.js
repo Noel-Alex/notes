@@ -1,19 +1,75 @@
-const CACHE='notes-v13-eda-textbook';
-const CORE=['./subjects/eda/fat/textbook/reader.css','./subjects/eda/fat/textbook/reader.js','./subjects/eda/fat/textbook/labs.js','./subjects/eda/fat/textbook/m01.js','./subjects/eda/fat/textbook/m02.js','./subjects/eda/fat/textbook/m03.js','./subjects/eda/fat/textbook/m04.js','./subjects/eda/fat/textbook/m05.js','./subjects/eda/fat/textbook/m06.js','./subjects/eda/fat/textbook/m07.js','./fat/past-papers/','./fat/past-papers/index.html','./fat/past-papers/archive.js','./fat/past-papers/mocks/eda.js','./fat/past-papers/mocks/data-mining.js','./fat/past-papers/mocks/deep-learning.js','./fat/past-papers/mocks/compiler-design.js','./subjects/eda/fat/workbook/','./subjects/eda/fat/workbook/index.html','./subjects/eda/fat/workbook/problems.js','./fat/','./fat/index.html','./fat/theme.css','./fat/engine.js','./fat/quizzes.js','./fat/data/eda.js','./fat/data/data-mining.js','./fat/data/deep-learning.js','./fat/data/compiler-design.js','./subjects/eda/fat/','./subjects/data-mining/fat/','./subjects/deep-learning/fat/','./subjects/compiler-design/fat/','./','./index.html','./assets/site.css','./assets/site.js','./catalog.json','./subjects/eda/','./subjects/eda/cat2/','./subjects/data-mining/','./subjects/data-mining/cat2/','./subjects/data-mining/cat2/cat2.css','./subjects/data-mining/cat2/cat2.js','./subjects/deep-learning/','./subjects/deep-learning/cat2/','./subjects/deep-learning/cat2/cat2.css','./subjects/deep-learning/cat2/cat2.js','./subjects/compiler-design/','./subjects/compiler-design/cat2/','./subjects/compiler-design/cat2/cat2.css','./subjects/compiler-design/cat2/cat2.js','./subjects/compiler-design/cat2/theory.css','./subjects/compiler-design/cat2/theory.js','./subjects/compiler-design/cat2/sections/start.html','./subjects/compiler-design/cat2/sections/m2.html','./subjects/compiler-design/cat2/sections/m3.html','./subjects/compiler-design/cat2/sections/m4a.html','./subjects/compiler-design/cat2/sections/m4b.html','./subjects/compiler-design/cat2/sections/m5a.html','./subjects/compiler-design/cat2/sections/m5b.html','./subjects/compiler-design/cat2/sections/finish.html'];
+/* Notes progressive offline cache.
+   Network-first for HTML and EDA textbook assets; an older installation must never
+   silently pin the course to an obsolete set of JavaScript files. */
+const VERSION='notes-v14-eda-reliability';
+const CACHE=VERSION;
+const PRECACHE=[
+'./','./index.html','./fat/','./fat/index.html',
+'./subjects/eda/','./subjects/eda/fat/','./subjects/eda/fat/index.html',
+'./subjects/eda/fat/textbook/reader.css',
+'./subjects/eda/fat/textbook/reader.js',
+'./subjects/eda/fat/textbook/labs.js',
+'./subjects/eda/fat/textbook/m01.js',
+'./subjects/eda/fat/textbook/m02.js',
+'./subjects/eda/fat/textbook/m03.js',
+'./subjects/eda/fat/textbook/m04.js',
+'./subjects/eda/fat/textbook/m05.js',
+'./subjects/eda/fat/textbook/m06.js',
+'./subjects/eda/fat/textbook/m07.js',
+'./subjects/eda/fat/workbook/',
+'./subjects/eda/fat/workbook/index.html',
+'./subjects/eda/fat/workbook/problems.js',
+'./fat/past-papers/',
+'./fat/past-papers/index.html'
+];
+
+function cacheResponse(request,response){
+  if(!response || !response.ok || response.type==='opaque')return Promise.resolve(response);
+  const copy=response.clone();
+  return caches.open(CACHE).then(cache=>cache.put(request,copy))
+    .catch(()=>{}).then(()=>response);
+}
 
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));
+  event.waitUntil((async()=>{
+    const cache=await caches.open(CACHE);
+    // Failure of any optional asset cannot prevent a new worker from activating.
+    await Promise.allSettled(PRECACHE.map(async path=>{
+      try{
+        const address=new URL(path,self.registration.scope).href;
+        const response=await fetch(address,{cache:'reload'});
+        if(response.ok)await cache.put(address,response);
+      }catch(_){}
+    }));
+    await self.skipWaiting();
+  })());
 });
+
 self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
+  event.waitUntil((async()=>{
+    const keys=await caches.keys();
+    await Promise.all(keys.filter(k=>k.startsWith('notes-v')&&k!==CACHE).map(k=>caches.delete(k)));
+    await self.clients.claim();
+  })());
 });
+
 self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET') return;
   const req=event.request;
-  const isNavigation=req.mode==='navigate' || (req.headers.get('accept')||'').includes('text/html');
-  if(isNavigation){
-    event.respondWith(fetch(req).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(req,copy));return response;}).catch(()=>caches.match(req).then(hit=>hit||caches.match('./index.html'))));
+  if(req.method!=='GET')return;
+  const u=new URL(req.url);
+  if(u.origin!==self.location.origin)return;
+  const isNavigation=req.mode==='navigate'||(req.headers.get('accept')||'').includes('text/html');
+  const isTextbook=/\/subjects\/eda\/fat\/(?:textbook\/|index\.html|$)/.test(u.pathname);
+  const isAsset=/\.(?:js|css)(?:$)/i.test(u.pathname);
+  if(isNavigation || isTextbook || isAsset){
+    // Prefer the deployed version; offline-only mode falls back to a cached response.
+    event.respondWith(fetch(req,{cache:'no-store'}).then(r=>cacheResponse(req,r))
+      .catch(()=>caches.match(req).then(hit=>{
+        if(hit)return hit;
+        if(isNavigation)return caches.match(new URL('./index.html',self.registration.scope).href);
+        return Response.error();
+      })));
     return;
   }
-  event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(req,copy));return response;})));
+  event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(r=>cacheResponse(req,r))));
 });
