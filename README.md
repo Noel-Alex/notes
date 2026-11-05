@@ -29,3 +29,12 @@ Expected URL: `https://noel-alex.github.io/notes/`
 4. Link it from the relevant subject hub.
 
 The root design is intentionally stable so future CATs, quizzes and FAT notes slot into the same navigation rather than becoming disconnected files.
+
+
+## FAT / Final assessment (November 2026)
+
+- Entry: `fat/` and `subjects/<subject>/fat/`.
+- EDA: Modules 1–7 mapped to 24 supplied lecture resources, 29 study chapters, lecture pointers, numerical drills and source notes.
+- Other subjects: foundational study pathways linked to the existing complete CAT 2 guides. Earlier/later module material is supplemental until additional FAT PDFs/PPTs are supplied and verified.
+- Shared study room features: progress stored in localStorage, searchable chapter outline, formula vault, quiz explanations, interactive numeric/algorithm labs, responsive editorial theme.
+- The status notes are intentional: **FAT source coverage must not be claimed complete for the other three subjects without their actual lecture bundles.**
