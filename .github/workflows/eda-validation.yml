@@ -20,8 +20,8 @@ jobs:
           node-version: '22'
       - name: Install Playwright test browser
         run: |
-          npm install --no-save playwright@1.56.1
-          npx playwright install --with-deps chromium
+          npm install --no-save playwright@latest
+          npx playwright install chromium
       - name: Start local site and run desktop/mobile functional tests
         shell: bash
         run: |
