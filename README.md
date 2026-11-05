@@ -38,3 +38,7 @@ The root design is intentionally stable so future CATs, quizzes and FAT notes sl
 - Other subjects: foundational study pathways linked to the existing complete CAT 2 guides. Earlier/later module material is supplemental until additional FAT PDFs/PPTs are supplied and verified.
 - Shared study room features: progress stored in localStorage, searchable chapter outline, formula vault, quiz explanations, interactive numeric/algorithm labs, responsive editorial theme.
 - The status notes are intentional: **FAT source coverage must not be claimed complete for the other three subjects without their actual lecture bundles.**
+
+### EDA numerical problem atlas
+
+`subjects/eda/fat/workbook/` includes 27 solution-first revision cases. Ten transcribe numerical inputs from supplied lecture materials, sixteen are newly constructed exercises, and one is an MDS supplement. Detailed sources, assumptions and pitfalls are visible per exercise. The Module 7 salary source has been transcribed from an embedded PPT image and independently calculated. The Module 6 4D SOM example is worked with each winner comparison and sequential weight update. The workbook remembers checked problem mastery in browser localStorage.

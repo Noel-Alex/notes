@@ -1,5 +1,41 @@
 [
   {
+    "id": "eda-fat-numerical-atlas",
+    "subject": "eda",
+    "subject_name": "Exploratory Data Analysis",
+    "exam": "fat",
+    "exam_name": "FAT",
+    "title": "27 Worked EDA Numericals · Seven Modules",
+    "path": "subjects/eda/fat/workbook/",
+    "modules": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "keywords": [
+      "problem atlas",
+      "numerical",
+      "som",
+      "self organizing map",
+      "regression",
+      "salary",
+      "svd",
+      "mds",
+      "pca",
+      "factor analysis",
+      "binning",
+      "z score",
+      "outlier",
+      "cluster",
+      "confusion matrix"
+    ],
+    "status": "ready"
+  },
+  {
     "id": "compiler-design-fat-master",
     "subject": "compiler-design",
     "subject_name": "Compiler Design",
