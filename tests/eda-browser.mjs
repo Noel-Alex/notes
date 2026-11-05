@@ -76,7 +76,7 @@ await run('Quiz studio loads 76 questions and chapter deep links',async()=>{
   await page.locator('#shuffle').click();
   assert.equal(await page.locator('#dots button').count(),76);
   await page.goto(new URL('quiz/?chapter=06-svd',base).href);
-  assert.ok((await page.locator('.qnumber').innerText()).includes('06-svd'),'Quiz deep link wrong');
+  const deepLinkActual=await page.locator('.qnumber').innerText(); assert.ok(deepLinkActual.includes('06-svd'),'Quiz deep link wrong: '+JSON.stringify({actual:deepLinkActual,url:page.url(),quizLength:await page.evaluate(()=>window.EDA_QUIZ_BANK.length)}));
 });
 await run('Mobile quiz and ledger fit viewport',async()=>{
   for(const rel of ['quiz/','coverage/']){
