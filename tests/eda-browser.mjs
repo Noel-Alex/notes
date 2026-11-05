@@ -21,4 +21,69 @@ const mobile=await browser.newPage({viewport:{width:390,height:844},isMobile:tru
 mobile.on('pageerror',e=>issues.push('mobile uncaught JS error: '+e.message));
 await run('Mobile navigation and lesson opening',async()=>{await mobile.goto(base,{waitUntil:'networkidle'});await mobile.locator('[data-action="show-nav"]').click();await mobile.locator('.chapter-link').first().click();await mobile.locator('.lesson-header h1').waitFor();assert.ok((await mobile.locator('body').innerText()).includes('What EDA actually is'))});
 await run('Mobile content fits viewport',async()=>{const sizes=await mobile.evaluate(()=>({body:document.documentElement.scrollWidth,viewport:window.innerWidth}));assert.ok(sizes.body<=sizes.viewport+14,'Horizontal overflow '+JSON.stringify(sizes))});
+
+await run('Every lesson has expanded deep-study teaching and a quiz link',async()=>{
+  await page.goto(base,{waitUntil:'networkidle'});
+  assert.equal(await page.evaluate(()=>window.EDA_DEEP_COUNT),50,'Exactly 50 deep-study sections must be merged');
+  const ids=await page.locator('.chapter-link').evaluateAll(nodes=>nodes.map(n=>n.dataset.id));
+  for(const id of ids){
+    await page.goto(base+'#read/'+id);
+    await page.locator('.deep-study').waitFor();
+    const wordCount=(await page.locator('.lesson-body').innerText()).split(/\s+/).length;
+    assert.ok(wordCount>=420,id+': lesson remains too short at '+wordCount+' words');
+    const quizLink=page.locator('.lesson-body a[href^="quiz/?chapter="]');
+    assert.equal(await quizLink.count(),1,'Missing quiz deep link '+id);
+    assert.equal(await quizLink.getAttribute('href'),'quiz/?chapter='+id,'Quiz link mismatch '+id);
+  }
+});
+await run('Source ledger tracks all 24 files and filtered entries',async()=>{
+  await page.goto(new URL('coverage/',base).href,{waitUntil:'networkidle'});
+  assert.equal(await page.locator('.card').count(),24);
+  await page.locator('[data-m="5"]').click();
+  assert.equal(await page.locator('.card').count(),6);
+  await page.locator('[data-m="all"]').click();
+  await page.locator('#query').fill('SOM');
+  assert.ok(await page.locator('.card').count()>=1);
+  await page.locator('#query').fill('');
+  await page.locator('.card .links a').first().click();
+  await page.locator('.lesson-header h1').waitFor();
+});
+await run('Quiz studio loads 76 questions and chapter deep links',async()=>{
+  await page.goto(new URL('quiz/',base).href,{waitUntil:'networkidle'});
+  assert.equal(await page.evaluate(()=>window.EDA_QUIZ_BANK.length),76);
+  const valid=await page.evaluate(()=>{
+    const ids=window.EDA_QUIZ_BANK.map(q=>q[0]);
+    return ids.length===76&&ids.every(id=>/^\d{2}-[\w-]+$/.test(id));
+  });
+  assert.ok(valid,'Quiz identifiers invalid');
+  assert.equal(await page.locator('#dots button').count(),76);
+  assert.equal(await page.locator('.choices .choice').count(),4);
+  await page.locator('[data-answer="0"]').click();
+  assert.ok(await page.locator('.feedback.wrong').count(),'Wrong answer explanation missing');
+  assert.match(await page.locator('#progressStats').innerText(),/1 answered/);
+  await page.reload();
+  assert.ok(await page.locator('.feedback.wrong').count(),'Answered state failed to persist');
+  await page.locator('[data-scope="wrong"]').click();
+  assert.equal(await page.locator('#dots button').count(),1);
+  await page.locator('[data-scope="all"]').click();
+  await page.locator('[data-action="retry"]').click();
+  assert.equal(await page.locator('.feedback').count(),0);
+  await page.locator('[data-answer="1"]').click();
+  assert.match(await page.locator('.feedback strong').innerText(),/Correct/);
+  await page.locator('#moduleFilter').selectOption('6');
+  assert.equal(await page.locator('#dots button').count(),8);
+  await page.locator('#moduleFilter').selectOption('all');
+  await page.locator('#shuffle').click();
+  assert.equal(await page.locator('#dots button').count(),76);
+  await page.goto(new URL('quiz/?chapter=06-svd',base).href);
+  assert.ok((await page.locator('.qnumber').innerText()).includes('06-svd'),'Quiz deep link wrong');
+});
+await run('Mobile quiz and ledger fit viewport',async()=>{
+  for(const rel of ['quiz/','coverage/']){
+    await mobile.goto(new URL(rel,base).href,{waitUntil:'networkidle'});
+    const sizes=await mobile.evaluate(()=>({scroll:document.documentElement.scrollWidth,inner:innerWidth}));
+    assert.ok(sizes.scroll<=sizes.inner+14,rel+' overflow '+JSON.stringify(sizes));
+  }
+});
+
 await browser.close();if(issues.length){console.error('\n'+issues.length+' failure(s):\n'+issues.join('\n'));process.exitCode=1}else console.log('ALL EDA BROWSER CHECKS PASSED');
