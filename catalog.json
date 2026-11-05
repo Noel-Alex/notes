@@ -1,5 +1,31 @@
 [
   {
+    "id": "fat-vit-pyq-practice",
+    "subject": "all",
+    "subject_name": "Four-subject FAT",
+    "exam": "fat",
+    "exam_name": "FAT",
+    "title": "VIT FAT Past Papers · 2023–2025 Archive and Four 100-Mark Mocks",
+    "path": "fat/past-papers/",
+    "modules": [],
+    "keywords": [
+      "VIT",
+      "FAT",
+      "previous year papers",
+      "past papers",
+      "PYQ",
+      "compiler design",
+      "data mining",
+      "deep learning",
+      "exploratory data analysis",
+      "mock",
+      "2024",
+      "2025",
+      "semester"
+    ],
+    "status": "ready"
+  },
+  {
     "id": "eda-fat-numerical-atlas",
     "subject": "eda",
     "subject_name": "Exploratory Data Analysis",
