@@ -1,5 +1,40 @@
 [
   {
+    "id": "data-mining-fat-exam-audit",
+    "subject": "data-mining",
+    "subject_name": "Data Mining",
+    "exam": "fat",
+    "exam_name": "FAT",
+    "title": "BCSE208L Data Mining FAT — 2025 Verified Paper Audit & Four Complete Solutions",
+    "path": "subjects/data-mining/fat/exam-audit/",
+    "modules": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "keywords": [
+      "2025",
+      "Data Mining",
+      "FAT",
+      "BCSE208L",
+      "previous year questions",
+      "previous year papers",
+      "Apriori",
+      "FP growth",
+      "FP tree",
+      "chi-square",
+      "mining functionalities",
+      "practice",
+      "exam strategy",
+      "syllabus coverage"
+    ],
+    "status": "ready"
+  },
+  {
     "id": "data-mining-fat-master",
     "subject": "data-mining",
     "subject_name": "Data Mining",
