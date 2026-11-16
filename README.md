@@ -16,6 +16,14 @@ A responsive, GitHub Pages study library for four engineering subjects:
 - **EDA → FAT → Modules 1–7**: complete 50-chapter textbook rebuilt from 24 supplied lecture PDFs, PPTs and notebooks, with 14 interactive mathematical experiments, formula vault, lesson index, source markers and reading progress.
 - **EDA → CAT 2 → Modules 3–5**: the prior exam command center is preserved, with numericals, code and visualizations.
 
+### Data Mining FAT textbook (November 2026)
+
+- Primary reader: `subjects/data-mining/fat/index.html`, linked from the Notes homepage, FAT master library, Data Mining subject hub, and global `catalog.json`.
+- Source pack: the supplied `FAT NOTES.zip`. The `LAB NOTES- DM` subfolder is deliberately excluded from the FAT study syllabus.
+- Seven teaching modules, 69 expanded lessons, worked CAT-style numericals, 71 reference formulas, and 101 practice questions, with interactive algorithm demonstrations and local browser progress.
+- Module 8 is identified as a source-coverage caveat rather than claimed to be fully taught from the archive.
+- Earlier Data Mining CAT 2 materials under `subjects/data-mining/cat2/` remain preserved.
+
 ## GitHub Pages
 
 The repository contains a Pages deployment workflow at `.github/workflows/pages.yml`. When Pages is configured to use **GitHub Actions**, every push to `main` publishes the site.
