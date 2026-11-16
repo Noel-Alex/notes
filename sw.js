@@ -1,11 +1,13 @@
 /* Notes progressive offline cache.
    Network-first for HTML and EDA textbook assets; an older installation must never
    silently pin the course to an obsolete set of JavaScript files. */
-const VERSION='notes-v15-eda-teaching-qa';
+const VERSION='notes-v16-dm-fat-live';
 const CACHE=VERSION;
 const PRECACHE=[
 './','./index.html','./fat/','./fat/index.html',
 './subjects/eda/','./subjects/eda/fat/','./subjects/eda/fat/index.html',
+'./subjects/data-mining/','./subjects/data-mining/index.html',
+'./subjects/data-mining/fat/','./subjects/data-mining/fat/index.html',
 './subjects/eda/fat/textbook/reader.css',
 './subjects/eda/fat/textbook/reader.js',
 './subjects/eda/fat/textbook/labs.js',
