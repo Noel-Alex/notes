@@ -24,6 +24,16 @@ A responsive, GitHub Pages study library for four engineering subjects:
 - Module 8 is identified as a source-coverage caveat rather than claimed to be fully taught from the archive.
 - Earlier Data Mining CAT 2 materials under `subjects/data-mining/cat2/` remain preserved.
 
+### Deep Learning FAT textbook (November 2026)
+
+- Primary interactive reader: `subjects/deep-learning/fat/index.html`, linked from the subject hub, Notes homepage, FAT library, and global catalogue.
+- Source: 19 files inside the supplied `WINSEM2025-26_VL_BCSE332L_00100_TH_2026-03-12_Module3_5.zip`; no laboratory content used. Later Fall-2026 teaching slides take priority where they clarify the faculty's organization.
+- 73 source-tracked teaching chapters across Modules 1–7; 33 worked numerical/long-answer problems; 64 equations with pitfalls; 105 explained questions; 100-mark original mock and browser-based flashcards.
+- Interactive demonstrations for MLP backprop, optimizers, softmax, CNN output shapes, CNN filters, RNNs, attention, LSTM/GRU, transfer learning, GANs, detection/IoU, and Q-learning.
+- Includes sticky chapter-index scroll preservation, floating Previous/Next navigation, offline-capable static HTML, topic search, and locally saved progress/bookmarks.
+- Naming caveat: Fall-2026 faculty files assign optimisation to Module 2 and CNNs to Module 3; the historical published syllabus reverses these. The site transparently follows the current faculty's deck labels and records the mismatch. No dedicated Module 8 Contemporary Issues lecture file was supplied.
+- 2024 public FAT papers and the August 2026 CAT1 key inform answer *formats* only; the site does not assert statistically validated historical question frequencies.
+
 ## GitHub Pages
 
 The repository contains a Pages deployment workflow at `.github/workflows/pages.yml`. When Pages is configured to use **GitHub Actions**, every push to `main` publishes the site.
