@@ -33,3 +33,10 @@
 .guided-home a{color:var(--accent,var(--teal));font-weight:800;text-decoration:underline}
 @media(max-width:720px){.guided-card{padding:20px 16px}.guided-head{display:block}.guided-head button{margin-top:8px}.guided-content{font-size:15px;min-height:90px}.guided-actions{align-items:stretch}.guided-actions .guided-nav{width:100%;justify-content:flex-end}.guided-actions button{padding:9px 12px}.guided-home{padding:20px 17px}}
 @media print{.guided-card,.guided-home{display:none!important}.guided-depth{display:block!important;border:0;padding:0}.guided-depth>summary{display:none!important}.guided-depth>*{display:block!important}}
+
+
+.guided-visual{margin:14px 0 34px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--paper)}
+.guided-visual>summary{font:750 13px var(--sans);padding:16px 8px;cursor:pointer;color:var(--ink)}
+.guided-visual>summary::marker{color:var(--accent,var(--teal))}
+.guided-visual .demo{margin:6px 0 18px}
+@media print{.guided-visual{display:none!important}}
