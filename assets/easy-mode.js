@@ -97,6 +97,13 @@
   const box=document.createElement('section');
   box.className='guided-home';
   box.innerHTML='<span class="guided-kicker">NEW / MADE FOR FIRST-TIME LEARNING</span><h2>Understand first. Memorize later.</h2><p>The technical textbook is still here, but you no longer need to start with formulas. Every chapter now opens with a three-step beginner explanation: plain English → tiny example → how to answer. Open the full lecture-level notes only when you’re ready.</p><div class="guided-path"><span>1 · Understand</span><span>2 · See an example</span><span>3 · Solve like the exam</span></div><p style="margin-top:17px">Historical FAT questions guide the answer style; they do not prove which questions will repeat. <a href="#'+cfg.firstRoute+'">Start your first easy lesson →</a></p>';
+  const starts=cfg.subject==='dl'
+   ?[['Neurons','read/0'],['Backprop','read/6'],['Adam','read/14'],['CNNs','read/21'],['RNNs','read/33'],['LSTM','read/46'],['Reinforcement','read/63']]
+   :[['Warehouse','read/1-0'],['Mining basics','read/2-0'],['Preprocessing','read/3-0'],['Apriori / FP','read/4-2'],['Decision trees','read/5-1'],['Clustering','read/6-0'],['Web mining','read/7-0']];
+  const paths=document.createElement('details');
+  paths.className='guided-module-paths';
+  paths.innerHTML='<summary>Choose a beginner starting point by module</summary><div>'+starts.map(([label,href])=>'<a href="#'+href+'">'+esc(label)+'</a>').join('')+'</div>';
+  box.append(paths);
   home.insertBefore(box,home.firstElementChild);
  }
  let scheduled=false;
