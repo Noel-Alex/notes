@@ -66,8 +66,18 @@
   depth.append(summary);
   const selectors=cfg.subject==='dl'?'.source-track, .prose, .demo':'.source-note, .prose, .demo';
   const original=[...article.children].filter(x=>x.matches?.(selectors));
-  for(const node of original)depth.append(node);
+  const demos=original.filter(node=>node.matches('.demo'));
+  for(const node of original)if(!node.matches('.demo'))depth.append(node);
   tools.after(card,depth);
+  if(demos.length){
+   const visual=document.createElement('details');
+   visual.className='guided-visual';
+   const visualTitle=document.createElement('summary');
+   visualTitle.textContent='Try it visually — interactive experiment';
+   visual.append(visualTitle);
+   demos.forEach(node=>visual.append(node));
+   depth.after(visual);
+  }
   setStage(card,0);
   toggleMode(card,mode);
   card.querySelector('.guided-mode-toggle').addEventListener('click',()=>toggleMode(card,mode==='simple'?'full':'simple'));
