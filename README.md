@@ -80,3 +80,28 @@ The source-backed gap audit led to additional exam-length FAT lessons: Data Mini
 - Specific source corrections: Module 4 handout has a contradictory chi-square comparison; Module 5.4 iteration heading has an inconsistent K-means y-centroid; and `TSA Problem.docx` reports MAPE=3.72% whereas retaining full precision through final rounding yields approximately 3.71%. Notes distinguish source statements from validated calculations.
 - Missing item: the Module 6 SVD/MDS slides reference a Moodle `MDS.pdf` that was not provided; classical MDS is independently explained but explicitly labelled supplementary.
 - Do not claim a guaranteed perfect score or fully verified past-paper coverage without the complete current FAT syllabus and actual timed practice.
+
+
+### Beginner-first guided teaching (2026-11-21)
+
+Both the Deep Learning and Data Mining FAT readers now load the shared
+`assets/easy-mode.js` / `assets/easy-mode.css` plus source-specific
+`easy-data.js` aligned by chapter index. These preserve the existing
+complete faculty-based lessons and interactive exercises; they do not delete
+exam or syllabus content.
+
+**Default learning experience:** 3 compact steps per lesson:
+plain-English meaning with an analogy → a small numerical/application →
+how to structure a full-mark written answer. Each course now has a custom
+entry for every lesson (Deep Learning 73/73, Data Mining 69/69).
+Full lecture-depth source text and formulas remain one click away under
+"Complete faculty-based explanation"; existing interactive demonstrations
+have their own optional reveal. Reader floating chapter controls and reading
+progress persist from the original textbooks.
+
+**Evidence discipline:** the publicly readable November 2024 BCSE332L D1/D2
+FAT paper excerpts and April 2025 BCSE208L F1 FAT Q1–Q4 inform numerical and
+answer formats. Archive index metadata for other papers cannot establish
+question-level frequencies; no guesses about future exam questions.
+The existing CAT and supplemental lecture files are not reclassified as
+verified FAT papers.
