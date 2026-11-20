@@ -40,3 +40,10 @@
 .guided-visual>summary::marker{color:var(--accent,var(--teal))}
 .guided-visual .demo{margin:6px 0 18px}
 @media print{.guided-visual{display:none!important}}
+
+
+.guided-module-paths{margin-top:16px;border-top:1px solid var(--line);padding-top:13px}
+.guided-module-paths>summary{font:750 12px var(--sans);color:var(--ink);cursor:pointer}
+.guided-module-paths>div{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.guided-module-paths>div a{display:inline-block;background:var(--tint);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:12px;text-decoration:none}
+.guided-module-paths>div a:hover{border-color:var(--accent,var(--teal))}
