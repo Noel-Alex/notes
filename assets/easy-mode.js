@@ -34,7 +34,7 @@
   const v=options[n];
   card.querySelector('.guided-stage-label').textContent=v.tag;
   card.querySelector('.guided-subtitle').textContent=v.h;
-  card.querySelector('.guided-content').innerHTML='<p>'+esc(v.lead)+'</p><div class="guided-highlight">'+esc(v.extra)+'</div>';
+  card.querySelector('.guided-content').innerHTML='<p>'+esc(v.lead)+'</p><div class="guided-highlight">'+esc(v.extra)+'</div>'+(n===2?'<details class="guided-recall"><summary>Quick recall · Can you explain this from memory?</summary><p><strong>A good one-line answer:</strong> '+esc(item[0])+'</p></details>':'');
   card.querySelector('.guided-back').disabled=n===0;
   card.querySelector('.guided-forward').textContent=n===2?'Show detailed textbook ↓':'Got it — continue →';
  }
