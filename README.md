@@ -105,3 +105,44 @@ answer formats. Archive index metadata for other papers cannot establish
 question-level frequencies; no guesses about future exam questions.
 The existing CAT and supplemental lecture files are not reclassified as
 verified FAT papers.
+
+
+### Data Mining priority-topic completeness audit (22 November 2026)
+
+The handwritten professor importance sheet covers 13 exam-topic groups and 26
+linked chapters. The original source ZIP `FAT NOTES.zip` was reopened, with
+`LAB NOTES- DM/` excluded entirely. Twenty-four priority chapters now have
+additional faculty-source-checked explanations, diagram equivalents, exam
+workflows or fully calculated numericals. The two not receiving an extra block:
+`4-9` already has a second solved FP-Growth dataset, and `7-8` is explicitly
+syllabus-level supplementary statistical mining because the supplied Module 7
+archive has no standalone statistical-mining lecture.
+
+Focused repairs:
+- M1: warehouse three-tier architecture (M1 DM.ppt 14–19); 0-D apex to 3-D
+  base lattice and 2^n counting, with its assumptions (26–28, 55–56).
+- M2: descriptive/predictive mining functionalities and four classification
+  schemes (M2 DM.pptx 15–26).
+- M3: the six data-quality dimensions (M3.1 DM.ppt 4–6); nominal/numeric
+  concept hierarchies (M3 DM.ppt 53–61). The age-band numerical is clearly
+  **original illustrative practice**, not a claimed original faculty question.
+- M4: complete Apriori join/prune passes, strong-rule arithmetic and
+  FP-Growth conditional suffix calculations (Association-Rule-Mining-.pptx,
+  FP GROWTH ALGORITHMS.pptx, supplied CAT-II question).
+- M5: complete cross-validation source methods (Cross-validation Techniques
+  DOCX), including the once-overlooked rolling and Monte Carlo variants,
+  plus 100-sample k-fold vs LOOCV vs leave-2-out arithmetic.
+- M6: clustering requirements (M6 DM.pdf 8–18); full table reconstructed
+  from images in K MEDOIDS DM 6.pdf pp. 4–6 and verified independently:
+  old total 20, new total 22, reject swap. Full faculty
+  single/complete/average linkage p. 53: 2, 5, 3.5; source dendrogram p.63.
+- M7: every lesson retains its importance marker. Nine source-backed lessons
+  gain extra examples/algorithms from WEB MINING.pdf and the 2024-11-13 M7
+  reference PDF, including HITS, PageRank, source-exact precision/recall,
+  temporal evolution rules, and STING+. Supplementary 7-8 remains clearly
+  marked for lack of dedicated lecture notes.
+
+The existing 69 lessons, bookmarks, completion status, three-step beginner
+mode and exam-important highlight flags were preserved. New expansions live
+inside the full technical chapter, and a visible shortcut from the important
+callout opens the expanded worked explanation.
