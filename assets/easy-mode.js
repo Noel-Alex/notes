@@ -69,6 +69,22 @@
   const demos=original.filter(node=>node.matches('.demo'));
   for(const node of original)if(!node.matches('.demo'))depth.append(node);
   tools.after(card,depth);
+  /* Important-topic additions live inside the full lesson. Expose a direct
+     link from the visible exam-priority callout, even in beginner mode. */
+  const impCallout=article.querySelector('.imp-lesson-callout');
+  const impDepth=depth.querySelector('.imp-deepdive');
+  if(impCallout&&impDepth){
+   const jump=document.createElement('button');
+   jump.type='button';
+   jump.className='btn small';
+   jump.style.marginTop='12px';
+   jump.textContent='★ Open full worked important-topic explanation ↓';
+   jump.addEventListener('click',()=>{
+    depth.open=true;
+    requestAnimationFrame(()=>impDepth.scrollIntoView({block:'start',behavior:'smooth'}));
+   });
+   impCallout.appendChild(jump);
+  }
   if(demos.length){
    const visual=document.createElement('details');
    visual.className='guided-visual';
