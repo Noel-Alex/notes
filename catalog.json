@@ -1,5 +1,44 @@
 [
   {
+    "id": "data-mining-handwritten-important",
+    "subject": "data-mining",
+    "subject_name": "Data Mining",
+    "exam": "fat",
+    "exam_name": "FAT",
+    "title": "Data Mining FAT — Handwritten Important Topics & Marked Lessons",
+    "path": "subjects/data-mining/fat/#important",
+    "modules": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "keywords": [
+      "important topics",
+      "imp",
+      "faculty handwritten",
+      "cuboid lattice",
+      "apex cuboid",
+      "base cuboid",
+      "data warehouse architecture",
+      "mining functionalities",
+      "classification schemes",
+      "six data quality dimensions",
+      "concept hierarchy numerical",
+      "Apriori",
+      "FP-Growth",
+      "cross-validation numerical",
+      "clustering requirements",
+      "k-medoids PAM",
+      "hierarchical clustering",
+      "Module 7 read all"
+    ],
+    "status": "ready"
+  },
+  {
     "id": "deep-learning-fat-master",
     "subject": "deep-learning",
     "subject_name": "Deep Learning",
