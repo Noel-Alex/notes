@@ -1,7 +1,7 @@
 /* Notes progressive offline cache.
    Network-first for HTML and EDA textbook assets; an older installation must never
    silently pin the course to an obsolete set of JavaScript files. */
-const VERSION='notes-v20-easy-guided-recall';
+const VERSION='notes-v21-dm-imp-focus';
 const CACHE=VERSION;
 const PRECACHE=[
 './','./index.html','./fat/','./fat/index.html',
