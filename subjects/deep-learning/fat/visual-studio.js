@@ -102,23 +102,28 @@ function persist(){try{localStorage.setItem('dl-visual-mastered-v2',JSON.stringi
 function stageNum(id){return clamp(ui.stage[id]||0,0,(topics[id]||[]).length-1)}
 function labType(id){
  if([0,1,3,5,6,9].includes(id))return 'neuron';
- if([2,17].includes(id))return 'activation';
+ if(id===2)return 'activation';
+ if(id===17)return 'softmax';
  if([4].includes(id))return 'loss';
- if([7,8,10,11,12,13,14,15,18,19,20,37,50].includes(id))return 'descent';
- if([21,22,26].includes(id))return 'convolution';
+ if([7,10,11,12,13,14,15,20].includes(id))return 'descent';
+ if([8,18,19].includes(id))return 'fit';
+ if(id===37)return 'vanish';
+ if([21,22].includes(id))return 'convolution';
+ if(id===26)return 'pool';
  if([23,24,25,28,32].includes(id))return 'shapes';
  if([33,34,35,36,38,39,40,41,43,44].includes(id))return 'sequence';
  if([42,51].includes(id))return 'attention';
- if([46,47,48,49,52].includes(id))return 'memory';
+ if([46,47,52].includes(id))return 'memory';
+ if(id===48)return 'gru';
  if([56,57,58,59,60,61,62].includes(id))return 'boxes';
  if([63,64,65,66,67,68,69,70,71,72].includes(id))return 'qlearning';
  return null;
 }
 const defaults={
- neuron:{x:2,w:0.5,b:0.2},activation:{x:0,mode:'relu'},loss:{y:1,p:0.6},descent:{w:7,rate:0.2,steps:2},
- convolution:{patch:0,filter:'edge'},shapes:{n:8,k:3,p:0,s:1,channels:3,filters:8},
+ neuron:{x:2,w:0.5,b:0.2},activation:{x:0,mode:'relu'},softmax:{a:2,b:1,c:0},loss:{y:1,p:0.6},descent:{w:7,rate:0.2,steps:2},fit:{capacity:4},vanish:{factor:.6,depth:8},
+ convolution:{patch:0,filter:'edge'},pool:{top:0,mode:'max'},shapes:{n:8,k:3,p:0,s:1,channels:3,filters:8},
  sequence:{t:2,carry:0.6},attention:{q:1,k1:1,k2:0,k3:-1},
- memory:{f:0.7,i:0.6,g:0.8,o:0.9,prev:0.5},boxes:{offset:1},
+ memory:{f:0.7,i:0.6,g:0.8,o:0.9,prev:0.5},gru:{z:.7,h:.6,candidate:.2},boxes:{offset:1},
  qlearning:{old:4,alpha:0.5,reward:3,gamma:0.9,next:6}
 };
 function config(id){const t=labType(id);if(!t)return {};return ui.values[id]||(ui.values[id]={...defaults[t]})}
@@ -142,7 +147,9 @@ function svgNodes(id){
  ${[70,171,272].map((x,i)=>`<g><rect x="${x-29}" y="38" width="58" height="58" rx="12" fill="var(--tint)" stroke="var(--teal)" stroke-width="2"/><text x="${x}" y="70" fill="var(--ink)" text-anchor="middle" font-weight="700">h${i+1}</text><text x="${x}" y="126" fill="var(--muted)" text-anchor="middle" font-size="11">time ${i+1}</text><path d="M${x} 113 V98" stroke="var(--coral)" stroke-width="2"/></g>`).join('')}
  <path d="M102 67 H139 M203 67 H240" fill="none" stroke="var(--ink)" stroke-width="2"/><path d="m132 60 8 7-8 7 m101-14 8 7-8 7" fill="none" stroke="var(--ink)" stroke-width="2"/></svg>`;
  }
- if(type==='boxes'||(id>=53&&id<=62)){
+ if(id===53)return '<div class="vsl-textdiagram"><span class="vsl-dnode">Pretrained features</span><span class="vsl-arrow">→</span><span class="vsl-dnode">Frozen backbone</span><span class="vsl-arrow">→</span><span class="vsl-dnode">Task-specific head</span></div>';
+ if(id===54||id===55)return '<div class="vsl-textdiagram"><span class="vsl-dnode">Latent noise</span><span class="vsl-arrow">→</span><span class="vsl-dnode">Generator</span><span class="vsl-arrow">→</span><span class="vsl-dnode">Discriminator</span></div>';
+ if(type==='boxes'||(id>=56&&id<=62)){
  return `<svg class="vsl-figure" viewBox="0 0 348 155" role="img" aria-label="Object detection compares and predicts bounding boxes"><rect x="68" y="18" width="210" height="119" rx="10" fill="var(--tint)" stroke="var(--line)" stroke-width="2"/><rect x="109" y="37" width="105" height="80" rx="4" fill="none" stroke="var(--teal)" stroke-width="3"/><rect x="145" y="54" width="96" height="65" rx="4" fill="none" stroke="var(--coral)" stroke-width="3"/><text x="73" y="151" fill="var(--muted)" font-size="10">Overlap = intersection / union</text></svg>`;
  }
  if(type==='qlearning'||id>=63){
@@ -152,8 +159,38 @@ function svgNodes(id){
  return `<div class="vsl-textdiagram" role="img" aria-label="${esc(labels.join(' then '))}">${labels.map((x,i)=>`<span class="vsl-dnode">${esc(x)}</span>${i<labels.length-1?'<span class="vsl-arrow">→</span>':''}`).join('')}</div>`;
 }
 function matrix(a,w,active=[]){return `<div class="vsl-matrix" style="grid-template-columns:repeat(${w},minmax(29px,1fr))">${a.map((v,i)=>`<span class="${active.includes(i)?'active':''}">${fmt(v,1)}</span>`).join('')}</div>`}
+function additionalVisualLab(id,type,v){
+let controls='',output='';
+if(type==='softmax'){
+controls=slider(id,'a','Logit A',-4,4,.2)+slider(id,'b','Logit B',-4,4,.2)+slider(id,'c','Logit C',-4,4,.2);
+const x=[v.a,v.b,v.c],mx=Math.max(...x),e=x.map(z=>Math.exp(z-mx)),total=e.reduce((a,b)=>a+b,0),p=e.map(z=>z/total);
+output=`<p>Exponentiate scores and divide each by the sum:</p>${p.map((z,i)=>`<div class="vsl-barrow"><span>Class ${'ABC'[i]}</span><div><i style="width:${z*100}%"></i></div><strong>${fmt(z)}</strong></div>`).join('')}<div class="vsl-equation">Probabilities sum to <b>${fmt(p.reduce((a,b)=>a+b,0))}</b></div>`;
+}
+if(type==='pool'){
+controls=slider(id,'top','Patch example',0,3,1)+`<label class="vsl-select">Pool <select data-vsl-select="mode"><option value="max" ${v.mode==='max'?'selected':''}>Max</option><option value="avg" ${v.mode==='avg'?'selected':''}>Average</option></select></label>`;
+const patches=[[1,9,4,3],[2,4,8,6],[0,5,2,1],[7,4,6,3]],a=patches[v.top],out=v.mode==='max'?Math.max(...a):a.reduce((x,y)=>x+y,0)/4;
+output=`<p>Pool the highlighted 2 × 2 patch:</p>${matrix(a,2)}<div class="vsl-equation">${v.mode==='max'?'max':'mean'}(${a.join(', ')}) = <b>${fmt(out)}</b></div><p>Pooling summarizes neighborhoods without learning trainable weights.</p>`;
+}
+if(type==='fit'){
+controls=slider(id,'capacity','Model complexity',1,10,1);
+const c=v.capacity,tr=1/(c+.3),va=.28+.045*(c-5.3)**2,graph=f=>Array.from({length:91},(_,i)=>`${25+i*3.2},${117-f(1+i*.1)*53}`).join(' ');
+output=`<svg class="vsl-mini-graph" viewBox="0 0 335 145" role="img" aria-label="Training error decreases while validation error forms a U-shape"><path d="M25 10 V120 H317" stroke="var(--line)" fill="none" stroke-width="2"/><polyline points="${graph(x=>1/(x+.3))}" fill="none" stroke="var(--teal)" stroke-width="2.5"/><polyline points="${graph(x=>.28+.045*(x-5.3)**2)}" fill="none" stroke="var(--coral)" stroke-width="2.5"/><path d="M${25+(c-1)*32} 10 V120" stroke="var(--muted)" stroke-dasharray="4 4"/><text x="75" y="14" fill="var(--teal)" font-size="12">train</text><text x="178" y="14" fill="var(--coral)" font-size="12">validation</text></svg><div class="vsl-equation">Training: <b>${fmt(tr)}</b> · Validation: <b>${fmt(va)}</b></div><p>Illustrative curves: high model complexity can keep lowering training error while validation error begins rising.</p>`;
+}
+if(type==='vanish'){
+controls=slider(id,'factor','Gradient multiplier per step',.1,1.5,.05)+slider(id,'depth','Steps through time',1,20,1);
+const prod=v.factor**v.depth;
+output=`<div class="vsl-equation">Approximate gradient product = ${fmt(v.factor,2)}<sup>${v.depth}</sup> = <b>${fmt(prod,6)}</b></div><div class="vsl-barrow"><span>Magnitude</span><div><i style="width:${Math.min(100,prod*100)}%"></i></div><strong>${fmt(prod,4)}</strong></div><p>Repeated factors below 1 cause vanishing gradients; factors above 1 cause explosion. This scalar model illustrates BPTT's matrix-product effect.</p>`;
+}
+if(type==='gru'){
+controls=slider(id,'z','Retention gate z',0,1,.05)+slider(id,'h','Previous hidden h',-1,1,.1)+slider(id,'candidate','Candidate hidden',-1,1,.1);
+const old=v.z*v.h,fresh=(1-v.z)*v.candidate;
+output=`<div class="vsl-equation">Old contribution: z × hprev = <b>${fmt(old)}</b></div><div class="vsl-equation">New contribution: (1−z) × candidate = <b>${fmt(fresh)}</b></div><div class="vsl-equation">GRU hidden state = <b>${fmt(old+fresh)}</b></div><p>The reset gate influences candidate formation; the convention here matches the existing GRU example.</p>`;
+}
+return `<div class="vsl-lab"><div class="vsl-lab-top"><b>TRY A NUMBER · LIVE CALCULATION</b><span>Change a control → see the working</span></div><div class="vsl-lab-grid"><div class="vsl-controls">${controls}</div><div class="vsl-results" data-vsl-output>${output}</div></div></div>`;
+}
 function lab(id){
  const type=labType(id),v=config(id);if(!type)return '';
+ if(['softmax','pool','fit','vanish','gru'].includes(type))return additionalVisualLab(id,type,v);
  let controls='',output='';
  if(type==='neuron'){
  controls=slider(id,'x','Input x',-3,3,0.1)+slider(id,'w','Weight w',-3,3,0.1)+slider(id,'b','Bias b',-2,2,0.1);
