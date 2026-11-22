@@ -89,10 +89,10 @@
    const visual=document.createElement('details');
    visual.className='guided-visual';
    const visualTitle=document.createElement('summary');
-   visualTitle.textContent='Try it visually — interactive experiment';
+   visualTitle.textContent=cfg.subject==='dl'?'LIVE EXPERIMENT · Change the numbers yourself':'Try it visually — interactive experiment';
    visual.append(visualTitle);
    demos.forEach(node=>visual.append(node));
-   depth.after(visual);
+   if(cfg.subject==='dl'){visual.open=true;card.querySelector('.guided-content').after(visual)}else depth.after(visual);
   }
   setStage(card,0);
   toggleMode(card,mode);
