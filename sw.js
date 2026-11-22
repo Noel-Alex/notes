@@ -1,7 +1,7 @@
 /* Notes progressive offline cache.
    Network-first for HTML and EDA textbook assets; an older installation must never
    silently pin the course to an obsolete set of JavaScript files. */
-const VERSION='notes-v23-deep-learning-visual-studio';
+const VERSION='notes-v24-deep-learning-professor-priority';
 const CACHE=VERSION;
 const PRECACHE=[
 './','./index.html','./fat/','./fat/index.html',
@@ -14,6 +14,8 @@ const PRECACHE=[
 './subjects/deep-learning/fat/easy-data.js',
 './subjects/deep-learning/fat/visual-studio.js',
 './subjects/deep-learning/fat/visual-studio.css',
+'./subjects/deep-learning/fat/faculty-priority.js',
+'./subjects/deep-learning/fat/faculty-priority.css',
 './subjects/data-mining/fat/easy-data.js',
 './subjects/eda/fat/textbook/reader.css',
 './subjects/eda/fat/textbook/reader.js',
