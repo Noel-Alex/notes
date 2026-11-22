@@ -146,3 +146,15 @@ The existing 69 lessons, bookmarks, completion status, three-step beginner
 mode and exam-important highlight flags were preserved. New expansions live
 inside the full technical chapter, and a visible shortcut from the important
 callout opens the expanded worked explanation.
+
+### Deep Learning visual-first learning upgrade (2026-11-22)
+
+The original 73 source-backed teaching chapters, 33 long-answer worked problems, 64 formulas, 105 questions, source markers, bookmarks, and reading progress remain intact.
+
+- Every chapter has a dedicated interactive concept-flow sequence, with labeled steps and explanations.
+- Custom live numerical controls cover neuron arithmetic, activation and softmax, loss, gradient descent, convolution, pooling, CNN output geometry, sequence recurrence, gradient decay, attention, LSTM/GRU, IoU, and Q-learning. The original faculty-aligned interactive demonstrations are preserved.
+- Additional architecture diagrams show Inception branches, ResNet shortcuts, VGG stacks, bidirectional recurrence, encoder/decoder bottlenecks, query/key/value attention, gated memory, R-CNN variants, YOLO/SSD, DQN replay/targets, and actor-critic branches.
+- Core visual pathways appear on the Deep Learning FAT homepage, with a separate local mastery indicator that does not overwrite existing lesson completion.
+- For Deep Learning, original interactive numerical demonstrations are open inside the beginner lesson instead of being hidden in a collapsed details panel.
+
+Files: subjects/deep-learning/fat/visual-studio.js, visual-studio.css, existing Deep Learning index.html, shared assets/easy-mode.js and sw.js. All arithmetic sandboxes are clearly illustrative unless a faculty source is stated in the original chapter; keep the complete faculty-based notes for source-exact examples.
