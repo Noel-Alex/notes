@@ -269,7 +269,7 @@ function panel(){
  </section>
  <section class="fac-lasts"><div class="fac-kicker">LAST-MINUTE NUMERICALS</div><h2>Do these on paper before the exam.</h2>
  <p>These are linked to the stored course question bank. Some are sourced from faculty exercises; others are clearly labeled original practice.</p>
- <div class="fac-drills">${[[0,"ANN sigmoid backprop"],[5,"Mini-batch updates"],[6,"Adam bias correction"],[10,"Convolution by hand"],[11,"100×100 CNN shape"],[15,"RNN forward + gradient"],[19,"LSTM gate update"],[24,"GAN loss"],[25,"IoU"],[29,"Q-learning"],[32,"A2C/A3C"]].map(([i,label])=>`<details><summary>${esc(label)} <span>10-mark solution ↴</span></summary>${solutionCard(i)}</details>`).join('')}</div>
+ <div class="fac-drills">${[[0,"ANN sigmoid backprop"],[5,"Mini-batch updates"],[6,"Adam bias correction"],[10,"Convolution by hand"],[11,"100×100 CNN shape"],[15,"RNN forward + gradient"],[19,"LSTM gate update"],[24,"GAN loss"],[25,"IoU"],[29,"Q-learning"],[32,"A2C/A3C"]].map(([i,label])=>`<details><summary>${esc(label)} <span>10-mark solution ↴</span></summary>${`<div class="fac-solution-body"><p><b>Question.</b> ${esc(problems[i]?.question||'')}</p><ol>${(problems[i]?.steps||[]).map(step=>`<li>${esc(step)}</li>`).join('')}</ol><div class="fac-final"><b>FINAL</b> ${esc(problems[i]?.final||'')}</div><p class="fac-source-note">${esc(problems[i]?.origin||'Original practice')}</p></div>`}</details>`).join('')}</div>
  </section>
  <section class="fac-lasts"><div class="fac-kicker">ONE SENTENCE THAT SAVES MARKS</div><h2>Precision matters more than impressive wording.</h2>
  <p>Q-learning is <strong>off-policy value-based</strong>; REINFORCE is <strong>policy-based</strong>; DQN is a <strong>deep value-based</strong> method; A2C and A3C are <strong>actor–critic</strong> algorithms; model-based RL predicts or uses transitions for planning. BERT is an <strong>encoder-only Transformer</strong>, while classical seq2seq has both an encoder and a decoder.</p>
@@ -297,7 +297,7 @@ function labelReader(){
  const related=byId[id]||[];const section=document.createElement('section');section.className='fac-reader-callout';
  section.innerHTML=`<div class="fac-kicker">★ PROFESSOR'S IMPORTANT TOPIC</div><p>This chapter is part of the reported FAT priority list: <strong>${related.map(t=>esc(t.name)).join(' · ')}</strong>.</p><div class="fac-reader-links"><a href="#faculty">See the exact answer checklist →</a>${related[0]?.problems?.length?'<a href="#problems">Find related worked problems →</a>':''}</div>`;
  reader.querySelector('.chapter-actions')?.after(section);
- const pill=reader.querySelector('.reader-eyebrow .pill');if(pill)pill.textContent='★ FACULTY IMPORTANT';
+ const pill=reader.querySelector('.reader-eyebrow .pill');if(pill&&pill.textContent!=='★ FACULTY IMPORTANT')pill.textContent='★ FACULTY IMPORTANT';
 }
 function homeOrPriority(){
  const nav=app.querySelector('#topbar .toplinks');if(nav&&!nav.querySelector('.fac-top-link')){const link=document.createElement('a');link.href='#faculty';link.className='fac-top-link';link.textContent='★ Faculty IMP';nav.prepend(link)}
@@ -328,7 +328,7 @@ function renderActivation(){
  const graph=app.querySelector('.fac-activation');if(graph)graph.outerHTML=activationPlot();
 }
 document.addEventListener('input',e=>{
- if(e.target.matches('[data-fac-z]')){zValue=Number(e.target.value);renderActivation()}
+ if(e.target.matches('[data-fac-z]')){zValue=Number(e.target.value);const plot=app.querySelector('.fac-activation');if(!plot)return;const host=document.createElement('div');host.innerHTML=activationPlot();const next=host.firstElementChild;for(const sel of ['.fac-graph','.fac-activation-facts','.fac-help']){const old=plot.querySelector(sel),fresh=next?.querySelector(sel);if(old&&fresh)old.replaceWith(fresh)}const text=plot.querySelector('.fac-range strong');if(text)text.textContent=zValue.toFixed(1)}
 });
 queue();
 })();
