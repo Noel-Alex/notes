@@ -101,7 +101,7 @@ const ui={id:-1,stage:{},values:{},revealed:{},pref:'focus'};
 function persist(){try{localStorage.setItem('dl-visual-mastered-v2',JSON.stringify(saved))}catch(e){}}
 function stageNum(id){return clamp(ui.stage[id]||0,0,(topics[id]||[]).length-1)}
 function labType(id){
- if([0,1,3,5,6,9].includes(id))return 'neuron';
+ if([0,3,5,6,9].includes(id))return 'neuron';
  if(id===2)return 'activation';
  if(id===17)return 'softmax';
  if([4].includes(id))return 'loss';
@@ -271,7 +271,7 @@ function concept(id){
  ${lab(id)}
  <div class="vsl-recall"><div><div class="vsl-eyebrow">CLOSE THE NOTES · RETRIEVE IT</div><p><b>Explain this topic in one sentence, without looking:</b></p><p>${esc(l.title)}</p></div><button type="button" data-vsl-reveal="${id}" aria-expanded="${!!ui.revealed[id]}">${ui.revealed[id]?'Hide answer':'Reveal explanation'}</button></div>
  ${ui.revealed[id]?`<div class="vsl-answer">${esc(g[0]||l.deck)}<br><small>For a tiny example: ${esc(g[2]||'Use the worked example in the faculty chapter below.')}</small></div>`:''}
- <div class="vsl-bottom"><button type="button" class="${saved[id]?'mastered':''}" data-vsl-master="${id}">${saved[id]?'✓ I can explain this':'○ I can explain this'}</button><span>${saved[id]?'Mastered for tonight — revisit if the numbers feel difficult.':'Mark mastered only after you can explain the diagram unaided.'}</span></div>
+ <div class="vsl-bottom"><button type="button" class="${saved[id]?'mastered':''}" data-vsl-master="${id}">${saved[id]?'✓ I can explain this':'○ I can explain this'}</button><span>${saved[id]?'Understood — revisit if the numbers feel difficult.':'Mark mastered only after you can explain the diagram unaided.'}</span></div>
  </section>`;
 }
 function injectReader(){
@@ -286,9 +286,9 @@ function home(){
  const section=document.createElement('section');section.className='vsl-home';
  const recommended=[6,14,17,22,23,25,36,42,46,47,48,53,54,59,61,65,67];
  const completed=recommended.filter(id=>saved[id]).length;
- section.innerHTML=`<div class="vsl-home-hero"><div class="vsl-eyebrow">EXAM TOMORROW · AN ACTUAL LEARNING ROUTE</div><h2>Less reading. More understanding.</h2><p>Every chapter now has a visual walkthrough. The numerical chapters also let you change the values and watch the calculation change. Follow this priority route, then return to your faculty-backed long answers.</p><div class="vsl-home-status"><b>${completed}/${recommended.length}</b><span>core visual checkpoints mastered</span></div></div>
+ section.innerHTML=`<div class="vsl-home-hero"><div class="vsl-eyebrow">TIME-CRUNCHED REVISION · PRIORITY ROUTE</div><h2>Less reading. More understanding.</h2><p>Every chapter now has a visual walkthrough. The numerical chapters also let you change the values and watch the calculation change. Follow this priority route, then return to your faculty-backed long answers.</p><div class="vsl-home-status"><b>${completed}/${recommended.length}</b><span>core visual checkpoints mastered</span></div></div>
  <div class="vsl-home-modules">${groups.map((g,i)=>`<div><div class="vsl-home-icon">${g.icon}</div><h3>${esc(g.n)}</h3><p>${esc(g.desc)}</p><div class="vsl-home-links">${g.ids.map(id=>`<a href="#read/${id}" title="${esc(lessons[id].title)}">${esc(lessons[id].title.replace(/ — .*/,'').slice(0,32))}${saved[id]?' ✓':''}</a>`).join('')}</div></div>`).join('')}</div>
- <div class="vsl-home-order"><b>Best exam-night order</b><p>Start with numericals (backprop → Adam → CNN → LSTM → IoU → Q-learning), then understand architectures (RNN/BPTT → GANs → detection). Use the 33 original worked long answers and quizzes after you can follow the visual steps.</p><a href="#read/6">Begin with backprop visually →</a></div>`;
+ <div class="vsl-home-order"><b>Fastest high-yield revision order</b><p>Start with numericals (backprop → Adam → CNN → LSTM → IoU → Q-learning), then understand architectures (RNN/BPTT → GANs → detection). Use the 33 original worked long answers and quizzes after you can follow the visual steps.</p><a href="#read/6">Begin with backprop visually →</a></div>`;
  const banner=home.querySelector('.guided-home');if(banner)banner.after(section);else home.prepend(section);
 }
 function refresh(){
