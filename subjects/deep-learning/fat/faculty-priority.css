@@ -102,3 +102,11 @@
 @media(max-width:710px){.fac-rubric{grid-template-columns:repeat(2,minmax(0,1fr))}.fac-drills{grid-template-columns:1fr}.fac-module>header{flex-direction:column;align-items:flex-start}.fac-activation-facts{grid-template-columns:1fr}}
 @media(max-width:520px){.fac-pattern-grid{grid-template-columns:1fr}.fac-rubric{grid-template-columns:1fr}.fac-topic-top{flex-direction:column}.fac-hero h1{font-size:35px}.fac-hero-footer a{width:100%}.fac-module-tabs{position:sticky;top:76px;background:var(--paper);z-index:3;padding:9px 2px}}
 @media print{.fac-top-link,.fac-side-shortcut,.fac-banner,.fac-activation,.fac-module-tabs,.fac-topic-top button,.fac-module-links{display:none!important}.fac-model,.fac-solution{break-inside:avoid}.fac-model-inside{display:block!important}}
+
+/* Supplementary comparison for professor-listed hyperparameter + clustering topic */
+.fac-params{margin:18px 0;background:var(--tint);border:1px solid var(--line);border-radius:11px;padding:15px;overflow-x:auto}
+.fac-params table{border-collapse:collapse;width:100%;margin:11px 0;font-size:12px;min-width:560px}
+.fac-params th,.fac-params td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top;line-height:1.55}
+.fac-params th{background:var(--paper);color:var(--teal);font-weight:750}
+.fac-params td{background:color-mix(in srgb,var(--paper) 75%,var(--tint))}
+.fac-params p{font-size:12px;color:var(--muted);line-height:1.7}
