@@ -190,7 +190,7 @@ let moduleFilter=1,openedPrompt=null,plotChoice='relu',zValue=1.0;
 function save(){try{localStorage.setItem('dl-professor-priority-v1',JSON.stringify(memory))}catch{}}
 const styles={critical:'★ Exam focus',high:'Exam context'};
 function activationPlot(){
- const funcs={sigmoid:{title:'Sigmoid',f:x=>1/(1+Math.exp(-x)),formula:'1/(1+e^(−z))',range:'(0,1)',use:'Binary output; independent multi-label probabilities',risk:'Saturates; near-zero gradients at extremes'},
+ const funcs={step:{title:'Binary step',f:x=>x>=0?1:0,formula:'1 for z≥0; otherwise 0',range:'{0,1}',use:'McCulloch–Pitts and threshold logic gates',risk:'Derivative is zero almost everywhere and undefined at zero: not suitable for ordinary backprop'},sigmoid:{title:'Sigmoid',f:x=>1/(1+Math.exp(-x)),formula:'1/(1+e^(−z))',range:'(0,1)',use:'Binary output; independent multi-label probabilities',risk:'Saturates; near-zero gradients at extremes'},
  tanh:{title:'tanh',f:Math.tanh,formula:'(e^z−e^(−z))/(e^z+e^(−z))',range:'(−1,1)',use:'Traditional recurrent/hidden gates',risk:'Still saturates'},
  relu:{title:'ReLU',f:x=>Math.max(0,x),formula:'max(0,z)',range:'[0,∞)',use:'Common CNN/MLP hidden layer default',risk:'Zero gradient for z<0 (dying ReLU)'},
  leaky:{title:'Leaky ReLU',f:x=>x>=0?x:0.1*x,formula:'max(0.1z,z) (sample slope 0.1)',range:'ℝ',use:'Hidden layers when avoiding dead units',risk:'Negative slope is a design hyperparameter'},
@@ -226,7 +226,8 @@ function chapterLinks(t){
  return `<div class="fac-links">${t.ids.map(id=>`<a href="#read/${id}">${esc(lessons[id]?.title||('Lesson '+id))}<span>↗</span></a>`).join('')}${(t.problems||[]).map(i=>`<a href="#problems" title="Open the original solved problems list, module ${t.module}">Solved problem ${i+1}: ${esc(problems[i]?.title||'Exercise')}<span>↗</span></a>`).join('')}</div>`;
 }
 function sourceCaveat(t){
- const keys=new Set(t.ids.map(x=>lessons[x]?.source).filter(Boolean));return `<p class="fac-source-note">Linked teaching source${keys.size>1?'s':''}: ${esc([...keys].join('; '))}. ${t.key==='hyperparams'?'Classification/clustering comparison is supplemental and was added because the professor explicitly listed it.':''}</p>`;
+ const keys=new Set(t.ids.map(x=>lessons[x]?.source).filter(Boolean));const cross=t.ids.filter(id=>lessons[id]?.m!==t.module);
+ return `${cross.length?`<p class="fac-source-note"><strong>Cross-module link:</strong> This professor-listed topic is filed under a different numbered module in the source lecture index for ${cross.map(id=>esc('lesson '+(id+1)+' (M'+lessons[id].m+')')).join(', ')}. The priority map preserves the professor grouping while linking to the actual stored material.</p>`:''}<p class="fac-source-note">Linked teaching source${keys.size>1?'s':''}: ${esc([...keys].join('; '))}. ${t.key==='hyperparams'?'Classification/clustering comparison is supplemental and was added because the professor explicitly listed it.':''}</p>`;
 }
 function solutionCard(i){
  const p=problems[i];if(!p)return '';const exact=/source-exact|faculty|uploaded/i.test(p.title+' '+p.origin)&&!/^Original/i.test(p.origin);
@@ -234,6 +235,7 @@ function solutionCard(i){
  <div class="fac-solution-body"><p><b>Question.</b> ${esc(p.question)}</p><ol>${p.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
  <div class="fac-final"><b>FINAL</b> ${esc(p.final)}</div><p class="fac-source-note">${esc(p.origin)} · ${p.marks} marks (worksheet labelling, not a guaranteed FAT question)</p></div></details>`;
 }
+function hyperparamTable(){return `<div class="fac-params"><div class="fac-kicker">SUPPLEMENTAL · HYPERPARAMETER CHOICE BY PROBLEM</div><table><thead><tr><th>Task / method</th><th>Important hyperparameters</th><th>Learned from data</th></tr></thead><tbody><tr><td>Neural classification</td><td>Learning rate, width/depth, batch size; softmax vs sigmoid output by task</td><td>Network weights and biases</td></tr><tr><td>Logistic regression</td><td>Regularization strength if used, solver settings</td><td>Coefficients and bias</td></tr><tr><td>K-means clustering</td><td>Must choose k; often initialization, tolerance</td><td>Cluster centroids</td></tr><tr><td>DBSCAN clustering</td><td>ε and min_samples</td><td>No trainable weights; clusters emerge from density</td></tr><tr><td>Hierarchical agglomerative</td><td>Linkage, distance metric, stopping cut</td><td>Cluster hierarchy from data</td></tr></tbody></table><p>Exact hyperparameters vary by implementation; some have defaults. Classification uses labels; clustering does not. This comparison is supplied to cover the professor's message and is not claimed as a verbatim Deep Learning lecture exercise.</p></div>`}
 function topicCard(t){
  const done=!!memory[t.key],common=styles[t.priority]||'Focus';return `<article class="fac-topic" id="fac-${t.key}">
  <div class="fac-topic-top"><div><span class="fac-level ${t.priority}">${esc(common)}</span><h3>${esc(t.name)}</h3></div><button type="button" data-fac-check="${esc(t.key)}" class="${done?'done':''}" aria-pressed="${done}">${done?'✓ Can answer':'○ Not mastered'}</button></div>
@@ -243,7 +245,7 @@ function topicCard(t){
  <div class="fac-formula"><b>WRITE THE FORMULA</b><p>${esc(t.formula)}</p></div>
  <div class="fac-trap"><b>COMMON MARK-LOSING ERROR</b><p>${esc(t.pitfall)}</p></div>
  ${sourceCaveat(t)}</div></details>
- ${t.key==='activations'?activationPlot():''}
+ ${t.key==='activations'?activationPlot():''}${t.key==='hyperparams'?hyperparamTable():''}
  ${t.problems?.length?`<div class="fac-practice-head">OPEN SOURCE-ALIGNED SOLVED QUESTIONS</div>${t.problems.map(solutionCard).join('')}`:''}
  ${chapterLinks(t)}</article>`;
 }
