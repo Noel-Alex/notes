@@ -105,8 +105,8 @@ function labType(id){
  if(id===2)return 'activation';
  if(id===17)return 'softmax';
  if([4].includes(id))return 'loss';
- if([7,10,11,12,13,14,15,20].includes(id))return 'descent';
- if([8,18,19].includes(id))return 'fit';
+ if([7,15].includes(id))return 'descent';
+ if([8,19].includes(id))return 'fit';
  if(id===37)return 'vanish';
  if([21,22].includes(id))return 'convolution';
  if(id===26)return 'pool';
@@ -116,7 +116,7 @@ function labType(id){
  if([46,47,52].includes(id))return 'memory';
  if(id===48)return 'gru';
  if([56,57,58,59,60,61,62].includes(id))return 'boxes';
- if([63,64,65,66,67,68,69,70,71,72].includes(id))return 'qlearning';
+ if([64,65,67].includes(id))return 'qlearning';
  return null;
 }
 const defaults={
@@ -130,7 +130,27 @@ function config(id){const t=labType(id);if(!t)return {};return ui.values[id]||(u
 function slider(id,key,label,min,max,step){
  const v=config(id)[key];return `<label class="vsl-range"><span>${esc(label)} <strong>${fmt(v,2)}</strong></span><input aria-label="${esc(label)}" data-vsl-input="${esc(key)}" type="range" min="${min}" max="${max}" step="${step}" value="${v}"></label>`;
 }
+function specialArchitectureDiagram(id){
+const node=(name)=>`<span class="vsl-dnode">${name}</span>`,arr='<span class="vsl-arrow">→</span>';
+if(id===29)return `<div class="vsl-textdiagram">${node('3×3 conv')}${arr}${node('ReLU')}${arr}${node('3×3 conv')}${arr}${node('ReLU')}${arr}${node('3×3 conv')}<p class="vsl-diagram-caption">VGG stacks small filters to build a larger receptive field.</p></div>`;
+if(id===30)return `<div class="vsl-parallel"><div class="vsl-dnode">One input tensor</div><div class="vsl-branch-tracks"><span>1×1 conv</span><span>1×1 → 3×3</span><span>1×1 → 5×5</span><span>Pooling → 1×1</span></div><div class="vsl-dnode">Concatenate channels</div></div>`;
+if(id===31)return `<div class="vsl-parallel"><div class="vsl-dnode">Input x</div><div class="vsl-branch-tracks"><span>Residual branch: F(x)</span><span>Identity shortcut: x</span></div><div class="vsl-dnode">Add: y = F(x) + x</div></div>`;
+if(id===37)return `<svg class="vsl-figure" viewBox="0 0 348 142" role="img" aria-label="Gradient magnitude shrinks as it flows backward through time"><text x="8" y="16" fill="var(--muted)" font-size="11">Backpropagation across time</text>${[78,58,41,26,15].map((w,i)=>`<rect x="${15+i*66}" y="${115-w}" width="39" height="${w}" rx="4" fill="var(--teal)" fill-opacity="${1-i*.13}"/><text x="${35+i*66}" y="131" font-size="11" fill="var(--muted)" text-anchor="middle">t−${i}</text>`).join('')}</svg>`;
+if(id===38)return `<div class="vsl-parallel"><div class="vsl-dnode">Input sequence: A B C</div><div class="vsl-branch-tracks"><span>Forward hidden: A → B → C</span><span>Backward hidden: A ← B ← C</span></div><div class="vsl-dnode">Combine both contexts</div></div>`;
+if(id===40)return `<div class="vsl-textdiagram">${node('Original input')}${arr}${node('Encoder')}${arr}${node('Small latent code')}${arr}${node('Decoder')}${arr}${node('Reconstructed input')}</div>`;
+if(id===42||id===51)return `<div class="vsl-parallel"><div class="vsl-dnode">Tokens / representations</div><div class="vsl-branch-tracks"><span>Query Q · What am I looking for?</span><span>Key K · How relevant is each token?</span><span>Value V · What information is available?</span></div><div class="vsl-dnode">softmax(QKᵀ/√dₖ) V</div></div>`;
+if(id===46||id===47)return `<div class="vsl-parallel"><div class="vsl-dnode">Previous memory cₜ₋₁</div><div class="vsl-branch-tracks"><span>Forget: fₜ × cₜ₋₁</span><span>Write: iₜ × gₜ</span></div><div class="vsl-dnode">New cell cₜ = old + new</div><div class="vsl-dnode">Hidden hₜ = oₜ × tanh(cₜ)</div></div>`;
+if(id===48)return `<div class="vsl-parallel"><div class="vsl-dnode">Previous hidden state</div><div class="vsl-branch-tracks"><span>Reset gate r controls candidate</span><span>Update gate z controls retention</span></div><div class="vsl-dnode">Mix old hidden and candidate</div></div>`;
+if(id===50)return `<div class="vsl-textdiagram">${node('Gradient g')}${arr}${node('Compute ‖g‖₂')}${arr}${node('Scale if over limit')}${arr}${node('Same direction · lower norm')}</div>`;
+if(id===57||id===58)return `<div class="vsl-textdiagram">${node('Image')}${arr}${node('Shared CNN features')}${arr}${node('Region proposals')}${arr}${node('ROI features')}${arr}${node('Boxes + classes')}</div>`;
+if(id===59)return `<div class="vsl-textdiagram">${node('Full image')}${arr}${node('Single network pass')}${arr}${node('Box + class predictions')}${arr}${node('NMS')}</div>`;
+if(id===60)return `<div class="vsl-textdiagram">${node('Image')}${arr}${node('Multi-scale feature maps')}${arr}${node('Anchor offsets + classes')}${arr}${node('NMS')}</div>`;
+if(id===67)return `<div class="vsl-parallel"><div class="vsl-dnode">Experience (s,a,r,s′)</div><div class="vsl-branch-tracks"><span>Replay buffer → mini-batch</span><span>Target network → stable Q target</span></div><div class="vsl-dnode">Fit online Q network</div></div>`;
+if(id===69||id===70)return `<div class="vsl-parallel"><div class="vsl-dnode">State s</div><div class="vsl-branch-tracks"><span>Actor: policy π(a|s)</span><span>Critic: estimate V(s)</span></div><div class="vsl-dnode">Advantage guides policy update</div></div>`;
+return '';
+}
 function svgNodes(id){
+ const special=specialArchitectureDiagram(id);if(special)return special;
  const type=labType(id);const n=topics[id]||[];
  if(type==='neuron'){
  const x1=65,x2=65,h=177,o=286;return `<svg class="vsl-figure" viewBox="0 0 348 186" role="img" aria-label="Inputs flow to weighted sum, activation and output">
