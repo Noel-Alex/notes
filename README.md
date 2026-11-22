@@ -158,3 +158,17 @@ The original 73 source-backed teaching chapters, 33 long-answer worked problems,
 - For Deep Learning, original interactive numerical demonstrations are open inside the beginner lesson instead of being hidden in a collapsed details panel.
 
 Files: subjects/deep-learning/fat/visual-studio.js, visual-studio.css, existing Deep Learning index.html, shared assets/easy-mode.js and sw.js. All arithmetic sandboxes are clearly illustrative unless a faculty source is stated in the original chapter; keep the complete faculty-based notes for source-exact examples.
+
+### Deep Learning professor-identified FAT priority list (23 November 2026)
+
+The professor's reported priority-topic and question-pattern message is now built into the actual reader at `subjects/deep-learning/fat/#faculty`. It sits **on top of** the complete faculty-sourced course material, never deletes or downgrades unlisted chapters.
+
+- 7 modules; 23 topic groups; 53 chapter links marked ★ in the sidebar and chapter pages.
+- Original reported pattern: 80 marks / 8 ten-mark answers, Module 1 mentioned twice; Q9 A/B references Modules 3/4 and Q10 A/B Modules 5/6. The compulsory/choice mechanics remain ambiguous and are **not** invented.
+- Every topic includes a precise five-step 10-mark answer checklist, key formula, mark-losing misconception, course-lesson links and relevant 33-problem workbook solutions (clearly distinguishing source-based and original practice).
+- Module 1 has interactive activation graphs including binary step, sigmoid, tanh, ReLU, Leaky ReLU and linear; softmax is correctly treated as vector-valued. Supplementary (non-faculty-slide) classification and K-means mini numericals and hyperparameter table are labeled explicitly.
+- A separate self-marked mastery state allows concentrated revision without changing existing reading completion/bookmarking.
+- Corrected visual-studio diagrams for original R-CNN vs Fast R-CNN, BERT encoder-only Transformer, seq2seq encoder–decoder, Echo State Networks, GAN's real/fake branches and RNN BPTT.
+- The professor's phrase "policy based Q learning" is identified as ambiguous. Standard tabular Q-learning is *value-based and off-policy*; policy gradients, actor–critic and model-based RL are separately explained.
+
+New assets `subjects/deep-learning/fat/faculty-priority.js` and `faculty-priority.css` are linked from the FAT reader, with their offline cache entries in `sw.js`. This is a study-priority layer built from a user-supplied faculty message, **not** a verified official exam paper or a prediction of exact questions.
