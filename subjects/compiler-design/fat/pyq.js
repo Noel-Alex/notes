@@ -13,8 +13,8 @@ const weights=[
 ];
 // order: prerequisites before high-yield procedure; preserve original lesson IDs.
 const core=[0,1,2,3,5,7,8,9,6,11,12,13,14,15,16,17,19,20,22,23,24,25,26,27,29,30,31,33,35,36,37,39,41,42,43];
-const backup=[4,10,18,21,28,34,38,44,45];
-const optional=[32,40];
+const backup=[4,10,18,21,28,34,38,40,44,45];
+const optional=[32];
 const route=[...core,...backup];
 const groups=[
 ["01","Secure the early marks",[0,1,2,3],"Compiler phases appeared in all three papers; automata in two. Start here."],
@@ -67,7 +67,7 @@ const recipe=[
 "Draw code/static/heap/stack, activation record fields; recursive calls get separate frames. Control link caller vs access link lexical parent.",
 "Normalize bounds/trip count; substitute old index, check actual dependence and profitability.",
 "Identify RAW/WAR/WAW; equate access subscripts with separate source/sink indices; distance sink−source and direction.",
-"Older-deck supplementary detail: review only if your current syllabus includes locality/SIMD/DSL; do not assume absent from exam.",
+"Know the concise locality/SIMD/DSL concepts, since current module title mentions them; the extended older-deck details are optional unless specified.",
 "Draw DAG and annotate latencies/resources; schedule only after dependencies ready. Give example and benefit.",
 "Compute heights backwards; ready list each cycle; select max priority fitting units; compare completion to critical/resource bound.",
 "Explain prologue/kernel/epilogue; II≥max(ResMII,RecMII); check modulo resource collisions and dependence inequalities.",
@@ -79,6 +79,7 @@ function priority(i){return optional.includes(i)?"supplement":core.includes(i)?"
 function next(i,dir){if(optional.includes(i))return dir>0?route.find(j=>j>i)??null:[...route].reverse().find(j=>j<i)??null;let k=route.indexOf(i);return route[k+dir]??null;}
 function compact(i){return `<div class="exam-tip"><div class="kicker">${priority(i)==="first"?"FIRST PASS · EXAM PROCEDURE":priority(i)==="finish"?"SYLLABUS COMPLETION · DO NOT OMIT":"SUPPLEMENTARY · CHECK PORTION"}</div><p>${esc(recipe[i])}</p>${priority(i)==="supplement"?'<a href="#home">Return to the main exam route →</a>':""}</div>`;}
 const drills=[
+{m:2,i:14,t:"LALR trace and parse tree (November 2025 pattern)",q:"Construct LALR for S→X; X→M a | b M c | d c | b d a; M→d. Parse b d c. This is a compact study adaptation of the grammar pattern; $ is treated as the end marker, not a second input token.",a:"Augment S′→S. Number productions. In I0 closure includes X→·M a | ·b M c | ·d c | ·b d a, all with $, and M→·d,a. After b, items X→b·M c and X→b·d a, and M→·d,c. After b d: X→b d·a,$ and M→d·,c. On lookahead c, reduce M→d, then shift c, reduce X→b M c, reduce S→X, accept. Parse tree S(X(b,M(d),c)). Use the LR lab with this grammar, choose CLR to construct full item sets, then LALR to merge equal cores and fill ACTION/GOTO. Do not reduce M on a in the b d state; lookaheads are context-specific."},
 {m:1,i:3,t:"Thompson construction (seen in July 2023)",q:"Construct an ε-NFA for (a|b)*ab. Original practice, same skill as 2023 Q1b.",a:"Thompson rules: literal a has start —a→ end. Concatenation connects first end to second start with ε. Union adds fresh start/end with ε branches to each alternative and from each end. Star adds fresh start/end; start→old start and end, old end→old start and end (ε).\nOne valid numbered NFA:\n0 ε→1,7; 1 ε→2,4; 2 a→3; 4 b→5; 3 ε→6; 5 ε→6; 6 ε→1,7; 7 ε→8; 8 a→9; 9 ε→10; 10 b→11.\nStart 0, accept 11. Prefix can repeat a/b, then exactly ab. Check ab and aab accept; ba does not. To convert NFA to DFA, start ε-closure({0}); each symbol gives ε-closure(move(S,a)); accepting subsets contain 11."},
 {m:1,i:2,t:"Regex ambiguity (seen in July 2023)",q:"Show whether (a|aa)* has an ambiguous construction.",a:"The word aa can be produced by taking the a alternative twice, or the aa alternative once. That is a witness of ambiguity in the expression's construction; this is not about a DFA having two transitions."},
 {m:2,i:6,t:"Recursive-descent full answer (2024, 2025)",q:"Write recursive-descent functions for S→(S)S|ε and explain accepted input. Original variant.",a:"parseS(): if lookahead=='(' {match('('); parseS(); match(')'); parseS();} else if lookahead==')' or '$' {return;} else error.\nmatch(t): if lookahead==t advance else error.\nmain: parseS(); require '$'.\nFIRST((S)S)={(}; FOLLOW(S)={),$}; alternatives disjoint, so predictive. ()() and (()) accepted. The parser must not accept merely because parseS returns: verify complete input."},
