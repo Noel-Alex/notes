@@ -172,3 +172,7 @@ The professor's reported priority-topic and question-pattern message is now buil
 - The professor's phrase "policy based Q learning" is identified as ambiguous. Standard tabular Q-learning is *value-based and off-policy*; policy gradients, actor–critic and model-based RL are separately explained.
 
 New assets `subjects/deep-learning/fat/faculty-priority.js` and `faculty-priority.css` are linked from the FAT reader, with their offline cache entries in `sw.js`. This is a study-priority layer built from a user-supplied faculty message, **not** a verified official exam paper or a prediction of exact questions.
+
+### Compiler Design FAT · Translation Studio (25 November 2026)
+
+New seven-module study edition at `subjects/compiler-design/fat/`, replacing the placeholder. It draws from the supplied ZIP (26 files, 23 distinct documents) and prefers current-semester slides for overlapping topics. 46 lessons, 39 interactive lesson placements, 28 workbench types, 13 selected faculty exercise groups, a searchable reader, light/dark mode, mastery/review flags and active recall. General regex direct-DFA construction, FIRST/FOLLOW and LL/LR parser engines compute tables and traces; the register-allocation trace follows the lecture's exact seven instructions. Original practice and older-deck-only coverage are labeled. Existing CAT 2 and other subjects remain unchanged except library entry links and service-worker version. Image-only source pages are not exhaustively audited, and no official FAT priority list was supplied.
