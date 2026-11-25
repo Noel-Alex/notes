@@ -179,3 +179,5 @@ New seven-module study edition at `subjects/compiler-design/fat/`, replacing the
 
 #### FAT teaching-depth pass
 All 46 existing lessons have a second tutorial with sequential worked-example reveal and an extra independently solvable exercise. Added a seven-module 70-mark original written diagnostic with suggested rubric and self-assessed marks, and a lecture-range coverage index. Source precedence is unchanged; there is no claim that the mock paper predicts the actual FAT or that every diagram-only slide has been reconstructed.
+
+Image-only examples inspected and reconstructed in the teaching-depth pass: M6-P2 next-use 10-line array-product loop, six-node interference graph, usage-count table; M7 B1–B7 SSA conversion/JOIN+ and conditional constant propagation example 1. Source notes distinguish the selected reconstructions from a full slide audit.
