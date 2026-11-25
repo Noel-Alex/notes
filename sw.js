@@ -1,13 +1,13 @@
 /* Notes progressive offline cache.
    Network-first for HTML and EDA textbook assets; an older installation must never
    silently pin the course to an obsolete set of JavaScript files. */
-const VERSION='notes-v35-compiler-fat-audit-expansion';
+const VERSION='notes-v36-compiler-fat-audit-visuals';
 const CACHE=VERSION;
 const PRECACHE=[
 './','./index.html','./fat/','./fat/index.html',
 './subjects/eda/','./subjects/eda/fat/','./subjects/eda/fat/index.html',
 './subjects/compiler-design/','./subjects/compiler-design/index.html','./subjects/compiler-design/fat/','./subjects/compiler-design/fat/index.html',
-'./subjects/compiler-design/fat/course.js','./subjects/compiler-design/fat/course.js?v=2','./subjects/compiler-design/fat/labs.js','./subjects/compiler-design/fat/labs.js?v=2','./subjects/compiler-design/fat/extras.js','./subjects/compiler-design/fat/extras.js?v=2','./subjects/compiler-design/fat/advanced.js','./subjects/compiler-design/fat/advanced.js?v=1','./subjects/compiler-design/fat/reader.js','./subjects/compiler-design/fat/reader.js?v=5','./subjects/compiler-design/fat/audit-m15.js?v=1','./subjects/compiler-design/fat/audit-m67.js?v=1','./subjects/compiler-design/fat/audit-tools.js?v=1','./subjects/compiler-design/fat/final-pass.js?v=3','./subjects/compiler-design/fat/pyq.js?v=1','./subjects/compiler-design/fat/tutorials.js?v=1','./subjects/compiler-design/fat/exam.js?v=1','./subjects/compiler-design/fat/faculty.js?v=1','./subjects/compiler-design/fat/studio.css','./subjects/compiler-design/fat/studio.css?v=6',
+'./subjects/compiler-design/fat/course.js','./subjects/compiler-design/fat/course.js?v=2','./subjects/compiler-design/fat/labs.js','./subjects/compiler-design/fat/labs.js?v=2','./subjects/compiler-design/fat/extras.js','./subjects/compiler-design/fat/extras.js?v=2','./subjects/compiler-design/fat/advanced.js','./subjects/compiler-design/fat/advanced.js?v=1','./subjects/compiler-design/fat/reader.js','./subjects/compiler-design/fat/reader.js?v=5','./subjects/compiler-design/fat/audit-m15.js?v=1','./subjects/compiler-design/fat/audit-m67.js?v=1','./subjects/compiler-design/fat/audit-tools.js?v=1','./subjects/compiler-design/fat/audit-visuals.js?v=1','./subjects/compiler-design/fat/final-pass.js?v=3','./subjects/compiler-design/fat/pyq.js?v=1','./subjects/compiler-design/fat/tutorials.js?v=1','./subjects/compiler-design/fat/exam.js?v=1','./subjects/compiler-design/fat/faculty.js?v=1','./subjects/compiler-design/fat/studio.css','./subjects/compiler-design/fat/studio.css?v=7',
 './subjects/data-mining/','./subjects/data-mining/index.html',
 './subjects/data-mining/fat/','./subjects/data-mining/fat/index.html',
 './subjects/deep-learning/','./subjects/deep-learning/index.html',
