@@ -15,3 +15,6 @@ html[data-theme=dark]{color-scheme:dark;--bg:#111c1b;--paper:#1d2b28;--ink:#ecf0
 .panel svg[role=img]{display:block;width:100%;height:auto;max-width:520px;margin:16px auto}.panel [data-ssa-graph]{overflow:auto}
 
 .exam-tip{border-left:4px solid var(--teal);padding:14px 18px;margin:16px 0;background:var(--tint);border-radius:8px}.exam-tip p{margin:6px 0;font-size:14px;line-height:1.6}.top nav{gap:10px}.panel .table-scroll td a{display:inline-block;margin:2px 0}.panel .table-scroll td{min-width:60px}
+
+/* Compact exam-first lesson path */
+.revision-row{padding:11px 0;border-bottom:1px solid var(--line)}.revision-row:last-child{border:0}.revision-row a{font-weight:800;font-size:14px}.revision-row p{margin:4px 0;font-size:14px}.panel>summary{color:var(--teal);font-size:14px;font-weight:800}.panel>summary+div{margin-top:14px}.more-example[open]>summary{margin-bottom:10px}
