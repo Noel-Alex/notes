@@ -184,3 +184,6 @@ Image-only examples inspected and reconstructed in the teaching-depth pass: M6-P
 
 #### FAT past-paper-first study path
 Three complete BCSE307L FAT papers (July 2023 C1, November 2024 C1, November 2025 A1) were classified question by question. The `/fat/#pyq` page includes original PDF links, paraphrased question maps, module-mark estimates and solved original practice variants. The home route now prioritizes recurring exam procedures and completes the other current lecture topics, including SSA. Older-only VM/JIT detail is kept separately and not declared excluded without the instructor's portion. No prediction or claim to have reviewed inaccessible indexed papers is made.
+
+#### Compact exam-first pass
+Added all-module revision page (`#revision`), full LR parse tree generation, Thompson NFA construction, and six solved variants targeting extra paper evidence. Default lessons display the full primary worked tutorial and hide redundant examples/formal reference behind expandable controls. Additional evidence: complete readable May 2024 Chennai A2 paper (OCR caveats; excluded from Vellore mark estimates), partial July 2023 C2 third-party solution transcript (excluded from full-paper counts). Filo May 2024 mirror deduplicated and March 2025 CAT-2 excluded.
