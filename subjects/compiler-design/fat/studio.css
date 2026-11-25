@@ -18,3 +18,6 @@ html[data-theme=dark]{color-scheme:dark;--bg:#111c1b;--paper:#1d2b28;--ink:#ecf0
 
 /* Compact exam-first lesson path */
 .revision-row{padding:11px 0;border-bottom:1px solid var(--line)}.revision-row:last-child{border:0}.revision-row a{font-weight:800;font-size:14px}.revision-row p{margin:4px 0;font-size:14px}.panel>summary{color:var(--teal);font-size:14px;font-weight:800}.panel>summary+div{margin-top:14px}.more-example[open]>summary{margin-bottom:10px}
+
+/* Source coverage expansion */
+.audit-panel{border-top:4px solid var(--teal)}.audit-unit{border-top:1px solid var(--line);padding:16px 0}.audit-unit:first-of-type{border-top:0}.audit-unit>summary{color:var(--ink);font-size:17px;line-height:1.45}.audit-unit>summary small{display:block;color:var(--muted);font-size:11px;font-weight:500;margin-top:4px}.audit-unit h4{font:700 13px var(--sans);margin:14px 0 8px}.audit-unit pre{font-size:13px;line-height:1.75}.audit-unit>p{line-height:1.75}.audit-panel .lab{margin-top:18px}.audit-panel .tree-node small{line-height:1.4;max-width:150px;white-space:normal}.audit-panel .table-scroll{max-height:580px}
